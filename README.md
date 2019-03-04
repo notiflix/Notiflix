@@ -68,13 +68,13 @@ Notiflix.Notify.Init({
 ```js
 // You can type your text in String format.
 
-Notiflix.Notify.Success('Notiflix Success message text');
+Notiflix.Notify.Success('Success message text');
 
-Notiflix.Notify.Failure('Notiflix Failure message text');
+Notiflix.Notify.Failure('Failure message text');
 
-Notiflix.Notify.Warning('Notiflix Warning message text');
+Notiflix.Notify.Warning('Warning message text');
 
-Notiflix.Notify.Info('Notiflix Info message text');
+Notiflix.Notify.Info('Info message text');
 
 // e.g. with a callback
 Notiflix.Notify.Success('Click Me',function(){
