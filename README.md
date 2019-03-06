@@ -133,7 +133,7 @@ Notiflix.Loading.Dots();
 Notiflix.Loading.Pulse();
 
 // Loader with a message
-Notiflix.Loading.Standart('Loading...');
+Notiflix.Loading.Standard('Loading...');
 
 // Remove immediately
 Notiflix.Loading.Remove();
