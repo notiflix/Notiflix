@@ -17,6 +17,10 @@ npm install notiflix
 ```
 bower install notiflix
 ```
+##### [yarn](https://yarnpkg.com/en/package/notiflix)
+```
+yarn add notiflix
+```
 
 ##### Demo
 - **Notiflix Notify** -> https://www.notiflix.com/#Notify
