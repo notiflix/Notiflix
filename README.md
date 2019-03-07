@@ -13,6 +13,10 @@ https://www.notiflix.com/documentation
 ```
 npm install notiflix
 ```
+##### [bower](https://bower.io/search/?q=notiflix)
+```
+bower install notiflix
+```
 
 ##### Demo
 - **Notiflix Notify** -> https://www.notiflix.com/#Notify
