@@ -1,0 +1,17 @@
+{
+  "name": "notiflix",
+  "description": "a JavaScript library for client-side non-blocking notifications.",
+  "main": "notiflix-aio-1.0.0.min.js",
+  "keywords": [
+    "notification",
+    "notiflix",
+    "javascript",
+    "client-side",
+    "non-blocking"
+  ],
+  "authors": [
+    "Furkan MT"
+  ],
+  "license": "(MIT)",
+  "homepage": "https://github.com/notiflix/Notiflix"
+}
