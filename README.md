@@ -4,6 +4,9 @@ Notiflix is a pure JavaScript library for client-side non-blocking notifications
 ### Current Version
 1.0.0
 
+### Website
+https://www.notiflix.com
+
 ### Documentation
 https://www.notiflix.com/documentation
 
