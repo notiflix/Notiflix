@@ -1,9 +1,9 @@
 {
   "name": "notiflix",
-  "filename": "notiflix-aio-1.0.0.min.js",
-  "main": "notiflix-1.0.0.min.js",
-  "style": "notiflix-1.0.0.min.css",
-  "version": "1.0.0",
+  "filename": "notiflix-aio-1.1.0.min.js",
+  "main": "notiflix-1.1.0.min.js",
+  "style": "notiflix-1.1.0.min.css",
+  "version": "1.1.0",
   "description": "a JavaScript library for client-side non-blocking notifications.",
   "homepage": "https://github.com/notiflix/Notiflix",
   "keywords": [
