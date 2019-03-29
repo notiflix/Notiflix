@@ -1,7 +1,7 @@
 {
   "name": "notiflix",
   "description": "a JavaScript library for client-side non-blocking notifications.",
-  "main": "notiflix-aio-1.1.0.min.js",
+  "main": "notiflix-aio-1.2.0.min.js",
   "keywords": [
     "notification",
     "notiflix",
