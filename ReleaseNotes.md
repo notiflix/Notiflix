@@ -5,3 +5,5 @@
 
 @1.2.0
 * Changed: JavaScript event listener improvements.
+
+----- 
