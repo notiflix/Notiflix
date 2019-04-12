@@ -1,8 +1,16 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/notiflix/Notiflix/master/github-assets/welcome-to-notiflix.gif" width="480" height="auto" alt="Notiflix">
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/notiflix/Notiflix/master/github-assets/notiflix-logo.svg?sanitize=true" width="240" height="80" alt="Notiflix">
+</p>
+
 ## Notiflix | a JavaScript library for client-side non-blocking notifications.
 Notiflix is a pure JavaScript library for client-side non-blocking notifications that makes your web projects much better. (Don't need jQuery)
 
 ### Current Version
-1.2.0 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md)
+1.3.0 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md)
 
 ### Website
 https://www.notiflix.com
@@ -14,11 +22,7 @@ https://www.notiflix.com/documentation
 
 ##### [npm](https://www.npmjs.com/package/notiflix)
 ```
-npm install notiflix
-```
-##### [bower](https://bower.io/search/?q=notiflix)
-```
-bower install notiflix
+npm i notiflix
 ```
 ##### [yarn](https://yarnpkg.com/en/package/notiflix)
 ```
@@ -35,12 +39,12 @@ yarn add notiflix
 
 ##### Basic Usage
 ###### CSS and JS
-1.1- `<link rel="stylesheet" href="notiflix-1.2.0.min.css" />`
+1.1- `<link rel="stylesheet" href="notiflix-1.3.0.min.css" />`
 
-1.2- `<script src="notiflix-1.2.0.min.js"></script>`
+1.2- `<script src="notiflix-1.3.0.min.js"></script>`
 
 ###### or only JS (Internal CSS)
-1- `<script src="notiflix-aio-1.2.0.min.js"></script>`
+1- `<script src="notiflix-aio-1.3.0.min.js"></script>`
 
 --_--_--
 
@@ -65,7 +69,7 @@ Notiflix.Notify.Init({
   position:'right-top',
   distance:'10px',
   opacity:1,
-  ...
+  // ...
 });
 ```
 
@@ -85,8 +89,10 @@ Notiflix.Notify.Warning('Warning message text');
 Notiflix.Notify.Info('Info message text');
 
 // e.g. with a callback
-Notiflix.Notify.Success('Click Me',function(){
-  alert('Notiflix');
+Notiflix.Notify.Success('Click Me', function(){
+
+  // callback
+
 });
 ```
 
@@ -109,7 +115,9 @@ Notiflix.Report.Success(
   'Message',
   'Button Text',
 function(){
-  alert('Notiflix');
+
+  // callback
+
 });
 ```
 --_--_--
@@ -126,7 +134,9 @@ Notiflix.Confirm.Show(
   'Ok Button Text',
   'Cancel Button Text',
 function(){
-  alert('Notiflix');
+
+  // callback
+
 });
 ```
 
@@ -156,15 +166,215 @@ Notiflix.Loading.Remove(600);
 // Init a custom SVG Icon
 Notiflix.Loading.Init({
   customSvgUrl:'https://www.notiflix.com/dir/icon.svg', 
-  svgSize:'80px'
-  ...
+  svgSize:'80px',
+  // ...
 }); 
 
 // Use the custom SVG Icon
 Notiflix.Loading.Custom();
-
 ```
 
+---------
+---------
+---------
+
+#### Notiflix Notify Module: Default Options
+```js
+Notiflix.Notify.Init({
+  width: '280px',
+  position: 'right-top', // 'right-top' - 'right-bottom' - 'left-top' - 'left-bottom' 
+  distance: '10px',
+  opacity: 1,
+  borderRadius: '5px',
+  rtl: false,
+  timeout: 3000,
+  messageMaxLength: 110,
+  backOverlay: false,
+  backOverlayColor: 'rgba(0,0,0,0.5)',
+
+  ID: 'NotiflixNotify',
+  className: 'notiflix-notify',
+  zindex: 4001,
+  useGoogleFont: true,
+  fontFamily: 'Quicksand',
+  fontSize: '13px',
+  cssAnimation: true,
+  cssAnimationDuration: 400,
+  cssAnimationStyle: 'fade', // 'zoom' - 'fade' - 'from-right' - 'from-top' - 'from-bottom' - 'from-left'
+  closeButton: false,
+  useIcon: true,
+  useFontAwesome: false,
+  fontAwesomeIconStyle: 'basic', // 'shadow' - 'basic'
+  fontAwesomeIconSize: '34px',
+
+  plainText: true, // New Option: @1.3.0 and next versions
+
+  success: {
+      background: '#00b462',
+      textColor: '#fff',
+      childClassName: 'success',
+      notiflixIconColor: 'rgba(0, 0, 0, 0.25)',
+      fontAwesomeClassName: 'fas fa-check-circle',
+      fontAwesomeIconColor: 'rgba(0, 0, 0, 0.2)',
+  },
+
+  failure: {
+      background: '#f44336',
+      textColor: '#fff',
+      childClassName: 'failure',
+      notiflixIconColor: 'rgba(0, 0, 0, 0.2)',
+      fontAwesomeClassName: 'fas fa-times-circle',
+      fontAwesomeIconColor: 'rgba(0, 0, 0, 0.2)',
+  },
+
+  warning: {
+      background: '#f2bd1d',
+      textColor: '#fff',
+      childClassName: 'warning',
+      notiflixIconColor: 'rgba(0, 0, 0, 0.2)',
+      fontAwesomeClassName: 'fas fa-exclamation-circle',
+      fontAwesomeIconColor: 'rgba(0, 0, 0, 0.2)',
+  },
+
+  info: {
+      background: '#00bcd4',
+      textColor: '#fff',
+      childClassName: 'info',
+      notiflixIconColor: 'rgba(0, 0, 0, 0.2)',
+      fontAwesomeClassName: 'fas fa-info-circle',
+      fontAwesomeIconColor: 'rgba(0, 0, 0, 0.2)',
+  },
+});
+```
+
+---------
+
+#### Notiflix Report Module: Default Options
+```js
+Notiflix.Report.Init({
+  className: 'notiflix-report',
+  width: '320px',
+  backgroundColor: '#f8f8f8',
+  borderRadius: '25px',
+  rtl: false,
+  zindex: 4002,
+  backOverlay: true,
+  backOverlayColor: 'rgba(0, 0, 0, 0.5)',
+  useGoogleFont: true,
+  fontFamily: 'Quicksand',
+  svgSize: '110px',
+  plainText: true,
+  titleFontSize: '16px',
+  titleMaxLength: 34,
+  messageFontSize: '13px',
+  messageMaxLength: 400,
+  buttonFontSize: '14px',
+  buttonMaxLength: 34,
+  cssAnimation: true,
+  cssAnimationDuration: 360,
+  cssAnimationStyle: 'fade', // 'fade' - 'zoom'
+
+  success: {
+      svgColor: '#00b462',
+      titleColor: '#1e1e1e',
+      messageColor: '#242424',
+      buttonBackground: '#00b462',
+      buttonColor: '#fff',
+  },
+
+  failure: {
+      svgColor: '#f44336',
+      titleColor: '#1e1e1e',
+      messageColor: '#242424',
+      buttonBackground: '#f44336',
+      buttonColor: '#fff',
+  },
+
+  warning: {
+      svgColor: '#f2bd1d',
+      titleColor: '#1e1e1e',
+      messageColor: '#242424',
+      buttonBackground: '#f2bd1d',
+      buttonColor: '#fff',
+  },
+
+  info: {
+      svgColor: '#00bcd4',
+      titleColor: '#1e1e1e',
+      messageColor: '#242424',
+      buttonBackground: '#00bcd4',
+      buttonColor: '#fff',
+  },
+});
+```
+
+---------
+
+#### Notiflix Confirm Module: Default Options
+```js
+Notiflix.Confirm.Init({
+  className: 'notiflix-confirm',
+  width: '280px',
+  zindex: 4003,
+  position: 'center', // 'center' - 'center-top' -  'right-top' - 'right-bottom' - 'left-top' - 'left-bottom'
+  distance: '10px',
+  backgroundColor: '#f8f8f8',
+  borderRadius: '25px',
+  backOverlay: true,
+  backOverlayColor: 'rgba(0,0,0,0.5)',
+  rtl: false,
+  useGoogleFont: true,
+  fontFamily: 'Quicksand',
+  cssAnimation: true,
+  cssAnimationStyle: 'fade', // 'zoom' - 'fade'
+  cssAnimationDuration: 300,
+
+  titleColor: '#00b462',
+  titleFontSize: '16px',
+  titleMaxLength: 34,
+
+  messageColor: '#1e1e1e',
+  messageFontSize: '14px',
+  messageMaxLength: 110,
+
+  buttonsFontSize: '15px',
+  buttonsMaxLength: 34,
+  okButtonColor: '#f8f8f8',
+  okButtonBackground: '#00b462',
+  cancelButtonColor: '#f8f8f8',
+  cancelButtonBackground: '#a9a9a9',
+
+  plainText: true, // New Option: @1.3.0 and next versions
+
+});
+```
+
+---------
+
+#### Notiflix Loading Module: Default Options
+```js
+Notiflix.Loading.Init({
+  className: 'notiflix-loading',
+  zindex: 4000,
+  backgroundColor: 'rgba(0,0,0,0.8)',
+  rtl: false,
+  useGoogleFont: true,
+  fontFamily: 'Quicksand',
+  cssAnimation: true,
+  cssAnimationDuration: 400,
+  clickToClose: false,
+  customSvgUrl: null,
+  svgSize: '80px',
+  svgColor: '#00b462',
+  messageID: 'NotiflixLoadingMessage',
+  messageFontSize: '15px',
+  messageMaxLength: 34,
+  messageColor: '#dcdcdc',
+});
+```
+
+---------
+---------
 ---------
 
 #### Copyright
