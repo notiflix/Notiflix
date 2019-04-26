@@ -16,3 +16,8 @@
 (The "**plainText**" options can be set as "**false**" to use HTML allowed contents. Default values are "**true**" and not allowed HTML)
 
 ----- 
+
+@1.4.0
+* **Changed:** Code Review.
+
+----- 

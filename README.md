@@ -10,7 +10,7 @@
 Notiflix is a pure JavaScript library for client-side non-blocking notifications that makes your web projects much better. (Don't need jQuery)
 
 ### Current Version
-1.3.0 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md)
+1.4.0 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md)
 
 ### Website
 https://www.notiflix.com
@@ -39,12 +39,12 @@ yarn add notiflix
 
 ##### Basic Usage
 ###### CSS and JS
-1.1- `<link rel="stylesheet" href="notiflix-1.3.0.min.css" />`
+1.1- `<link rel="stylesheet" href="notiflix-1.4.0.min.css" />`
 
-1.2- `<script src="notiflix-1.3.0.min.js"></script>`
+1.2- `<script src="notiflix-1.4.0.min.js"></script>`
 
 ###### or only JS (Internal CSS)
-1- `<script src="notiflix-aio-1.3.0.min.js"></script>`
+1- `<script src="notiflix-aio-1.4.0.min.js"></script>`
 
 --_--_--
 
@@ -90,9 +90,7 @@ Notiflix.Notify.Info('Info message text');
 
 // e.g. with a callback
 Notiflix.Notify.Success('Click Me', function(){
-
   // callback
-
 });
 ```
 
@@ -115,9 +113,7 @@ Notiflix.Report.Success(
   'Message',
   'Button Text',
 function(){
-
   // callback
-
 });
 ```
 --_--_--
@@ -134,9 +130,7 @@ Notiflix.Confirm.Show(
   'Ok Button Text',
   'Cancel Button Text',
 function(){
-
   // callback
-
 });
 ```
 
