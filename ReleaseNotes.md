@@ -21,3 +21,8 @@
 * **Changed:** Code Review.
 
 ----- 
+
+@1.5.0
+* **Fixed:** When the "useGoogleFont" option set as "false"; the "fontFamily" option was being ineffective. 
+
+----- 
