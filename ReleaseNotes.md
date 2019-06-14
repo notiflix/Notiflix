@@ -26,3 +26,9 @@
 * **Fixed:** When the "useGoogleFont" option set as "false"; the "fontFamily" option was being ineffective. 
 
 ----- 
+
+@1.6.0
+* **Changed:** Code Review.
+
+* **Added:** All modules can be used even if they didn't initialized. The first call will initialize the module once. (With default settings.)
+----- 
