@@ -11,7 +11,7 @@ Notiflix is a JavaScript library for client-side non-blocking notifications, pop
 
 
 ### Current Version
-1.6.0 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md)
+1.7.0 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md)
 
 ### Website
 https://www.notiflix.com
@@ -40,16 +40,25 @@ yarn add notiflix
 
 ##### Basic Usage
 ###### CSS and JS
-1.1- `<link rel="stylesheet" href="notiflix-1.6.0.min.css" />`
+1.1- 
+```html
+<link rel="stylesheet" href="notiflix-1.7.0.min.css" />
+```
 
-1.2- `<script src="notiflix-1.6.0.min.js"></script>`
+1.2- 
+```html
+<script src="notiflix-1.7.0.min.js"></script>
+```
 
 ###### or only JS (Internal CSS)
-1- `<script src="notiflix-aio-1.6.0.min.js"></script>`
+1- 
+```html
+<script src="notiflix-aio-1.7.0.min.js"></script>
+```
 
 --_--_--
 
-2- Init
+2- Initialize
 
 ```js
 // Notify
@@ -76,7 +85,7 @@ Notiflix.Notify.Init({
 
 --_--_--
 
-3.1- Use the Notify Module
+3.1- Use: Notify Module
 
 ```js
 // You can type your text in String format.
@@ -97,7 +106,7 @@ Notiflix.Notify.Success('Click Me', function(){
 
 --_--_--
 
-3.2- Use the Report Module
+3.2- Use: Report Module
 
 ```js
 Notiflix.Report.Success('Title','Message','Button Text');
@@ -119,25 +128,34 @@ function(){
 ```
 --_--_--
 
-3.3- Use the Confirm Module
+3.3- Use: Confirm Module
 
 ```js
-Notiflix.Confirm.Show('Title','Message','Ok Button Text');
+Notiflix.Confirm.Show('Title','Message','Ok Button Text','Cancel Button Text');
 
-// e.g. with a callback
+
+// e.g. with callback
 Notiflix.Confirm.Show(
   'Title',
   'Message',
   'Ok Button Text',
   'Cancel Button Text',
-function(){
-  // callback
-});
+
+  // ok button callback
+  function(){
+    // codes...
+  },
+
+  // cancel button callback => v1.7.0 and next versions
+  function(){
+    // codes...
+  }
+);
 ```
 
 --_--_--
 
-3.4- Use the Loading Module
+3.4- Use: Loading Module
 
 ```js
 // Only Loader
@@ -174,6 +192,7 @@ Notiflix.Loading.Custom();
 ---------
 
 #### Notiflix Notify Module: Default Options
+
 ```js
 Notiflix.Notify.Init({
   width: '280px',
@@ -205,39 +224,39 @@ Notiflix.Notify.Init({
   plainText: true, // New Option: @1.3.0 and next versions
 
   success: {
-      background: '#00b462',
-      textColor: '#fff',
-      childClassName: 'success',
-      notiflixIconColor: 'rgba(0, 0, 0, 0.25)',
-      fontAwesomeClassName: 'fas fa-check-circle',
-      fontAwesomeIconColor: 'rgba(0, 0, 0, 0.2)',
+    background: '#00b462',
+    textColor: '#fff',
+    childClassName: 'success',
+    notiflixIconColor: 'rgba(0, 0, 0, 0.25)',
+    fontAwesomeClassName: 'fas fa-check-circle',
+    fontAwesomeIconColor: 'rgba(0, 0, 0, 0.2)',
   },
 
   failure: {
-      background: '#f44336',
-      textColor: '#fff',
-      childClassName: 'failure',
-      notiflixIconColor: 'rgba(0, 0, 0, 0.2)',
-      fontAwesomeClassName: 'fas fa-times-circle',
-      fontAwesomeIconColor: 'rgba(0, 0, 0, 0.2)',
+    background: '#f44336',
+    textColor: '#fff',
+    childClassName: 'failure',
+    notiflixIconColor: 'rgba(0, 0, 0, 0.2)',
+    fontAwesomeClassName: 'fas fa-times-circle',
+    fontAwesomeIconColor: 'rgba(0, 0, 0, 0.2)',
   },
 
   warning: {
-      background: '#f2bd1d',
-      textColor: '#fff',
-      childClassName: 'warning',
-      notiflixIconColor: 'rgba(0, 0, 0, 0.2)',
-      fontAwesomeClassName: 'fas fa-exclamation-circle',
-      fontAwesomeIconColor: 'rgba(0, 0, 0, 0.2)',
+    background: '#f2bd1d',
+    textColor: '#fff',
+    childClassName: 'warning',
+    notiflixIconColor: 'rgba(0, 0, 0, 0.2)',
+    fontAwesomeClassName: 'fas fa-exclamation-circle',
+    fontAwesomeIconColor: 'rgba(0, 0, 0, 0.2)',
   },
 
   info: {
-      background: '#00bcd4',
-      textColor: '#fff',
-      childClassName: 'info',
-      notiflixIconColor: 'rgba(0, 0, 0, 0.2)',
-      fontAwesomeClassName: 'fas fa-info-circle',
-      fontAwesomeIconColor: 'rgba(0, 0, 0, 0.2)',
+    background: '#00bcd4',
+    textColor: '#fff',
+    childClassName: 'info',
+    notiflixIconColor: 'rgba(0, 0, 0, 0.2)',
+    fontAwesomeClassName: 'fas fa-info-circle',
+    fontAwesomeIconColor: 'rgba(0, 0, 0, 0.2)',
   },
 });
 ```
@@ -245,6 +264,7 @@ Notiflix.Notify.Init({
 ---------
 
 #### Notiflix Report Module: Default Options
+
 ```js
 Notiflix.Report.Init({
   className: 'notiflix-report',
@@ -270,35 +290,35 @@ Notiflix.Report.Init({
   cssAnimationStyle: 'fade', // 'fade' - 'zoom'
 
   success: {
-      svgColor: '#00b462',
-      titleColor: '#1e1e1e',
-      messageColor: '#242424',
-      buttonBackground: '#00b462',
-      buttonColor: '#fff',
+    svgColor: '#00b462',
+    titleColor: '#1e1e1e',
+    messageColor: '#242424',
+    buttonBackground: '#00b462',
+    buttonColor: '#fff',
   },
 
   failure: {
-      svgColor: '#f44336',
-      titleColor: '#1e1e1e',
-      messageColor: '#242424',
-      buttonBackground: '#f44336',
-      buttonColor: '#fff',
+    svgColor: '#f44336',
+    titleColor: '#1e1e1e',
+    messageColor: '#242424',
+    buttonBackground: '#f44336',
+    buttonColor: '#fff',
   },
 
   warning: {
-      svgColor: '#f2bd1d',
-      titleColor: '#1e1e1e',
-      messageColor: '#242424',
-      buttonBackground: '#f2bd1d',
-      buttonColor: '#fff',
+    svgColor: '#f2bd1d',
+    titleColor: '#1e1e1e',
+    messageColor: '#242424',
+    buttonBackground: '#f2bd1d',
+    buttonColor: '#fff',
   },
 
   info: {
-      svgColor: '#00bcd4',
-      titleColor: '#1e1e1e',
-      messageColor: '#242424',
-      buttonBackground: '#00bcd4',
-      buttonColor: '#fff',
+    svgColor: '#00bcd4',
+    titleColor: '#1e1e1e',
+    messageColor: '#242424',
+    buttonBackground: '#00bcd4',
+    buttonColor: '#fff',
   },
 });
 ```
@@ -306,6 +326,7 @@ Notiflix.Report.Init({
 ---------
 
 #### Notiflix Confirm Module: Default Options
+
 ```js
 Notiflix.Confirm.Init({
   className: 'notiflix-confirm',
@@ -347,6 +368,7 @@ Notiflix.Confirm.Init({
 ---------
 
 #### Notiflix Loading Module: Default Options
+
 ```js
 Notiflix.Loading.Init({
   className: 'notiflix-loading',
