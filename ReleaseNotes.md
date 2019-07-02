@@ -38,3 +38,8 @@
 * **Added:** An optional callback function can be used with Deny Button in "Notiflix Confirm" module. Recommended by Sinan Keskin (https://github.com/sinankeskin)
 
 ----- 
+
+@1.7.1
+* **Changed:** Character encoding UTF-8 without BOM.
+
+----- 
