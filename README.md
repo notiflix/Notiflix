@@ -11,7 +11,7 @@ Notiflix is a JavaScript library for client-side non-blocking notifications, pop
 
 
 ### Current Version
-1.7.1 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md)
+1.7.2 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md)
 
 ### Website
 https://www.notiflix.com
@@ -30,7 +30,7 @@ npm i notiflix
 yarn add notiflix
 ```
 
-##### Demo
+#### Demo
 - **Notiflix Notify** -> https://www.notiflix.com/#Notify
 - **Notiflix Report** -> https://www.notiflix.com/#Report
 - **Notiflix Confirm** -> https://www.notiflix.com/#Confirm
@@ -38,27 +38,27 @@ yarn add notiflix
 
 ---------
 
-##### Basic Usage
-###### CSS and JS
+#### Basic Usage
+##### CSS and JS
 1.1- 
 ```html
-<link rel="stylesheet" href="notiflix-1.7.1.min.css" />
+<link rel="stylesheet" href="notiflix-1.7.2.min.css" />
 ```
 
 1.2- 
 ```html
-<script src="notiflix-1.7.1.min.js"></script>
+<script src="notiflix-1.7.2.min.js"></script>
 ```
 
-###### or only JS (Internal CSS)
+##### or only JS (Internal CSS)
 1- 
 ```html
-<script src="notiflix-aio-1.7.1.min.js"></script>
+<script src="notiflix-aio-1.7.2.min.js"></script>
 ```
 
 --_--_--
 
-2- Initialize
+2- Initialize (Not required if used with default settings after v1.6.0 and the next versions.)
 
 ```js
 // Notify
@@ -72,6 +72,7 @@ Notiflix.Confirm.Init({});
 
 // Loading
 Notiflix.Loading.Init({});
+
 
 // e.g. Init the Notify Module with some options
 Notiflix.Notify.Init({
@@ -147,7 +148,7 @@ Notiflix.Confirm.Show(
     // codes...
   },
 
-  // cancel button callback => v1.7.0 and next versions
+  // cancel button callback => v1.7.0 and the next versions
   function(){
     // codes...
   }
@@ -222,7 +223,7 @@ Notiflix.Notify.Init({
   fontAwesomeIconStyle: 'basic', // 'shadow' - 'basic'
   fontAwesomeIconSize: '34px',
 
-  plainText: true, // New Option: @1.3.0 and next versions
+  plainText: true, // New Option: v1.3.0 and the next versions
 
   success: {
     background: '#00b462',
@@ -361,7 +362,7 @@ Notiflix.Confirm.Init({
   cancelButtonColor: '#f8f8f8',
   cancelButtonBackground: '#a9a9a9',
 
-  plainText: true, // New Option: @1.3.0 and next versions
+  plainText: true, // New Option: v1.3.0 and the next versions
 
 });
 ```
