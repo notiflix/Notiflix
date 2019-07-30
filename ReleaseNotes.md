@@ -1,3 +1,9 @@
+@1.8.0
+* **Added:** The "showOnlyTheLastOne" option added to the "Notiflix Notify" module. Recommended by Ori Granot (https://github.com/origranot)
+
+(Default is "false". This option can be set as "true" to show only the last notification.)
+
+----- 
 @1.7.2
 * **Added:** Unminified package published.
 
