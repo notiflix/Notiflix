@@ -11,7 +11,7 @@ Notiflix is a JavaScript library for client-side non-blocking notifications, pop
 
 
 ### Current Version
-1.8.0 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md)
+1.9.0 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md)
 
 ### Website
 https://www.notiflix.com
@@ -42,18 +42,18 @@ yarn add notiflix
 ##### CSS and JS
 1.1- 
 ```html
-<link rel="stylesheet" href="notiflix-1.8.0.min.css" />
+<link rel="stylesheet" href="notiflix-1.9.0.min.css" />
 ```
 
 1.2- 
 ```html
-<script src="notiflix-1.8.0.min.js"></script>
+<script src="notiflix-1.9.0.min.js"></script>
 ```
 
 ##### or only JS (Internal CSS)
 1- 
 ```html
-<script src="notiflix-aio-1.8.0.min.js"></script>
+<script src="notiflix-aio-1.9.0.min.js"></script>
 ```
 
 --_--_--
@@ -171,11 +171,17 @@ Notiflix.Loading.Pulse();
 // Loader with a message
 Notiflix.Loading.Standard('Loading...');
 
+// Change the message anytime
+Notiflix.Loading.Change('Loading %20');
+
+
+
 // Remove immediately
 Notiflix.Loading.Remove();
 
 // Remove after delay - e.g. 600ms
 Notiflix.Loading.Remove(600);
+
 
 
 // Init a custom SVG Icon

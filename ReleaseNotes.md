@@ -1,3 +1,8 @@
+@1.9.0
+* **Changed:** Code Review.
+
+----- 
+
 @1.8.0
 * **Added:** The "showOnlyTheLastOne" option added to the "Notiflix Notify" module. Recommended by Ori Granot (https://github.com/origranot)
 
