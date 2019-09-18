@@ -1,3 +1,8 @@
+@1.9.1
+* **Changed:** Code Review.
+
+----- 
+
 @1.9.0
 * **Changed:** Code Review.
 
@@ -9,6 +14,7 @@
 (Default is "false". This option can be set as "true" to show only the last notification.)
 
 ----- 
+
 @1.7.2
 * **Added:** Unminified package published.
 

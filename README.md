@@ -11,7 +11,7 @@ Notiflix is a JavaScript library for client-side non-blocking notifications, pop
 
 
 ### Current Version
-1.9.0 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md)
+1.9.1 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md)
 
 ### Website
 https://www.notiflix.com
@@ -42,18 +42,18 @@ yarn add notiflix
 ##### CSS and JS
 1.1- 
 ```html
-<link rel="stylesheet" href="notiflix-1.9.0.min.css" />
+<link rel="stylesheet" href="notiflix-1.9.1.min.css" />
 ```
 
 1.2- 
 ```html
-<script src="notiflix-1.9.0.min.js"></script>
+<script src="notiflix-1.9.1.min.js"></script>
 ```
 
 ##### or only JS (Internal CSS)
 1- 
 ```html
-<script src="notiflix-aio-1.9.0.min.js"></script>
+<script src="notiflix-aio-1.9.1.min.js"></script>
 ```
 
 --_--_--
