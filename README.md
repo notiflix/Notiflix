@@ -45,18 +45,18 @@ yarn add notiflix
 
 ## Basic Usage
 ### CSS and JS
-1.1- 
+1.1-
 ```html
 <link rel="stylesheet" href="notiflix-2.0.0.min.css" />
 ```
 
-1.2- 
+1.2-
 ```html
 <script src="notiflix-2.0.0.min.js"></script>
 ```
 
 ### or only JS (Internal CSS)
-1- 
+1-
 ```html
 <script src="notiflix-aio-2.0.0.min.js"></script>
 ```
@@ -169,10 +169,10 @@ Notiflix.Loading.Remove(600);
 
 // Custom Loading Indicator: Init a custom SVG Icon
 Notiflix.Loading.Init({
-  customSvgUrl: 'https://www.notiflix.com/dir/icon.svg', 
+  customSvgUrl: 'https://www.notiflix.com/dir/icon.svg',
   svgSize: '80px',
   // etc...
-}); 
+});
 
 // Custom Loading Indicator: Use with custom SVG Icon
 Notiflix.Loading.Custom();
@@ -181,6 +181,44 @@ Notiflix.Loading.Custom();
 Notiflix.Loading.Custom('Loading...');
 ```
 
+
+2.5- Use: Block Module
+
+Notiflix Block module can be used to block or unblock elements to prevents users actions during the process (AJAX etc.) without locking the browser or the other elements.
+
+Block:
+```js
+/*
+* @param1 {string}: Required, Select the element(s) to block. (ID or Class)
+* @param2 {string}: Optional, Can also be added a message.
+*/
+
+// Only indicator
+Notiflix.Block.Standard('.element');
+Notiflix.Block.Hourglass('.element');
+Notiflix.Block.Circle('.element');
+Notiflix.Block.Arrows('.element');
+Notiflix.Block.Dots('.element');
+Notiflix.Block.Pulse('.element');
+
+// With a message
+Notiflix.Block.Standard('.selector', 'Loading...');
+```
+
+
+Unblock:
+```js
+/*
+* @param1 {string}: Required, Select the element(s) to unblock. (ID or Class)
+* @param2 {number}: Optional, Unblock after a delay.
+*/
+
+// Unblock selected element(s) immediately
+Notiflix.Block.Remove('.selector');
+
+// Unblock selected element(s) after a delay (e.g. 600 milliseconds)
+Notiflix.Block.Remove('.selector', 600);
+```
 
 --_--_----_--_----_--_----_--_----_--_----_--_--
 
@@ -221,7 +259,7 @@ Notiflix.Notify.Init({
 
 4- Merge (optional)
 
-`Notiflix.*.Merge` function can be used with other custom settings if wanted to deeply extend the `Init` function for a specific page or event.
+`Notiflix.*.Merge` function can be used to deeply extend the `Init` function for a specific page or event.
 
 ```js
 // e.g. Merge the Notify Module initialize function with some new options
