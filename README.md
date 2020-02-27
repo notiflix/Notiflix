@@ -9,9 +9,8 @@
 ## Notiflix | a JavaScript library for client-side non-blocking notifications.
 Notiflix is a JavaScript library for client-side non-blocking notifications, popup boxes, loading indicators, and more to that makes your web projects much better. [*](# "zero-dependency")
 
-
 #### Current Version
-2.0.0 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md "Release Notes")
+2.1.0 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md "Release Notes")
 
 #### Website
 https://www.notiflix.com
@@ -28,47 +27,61 @@ https://www.notiflix.com/documentation
 
 ---------
 
-### Install
-[npm](https://www.npmjs.com/package/notiflix) || [yarn](https://yarnpkg.com/en/package/notiflix)
+### (A) Install and Import
+(React, Angular, NextJS...)
+
+Install
+
+[npm](https://www.npmjs.com/package/notiflix)
 
 ```js
 npm i notiflix
+```
 
-// or
+[yarn](https://yarnpkg.com/en/package/notiflix)
 
+```js
 yarn add notiflix
 ```
 
+Import
+
+```jsx
+// all modules
+import Notiflix from "notiflix";
+
+// one by one
+import { Notify , Report, Confirm, Loading, Block } from "notiflix";
+```
+
+---------
+
+### (B) Add an HTML
+
+##### CSS and JS
+```html
+<link rel="stylesheet" href="notiflix-2.1.0.min.css" />
+
+<script src="notiflix-2.1.0.min.js"></script>
+```
+
+##### or only JS (All in One - Internal CSS)
+```html
+<script src="notiflix-aio-2.1.0.min.js"></script>
+```
 
 
 ---------
 
-## Basic Usage
-### CSS and JS
-1.1-
-```html
-<link rel="stylesheet" href="notiflix-2.0.0.min.css" />
-```
+### Usage
 
-1.2-
-```html
-<script src="notiflix-2.0.0.min.js"></script>
-```
-
-### or only JS (Internal CSS)
-1-
-```html
-<script src="notiflix-aio-2.0.0.min.js"></script>
-```
-
-
---_--_----_--_----_--_----_--_----_--_----_--_--
-
-
-2.1- Use: Notify Module
+1- Notify Module
 
 ```js
-// You can type your text in String format.
+/*
+* @param1 {string}: Required, message text in String format.
+* @param2 {function}: Optional, callback function when the notification element clicked.
+*/
 
 Notiflix.Notify.Success('Success message text');
 
@@ -79,24 +92,34 @@ Notiflix.Notify.Warning('Warning message text');
 Notiflix.Notify.Info('Info message text');
 
 // e.g. with a callback
-Notiflix.Notify.Success('Click Me', function(){
-  // callback
-});
+Notiflix.Notify.Success(
+  'Click Me', 
+  function(){
+    // callback
+  },
+);
 ```
 
 --_--_----_--_----_--_----_--_----_--_----_--_--
 
 
-2.2- Use: Report Module
+2- Report Module
 
 ```js
-Notiflix.Report.Success('Title','Message','Button Text');
+/*
+* @param1 {string}: Required, title text in String format.
+* @param2 {string}: Required, message text in String format.
+* @param3 {string}: Required, button text in String format.
+* @param4 {function}: Optional, callback function when the button element clicked.
+*/
 
-Notiflix.Report.Failure('Title','Message','Button Text');
+Notiflix.Report.Success('Title', 'Message', 'Button Text');
 
-Notiflix.Report.Warning('Title','Message','Button Text');
+Notiflix.Report.Failure('Title', 'Message', 'Button Text');
 
-Notiflix.Report.Info('Title','Message','Button Text');
+Notiflix.Report.Warning('Title', 'Message', 'Button Text');
+
+Notiflix.Report.Info('Title', 'Message', 'Button Text');
 
 // e.g. with a callback
 Notiflix.Report.Success(
@@ -105,18 +128,26 @@ Notiflix.Report.Success(
   'Button Text',
   function(){
     // callback
-  }
+  },
 );
 ```
 
 --_--_----_--_----_--_----_--_----_--_----_--_--
 
 
-2.3- Use: Confirm Module
+3- Confirm Module
 
 ```js
-Notiflix.Confirm.Show('Title','Message','Ok Button Text','Cancel Button Text');
+/*
+* @param1 {string}: Required, title text in String format.
+* @param2 {string}: Required, message text in String format.
+* @param3 {string}: Required, ok button text in String format.
+* @param4 {string}: Required, cancel button text in String format.
+* @param5 {function}: Optional, callback function when the ok button element clicked.
+* @param6 {function}: Optional, callback function when the cancel button element clicked.
+*/
 
+Notiflix.Confirm.Show('Title', 'Message', 'Ok Button Text', 'Cancel Button Text');
 
 // e.g. with callback
 Notiflix.Confirm.Show(
@@ -133,17 +164,19 @@ Notiflix.Confirm.Show(
   // cancel button callback
   function(){
     // codes...
-  }
+  },
 );
 ```
 
 --_--_----_--_----_--_----_--_----_--_----_--_--
 
 
-2.4- Use: Loading Module
+4- Loading Module
 
 ```js
-// Only Loading Indicator
+/* 
+* Only Loading Indicator
+*/
 Notiflix.Loading.Standard();
 Notiflix.Loading.Hourglass();
 Notiflix.Loading.Circle();
@@ -151,20 +184,29 @@ Notiflix.Loading.Arrows();
 Notiflix.Loading.Dots();
 Notiflix.Loading.Pulse();
 
-// Loading Indicator with a message
+/* 
+* Loading Indicator with a message
+* @param1 {string}: Optional, message text in String format.
+*/
 Notiflix.Loading.Standard('Loading...');
 
-// Change the message anytime
+/* 
+* Change the message text anytime
+* @param1 {string}: Required, message text in String format.
+*/
 Notiflix.Loading.Change('Loading %20');
 
-
-
-// Remove immediately
+/* 
+* Remove immediately
+* @param1 {string}: Required, message text in String format.
+*/
 Notiflix.Loading.Remove();
 
-// Remove after delay - e.g. 600ms
+/* 
+* Remove after delay - e.g. 600ms
+* @param1 {number}: Required, number as millisecond.
+*/
 Notiflix.Loading.Remove(600);
-
 
 
 // Custom Loading Indicator: Init a custom SVG Icon
@@ -181,8 +223,10 @@ Notiflix.Loading.Custom();
 Notiflix.Loading.Custom('Loading...');
 ```
 
+--_--_----_--_----_--_----_--_----_--_----_--_--
 
-2.5- Use: Block Module
+
+5- Block Module
 
 Notiflix Block module can be used to block or unblock elements to prevents users actions during the process (AJAX etc.) without locking the browser or the other elements.
 
@@ -223,7 +267,7 @@ Notiflix.Block.Remove('.selector', 600);
 --_--_----_--_----_--_----_--_----_--_----_--_--
 
 
-3- Initialize (optional)
+### Initialize (optional)
 
 `Notiflix.*.Init` function can be used if wanted to be used with custom settings.
 
@@ -257,7 +301,7 @@ Notiflix.Notify.Init({
 --_--_----_--_----_--_----_--_----_--_----_--_--
 
 
-4- Merge (optional)
+### Merge (optional)
 
 `Notiflix.*.Merge` function can be used to deeply extend the `Init` function for a specific page or event.
 

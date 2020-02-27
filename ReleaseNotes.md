@@ -1,3 +1,9 @@
+
+@2.1.0
+* **Added:** Universal Module Definition.
+
+----- 
+
 @2.0.0
 
 #### Notiflix `v2` is ready to use. 
