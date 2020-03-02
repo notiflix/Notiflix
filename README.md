@@ -51,7 +51,7 @@ Import
 import Notiflix from "notiflix";
 
 // one by one
-import { Notify , Report, Confirm, Loading, Block } from "notiflix";
+import { Notify, Report, Confirm, Loading, Block } from "notiflix";
 ```
 
 ---------
@@ -142,7 +142,7 @@ Notiflix.Report.Success(
 * @param1 {string}: Required, title text in String format.
 * @param2 {string}: Required, message text in String format.
 * @param3 {string}: Required, ok button text in String format.
-* @param4 {string}: Required, cancel button text in String format.
+* @param4 {string}: Optional, cancel button text in String format.
 * @param5 {function}: Optional, callback function when the ok button element clicked.
 * @param6 {function}: Optional, callback function when the cancel button element clicked.
 */
@@ -198,7 +198,6 @@ Notiflix.Loading.Change('Loading %20');
 
 /* 
 * Remove immediately
-* @param1 {string}: Required, message text in String format.
 */
 Notiflix.Loading.Remove();
 
