@@ -10,7 +10,7 @@
 Notiflix is a JavaScript library for client-side non-blocking notifications, popup boxes, loading indicators, and more to that makes your web projects much better. [*](# "zero-dependency")
 
 #### Current Version
-2.1.3 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md "Release Notes")
+2.1.4 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md "Release Notes")
 
 #### Website
 https://www.notiflix.com
@@ -28,7 +28,7 @@ https://www.notiflix.com/documentation
 ---------
 
 ### (A) Install and Import
-(React, Angular, NextJS...)
+(React, Angular, Next.js etc.)
 
 Install
 
@@ -60,14 +60,14 @@ import { Notify, Report, Confirm, Loading, Block } from "notiflix";
 
 ##### CSS and JS
 ```html
-<link rel="stylesheet" href="notiflix-2.1.3.min.css" />
+<link rel="stylesheet" href="dist/notiflix-2.1.4.min.css" />
 
-<script src="notiflix-2.1.3.min.js"></script>
+<script src="dist/notiflix-2.1.4.min.js"></script>
 ```
 
 ##### or only JS (All in One - Internal CSS)
 ```html
-<script src="notiflix-aio-2.1.3.min.js"></script>
+<script src="dist/notiflix-aio-2.1.4.min.js"></script>
 ```
 
 
@@ -93,7 +93,7 @@ Notiflix.Notify.Info('Info message text');
 
 // e.g. with a callback
 Notiflix.Notify.Success(
-  'Click Me', 
+  'Click Me',
   function(){
     // callback
   },
@@ -174,7 +174,7 @@ Notiflix.Confirm.Show(
 4- Loading Module
 
 ```js
-/* 
+/*
 * Only Loading Indicator
 */
 Notiflix.Loading.Standard();
@@ -184,24 +184,24 @@ Notiflix.Loading.Arrows();
 Notiflix.Loading.Dots();
 Notiflix.Loading.Pulse();
 
-/* 
+/*
 * Loading Indicator with a message
 * @param1 {string}: Optional, message text in String format.
 */
 Notiflix.Loading.Standard('Loading...');
 
-/* 
+/*
 * Change the message text anytime
 * @param1 {string}: Required, message text in String format.
 */
 Notiflix.Loading.Change('Loading %20');
 
-/* 
+/*
 * Remove immediately
 */
 Notiflix.Loading.Remove();
 
-/* 
+/*
 * Remove after delay - e.g. 600ms
 * @param1 {number}: Required, number as millisecond.
 */

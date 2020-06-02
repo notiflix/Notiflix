@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Notiflix | Test the last version</title>
+  <meta name="description" content="Notiflix | Test the last version" />
+  <meta name="content-language" content="en" />
+  <meta name="language" content="English" />
+  <meta name="robots" content="noindex, nofollow, noodp, noydir" />
+  <meta name="googlebot" content="noindex, nofollow, noodp, noydir" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="shortcut icon" href="https://raw.githubusercontent.com/notiflix/Notiflix/master/github-assets/favicon.png" />
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+  <link id="NotiflixQuicksand" href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700&amp;subset=latin-ext" rel="stylesheet" />
+  <link id="NotiflixBarlow" href="https://fonts.googleapis.com/css?family=Barlow:100,200,300,400,500,600,700,800,900&amp;subset=latin-ext" rel="stylesheet" />
+  <style>
+    *,
+    *:focus,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body,
+    button,
+    input {
+      font-family: "Quicksand", sans-serif;
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .nx-box {
+      margin: 0;
+      padding: 6rem 2rem;
+      background: #fff;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), #fff);
+    }
+
+    .title {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      width: 100%;
+      font-family: "Barlow", sans-serif;
+      font-size: 1.5rem;
+      line-height: 1.2;
+      font-weight: 300;
+      padding: 0 0 0 0.5rem;
+      margin: 0 auto 1.5rem;
+    }
+
+    .title span {
+      display: inline-block;
+      letter-spacing: -0.15rem;
+      font-weight: 500;
+      color: #d4d4d4;
+      transform: scale(1.15);
+      transform-origin: left center;
+      margin: 0 0.375rem 0 0;
+    }
+
+    .buttons {
+      width: 100%;
+      max-width: 85rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      margin: 1rem auto 2rem;
+      background: #f8f8f8;
+      border-radius: 1rem;
+      box-shadow: 0 0 3rem -1rem rgba(0, 0, 0, 0.25);
+    }
+
+    .buttons button {
+      min-width: 15rem;
+      max-width: 20rem;
+      flex: 1;
+      cursor: pointer;
+      transition: all 0.15s ease-in-out;
+      transform: scale(1);
+      padding: 1rem 1rem;
+      margin: 0.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      background: #00ffb3;
+      background: linear-gradient(to right bottom, #00ffb3, #00f2aa, #00e5a1, #00d998, #00cc8f);
+      color: #fff;
+      box-shadow: 0 0 1.5rem -0.75rem rgba(0, 0, 0, 0.4);
+      font-size: 0.9375rem;
+      line-height: 1rem;
+      font-weight: 500;
+    }
+
+    .buttons button:hover {
+      transform: scale(0.95);
+    }
+
+    .buttons button.nx-report,
+    .buttons button.nx-loading,
+    .buttons button.nx-unblock {
+      background: #faa161;
+      background: linear-gradient(to right bottom, #faa161, #fb975f, #fb8c5f, #fb815f, #fa7661);
+    }
+
+    .nx-block-dummy-element {
+      background: #3bff77;
+      box-shadow: 0 0 3rem -1rem rgba(0, 0, 0, 0.25);
+      display: block;
+      width: 100%;
+      max-width: 30rem;
+      height: 12.5rem;
+      padding: 1rem;
+      margin: 0 auto 2.5rem;
+      position: relative;
+      border-radius: 1rem;
+    }
+
+    .nx-block-dummy-element p {
+      margin: 0;
+      padding: 0;
+      font-size: 1rem;
+      line-height: 1;
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.4);
+    }
+
+    .nx-box-selector {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      bottom: 0;
+      padding: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    .nx-box-selector label {
+      font-size: 0.75rem;
+      line-height: 1;
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.4);
+      margin: 0 0 0.5rem;
+    }
+
+    .nx-box-selector input {
+      font-size: 0.875rem;
+      line-height: 1;
+      font-weight: 500;
+      color: #1e1e1e;
+      margin: 0;
+      padding: 0.5rem;
+      width: 100%;
+      border: none;
+      border-radius: 0.5rem;
+    }
+
+  </style>
+
+  <!-- <link href="../dist/notiflix-2.1.4.min.css" rel="stylesheet" />
+  <script src="../dist/notiflix-2.1.4.min.js"></script> -->
+  <script src="../dist/notiflix-aio-2.1.4.min.js"></script>
+
+  <!-- <link href="../src/notiflix.css" rel="stylesheet" />
+  <script src="../src/notiflix.js"></script> -->
+  <!-- <script src="../src/notiflix-aio.js"></script> -->
+
+  <script>
+    console.log(Notiflix);
+  </script>
+</head>
+
+<body>
+  <div class="nx-box">
+    <h1 class="title"><span>//</span> Notiflix Notify</h1>
+    <div class="buttons">
+      <button class="nx-notify" onclick="Notiflix.Notify.Success();">Notify Success</button>
+      <button class="nx-notify" onclick="Notiflix.Notify.Failure();">Notify Failure</button>
+      <button class="nx-notify" onclick="Notiflix.Notify.Warning();">Notify Warning</button>
+      <button class="nx-notify" onclick="Notiflix.Notify.Info('Click me!',function(){alert('Thanks!')});">Notify Info (With Callback)</button>
+    </div>
+  </div>
+
+  <div class="nx-box">
+    <h1 class="title"><span>//</span> Notiflix Report</h1>
+    <div class="buttons">
+      <button class="nx-report" onclick="Notiflix.Report.Success();">Report Success</button>
+      <button class="nx-report" onclick="Notiflix.Report.Failure();">Report Failure</button>
+      <button class="nx-report" onclick="Notiflix.Report.Warning();">Report Warning</button>
+      <button class="nx-report" onclick="Notiflix.Report.Info('','','',function(){alert('Thanks!')});">Report Info (With Callback)</button>
+    </div>
+  </div>
+
+  <div class="nx-box">
+    <h1 class="title"><span>//</span> Notiflix Confirm</h1>
+    <div class="buttons">
+      <button class="nx-confirm" onclick="Notiflix.Confirm.Show();">Notiflix Confirm</button>
+      <button class="nx-confirm" onclick="Notiflix.Confirm.Show('','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','','',function(){alert('Thanks!')},function(){alert('Uppsss...')});">Notiflix Confirm (With Callback)</button>
+    </div>
+  </div>
+
+  <div class="nx-box">
+    <h1 class="title"><span>//</span> Notiflix Loading</h1>
+    <div class="buttons">
+      <button class="nx-loading" onclick="Notiflix.Loading.Standard();">Loading Standard</button>
+      <button class="nx-loading" onclick="Notiflix.Loading.Standard('Standard Loading...');">Loading Standard (With Message)</button>
+      <button class="nx-loading" onclick="Notiflix.Loading.Hourglass();">Loading Hourglass</button>
+      <button class="nx-loading" onclick="Notiflix.Loading.Hourglass('Hourglass Loading...');">Loading Hourglass (With Message)</button>
+      <button class="nx-loading" onclick="Notiflix.Loading.Circle();">Loading Circle</button>
+      <button class="nx-loading" onclick="Notiflix.Loading.Circle('Circle Loading...');">Loading Circle (With Message)</button>
+      <button class="nx-loading" onclick="Notiflix.Loading.Arrows();">Loading Arrows</button>
+      <button class="nx-loading" onclick="Notiflix.Loading.Arrows('Arrows Loading...');">Loading Arrows (With Message)</button>
+      <button class="nx-loading" onclick="Notiflix.Loading.Pulse();">Loading Pulse</button>
+      <button class="nx-loading" onclick="Notiflix.Loading.Pulse('Pulse Loading...');">Loading Pulse (With Message)</button>
+      <button class="nx-loading" onclick="Notiflix.Loading.Dots();">Loading Dots</button>
+      <button class="nx-loading" onclick="Notiflix.Loading.Dots('Dots Loading...');">Loading Dots (With Message)</button>
+      <button class="nx-loading" onclick="Notiflix.Loading.Custom();">Loading Custom</button>
+      <button class="nx-loading" onclick="Notiflix.Loading.Custom('Custom Loading...');">Loading Custom (With Message)</button>
+    </div>
+  </div>
+
+  <div class="nx-box">
+    <h1 class="title"><span>//</span> Notiflix Block</h1>
+    <div class="nx-block-dummy-element">
+      <p>Dummy Element (.nx-block-dummy-element)</p>
+      <div class="nx-box-selector">
+        <label for="BlockSelector">Query Selector (Test with another selector if you wish.)</label>
+        <input id="BlockSelector" type="text" value=".nx-block-dummy-element" />
+      </div>
+    </div>
+    <div class="buttons">
+      <button class="nx-block" onclick="Notiflix.Block.Standard(document.getElementById('BlockSelector').value);">Block Standard</button>
+      <button class="nx-block" onclick="Notiflix.Block.Standard(document.getElementById('BlockSelector').value, 'Message');">Block Standard (With Message)</button>
+      <button class="nx-block" onclick="Notiflix.Block.Hourglass(document.getElementById('BlockSelector').value);">Block Hourglass</button>
+      <button class="nx-block" onclick="Notiflix.Block.Hourglass(document.getElementById('BlockSelector').value, 'Message');">Block Hourglass (With Message)</button>
+      <button class="nx-block" onclick="Notiflix.Block.Circle(document.getElementById('BlockSelector').value);">Block Circle</button>
+      <button class="nx-block" onclick="Notiflix.Block.Circle(document.getElementById('BlockSelector').value, 'Message');">Block Circle (With Message)</button>
+      <button class="nx-block" onclick="Notiflix.Block.Arrows(document.getElementById('BlockSelector').value);">Block Arrows</button>
+      <button class="nx-block" onclick="Notiflix.Block.Arrows(document.getElementById('BlockSelector').value, 'Message');">Block Arrows (With Message)</button>
+      <button class="nx-block" onclick="Notiflix.Block.Pulse(document.getElementById('BlockSelector').value);">Block Pulse</button>
+      <button class="nx-block" onclick="Notiflix.Block.Pulse(document.getElementById('BlockSelector').value, 'Message');">Block Pulse (With Message)</button>
+      <button class="nx-block" onclick="Notiflix.Block.Dots(document.getElementById('BlockSelector').value);">Block Dots</button>
+      <button class="nx-block" onclick="Notiflix.Block.Dots(document.getElementById('BlockSelector').value, 'Message');">Block Dots (With Message)</button>
+      <button class="nx-block nx-unblock" onclick="Notiflix.Block.Remove(document.getElementById('BlockSelector').value);">UnBlock</button>
+    </div>
+  </div>
+</body>
+
+</html>
