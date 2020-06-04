@@ -57,9 +57,9 @@
   "scripts": {
     "stylelint": "stylelint src/notiflix.css",
     "eslint": "eslint src/notiflix.js && eslint src/notiflix-aio.js",
-    "notiflix-test": "npm run stylelint && npm run eslint",
-    "notiflix-minifier-test": "eslint helpers/notiflix-minifier.js",
+    "notiflix-lint": "npm run stylelint && npm run eslint",
+    "notiflix-minifier-lint": "eslint helpers/notiflix-minifier.js",
     "notiflix-minifier": "node helpers/notiflix-minifier.js",
-    "notiflix-build": "npm run notiflix-minifier-test && npm run notiflix-test && npm run notiflix-minifier"
+    "notiflix-build": "npm run notiflix-minifier-lint && npm run notiflix-lint && npm run notiflix-minifier"
   }
 }
