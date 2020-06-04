@@ -13,10 +13,13 @@
 [synk-url]: https://snyk.io/test/github/notiflix/Notiflix?targetFile=package.json
 [downloads-image]: https://img.shields.io/npm/dm/notiflix.svg
 [downloads-url]: https://npmjs.org/package/notiflix
+[jsdelivr-badge]: https://data.jsdelivr.com/v1/package/npm/notiflix/badge
+[jsdelivr-url]: https://www.jsdelivr.com/package/npm/notiflix
 
 [![npm version][npm-version-badge]][npm-version-url]
 [![Known Vulnerabilities][synk-badge]][synk-url]
 [![downloads][downloads-image]][downloads-url]
+[![jsdelivr][jsdelivr-badge]][jsdelivr-url]
 
 ## Notiflix | a JavaScript library for client-side non-blocking notifications.
 Notiflix is a JavaScript library for client-side non-blocking notifications, popup boxes, loading indicators, and more to that makes your web projects much better. [*](# "zero-dependency")
