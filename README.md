@@ -13,7 +13,7 @@
 [synk-url]: https://snyk.io/test/github/notiflix/Notiflix?targetFile=package.json
 [downloads-image]: https://img.shields.io/npm/dm/notiflix.svg
 [downloads-url]: https://npmjs.org/package/notiflix
-[jsdelivr-badge]: https://data.jsdelivr.com/v1/package/npm/notiflix/badge
+[jsdelivr-badge]: https://data.jsdelivr.com/v1/package/npm/notiflix/badge?style=rounded
 [jsdelivr-url]: https://www.jsdelivr.com/package/npm/notiflix
 
 [![npm version][npm-version-badge]][npm-version-url]
