@@ -1,6 +1,6 @@
 /*!
 * Notiflix ('https://www.notiflix.com')
-* Version: 2.1.4
+* Version: 2.2.0
 * Author: Furkan MT ('https://github.com/furcan')
 * Copyright 2020 Notiflix, MIT Licence ('https://opensource.org/licenses/MIT')
 */
@@ -26,29 +26,20 @@
   }
   // SSR check off
 
-  // Notiflix: Internal CSS codes on
-  var notiflixInternalCSSCodes = function () {
-    var css = '[id^=NotiflixNotifyWrap]{position:fixed;z-index:4001;opacity:1;right:10px;top:10px;width:280px;max-width:96%;box-sizing:border-box;background:0 0}[id^=NotiflixNotifyWrap] *{box-sizing:border-box}[id^=NotiflixNotifyWrap]>div{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;font-family:Quicksand,sans-serif;width:100%;display:inline-block;position:relative;margin:0 0 10px;border-radius:5px;background:#1e1e1e;color:#fff;padding:10px 12px;font-size:14px;line-height:1.4}[id^=NotiflixNotifyWrap]>div:last-child{margin:0}[id^=NotiflixNotifyWrap]>div.with-callback{cursor:pointer}[id^=NotiflixNotifyWrap] ::selection{background:inherit}[id^=NotiflixNotifyWrap]>div.with-icon{padding:8px}[id^=NotiflixNotifyWrap]>div.click-to-close{cursor:pointer}[id^=NotiflixNotifyWrap]>div.with-close-button{padding:10px 30px 10px 12px}[id^=NotiflixNotifyWrap]>div.with-icon.with-close-button{padding:6px 30px 6px 6px}[id^=NotiflixNotifyWrap]>div>span.the-message{font-weight:500;font-family:inherit!important;word-break:break-all;word-break:break-word}[id^=NotiflixNotifyWrap]>div>span.notify-close-button{cursor:pointer;transition:all .2s ease-in-out;position:absolute;right:8px;top:0;bottom:0;margin:auto;color:inherit;width:16px;height:16px}[id^=NotiflixNotifyWrap]>div>span.notify-close-button:hover{transform:rotate(90deg)}[id^=NotiflixNotifyWrap]>div>span.notify-close-button>svg{position:absolute;width:16px;height:16px;right:0;top:0}[id^=NotiflixNotifyWrap]>div>.nmi{position:absolute;width:40px;height:40px;font-size:30px;line-height:40px;text-align:center;left:8px;top:0;bottom:0;margin:auto;border-radius:inherit}[id^=NotiflixNotifyWrap]>div>.wfa.shadow{color:inherit;background:rgba(0,0,0,.15);box-shadow:inset 0 0 34px rgba(0,0,0,.2);text-shadow:0 0 10px rgba(0,0,0,.3)}[id^=NotiflixNotifyWrap]>div>span.with-icon{position:relative;float:left;width:calc(100% - 40px);margin:0 0 0 40px;padding:0 0 0 10px;box-sizing:border-box}[id^=NotiflixNotifyWrap]>div.rtl-on>.nmi{left:auto;right:8px}[id^=NotiflixNotifyWrap]>div.rtl-on>span.with-icon{padding:0 10px 0 0;margin:0 40px 0 0}[id^=NotiflixNotifyWrap]>div.rtl-on>span.notify-close-button{right:auto;left:8px}[id^=NotiflixNotifyWrap]>div.with-icon.with-close-button.rtl-on{padding:6px 6px 6px 30px}[id^=NotiflixNotifyWrap]>div.with-close-button.rtl-on{padding:10px 12px 10px 30px}[id^=NotiflixNotifyOverlay].with-animation,[id^=NotiflixNotifyWrap]>div.with-animation.nx-fade{animation:notify-animation-fade .3s ease-in-out 0s normal;-webkit-animation:notify-animation-fade .3s ease-in-out 0s normal}@keyframes notify-animation-fade{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes notify-animation-fade{0%{opacity:0}100%{opacity:1}}[id^=NotiflixNotifyWrap]>div.with-animation.nx-zoom{animation:notify-animation-zoom .3s ease-in-out 0s normal;-webkit-animation:notify-animation-zoom .3s ease-in-out 0s normal}@keyframes notify-animation-zoom{0%{transform:scale(0)}50%{transform:scale(1.05)}100%{transform:scale(1)}}@-webkit-keyframes notify-animation-zoom{0%{transform:scale(0)}50%{transform:scale(1.05)}100%{transform:scale(1)}}[id^=NotiflixNotifyWrap]>div.with-animation.nx-from-right{animation:notify-animation-from-right .3s ease-in-out 0s normal;-webkit-animation:notify-animation-from-right .3s ease-in-out 0s normal}@keyframes notify-animation-from-right{0%{right:-300px;opacity:0}50%{right:8px;opacity:1}100%{right:0;opacity:1}}@-webkit-keyframes notify-animation-from-right{0%{right:-300px;opacity:0}50%{right:8px;opacity:1}100%{right:0;opacity:1}}[id^=NotiflixNotifyWrap]>div.with-animation.nx-from-left{animation:notify-animation-from-left .3s ease-in-out 0s normal;-webkit-animation:notify-animation-from-left .3s ease-in-out 0s normal}@keyframes notify-animation-from-left{0%{left:-300px;opacity:0}50%{left:8px;opacity:1}100%{left:0;opacity:1}}@-webkit-keyframes notify-animation-from-left{0%{left:-300px;opacity:0}50%{left:8px;opacity:1}100%{left:0;opacity:1}}[id^=NotiflixNotifyWrap]>div.with-animation.nx-from-top{animation:notify-animation-from-top .3s ease-in-out 0s normal;-webkit-animation:notify-animation-from-top .3s ease-in-out 0s normal}@keyframes notify-animation-from-top{0%{top:-50px;opacity:0}50%{top:8px;opacity:1}100%{top:0;opacity:1}}@-webkit-keyframes notify-animation-from-top{0%{top:-50px;opacity:0}50%{top:8px;opacity:1}100%{top:0;opacity:1}}[id^=NotiflixNotifyWrap]>div.with-animation.nx-from-bottom{animation:notify-animation-from-bottom .3s ease-in-out 0s normal;-webkit-animation:notify-animation-from-bottom .3s ease-in-out 0s normal}@keyframes notify-animation-from-bottom{0%{bottom:-50px;opacity:0}50%{bottom:8px;opacity:1}100%{bottom:0;opacity:1}}@-webkit-keyframes notify-animation-from-bottom{0%{bottom:-50px;opacity:0}50%{bottom:8px;opacity:1}100%{bottom:0;opacity:1}}[id^=NotiflixNotifyOverlay].with-animation.remove,[id^=NotiflixNotifyWrap]>div.with-animation.nx-fade.remove{opacity:0;animation:notify-remove-fade .3s ease-in-out 0s normal;-webkit-animation:notify-remove-fade .3s ease-in-out 0s normal}@keyframes notify-remove-fade{0%{opacity:1}100%{opacity:0}}@-webkit-keyframes notify-remove-fade{0%{opacity:1}100%{opacity:0}}[id^=NotiflixNotifyWrap]>div.with-animation.nx-zoom.remove{transform:scale(0);animation:notify-remove-zoom .3s ease-in-out 0s normal;-webkit-animation:notify-remove-zoom .3s ease-in-out 0s normal}@keyframes notify-remove-zoom{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(0)}}@-webkit-keyframes notify-remove-zoom{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(0)}}[id^=NotiflixNotifyWrap]>div.with-animation.nx-from-top.remove{opacity:0;animation:notify-remove-to-top .3s ease-in-out 0s normal;-webkit-animation:notify-remove-to-top .3s ease-in-out 0s normal}@keyframes notify-remove-to-top{0%{top:0;opacity:1}50%{top:8px;opacity:1}100%{top:-50px;opacity:0}}@-webkit-keyframes notify-remove-to-top{0%{top:0;opacity:1}50%{top:8px;opacity:1}100%{top:-50px;opacity:0}}[id^=NotiflixNotifyWrap]>div.with-animation.nx-from-right.remove{opacity:0;animation:notify-remove-to-right .3s ease-in-out 0s normal;-webkit-animation:notify-remove-to-right .3s ease-in-out 0s normal}@keyframes notify-remove-to-right{0%{right:0;opacity:1}50%{right:8px;opacity:1}100%{right:-300px;opacity:0}}@-webkit-keyframes notify-remove-to-right{0%{right:0;opacity:1}50%{right:8px;opacity:1}100%{right:-300px;opacity:0}}[id^=NotiflixNotifyWrap]>div.with-animation.nx-from-bottom.remove{opacity:0;animation:notify-remove-to-bottom .3s ease-in-out 0s normal;-webkit-animation:notify-remove-to-bottom .3s ease-in-out 0s normal}@keyframes notify-remove-to-bottom{0%{bottom:0;opacity:1}50%{bottom:8px;opacity:1}100%{bottom:-50px;opacity:0}}@-webkit-keyframes notify-remove-to-bottom{0%{bottom:0;opacity:1}50%{bottom:8px;opacity:1}100%{bottom:-50px;opacity:0}}[id^=NotiflixNotifyWrap]>div.with-animation.nx-from-left.remove{opacity:0;animation:notify-remove-to-left .3s ease-in-out 0s normal;-webkit-animation:notify-remove-to-left .3s ease-in-out 0s normal}@keyframes notify-remove-to-left{0%{left:0;opacity:1}50%{left:8px;opacity:1}100%{left:-300px;opacity:0}}@-webkit-keyframes notify-remove-to-left{0%{left:0;opacity:1}50%{left:8px;opacity:1}100%{left:-300px;opacity:0}}[id^=NotiflixReportWrap]{position:fixed;z-index:4002;width:320px;max-width:96%;box-sizing:border-box;font-family:Quicksand,sans-serif;left:0;right:0;top:20px;color:#1e1e1e;border-radius:25px;background:0 0;margin:auto}[id^=NotiflixReportWrap] *{box-sizing:border-box}[id^=NotiflixReportWrap]>div[class*="-overlay"]{width:100%;height:100%;left:0;top:0;background:rgba(255,255,255,.5);position:fixed;z-index:0}[id^=NotiflixReportWrap]>div[class*="-content"]{width:100%;float:left;border-radius:inherit;padding:10px;filter:drop-shadow(0 0 5px rgba(0, 0, 0, .1));border:1px solid rgba(0,0,0,.03);background:#f8f8f8;position:relative;z-index:1}[id^=NotiflixReportWrap]>div[class*="-content"]>div[class$="-icon"]{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;width:110px;height:110px;display:block;margin:6px auto 12px}[id^=NotiflixReportWrap]>div[class*="-content"]>div[class$="-icon"] svg{min-width:100%;max-width:100%;height:auto}[id^=NotiflixReportWrap]>*>h5{word-break:break-all;word-break:break-word;font-family:inherit!important;font-size:16px;font-weight:500;line-height:1.4;margin:0 0 10px;padding:0 0 10px;border-bottom:1px solid rgba(0,0,0,.1);float:left;width:100%;text-align:center}[id^=NotiflixReportWrap]>*>p{word-break:break-all;word-break:break-word;font-family:inherit!important;font-size:13px;line-height:1.4;font-weight:400;float:left;width:100%;padding:0 10px;margin:0 0 10px}[id^=NotiflixReportWrap] a#NXReportButton{word-break:break-all;word-break:break-word;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;font-family:inherit!important;transition:all .25s ease-in-out;cursor:pointer;float:right;padding:7px 17px;background:#32c682;font-size:14px;line-height:1.4;font-weight:500;border-radius:inherit!important;color:#fff}[id^=NotiflixReportWrap] a#NXReportButton:hover{box-shadow:inset 0 -60px 5px -5px rgba(0,0,0,.25)}[id^=NotiflixReportWrap].rtl-on a#NXReportButton{float:left}[id^=NotiflixReportWrap]>div[class*="-overlay"].with-animation{animation:report-overlay-animation .3s ease-in-out 0s normal;-webkit-animation:report-overlay-animation .3s ease-in-out 0s normal}@keyframes report-overlay-animation{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes report-overlay-animation{0%{opacity:0}100%{opacity:1}}[id^=NotiflixReportWrap]>div[class*="-content"].with-animation.nx-fade{animation:report-animation-fade .3s ease-in-out 0s normal;-webkit-animation:report-animation-fade .3s ease-in-out 0s normal}@keyframes report-animation-fade{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes report-animation-fade{0%{opacity:0}100%{opacity:1}}[id^=NotiflixReportWrap]>div[class*="-content"].with-animation.nx-zoom{animation:report-animation-zoom .3s ease-in-out 0s normal;-webkit-animation:report-animation-zoom .3s ease-in-out 0s normal}@keyframes report-animation-zoom{0%{opacity:0;transform:scale(.5)}50%{opacity:1;transform:scale(1.05)}100%{opacity:1;transform:scale(1)}}@-webkit-keyframes report-animation-zoom{0%{opacity:0;transform:scale(.5)}50%{opacity:1;transform:scale(1.05)}100%{opacity:1;transform:scale(1)}}[id^=NotiflixReportWrap].remove>div[class*="-overlay"].with-animation{opacity:0;animation:report-overlay-animation-remove .3s ease-in-out 0s normal;-webkit-animation:report-overlay-animation-remove .3s ease-in-out 0s normal}@keyframes report-overlay-animation-remove{0%{opacity:1}100%{opacity:0}}@-webkit-keyframes report-overlay-animation-remove{0%{opacity:1}100%{opacity:0}}[id^=NotiflixReportWrap].remove>div[class*="-content"].with-animation.nx-fade{opacity:0;animation:report-animation-fade-remove .3s ease-in-out 0s normal;-webkit-animation:report-animation-fade-remove .3s ease-in-out 0s normal}@keyframes report-animation-fade-remove{0%{opacity:1}100%{opacity:0}}@-webkit-keyframes report-animation-fade-remove{0%{opacity:1}100%{opacity:0}}[id^=NotiflixReportWrap].remove>div[class*="-content"].with-animation.nx-zoom{opacity:0;animation:report-animation-zoom-remove .3s ease-in-out 0s normal;-webkit-animation:report-animation-zoom-remove .3s ease-in-out 0s normal}@keyframes report-animation-zoom-remove{0%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.05)}100%{opacity:0;transform:scale(0)}}@-webkit-keyframes report-animation-zoom-remove{0%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.05)}100%{opacity:0;transform:scale(0)}}[id^=NotiflixConfirmWrap]{position:fixed;z-index:4003;width:300px;max-width:98%;left:10px;right:10px;top:10px;margin:auto;text-align:center;box-sizing:border-box;background:0 0;font-family:Quicksand,sans-serif}[id^=NotiflixConfirmWrap] *{box-sizing:border-box}[id^=NotiflixConfirmWrap]>div[class*="-overlay"]{width:100%;height:100%;left:0;top:0;background:rgba(255,255,255,.5);position:fixed;z-index:0}[id^=NotiflixConfirmWrap]>div[class*="-overlay"].with-animation{animation:confirm-overlay-animation .3s ease-in-out 0s normal;-webkit-animation:confirm-overlay-animation .3s ease-in-out 0s normal}@keyframes confirm-overlay-animation{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes confirm-overlay-animation{0%{opacity:0}100%{opacity:1}}[id^=NotiflixConfirmWrap].remove>div[class*="-overlay"].with-animation{opacity:0;animation:confirm-overlay-animation-remove .3s ease-in-out 0s normal;-webkit-animation:confirm-overlay-animation-remove .3s ease-in-out 0s normal}@keyframes confirm-overlay-animation-remove{0%{opacity:1}100%{opacity:0}}@-webkit-keyframes confirm-overlay-animation-remove{0%{opacity:1}100%{opacity:0}}[id^=NotiflixConfirmWrap]>div[class*="-content"]{width:100%;float:left;border-radius:25px;padding:10px;margin:0;filter:drop-shadow(0 0 5px rgba(0, 0, 0, .1));background:#f8f8f8;color:#1e1e1e;position:relative;z-index:1}[id^=NotiflixConfirmWrap]>div[class*="-content"]>div[class*="-head"]{float:left;width:100%}[id^=NotiflixConfirmWrap]>div[class*="-content"]>div[class*="-head"]>h5{float:left;width:100%;margin:0;padding:0 0 10px;border-bottom:1px solid rgba(0,0,0,.1);color:#32c682;font-family:inherit!important;font-size:16px;line-height:1.4;font-weight:500}[id^=NotiflixConfirmWrap]>div[class*="-content"]>div[class*="-head"]>div{font-family:inherit!important;margin:15px 0 20px;padding:0 10px;float:left;width:100%;font-size:14px;line-height:1.4;font-weight:400;color:inherit}[id^=NotiflixConfirmWrap]>div[class*="-content"]>div[class*="-buttons"]{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border-radius:inherit;float:left;width:100%}[id^=NotiflixConfirmWrap]>div[class*="-content"]>div[class*="-buttons"]>a{cursor:pointer;font-family:inherit!important;transition:all .25s ease-in-out;float:left;width:48%;padding:9px 5px;border-radius:inherit!important;font-weight:500;font-size:15px;line-height:1.4;color:#f8f8f8}[id^=NotiflixConfirmWrap]>div[class*="-content"]>div[class*="-buttons"]>a.confirm-button-ok{margin:0 2% 0 0;background:#32c682}[id^=NotiflixConfirmWrap]>div[class*="-content"]>div[class*="-buttons"]>a.confirm-button-cancel{margin:0 0 0 2%;background:#a9a9a9}[id^=NotiflixConfirmWrap]>div[class*="-content"]>div[class*="-buttons"]>a.full{margin:0;width:100%}[id^=NotiflixConfirmWrap]>div[class*="-content"]>div[class*="-buttons"]>a:hover{box-shadow:inset 0 -60px 5px -5px rgba(0,0,0,.25)}[id^=NotiflixConfirmWrap].rtl-on>div[class*="-content"]>div[class*="-buttons"],[id^=NotiflixConfirmWrap].rtl-on>div[class*="-content"]>div[class*="-buttons"]>a{transform:rotateY(180deg)}[id^=NotiflixConfirmWrap].with-animation.nx-fade>div[class*="-content"]{animation:confirm-animation-fade .3s ease-in-out 0s normal;-webkit-animation:confirm-animation-fade .3s ease-in-out 0s normal}@keyframes confirm-animation-fade{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes confirm-animation-fade{0%{opacity:0}100%{opacity:1}}[id^=NotiflixConfirmWrap].with-animation.nx-zoom>div[class*="-content"]{animation:confirm-animation-zoom .3s ease-in-out 0s normal;-webkit-animation:confirm-animation-zoom .3s ease-in-out 0s normal}@keyframes confirm-animation-zoom{0%{opacity:0;transform:scale(.5)}50%{opacity:1;transform:scale(1.05)}100%{opacity:1;transform:scale(1)}}@-webkit-keyframes confirm-animation-zoom{0%{opacity:0;transform:scale(.5)}50%{opacity:1;transform:scale(1.05)}100%{opacity:1;transform:scale(1)}}[id^=NotiflixConfirmWrap].with-animation.nx-fade.remove>div[class*="-content"]{opacity:0;animation:confirm-animation-fade-remove .3s ease-in-out 0s normal;-webkit-animation:confirm-animation-fade-remove .3s ease-in-out 0s normal}@keyframes confirm-animation-fade-remove{0%{opacity:1}100%{opacity:0}}@-webkit-keyframes confirm-animation-fade-remove{0%{opacity:1}100%{opacity:0}}[id^=NotiflixConfirmWrap].with-animation.nx-zoom.remove>div[class*="-content"]{opacity:0;animation:confirm-animation-zoom-remove .3s ease-in-out 0s normal;-webkit-animation:confirm-animation-zoom-remove .3s ease-in-out 0s normal}@keyframes confirm-animation-zoom-remove{0%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.05)}100%{opacity:0;transform:scale(0)}}@-webkit-keyframes confirm-animation-zoom-remove{0%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.05)}100%{opacity:0;transform:scale(0)}}[id^=NotiflixLoadingWrap]{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:fixed;z-index:4000;width:100%;height:100%;left:0;top:0;right:0;bottom:0;margin:auto;text-align:center;box-sizing:border-box;background:rgba(0,0,0,.8);font-family:Quicksand,sans-serif}[id^=NotiflixLoadingWrap] *{box-sizing:border-box}[id^=NotiflixLoadingWrap].click-to-close{cursor:pointer}[id^=NotiflixLoadingWrap]>div[class*="-icon"]{width:60px;height:60px;position:fixed;transition:top .2s ease-in-out;left:0;top:0;right:0;bottom:0;margin:auto}[id^=NotiflixLoadingWrap]>div[class*="-icon"].with-message{top:-42px}[id^=NotiflixLoadingWrap]>div[class*="-icon"] img,[id^=NotiflixLoadingWrap]>div[class*="-icon"] svg{max-width:unset;max-height:unset;width:100%;height:100%;position:absolute;left:0;top:0}[id^=NotiflixLoadingWrap]>p{position:fixed;left:0;right:0;top:42px;bottom:0;margin:auto;font-family:inherit!important;font-weight:500;line-height:1.4;padding:0 10px;width:100%;font-size:15px;height:18px}[id^=NotiflixLoadingWrap].with-animation{animation:loading-animation-fade .3s ease-in-out 0s normal;-webkit-animation:loading-animation-fade .3s ease-in-out 0s normal}@keyframes loading-animation-fade{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes loading-animation-fade{0%{opacity:0}100%{opacity:1}}[id^=NotiflixLoadingWrap].with-animation.remove{opacity:0;animation:loading-animation-fade-remove .3s ease-in-out 0s normal;-webkit-animation:loading-animation-fade-remove .3s ease-in-out 0s normal}@keyframes loading-animation-fade-remove{0%{opacity:1}100%{opacity:0}}@-webkit-keyframes loading-animation-fade-remove{0%{opacity:1}100%{opacity:0}}[id^=NotiflixLoadingWrap]>p.new{animation:loading-new-message-fade .3s ease-in-out 0s normal;-webkit-animation:loading-new-message-fade .3s ease-in-out 0s normal}@keyframes loading-new-message-fade{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes loading-new-message-fade{0%{opacity:0}100%{opacity:1}}[id^=NotiflixBlockWrap]{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;box-sizing:border-box;position:absolute;z-index:1000;font-family:Quicksand,sans-serif;background:rgba(255,255,255,.9);text-align:center;animation-duration:.4s;width:100%;height:100%;left:0;top:0;border-radius:inherit}[id^=NotiflixBlockWrap] *{box-sizing:border-box}[id^=NotiflixBlockWrap]>span[class*="-icon"]{width:45px;height:45px;position:absolute;left:0;top:0;right:0;bottom:0;margin:auto}[id^=NotiflixBlockWrap]>span[class*="-message"]{position:absolute;left:0;right:0;top:50px;bottom:0;margin:auto;font-family:inherit!important;font-weight:500;font-size:14px;line-height:1.4;padding:0 10px;width:100%;height:20px;overflow:hidden}[id^=NotiflixBlockWrap].with-animation{animation:block-animation-fade .3s ease-in-out 0s normal;-webkit-animation:block-animation-fade .3s ease-in-out 0s normal}@keyframes block-animation-fade{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes block-animation-fade{0%{opacity:0}100%{opacity:1}}[id^=NotiflixBlockWrap].with-animation.remove{opacity:0;animation:block-animation-fade-remove .3s ease-in-out 0s normal;-webkit-animation:block-animation-fade-remove .3s ease-in-out 0s normal}@keyframes block-animation-fade-remove{0%{opacity:1}100%{opacity:0}}@-webkit-keyframes block-animation-fade-remove{0%{opacity:1}100%{opacity:0}}';
-    return css;
-  };
-  // Notiflix: Internal CSS codes off
-
-  // Notiflix: Internal CSS on
-  var notiflixInternalCSS = function () {
-    if (!window.document.getElementById('NotiflixInternalCSS')) {
-      var internalCSS = window.document.createElement('style');
-      internalCSS.id = 'NotiflixInternalCSS';
-      internalCSS.innerHTML = notiflixInternalCSSCodes();
-      window.document.head.appendChild(internalCSS);
-    }
-  };
-  // Notiflix: Internal CSS off
+  // Notiflix: Variables on
+  var newNotifySettings;
+  var newReportSettings;
+  var newConfirmSettings;
+  var newLoadingSettings;
+  var newBlockSettings;
+  var defaultFontFamily = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"';
+  // Notiflix: Variables off
 
   // Notiflix: Notify Default Settings on
   var notifySettings = {
     wrapID: 'NotiflixNotifyWrap', // can not customizable
     width: '280px',
-    position: 'right-top', // 'right-top' - 'right-bottom' - 'left-top' - 'left-bottom'
+    position: 'right-top', // 'right-top' - 'right-bottom' - 'left-top' - 'left-bottom' && v2.2.0 and the next versions => 'center-top' - 'center-bottom' - 'center-center'
     distance: '10px',
     opacity: 1,
     borderRadius: '5px',
@@ -64,7 +55,7 @@
     ID: 'NotiflixNotify',
     className: 'notiflix-notify',
     zindex: 4001,
-    useGoogleFont: true,
+    useGoogleFont: false, // v2.2.0 and the next versions => has been changed as "false"
     fontFamily: 'Quicksand',
     fontSize: '13px',
     cssAnimation: true,
@@ -83,6 +74,7 @@
       notiflixIconColor: 'rgba(0,0,0,0.2)',
       fontAwesomeClassName: 'fas fa-check-circle',
       fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
+      backOverlayColor: 'rgba(50,198,130,0.2)', // v2.2.0 and the next versions
     },
 
     failure: {
@@ -92,6 +84,7 @@
       notiflixIconColor: 'rgba(0,0,0,0.2)',
       fontAwesomeClassName: 'fas fa-times-circle',
       fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
+      backOverlayColor: 'rgba(255,85,73,0.2)', // v2.2.0 and the next versions
     },
 
     warning: {
@@ -101,6 +94,7 @@
       notiflixIconColor: 'rgba(0,0,0,0.2)',
       fontAwesomeClassName: 'fas fa-exclamation-circle',
       fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
+      backOverlayColor: 'rgba(238,191,49,0.2)', // v2.2.0 and the next versions
     },
 
     info: {
@@ -110,6 +104,7 @@
       notiflixIconColor: 'rgba(0,0,0,0.2)',
       fontAwesomeClassName: 'fas fa-info-circle',
       fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
+      backOverlayColor: 'rgba(38,192,211,0.2)', // v2.2.0 and the next versions
     },
   };
   // Notiflix: Notify Default Settings off
@@ -124,8 +119,8 @@
     rtl: false,
     zindex: 4002,
     backOverlay: true,
-    backOverlayColor: 'rgba(0, 0, 0, 0.5)',
-    useGoogleFont: true,
+    backOverlayColor: 'rgba(0,0,0,0.5)',
+    useGoogleFont: false, // v2.2.0 and the next versions => has been changed as "false"
     fontFamily: 'Quicksand',
     svgSize: '110px',
     plainText: true,
@@ -145,6 +140,7 @@
       messageColor: '#242424',
       buttonBackground: '#32c682',
       buttonColor: '#fff',
+      backOverlayColor: 'rgba(50,198,130,0.2)', // v2.2.0 and the next versions
     },
 
     failure: {
@@ -153,6 +149,7 @@
       messageColor: '#242424',
       buttonBackground: '#ff5549',
       buttonColor: '#fff',
+      backOverlayColor: 'rgba(255,85,73,0.2)', // v2.2.0 and the next versions
     },
 
     warning: {
@@ -161,6 +158,7 @@
       messageColor: '#242424',
       buttonBackground: '#eebf31',
       buttonColor: '#fff',
+      backOverlayColor: 'rgba(238,191,49,0.2)', // v2.2.0 and the next versions
     },
 
     info: {
@@ -169,6 +167,7 @@
       messageColor: '#242424',
       buttonBackground: '#26c0d3',
       buttonColor: '#fff',
+      backOverlayColor: 'rgba(38,192,211,0.2)', // v2.2.0 and the next versions
     },
   };
   // Notiflix: Report Default Settings off
@@ -186,7 +185,7 @@
     backOverlay: true,
     backOverlayColor: 'rgba(0,0,0,0.5)',
     rtl: false,
-    useGoogleFont: true,
+    useGoogleFont: false, // v2.2.0 and the next versions => has been changed as "false"
     fontFamily: 'Quicksand',
     cssAnimation: true,
     cssAnimationStyle: 'fade', // 'zoom' - 'fade'
@@ -217,7 +216,7 @@
     zindex: 4000,
     backgroundColor: 'rgba(0,0,0,0.8)',
     rtl: false,
-    useGoogleFont: true,
+    useGoogleFont: false, // v2.2.0 and the next versions => has been changed as "false"
     fontFamily: 'Quicksand',
     cssAnimation: true,
     cssAnimationDuration: 400,
@@ -241,7 +240,7 @@
     zindex: 1000,
     backgroundColor: 'rgba(255,255,255,0.9)',
     rtl: false,
-    useGoogleFont: true,
+    useGoogleFont: false, // v2.2.0 and the next versions => has been changed as "false"
     fontFamily: 'Quicksand',
     cssAnimation: true,
     cssAnimationDuration: 300,
@@ -252,6 +251,24 @@
     messageColor: '#383838',
   };
   // Notiflix: Block Default Settings off
+
+  // Notiflix: Internal CSS Codes on
+  var notiflixInternalCSSCodes = function () {
+    var css = '[id^=NotiflixNotifyWrap]{position:fixed;z-index:4001;opacity:1;right:10px;top:10px;width:280px;max-width:96%;max-height:calc(100vh - 20px);overflow-x:hidden;overflow-y:auto;box-sizing:border-box;background:transparent}[id^=NotiflixNotifyWrap].nx-flex-center-center{pointer-events:none;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;margin:auto}[id^=NotiflixNotifyWrap]::-webkit-scrollbar{width:0;height:0}[id^=NotiflixNotifyWrap]::-webkit-scrollbar-thumb{background:transparent}[id^=NotiflixNotifyWrap]::-webkit-scrollbar-track{background:transparent}[id^=NotiflixNotifyWrap] *{box-sizing:border-box}[id^=NotiflixNotifyOverlay]{transition:background .3s ease-in-out}[id^=NotiflixNotifyWrap]>div{pointer-events:all;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;font-family:"Quicksand",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;width:100%;display:inline-block;position:relative;margin:0 0 10px;border-radius:5px;background:#1e1e1e;color:#fff;padding:10px 12px;font-size:14px;line-height:1.4}[id^=NotiflixNotifyWrap]>div:last-child{margin:0}[id^=NotiflixNotifyWrap]>div.with-callback{cursor:pointer}[id^=NotiflixNotifyWrap]>div.with-icon{padding:8px}[id^=NotiflixNotifyWrap]>div.click-to-close{cursor:pointer}[id^=NotiflixNotifyWrap]>div.with-close-button{padding:10px 30px 10px 12px}[id^=NotiflixNotifyWrap]>div.with-icon.with-close-button{padding:6px 30px 6px 6px}[id^=NotiflixNotifyWrap]>div>span.the-message{font-weight:normal;font-family:inherit!important;word-break:break-all;word-break:break-word}[id^=NotiflixNotifyWrap]>div>span.notify-close-button{cursor:pointer;transition:all .2s ease-in-out;position:absolute;right:8px;top:0;bottom:0;margin:auto;color:inherit;width:16px;height:16px}[id^=NotiflixNotifyWrap]>div>span.notify-close-button:hover{transform:rotate(90deg)}[id^=NotiflixNotifyWrap]>div>span.notify-close-button>svg{position:absolute;width:16px;height:16px;right:0;top:0}[id^=NotiflixNotifyWrap]>div>.nmi{position:absolute;width:40px;height:40px;font-size:30px;line-height:40px;text-align:center;left:8px;top:0;bottom:0;margin:auto;border-radius:inherit}[id^=NotiflixNotifyWrap]>div>.wfa.shadow{color:inherit;background:rgba(0,0,0,.15);box-shadow:inset 0 0 34px rgba(0,0,0,.2);text-shadow:0 0 10px rgba(0,0,0,.3)}[id^=NotiflixNotifyWrap]>div>span.with-icon{position:relative;float:left;width:calc(100% - 40px);margin:0 0 0 40px;padding:0 0 0 10px;box-sizing:border-box}[id^=NotiflixNotifyWrap]>div.rtl-on>.nmi{left:auto;right:8px}[id^=NotiflixNotifyWrap]>div.rtl-on>span.with-icon{padding:0 10px 0 0;margin:0 40px 0 0}[id^=NotiflixNotifyWrap]>div.rtl-on>span.notify-close-button{right:auto;left:8px}[id^=NotiflixNotifyWrap]>div.with-icon.with-close-button.rtl-on{padding:6px 6px 6px 30px}[id^=NotiflixNotifyWrap]>div.with-close-button.rtl-on{padding:10px 12px 10px 30px}[id^=NotiflixNotifyOverlay].with-animation,[id^=NotiflixNotifyWrap]>div.with-animation.nx-fade{animation:notify-animation-fade .3s ease-in-out 0s normal;-webkit-animation:notify-animation-fade .3s ease-in-out 0s normal}@keyframes notify-animation-fade{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes notify-animation-fade{0%{opacity:0}100%{opacity:1}}[id^=NotiflixNotifyWrap]>div.with-animation.nx-zoom{animation:notify-animation-zoom .3s ease-in-out 0s normal;-webkit-animation:notify-animation-zoom .3s ease-in-out 0s normal}@keyframes notify-animation-zoom{0%{transform:scale(0)}50%{transform:scale(1.05)}100%{transform:scale(1)}}@-webkit-keyframes notify-animation-zoom{0%{transform:scale(0)}50%{transform:scale(1.05)}100%{transform:scale(1)}}[id^=NotiflixNotifyWrap]>div.with-animation.nx-from-right{animation:notify-animation-from-right .3s ease-in-out 0s normal;-webkit-animation:notify-animation-from-right .3s ease-in-out 0s normal}@keyframes notify-animation-from-right{0%{right:-300px;opacity:0}50%{right:8px;opacity:1}100%{right:0;opacity:1}}@-webkit-keyframes notify-animation-from-right{0%{right:-300px;opacity:0}50%{right:8px;opacity:1}100%{right:0;opacity:1}}[id^=NotiflixNotifyWrap]>div.with-animation.nx-from-left{animation:notify-animation-from-left .3s ease-in-out 0s normal;-webkit-animation:notify-animation-from-left .3s ease-in-out 0s normal}@keyframes notify-animation-from-left{0%{left:-300px;opacity:0}50%{left:8px;opacity:1}100%{left:0;opacity:1}}@-webkit-keyframes notify-animation-from-left{0%{left:-300px;opacity:0}50%{left:8px;opacity:1}100%{left:0;opacity:1}}[id^=NotiflixNotifyWrap]>div.with-animation.nx-from-top{animation:notify-animation-from-top .3s ease-in-out 0s normal;-webkit-animation:notify-animation-from-top .3s ease-in-out 0s normal}@keyframes notify-animation-from-top{0%{top:-50px;opacity:0}50%{top:8px;opacity:1}100%{top:0;opacity:1}}@-webkit-keyframes notify-animation-from-top{0%{top:-50px;opacity:0}50%{top:8px;opacity:1}100%{top:0;opacity:1}}[id^=NotiflixNotifyWrap]>div.with-animation.nx-from-bottom{animation:notify-animation-from-bottom .3s ease-in-out 0s normal;-webkit-animation:notify-animation-from-bottom .3s ease-in-out 0s normal}@keyframes notify-animation-from-bottom{0%{bottom:-50px;opacity:0}50%{bottom:8px;opacity:1}100%{bottom:0;opacity:1}}@-webkit-keyframes notify-animation-from-bottom{0%{bottom:-50px;opacity:0}50%{bottom:8px;opacity:1}100%{bottom:0;opacity:1}}[id^=NotiflixNotifyOverlay].with-animation.remove,[id^=NotiflixNotifyWrap]>div.with-animation.nx-fade.remove{opacity:0;animation:notify-remove-fade .3s ease-in-out 0s normal;-webkit-animation:notify-remove-fade .3s ease-in-out 0s normal}@keyframes notify-remove-fade{0%{opacity:1}100%{opacity:0}}@-webkit-keyframes notify-remove-fade{0%{opacity:1}100%{opacity:0}}[id^=NotiflixNotifyWrap]>div.with-animation.nx-zoom.remove{transform:scale(0);animation:notify-remove-zoom .3s ease-in-out 0s normal;-webkit-animation:notify-remove-zoom .3s ease-in-out 0s normal}@keyframes notify-remove-zoom{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(0)}}@-webkit-keyframes notify-remove-zoom{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(0)}}[id^=NotiflixNotifyWrap]>div.with-animation.nx-from-top.remove{opacity:0;animation:notify-remove-to-top .3s ease-in-out 0s normal;-webkit-animation:notify-remove-to-top .3s ease-in-out 0s normal}@keyframes notify-remove-to-top{0%{top:0;opacity:1}50%{top:8px;opacity:1}100%{top:-50px;opacity:0}}@-webkit-keyframes notify-remove-to-top{0%{top:0;opacity:1}50%{top:8px;opacity:1}100%{top:-50px;opacity:0}}[id^=NotiflixNotifyWrap]>div.with-animation.nx-from-right.remove{opacity:0;animation:notify-remove-to-right .3s ease-in-out 0s normal;-webkit-animation:notify-remove-to-right .3s ease-in-out 0s normal}@keyframes notify-remove-to-right{0%{right:0;opacity:1}50%{right:8px;opacity:1}100%{right:-300px;opacity:0}}@-webkit-keyframes notify-remove-to-right{0%{right:0;opacity:1}50%{right:8px;opacity:1}100%{right:-300px;opacity:0}}[id^=NotiflixNotifyWrap]>div.with-animation.nx-from-bottom.remove{opacity:0;animation:notify-remove-to-bottom .3s ease-in-out 0s normal;-webkit-animation:notify-remove-to-bottom .3s ease-in-out 0s normal}@keyframes notify-remove-to-bottom{0%{bottom:0;opacity:1}50%{bottom:8px;opacity:1}100%{bottom:-50px;opacity:0}}@-webkit-keyframes notify-remove-to-bottom{0%{bottom:0;opacity:1}50%{bottom:8px;opacity:1}100%{bottom:-50px;opacity:0}}[id^=NotiflixNotifyWrap]>div.with-animation.nx-from-left.remove{opacity:0;animation:notify-remove-to-left .3s ease-in-out 0s normal;-webkit-animation:notify-remove-to-left .3s ease-in-out 0s normal}@keyframes notify-remove-to-left{0%{left:0;opacity:1}50%{left:8px;opacity:1}100%{left:-300px;opacity:0}}@-webkit-keyframes notify-remove-to-left{0%{left:0;opacity:1}50%{left:8px;opacity:1}100%{left:-300px;opacity:0}}[id^=NotiflixReportWrap]{position:fixed;z-index:4002;width:320px;max-width:96%;max-height:96vh;overflow-x:hidden;overflow-y:auto;box-sizing:border-box;font-family:"Quicksand",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;left:0;right:0;top:20px;color:#1e1e1e;border-radius:25px;background:transparent;margin:auto}[id^=NotiflixReportWrap]::-webkit-scrollbar{width:0;height:0}[id^=NotiflixReportWrap]::-webkit-scrollbar-thumb{background:transparent}[id^=NotiflixReportWrap]::-webkit-scrollbar-track{background:transparent}[id^=NotiflixReportWrap] *{box-sizing:border-box}[id^=NotiflixReportWrap]>div[class*="-overlay"]{width:100%;height:100%;left:0;top:0;background:rgba(255,255,255,.5);position:fixed;z-index:0}[id^=NotiflixReportWrap]>div[class*="-content"]{width:100%;float:left;border-radius:inherit;padding:10px;filter:drop-shadow(0 0 5px rgba(0, 0, 0, .1));border:1px solid rgba(0,0,0,.03);background:#f8f8f8;position:relative;z-index:1}[id^=NotiflixReportWrap]>div[class*="-content"]>div[class$="-icon"]{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;width:110px;height:110px;display:block;margin:6px auto 12px}[id^=NotiflixReportWrap]>div[class*="-content"]>div[class$="-icon"] svg{min-width:100%;max-width:100%;height:auto}[id^=NotiflixReportWrap]>*>h5{word-break:break-all;word-break:break-word;font-family:inherit!important;font-size:16px;font-weight:500;line-height:1.4;margin:0 0 10px;padding:0 0 10px;border-bottom:1px solid rgba(0,0,0,.1);float:left;width:100%;text-align:center}[id^=NotiflixReportWrap]>*>p{word-break:break-all;word-break:break-word;font-family:inherit!important;font-size:13px;line-height:1.4;font-weight:normal;float:left;width:100%;padding:0 10px;margin:0 0 10px}[id^=NotiflixReportWrap] a#NXReportButton{word-break:break-all;word-break:break-word;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;font-family:inherit!important;transition:all .25s ease-in-out;cursor:pointer;float:right;padding:7px 17px;background:#32c682;font-size:14px;line-height:1.4;font-weight:500;border-radius:inherit!important;color:#fff}[id^=NotiflixReportWrap] a#NXReportButton:hover{box-shadow:inset 0 -60px 5px -5px rgba(0,0,0,.25)}[id^=NotiflixReportWrap].rtl-on a#NXReportButton{float:left}[id^=NotiflixReportWrap]>div[class*="-overlay"].with-animation{animation:report-overlay-animation .3s ease-in-out 0s normal;-webkit-animation:report-overlay-animation .3s ease-in-out 0s normal}@keyframes report-overlay-animation{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes report-overlay-animation{0%{opacity:0}100%{opacity:1}}[id^=NotiflixReportWrap]>div[class*="-content"].with-animation.nx-fade{animation:report-animation-fade .3s ease-in-out 0s normal;-webkit-animation:report-animation-fade .3s ease-in-out 0s normal}@keyframes report-animation-fade{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes report-animation-fade{0%{opacity:0}100%{opacity:1}}[id^=NotiflixReportWrap]>div[class*="-content"].with-animation.nx-zoom{animation:report-animation-zoom .3s ease-in-out 0s normal;-webkit-animation:report-animation-zoom .3s ease-in-out 0s normal}@keyframes report-animation-zoom{0%{opacity:0;transform:scale(.5)}50%{opacity:1;transform:scale(1.05)}100%{opacity:1;transform:scale(1)}}@-webkit-keyframes report-animation-zoom{0%{opacity:0;transform:scale(.5)}50%{opacity:1;transform:scale(1.05)}100%{opacity:1;transform:scale(1)}}[id^=NotiflixReportWrap].remove>div[class*="-overlay"].with-animation{opacity:0;animation:report-overlay-animation-remove .3s ease-in-out 0s normal;-webkit-animation:report-overlay-animation-remove .3s ease-in-out 0s normal}@keyframes report-overlay-animation-remove{0%{opacity:1}100%{opacity:0}}@-webkit-keyframes report-overlay-animation-remove{0%{opacity:1}100%{opacity:0}}[id^=NotiflixReportWrap].remove>div[class*="-content"].with-animation.nx-fade{opacity:0;animation:report-animation-fade-remove .3s ease-in-out 0s normal;-webkit-animation:report-animation-fade-remove .3s ease-in-out 0s normal}@keyframes report-animation-fade-remove{0%{opacity:1}100%{opacity:0}}@-webkit-keyframes report-animation-fade-remove{0%{opacity:1}100%{opacity:0}}[id^=NotiflixReportWrap].remove>div[class*="-content"].with-animation.nx-zoom{opacity:0;animation:report-animation-zoom-remove .3s ease-in-out 0s normal;-webkit-animation:report-animation-zoom-remove .3s ease-in-out 0s normal}@keyframes report-animation-zoom-remove{0%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.05)}100%{opacity:0;transform:scale(0)}}@-webkit-keyframes report-animation-zoom-remove{0%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.05)}100%{opacity:0;transform:scale(0)}}[id^=NotiflixConfirmWrap]{position:fixed;z-index:4003;width:300px;max-width:96%;max-height:96vh;overflow-x:hidden;overflow-y:auto;left:10px;right:10px;top:10px;margin:auto;text-align:center;box-sizing:border-box;background:transparent;font-family:"Quicksand",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}[id^=NotiflixConfirmWrap]::-webkit-scrollbar{width:0;height:0}[id^=NotiflixConfirmWrap]::-webkit-scrollbar-thumb{background:transparent}[id^=NotiflixConfirmWrap]::-webkit-scrollbar-track{background:transparent}[id^=NotiflixConfirmWrap] *{box-sizing:border-box}[id^=NotiflixConfirmWrap]>div[class*="-overlay"]{width:100%;height:100%;left:0;top:0;background:rgba(255,255,255,.5);position:fixed;z-index:0}[id^=NotiflixConfirmWrap]>div[class*="-overlay"].with-animation{animation:confirm-overlay-animation .3s ease-in-out 0s normal;-webkit-animation:confirm-overlay-animation .3s ease-in-out 0s normal}@keyframes confirm-overlay-animation{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes confirm-overlay-animation{0%{opacity:0}100%{opacity:1}}[id^=NotiflixConfirmWrap].remove>div[class*="-overlay"].with-animation{opacity:0;animation:confirm-overlay-animation-remove .3s ease-in-out 0s normal;-webkit-animation:confirm-overlay-animation-remove .3s ease-in-out 0s normal}@keyframes confirm-overlay-animation-remove{0%{opacity:1}100%{opacity:0}}@-webkit-keyframes confirm-overlay-animation-remove{0%{opacity:1}100%{opacity:0}}[id^=NotiflixConfirmWrap]>div[class*="-content"]{width:100%;float:left;border-radius:25px;padding:10px;margin:0;filter:drop-shadow(0 0 5px rgba(0, 0, 0, .1));background:#f8f8f8;color:#1e1e1e;position:relative;z-index:1}[id^=NotiflixConfirmWrap]>div[class*="-content"]>div[class*="-head"]{float:left;width:100%}[id^=NotiflixConfirmWrap]>div[class*="-content"]>div[class*="-head"]>h5{float:left;width:100%;margin:0;padding:0 0 10px;border-bottom:1px solid rgba(0,0,0,.1);color:#32c682;font-family:inherit!important;font-size:16px;line-height:1.4;font-weight:500}[id^=NotiflixConfirmWrap]>div[class*="-content"]>div[class*="-head"]>div{font-family:inherit!important;margin:15px 0 20px;padding:0 10px;float:left;width:100%;font-size:14px;line-height:1.4;font-weight:normal;color:inherit}[id^=NotiflixConfirmWrap]>div[class*="-content"]>div[class*="-buttons"]{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border-radius:inherit;float:left;width:100%}[id^=NotiflixConfirmWrap]>div[class*="-content"]>div[class*="-buttons"]>a{cursor:pointer;font-family:inherit!important;transition:all .25s ease-in-out;float:left;width:48%;padding:9px 5px;border-radius:inherit!important;font-weight:500;font-size:15px;line-height:1.4;color:#f8f8f8}[id^=NotiflixConfirmWrap]>div[class*="-content"]>div[class*="-buttons"]>a.confirm-button-ok{margin:0 2% 0 0;background:#32c682}[id^=NotiflixConfirmWrap]>div[class*="-content"]>div[class*="-buttons"]>a.confirm-button-cancel{margin:0 0 0 2%;background:#a9a9a9}[id^=NotiflixConfirmWrap]>div[class*="-content"]>div[class*="-buttons"]>a.full{margin:0;width:100%}[id^=NotiflixConfirmWrap]>div[class*="-content"]>div[class*="-buttons"]>a:hover{box-shadow:inset 0 -60px 5px -5px rgba(0,0,0,.25)}[id^=NotiflixConfirmWrap].rtl-on>div[class*="-content"]>div[class*="-buttons"],[id^=NotiflixConfirmWrap].rtl-on>div[class*="-content"]>div[class*="-buttons"]>a{transform:rotateY(180deg)}[id^=NotiflixConfirmWrap].with-animation.nx-fade>div[class*="-content"]{animation:confirm-animation-fade .3s ease-in-out 0s normal;-webkit-animation:confirm-animation-fade .3s ease-in-out 0s normal}@keyframes confirm-animation-fade{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes confirm-animation-fade{0%{opacity:0}100%{opacity:1}}[id^=NotiflixConfirmWrap].with-animation.nx-zoom>div[class*="-content"]{animation:confirm-animation-zoom .3s ease-in-out 0s normal;-webkit-animation:confirm-animation-zoom .3s ease-in-out 0s normal}@keyframes confirm-animation-zoom{0%{opacity:0;transform:scale(.5)}50%{opacity:1;transform:scale(1.05)}100%{opacity:1;transform:scale(1)}}@-webkit-keyframes confirm-animation-zoom{0%{opacity:0;transform:scale(.5)}50%{opacity:1;transform:scale(1.05)}100%{opacity:1;transform:scale(1)}}[id^=NotiflixConfirmWrap].with-animation.nx-fade.remove>div[class*="-content"]{opacity:0;animation:confirm-animation-fade-remove .3s ease-in-out 0s normal;-webkit-animation:confirm-animation-fade-remove .3s ease-in-out 0s normal}@keyframes confirm-animation-fade-remove{0%{opacity:1}100%{opacity:0}}@-webkit-keyframes confirm-animation-fade-remove{0%{opacity:1}100%{opacity:0}}[id^=NotiflixConfirmWrap].with-animation.nx-zoom.remove>div[class*="-content"]{opacity:0;animation:confirm-animation-zoom-remove .3s ease-in-out 0s normal;-webkit-animation:confirm-animation-zoom-remove .3s ease-in-out 0s normal}@keyframes confirm-animation-zoom-remove{0%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.05)}100%{opacity:0;transform:scale(0)}}@-webkit-keyframes confirm-animation-zoom-remove{0%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.05)}100%{opacity:0;transform:scale(0)}}[id^=NotiflixLoadingWrap]{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:fixed;z-index:4000;width:100%;height:100%;left:0;top:0;right:0;bottom:0;margin:auto;text-align:center;box-sizing:border-box;background:rgba(0,0,0,.8);font-family:"Quicksand",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}[id^=NotiflixLoadingWrap] *{box-sizing:border-box}[id^=NotiflixLoadingWrap].click-to-close{cursor:pointer}[id^=NotiflixLoadingWrap]>div[class*="-icon"]{width:60px;height:60px;position:fixed;transition:top .2s ease-in-out;left:0;top:0;right:0;bottom:0;margin:auto}[id^=NotiflixLoadingWrap]>div[class*="-icon"].with-message{top:-42px}[id^=NotiflixLoadingWrap]>div[class*="-icon"] img,[id^=NotiflixLoadingWrap]>div[class*="-icon"] svg{max-width:unset;max-height:unset;width:100%;height:100%;position:absolute;left:0;top:0}[id^=NotiflixLoadingWrap]>p{position:fixed;left:0;right:0;top:42px;bottom:0;margin:auto;font-family:inherit!important;font-weight:normal;line-height:1.4;padding:0 10px;width:100%;font-size:15px;height:18px}[id^=NotiflixLoadingWrap].with-animation{animation:loading-animation-fade .3s ease-in-out 0s normal;-webkit-animation:loading-animation-fade .3s ease-in-out 0s normal}@keyframes loading-animation-fade{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes loading-animation-fade{0%{opacity:0}100%{opacity:1}}[id^=NotiflixLoadingWrap].with-animation.remove{opacity:0;animation:loading-animation-fade-remove .3s ease-in-out 0s normal;-webkit-animation:loading-animation-fade-remove .3s ease-in-out 0s normal}@keyframes loading-animation-fade-remove{0%{opacity:1}100%{opacity:0}}@-webkit-keyframes loading-animation-fade-remove{0%{opacity:1}100%{opacity:0}}[id^=NotiflixLoadingWrap]>p.new{animation:loading-new-message-fade .3s ease-in-out 0s normal;-webkit-animation:loading-new-message-fade .3s ease-in-out 0s normal}@keyframes loading-new-message-fade{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes loading-new-message-fade{0%{opacity:0}100%{opacity:1}}[id^=NotiflixBlockWrap]{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;box-sizing:border-box;position:absolute;z-index:1000;font-family:"Quicksand",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:rgba(255,255,255,.9);text-align:center;animation-duration:.4s;width:100%;height:100%;left:0;top:0;border-radius:inherit}[id^=NotiflixBlockWrap] *{box-sizing:border-box}[id^=NotiflixBlockWrap]>span[class*="-icon"]{width:45px;height:45px;position:absolute;left:0;top:0;right:0;bottom:0;margin:auto}[id^=NotiflixBlockWrap]>span[class*="-message"]{position:absolute;left:0;right:0;top:50px;bottom:0;margin:auto;font-family:inherit!important;font-weight:normal;font-size:14px;line-height:1.4;padding:0 10px;width:100%;height:20px;overflow:hidden}[id^=NotiflixBlockWrap].with-animation{animation:block-animation-fade .3s ease-in-out 0s normal;-webkit-animation:block-animation-fade .3s ease-in-out 0s normal}@keyframes block-animation-fade{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes block-animation-fade{0%{opacity:0}100%{opacity:1}}[id^=NotiflixBlockWrap].with-animation.remove{opacity:0;animation:block-animation-fade-remove .3s ease-in-out 0s normal;-webkit-animation:block-animation-fade-remove .3s ease-in-out 0s normal}@keyframes block-animation-fade-remove{0%{opacity:1}100%{opacity:0}}@-webkit-keyframes block-animation-fade-remove{0%{opacity:1}100%{opacity:0}}';
+    return css || null;
+  };
+  // Notiflix: Internal CSS Codes off
+
+  // Notiflix: Internal CSS on
+  var notiflixInternalCSS = function () {
+    if (notiflixInternalCSSCodes() !== null && !window.document.getElementById('NotiflixInternalCSS')) {
+      var internalCSS = window.document.createElement('style');
+      internalCSS.id = 'NotiflixInternalCSS';
+      internalCSS.innerHTML = notiflixInternalCSSCodes();
+      window.document.head.appendChild(internalCSS);
+    }
+  };
+  // Notiflix: Internal CSS off
 
   // Notiflix: Extend on
   var extendNotiflix = function () {
@@ -428,16 +445,20 @@
   // Notiflix: Indicator SVG notiflix off
 
   // Notiflix: Notify Single on
-  var notiflixNotifyCount = 0;
+  var notifyElmCount = 0;
+  var notifyElmCountOnlyCallback = 0;
   var NotiflixNotify = function (message, callback, theType, staticType) {
     if (arguments && arguments.length === 4) {
 
       // notify counter on
-      notiflixNotifyCount++;
+      notifyElmCount++;
+      if (typeof callback === 'function') {
+        notifyElmCountOnlyCallback++;
+      }
       // notify counter off
 
       // if no message on
-      if (!message) {
+      if (typeof message !== 'string') {
         message = 'Notiflix ' + staticType;
       }
       // if no message off
@@ -479,9 +500,35 @@
       ntflxNotifyWrap.style.width = newNotifySettings.width;
       ntflxNotifyWrap.style.zIndex = newNotifySettings.zindex;
       ntflxNotifyWrap.style.opacity = newNotifySettings.opacity;
+      ntflxNotifyWrap.style.maxHeight = 'calc((100vh - ' + newNotifySettings.distance + ') - ' + newNotifySettings.distance + ')';
 
       // wrap position on
-      if (newNotifySettings.position === 'right-bottom') {
+      if (newNotifySettings.position === 'center-center') {
+        ntflxNotifyWrap.style.left = newNotifySettings.distance;
+        ntflxNotifyWrap.style.top = newNotifySettings.distance;
+        ntflxNotifyWrap.style.right = newNotifySettings.distance;
+        ntflxNotifyWrap.style.bottom = newNotifySettings.distance;
+        ntflxNotifyWrap.style.margin = 'auto';
+        ntflxNotifyWrap.classList.add('nx-flex-center-center');
+        ntflxNotifyWrap.style.display = 'flex';
+        ntflxNotifyWrap.style.flexWrap = 'wrap';
+        ntflxNotifyWrap.style.flexDirection = 'column';
+        ntflxNotifyWrap.style.justifyContent = 'center';
+        ntflxNotifyWrap.style.alignItems = 'center';
+        ntflxNotifyWrap.style.pointerEvents = 'none';
+      } else if (newNotifySettings.position === 'center-top') {
+        ntflxNotifyWrap.style.left = newNotifySettings.distance;
+        ntflxNotifyWrap.style.right = newNotifySettings.distance;
+        ntflxNotifyWrap.style.top = newNotifySettings.distance;
+        ntflxNotifyWrap.style.bottom = 'auto';
+        ntflxNotifyWrap.style.margin = 'auto';
+      } else if (newNotifySettings.position === 'center-bottom') {
+        ntflxNotifyWrap.style.left = newNotifySettings.distance;
+        ntflxNotifyWrap.style.right = newNotifySettings.distance;
+        ntflxNotifyWrap.style.bottom = newNotifySettings.distance;
+        ntflxNotifyWrap.style.top = 'auto';
+        ntflxNotifyWrap.style.margin = 'auto';
+      } else if (newNotifySettings.position === 'right-bottom') {
         ntflxNotifyWrap.style.right = newNotifySettings.distance;
         ntflxNotifyWrap.style.bottom = newNotifySettings.distance;
         ntflxNotifyWrap.style.top = 'auto';
@@ -517,11 +564,16 @@
         notifyOverlay.style.top = 0;
         notifyOverlay.style.right = 0;
         notifyOverlay.style.bottom = 0;
-        notifyOverlay.style.background = newNotifySettings.backOverlayColor;
+        notifyOverlay.style.background = theType.backOverlayColor || newNotifySettings.backOverlayColor;
         notifyOverlay.className = (newNotifySettings.cssAnimation ? 'with-animation' : '');
         notifyOverlay.style.animationDuration = (newNotifySettings.cssAnimation) ? newNotifySettings.cssAnimationDuration + 'ms' : '';
+        // if there is not an backoverlay element create a new one
         if (!window.document.getElementById(notifyOverlay.id)) {
           window.document.body.appendChild(notifyOverlay);
+        }
+        // if there is a backoverlay element and also if there is not a notify element with a callback, change backoverlay color by each type
+        else if (notifyElmCountOnlyCallback === 0) {
+          window.document.getElementById(notifyOverlay.id).style.background = theType.backOverlayColor || newNotifySettings.backOverlayColor;
         }
       }
       // if background overlay true off
@@ -533,12 +585,13 @@
 
       // notify content on
       var ntflxNotify = window.document.createElement('div');
-      ntflxNotify.id = newNotifySettings.ID + '-' + notiflixNotifyCount;
-      ntflxNotify.className = newNotifySettings.className + ' ' + theType.childClassName + ' ' + (newNotifySettings.cssAnimation ? 'with-animation' : '') + ' ' + (newNotifySettings.useIcon ? 'with-icon' : '') + ' nx-' + newNotifySettings.cssAnimationStyle + ' ' + (newNotifySettings.closeButton && !callback ? 'with-close-button' : '') + ' ' + (callback && typeof callback === 'function' ? 'with-callback' : '') + ' ' + (newNotifySettings.clickToClose ? 'click-to-close' : '');
+      ntflxNotify.id = newNotifySettings.ID + '-' + notifyElmCount;
+      ntflxNotify.className = newNotifySettings.className + ' ' + theType.childClassName + ' ' + (newNotifySettings.cssAnimation ? 'with-animation' : '') + ' ' + (newNotifySettings.useIcon ? 'with-icon' : '') + ' nx-' + newNotifySettings.cssAnimationStyle + ' ' + (newNotifySettings.closeButton && typeof callback !== 'function' ? 'with-close-button' : '') + ' ' + (typeof callback === 'function' ? 'with-callback' : '') + ' ' + (newNotifySettings.clickToClose ? 'click-to-close' : '');
       ntflxNotify.style.fontSize = newNotifySettings.fontSize;
       ntflxNotify.style.color = theType.textColor;
       ntflxNotify.style.background = theType.background;
       ntflxNotify.style.borderRadius = newNotifySettings.borderRadius;
+      ntflxNotify.style.pointerEvents = 'all';
 
       // rtl on
       if (newNotifySettings.rtl) {
@@ -548,7 +601,7 @@
       // rtl off
 
       // font-family on
-      ntflxNotify.style.fontFamily = '"' + newNotifySettings.fontFamily + '"' + ', sans-serif';
+      ntflxNotify.style.fontFamily = '"' + newNotifySettings.fontFamily + '", ' + defaultFontFamily;
       // font-family off
 
       // use css animation on
@@ -559,7 +612,7 @@
 
       // close button element on
       var closeButtonHTML = '';
-      if (newNotifySettings.closeButton && !callback) {
+      if (newNotifySettings.closeButton && typeof callback !== 'function') {
         closeButtonHTML = '<span class="notify-close-button"><svg class="clck2cls" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="20px" height="20px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"viewBox="0 0 20 20"xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css">.click2close{fill:' + theType.notiflixIconColor + '}</style></defs><g><path class="click2close" d="M0.38 2.19l7.8 7.81 -7.8 7.81c-0.51,0.5 -0.51,1.31 -0.01,1.81 0.25,0.25 0.57,0.38 0.91,0.38 0.34,0 0.67,-0.14 0.91,-0.38l7.81 -7.81 7.81 7.81c0.24,0.24 0.57,0.38 0.91,0.38 0.34,0 0.66,-0.14 0.9,-0.38 0.51,-0.5 0.51,-1.31 0,-1.81l-7.81 -7.81 7.81 -7.81c0.51,-0.5 0.51,-1.31 0,-1.82 -0.5,-0.5 -1.31,-0.5 -1.81,0l-7.81 7.81 -7.81 -7.81c-0.5,-0.5 -1.31,-0.5 -1.81,0 -0.51,0.51 -0.51,1.32 0,1.82z"/></g></svg></span>';
       }
       // close buttpon element off
@@ -665,8 +718,8 @@
         };
         // remove notify elm and wrapper off
 
-        // if close button and callback undefined on
-        if (newNotifySettings.closeButton && !callback) {
+        // if close button and callback is not a function on
+        if (newNotifySettings.closeButton && typeof callback !== 'function') {
           var closeButtonElm = window.document.getElementById(ntflxNotify.id).querySelectorAll('span.notify-close-button')[0];
           closeButtonElm.addEventListener('click', function () {
             hideNotifyElementsAndOverlay();
@@ -676,12 +729,13 @@
             }, newNotifySettings.cssAnimationDuration);
           });
         }
-        // if close button and callback undefined off
+        // if close button and callback is not a function off
 
         // if callback or click to close on
-        if ((callback && typeof callback === 'function') || newNotifySettings.clickToClose) {
+        if ((typeof callback === 'function') || newNotifySettings.clickToClose) {
           removeDiv.addEventListener('click', function () {
-            if (callback && typeof callback === 'function') {
+            if (typeof callback === 'function') {
+              notifyElmCountOnlyCallback--;
               callback();
             }
             hideNotifyElementsAndOverlay();
@@ -694,7 +748,7 @@
         // if callback or click to close off
 
         // else auto remove on
-        if (!newNotifySettings.closeButton && !callback) {
+        if (!newNotifySettings.closeButton && typeof callback !== 'function') {
           timeoutHide = setTimeout(function () {
             hideNotifyElementsAndOverlay();
           }, newNotifySettings.timeout);
@@ -707,8 +761,8 @@
       // remove by timeout or click off
 
       // notify - show only the last one on
-      if (newNotifySettings.showOnlyTheLastOne && notiflixNotifyCount > 0) {
-        var allNotifyElmNotTheLastOne = window.document.querySelectorAll('[id^=' + newNotifySettings.ID + '-]:not([id=' + newNotifySettings.ID + '-' + notiflixNotifyCount + '])');
+      if (newNotifySettings.showOnlyTheLastOne && notifyElmCount > 0) {
+        var allNotifyElmNotTheLastOne = window.document.querySelectorAll('[id^=' + newNotifySettings.ID + '-]:not([id=' + newNotifySettings.ID + '-' + notifyElmCount + '])');
         for (var i = 0; i < allNotifyElmNotTheLastOne.length; i++) {
           var eachNotifyElmNotLastOne = allNotifyElmNotTheLastOne[i];
           if (eachNotifyElmNotLastOne.parentNode !== null) {
@@ -728,8 +782,8 @@
   var NotiflixReport = function (title, message, buttonText, buttonCallback, theType, staticType) {
 
     // check the arguments on
-    if (!title) { title = 'Notiflix ' + staticType; }
-    if (!message) {
+    if (typeof title !== 'string') { title = 'Notiflix ' + staticType; }
+    if (typeof message !== 'string') {
       if (staticType === 'Success') {
         message = '"Do not try to become a person of success but try to become a person of value." <br><br>- Albert Einstein';
       }
@@ -743,8 +797,7 @@
         message = '"Knowledge rests not upon truth alone, but upon error also." <br><br>- Carl Gustav Jung';
       }
     }
-    if (!buttonText) { buttonText = 'Okay'; }
-    if (!buttonCallback) { buttonCallback = undefined; }
+    if (typeof buttonText !== 'string') { buttonText = 'Okay'; }
     // check the arguments off
 
     // if plainText true = HTML tags not allowed on
@@ -800,7 +853,7 @@
     ntflxReportWrap.style.width = newReportSettings.width;
     ntflxReportWrap.style.zIndex = newReportSettings.zindex;
     ntflxReportWrap.style.borderRadius = newReportSettings.borderRadius;
-    ntflxReportWrap.style.fontFamily = '"' + newReportSettings.fontFamily + '"' + ', sans-serif';
+    ntflxReportWrap.style.fontFamily = '"' + newReportSettings.fontFamily + '", ' + defaultFontFamily;
 
     // rtl on
     if (newReportSettings.rtl) {
@@ -812,7 +865,7 @@
     // overlay on
     var reportOverlay = '';
     if (newReportSettings.backOverlay) {
-      reportOverlay = '<div class="' + newReportSettings.className + '-overlay' + (newReportSettings.cssAnimation ? ' with-animation' : '') + '" style="background:' + newReportSettings.backOverlayColor + ';animation-duration:' + newReportSettings.cssAnimationDuration + 'ms;"></div>';
+      reportOverlay = '<div class="' + newReportSettings.className + '-overlay' + (newReportSettings.cssAnimation ? ' with-animation' : '') + '" style="background:' + (theType.backOverlayColor || newReportSettings.backOverlayColor) + ';animation-duration:' + newReportSettings.cssAnimationDuration + 'ms;"></div>';
     }
     // overlay off
 
@@ -852,7 +905,7 @@
       var reportButton = window.document.getElementById('NXReportButton');
       reportButton.addEventListener('click', function () {
         // if callback on
-        if (buttonCallback && typeof buttonCallback === 'function') {
+        if (typeof buttonCallback === 'function') {
           buttonCallback();
         }
         // if callback off
@@ -881,6 +934,15 @@
     if (!newConfirmSettings) {
       Notiflix.Confirm.Init({});
     }
+
+    // check the arguments on
+    if (typeof title !== 'string') { title = 'Notiflix Confirm'; }
+    if (typeof message !== 'string') { message = 'Do you agree with me?'; }
+    if (typeof okButtonText !== 'string') { okButtonText = 'Yes'; }
+    if (typeof cancelButtonText !== 'string') { cancelButtonText = 'No'; }
+    if (typeof okButtonCallback !== 'function') { okButtonCallback = undefined; }
+    if (typeof cancelButtonCallback !== 'function') { cancelButtonCallback = undefined; }
+    // check the arguments off
 
     // if plainText true => HTML tags not allowed on
     if (newConfirmSettings.plainText) {
@@ -950,7 +1012,7 @@
     // rtl off
 
     // font-family on
-    ntflxConfirmWrap.style.fontFamily = '"' + newConfirmSettings.fontFamily + '"' + ', sans-serif';
+    ntflxConfirmWrap.style.fontFamily = '"' + newConfirmSettings.fontFamily + '", ' + defaultFontFamily;
     // font-family off
 
     // if background overlay true on
@@ -962,7 +1024,7 @@
 
     // if have a callback => add cancel button on
     var cancelButtonHTML = '';
-    if (okButtonCallback) {
+    if (typeof okButtonCallback === 'function') {
       cancelButtonHTML = '<a id="NXConfirmButtonCancel" class="confirm-button-cancel" style="color:' + newConfirmSettings.cancelButtonColor + ';background:' + newConfirmSettings.cancelButtonBackground + ';font-size:' + newConfirmSettings.buttonsFontSize + ';">' + cancelButtonText + '</a>';
     }
     // if have a callback => add cancel button off
@@ -974,7 +1036,7 @@
       '<div style="color:' + newConfirmSettings.messageColor + ';font-size:' + newConfirmSettings.messageFontSize + ';">' + message + '</div>' +
       '</div>' +
       '<div class="' + newConfirmSettings.className + '-buttons">' +
-      '<a id="NXConfirmButtonOk" class="confirm-button-ok' + (okButtonCallback ? '' : ' full') + '" style="color:' + newConfirmSettings.okButtonColor + ';background:' + newConfirmSettings.okButtonBackground + ';font-size:' + newConfirmSettings.buttonsFontSize + ';">' + okButtonText + '</a>' +
+      '<a id="NXConfirmButtonOk" class="confirm-button-ok' + (typeof okButtonCallback === 'function' ? '' : ' full') + '" style="color:' + newConfirmSettings.okButtonColor + ';background:' + newConfirmSettings.okButtonBackground + ';font-size:' + newConfirmSettings.buttonsFontSize + ';">' + okButtonText + '</a>' +
       cancelButtonHTML +
       '</div>' +
       '</div>';
@@ -1033,7 +1095,7 @@
       // ok button listener on
       okButton.addEventListener('click', function () {
         // if ok callback && if ok callback is a function
-        if (okButtonCallback && typeof okButtonCallback === 'function') {
+        if (typeof okButtonCallback === 'function') {
           okButtonCallback();
         }
         confirmCloseWrap.classList.add('remove');
@@ -1048,12 +1110,12 @@
       // ok button listener off
 
       // if ok callback && if ok callback a function => add Cancel Button listener on
-      if (okButtonCallback && typeof okButtonCallback === 'function') {
+      if (typeof okButtonCallback === 'function') {
         // cancel button listener on
         var cancelButton = window.document.getElementById('NXConfirmButtonCancel');
         cancelButton.addEventListener('click', function () {
           // if cancel callback && if cancel callback a function
-          if (cancelButtonCallback && typeof cancelButtonCallback === 'function') {
+          if (typeof cancelButtonCallback === 'function') {
             cancelButtonCallback();
           }
           confirmCloseWrap.classList.add('remove');
@@ -1081,7 +1143,7 @@
       Notiflix.Loading.Init({});
     }
     // check the message
-    if (!message) {
+    if (typeof message !== 'string') {
       message = '';
     }
     // show loading
@@ -1144,7 +1206,7 @@
       ntflxLoadingWrap.style.zIndex = newLoadingSettings.zindex;
       ntflxLoadingWrap.style.background = newLoadingSettings.backgroundColor;
       ntflxLoadingWrap.style.animationDuration = newLoadingSettings.cssAnimationDuration + 'ms';
-      ntflxLoadingWrap.style.fontFamily = '"' + newLoadingSettings.fontFamily + '"' + ', sans-serif';
+      ntflxLoadingWrap.style.fontFamily = '"' + newLoadingSettings.fontFamily + '", ' + defaultFontFamily;
 
       // rtl on
       if (newLoadingSettings.rtl) {
@@ -1201,7 +1263,7 @@
   // Notiflix: Loading Change Message on
   var NotiflixLoadingChange = function (newMessage) {
     // check the new message
-    if (!newMessage) {
+    if (typeof newMessage !== 'string') {
       newMessage = '';
     }
     // if has any loading
@@ -1255,7 +1317,7 @@
   // Notiflix: Loading Change Message off
 
   // Notiflix: Block or Unblock Element on
-  var notiflixBlockElementCounter = 0;
+  var blockElmCount = 0;
   var NotiflixBlockUnblockElement = function (block, selector, iconType, message, theDelay) {
 
     // check typeof selector on
@@ -1282,7 +1344,7 @@
       // if not initialized pretend like init off
 
       // check the message on
-      if (!message || (message && typeof message !== 'string')) {
+      if (typeof message !== 'string') {
         message = undefined;
       }
       // check the message off
@@ -1348,27 +1410,27 @@
           // check the message on
           var messageElement = '';
           var messageHeight = 0;
-          if (message) {
+          if (typeof message === 'string' && message.length > 0) {
             if (message.length > newBlockSettings.messageMaxLength) {
               message = notiflixPlaintext(message).toString().substring(0, newBlockSettings.messageMaxLength) + '...';
             } else {
               message = notiflixPlaintext(message).toString();
             }
             messageHeight = Math.round(parseInt(newBlockSettings.messageFontSize) * 1.4).toString() + 'px';
-            messageElement = '<span style="top:' + posRatio + ';height:' + messageHeight + ';font-family:' + newBlockSettings.fontFamily + ', sans-serif;font-size:' + newBlockSettings.messageFontSize + ';color:' + newBlockSettings.messageColor + ';" class="' + blockClassName + '-message">' + message + '</span>';
+            messageElement = '<span style="top:' + posRatio + ';height:' + messageHeight + ';font-size:' + newBlockSettings.messageFontSize + ';color:' + newBlockSettings.messageColor + ';" class="' + blockClassName + '-message">' + message + '</span>';
           }
           // check the message off
 
           // block element on
-          notiflixBlockElementCounter++;
+          blockElmCount++;
           var notiflixBlockWrap = window.document.createElement('div');
-          notiflixBlockWrap.id = blockSettings.ID + '-' + notiflixBlockElementCounter;
+          notiflixBlockWrap.id = blockSettings.ID + '-' + blockElmCount;
           notiflixBlockWrap.className = blockClassName + '-wrap' + (newBlockSettings.cssAnimation ? ' with-animation' : '');
           notiflixBlockWrap.style.position = newBlockSettings.position;
           notiflixBlockWrap.style.zIndex = newBlockSettings.zindex;
           notiflixBlockWrap.style.background = newBlockSettings.backgroundColor;
           notiflixBlockWrap.style.animationDuration = newBlockSettings.cssAnimationDuration + 'ms';
-          notiflixBlockWrap.style.fontFamily = '"' + newBlockSettings.fontFamily + '"' + ', sans-serif';
+          notiflixBlockWrap.style.fontFamily = '"' + newBlockSettings.fontFamily + '", ' + defaultFontFamily;
           // block element off
 
           // block element rtl on
@@ -1405,7 +1467,7 @@
 
           var positions = ['absolute', 'relative', 'fixed', 'sticky'];
           if (positions.indexOf(eachSelectorPos) <= -1) {
-            var style = '<style id="Style-' + blockSettings.ID + '-' + notiflixBlockElementCounter + '">' +
+            var style = '<style id="Style-' + blockSettings.ID + '-' + blockElmCount + '">' +
               eachSelectorIdOrClass + '.' + blockClassName + '-position{position:relative!important;pointer-events:none;' + minHeightStyle + ';}' +
               '</style>';
             var styleRange = window.document.createRange();
@@ -1501,11 +1563,6 @@
   // Notiflix: Block or Unblock Element off
 
   // Notiflix: Main on
-  var newNotifySettings;
-  var newReportSettings;
-  var newConfirmSettings;
-  var newLoadingSettings;
-  var newBlockSettings;
   var Notiflix = {
     // Notify on
     Notify: {
@@ -1515,7 +1572,7 @@
         newNotifySettings = extendNotiflix(true, notifySettings, userNotifyOpt);
         // use GoogleFonts if "Quicksand"
         notiflixGoogleFont(newNotifySettings.useGoogleFont, newNotifySettings.fontFamily);
-        // internal css
+        // internal css if exist
         notiflixInternalCSS();
       },
       // Merge First Init
@@ -1577,7 +1634,7 @@
         newReportSettings = extendNotiflix(true, reportSettings, userReportOpt);
         // use GoogleFonts if "Quicksand"
         notiflixGoogleFont(newReportSettings.useGoogleFont, newReportSettings.fontFamily);
-        // internal css
+        // internal css if exist
         notiflixInternalCSS();
       },
       // Merge First Init
@@ -1639,7 +1696,7 @@
         newConfirmSettings = extendNotiflix(true, confirmSettings, userConfirmOpt);
         // use GoogleFonts if "Quicksand"
         notiflixGoogleFont(newConfirmSettings.useGoogleFont, newConfirmSettings.fontFamily);
-        // internal css
+        // internal css if exist
         notiflixInternalCSS();
       },
       // Merge First Init
@@ -1656,12 +1713,6 @@
       },
       // Display Confirm: Show
       Show: function (title, message, okText, cancelText, okCallback, cancelCallback) {
-        if (!title) { title = 'Notiflix Confirm'; }
-        if (!message) { message = 'Do you agree with me?'; }
-        if (!okText) { okText = 'Yes'; }
-        if (!cancelText) { cancelText = 'No'; }
-        if (!okCallback) { okCallback = undefined; }
-        if (!cancelCallback) { cancelCallback = undefined; }
         NotiflixConfirm(title, message, okText, cancelText, okCallback, cancelCallback);
       },
     },
@@ -1675,7 +1726,7 @@
         newLoadingSettings = extendNotiflix(true, loadingSettings, userLoadingOpt);
         // use GoogleFonts if "Quicksand"
         notiflixGoogleFont(newLoadingSettings.useGoogleFont, newLoadingSettings.fontFamily);
-        // internal css
+        // internal css if exist
         notiflixInternalCSS();
       },
       // Merge First Init
@@ -1742,7 +1793,7 @@
         newBlockSettings = extendNotiflix(true, blockSettings, userBlockOpt);
         // use GoogleFonts if "Quicksand"
         notiflixGoogleFont(newBlockSettings.useGoogleFont, newBlockSettings.fontFamily);
-        // internal css
+        // internal css if exist
         notiflixInternalCSS();
       },
       // Merge First Initialize

@@ -22,10 +22,10 @@
 [![jsdelivr][jsdelivr-badge]][jsdelivr-url]
 
 ## Notiflix | a JavaScript library for client-side non-blocking notifications.
-Notiflix is a JavaScript library for client-side non-blocking notifications, popup boxes, loading indicators, and more to that makes your web projects much better. [*](# "zero-dependency")
+Notiflix is a JavaScript library for client-side non-blocking notifications, popup boxes, loading indicators, and more to that makes your web projects much better.
 
 #### Current Version
-2.1.4 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md "Release Notes")
+2.2.0 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md "Release Notes")
 
 #### Website
 https://www.notiflix.com
@@ -75,14 +75,14 @@ import { Notify, Report, Confirm, Loading, Block } from "notiflix";
 
 ##### CSS and JS
 ```html
-<link rel="stylesheet" href="dist/notiflix-2.1.4.min.css" />
+<link rel="stylesheet" href="dist/notiflix-2.2.0.min.css" />
 
-<script src="dist/notiflix-2.1.4.min.js"></script>
+<script src="dist/notiflix-2.2.0.min.js"></script>
 ```
 
 ##### or only JS (All in One - Internal CSS)
 ```html
-<script src="dist/notiflix-aio-2.1.4.min.js"></script>
+<script src="dist/notiflix-aio-2.2.0.min.js"></script>
 ```
 
 
@@ -338,7 +338,7 @@ Notiflix.Notify.Merge({
 ```js
 Notiflix.Notify.Init({
   width: '280px',
-  position: 'right-top', // 'right-top' - 'right-bottom' - 'left-top' - 'left-bottom'
+  position: 'right-top', // 'right-top' - 'right-bottom' - 'left-top' - 'left-bottom' && v2.2.0 and the next versions => 'center-top' - 'center-bottom' - 'center-center'
   distance: '10px',
   opacity: 1,
   borderRadius: '5px',
@@ -354,7 +354,7 @@ Notiflix.Notify.Init({
   ID: 'NotiflixNotify',
   className: 'notiflix-notify',
   zindex: 4001,
-  useGoogleFont: true,
+  useGoogleFont: false, // v2.2.0 and the next versions => has been changed as "false"
   fontFamily: 'Quicksand',
   fontSize: '13px',
   cssAnimation: true,
@@ -373,6 +373,7 @@ Notiflix.Notify.Init({
     notiflixIconColor: 'rgba(0,0,0,0.2)',
     fontAwesomeClassName: 'fas fa-check-circle',
     fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
+    backOverlayColor: 'rgba(50,198,130,0.2)', // v2.2.0 and the next versions
   },
 
   failure: {
@@ -382,6 +383,7 @@ Notiflix.Notify.Init({
     notiflixIconColor: 'rgba(0,0,0,0.2)',
     fontAwesomeClassName: 'fas fa-times-circle',
     fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
+    backOverlayColor: 'rgba(255,85,73,0.2)', // v2.2.0 and the next versions
   },
 
   warning: {
@@ -391,6 +393,7 @@ Notiflix.Notify.Init({
     notiflixIconColor: 'rgba(0,0,0,0.2)',
     fontAwesomeClassName: 'fas fa-exclamation-circle',
     fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
+    backOverlayColor: 'rgba(238,191,49,0.2)', // v2.2.0 and the next versions
   },
 
   info: {
@@ -400,6 +403,7 @@ Notiflix.Notify.Init({
     notiflixIconColor: 'rgba(0,0,0,0.2)',
     fontAwesomeClassName: 'fas fa-info-circle',
     fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
+    backOverlayColor: 'rgba(38,192,211,0.2)', // v2.2.0 and the next versions
   },
 });
 ```
@@ -417,8 +421,8 @@ Notiflix.Report.Init({
   rtl: false,
   zindex: 4002,
   backOverlay: true,
-  backOverlayColor: 'rgba(0, 0, 0, 0.5)',
-  useGoogleFont: true,
+  backOverlayColor: 'rgba(0,0,0,0.5)',
+  useGoogleFont: false, // v2.2.0 and the next versions => has been changed as "false"
   fontFamily: 'Quicksand',
   svgSize: '110px',
   plainText: true,
@@ -438,6 +442,7 @@ Notiflix.Report.Init({
     messageColor: '#242424',
     buttonBackground: '#32c682',
     buttonColor: '#fff',
+    backOverlayColor: 'rgba(50,198,130,0.2)', // v2.2.0 and the next versions
   },
 
   failure: {
@@ -446,6 +451,7 @@ Notiflix.Report.Init({
     messageColor: '#242424',
     buttonBackground: '#ff5549',
     buttonColor: '#fff',
+    backOverlayColor: 'rgba(255,85,73,0.2)', // v2.2.0 and the next versions
   },
 
   warning: {
@@ -454,6 +460,7 @@ Notiflix.Report.Init({
     messageColor: '#242424',
     buttonBackground: '#eebf31',
     buttonColor: '#fff',
+    backOverlayColor: 'rgba(238,191,49,0.2)', // v2.2.0 and the next versions
   },
 
   info: {
@@ -462,6 +469,7 @@ Notiflix.Report.Init({
     messageColor: '#242424',
     buttonBackground: '#26c0d3',
     buttonColor: '#fff',
+    backOverlayColor: 'rgba(38,192,211,0.2)', // v2.2.0 and the next versions
   },
 });
 ```
@@ -482,7 +490,7 @@ Notiflix.Confirm.Init({
   backOverlay: true,
   backOverlayColor: 'rgba(0,0,0,0.5)',
   rtl: false,
-  useGoogleFont: true,
+  useGoogleFont: false, // v2.2.0 and the next versions => has been changed as "false"
   fontFamily: 'Quicksand',
   cssAnimation: true,
   cssAnimationStyle: 'fade', // 'zoom' - 'fade'
@@ -516,7 +524,7 @@ Notiflix.Loading.Init({
   zindex: 4000,
   backgroundColor: 'rgba(0,0,0,0.8)',
   rtl: false,
-  useGoogleFont: true,
+  useGoogleFont: false, // v2.2.0 and the next versions => has been changed as "false"
   fontFamily: 'Quicksand',
   cssAnimation: true,
   cssAnimationDuration: 400,
@@ -545,7 +553,7 @@ Notiflix.Block.Init({
   zindex: 1000,
   backgroundColor: 'rgba(255,255,255,0.9)',
   rtl: false,
-  useGoogleFont: true,
+  useGoogleFont: false, // v2.2.0 and the next versions => has been changed as "false"
   fontFamily: 'Quicksand',
   cssAnimation: true,
   cssAnimationDuration: 300,
