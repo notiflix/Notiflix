@@ -1,6 +1,6 @@
 /*!
 * Notiflix ('https://www.notiflix.com')
-* Version: 2.1.4
+* Version: 2.2.0
 * Author: Furkan MT ('https://github.com/furcan')
 * Copyright 2020 Notiflix, MIT Licence ('https://opensource.org/licenses/MIT')
 */
@@ -14,7 +14,48 @@
   top: 10px;
   width: 280px;
   max-width: 96%;
+  max-height: calc(100vh - 20px);
+  overflow-x: hidden;
+  overflow-y: auto;
   box-sizing: border-box;
+  background: transparent;
+}
+
+[id^="NotiflixNotifyWrap"].nx-flex-center-center {
+  pointer-events: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: auto;
+}
+
+[id^="NotiflixNotifyWrap"]::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+[id^="NotiflixNotifyWrap"]::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+[id^="NotiflixNotifyWrap"]::-webkit-scrollbar-track {
   background: transparent;
 }
 
@@ -24,13 +65,21 @@
 
 /* Notiflix: Notify wrap off */
 
+/* Notiflix: Notify overlay on */
+[id^="NotiflixNotifyOverlay"] {
+  transition: background 0.3s ease-in-out;
+}
+
+/* Notiflix: Notify overlay off */
+
 /* Notiflix: Notify content on */
 [id^="NotiflixNotifyWrap"] > div {
+  pointer-events: all;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  font-family: "Quicksand", sans-serif;
+  font-family: "Quicksand", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   width: 100%;
   display: inline-block;
   position: relative;
@@ -51,10 +100,6 @@
   cursor: pointer;
 }
 
-[id^="NotiflixNotifyWrap"] *::selection {
-  background: inherit;
-}
-
 [id^="NotiflixNotifyWrap"] > div.with-icon {
   padding: 8px;
 }
@@ -72,7 +117,7 @@
 }
 
 [id^="NotiflixNotifyWrap"] > div > span.the-message {
-  font-weight: 500;
+  font-weight: normal;
   font-family: inherit !important;
   word-break: break-all;
   word-break: break-word;
@@ -642,8 +687,11 @@
   z-index: 4002;
   width: 320px;
   max-width: 96%;
+  max-height: 96vh;
+  overflow-x: hidden;
+  overflow-y: auto;
   box-sizing: border-box;
-  font-family: "Quicksand", sans-serif;
+  font-family: "Quicksand", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   left: 0;
   right: 0;
   top: 20px;
@@ -651,6 +699,19 @@
   border-radius: 25px;
   background: transparent;
   margin: auto;
+}
+
+[id^="NotiflixReportWrap"]::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+[id^="NotiflixReportWrap"]::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+[id^="NotiflixReportWrap"]::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 [id^="NotiflixReportWrap"] * {
@@ -961,7 +1022,10 @@
   position: fixed;
   z-index: 4003;
   width: 300px;
-  max-width: 98%;
+  max-width: 96%;
+  max-height: 96vh;
+  overflow-x: hidden;
+  overflow-y: auto;
   left: 10px;
   right: 10px;
   top: 10px;
@@ -969,7 +1033,20 @@
   text-align: center;
   box-sizing: border-box;
   background: transparent;
-  font-family: "Quicksand", sans-serif;
+  font-family: "Quicksand", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+[id^="NotiflixConfirmWrap"]::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+[id^="NotiflixConfirmWrap"]::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+[id^="NotiflixConfirmWrap"]::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 [id^="NotiflixConfirmWrap"] * {
@@ -1309,7 +1386,7 @@
   text-align: center;
   box-sizing: border-box;
   background: rgba(0, 0, 0, 0.8);
-  font-family: "Quicksand", sans-serif;
+  font-family: "Quicksand", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 [id^="NotiflixLoadingWrap"] * {
@@ -1359,7 +1436,7 @@
   bottom: 0;
   margin: auto;
   font-family: inherit !important;
-  font-weight: 500;
+  font-weight: normal;
   line-height: 1.4;
   padding: 0 10px;
   width: 100%;
@@ -1464,7 +1541,7 @@
   box-sizing: border-box;
   position: absolute;
   z-index: 1000;
-  font-family: "Quicksand", sans-serif;
+  font-family: "Quicksand", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background: rgba(255, 255, 255, 0.9);
   text-align: center;
   animation-duration: 400ms;
@@ -1501,7 +1578,7 @@
   bottom: 0;
   margin: auto;
   font-family: inherit !important;
-  font-weight: 500;
+  font-weight: normal;
   font-size: 14px;
   line-height: 1.4;
   padding: 0 10px;

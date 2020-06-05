@@ -7,8 +7,8 @@ const chalk = require('chalk');
 const package = require('../package.json');
 
 // Constants
-const dirIn = 'src';
-const dirOut = 'dist';
+const dirInput = 'src';
+const dirOutput = 'dist';
 const fileScript = 'notiflix.js';
 const fileScriptAIO = 'notiflix-aio.js';
 const fileStyle = 'notiflix.css';
@@ -16,7 +16,7 @@ const version = (JSON.stringify((package || {}).version) || '').replace(/"/gm, '
 const author = (JSON.stringify((package || {}).author) || '').replace(/"/gm, '');
 const notiflix = 'Notiflix';
 const notiflixUrl = '(https://www.notiflix.com)';
-const mitLicense = 'MIT Licence (https://opensource.org/licenses/MIT)';
+const license = 'MIT Licence (https://opensource.org/licenses/MIT)';
 const year = new Date().getFullYear() || '2020';
 
 // Babel Minify Options: begin
@@ -33,7 +33,15 @@ const minifyOverrides = {
 const cleanCSSOptions = {
   level: {
     1: {
+      optimizeBackground: false, // controls `background` property optimizations; defaults to `true`
+      optimizeBorderRadius: false, // controls `border-radius` property optimizations; defaults to `true`
+      optimizeFilter: false, // controls `filter` property optimizations; defaults to `true`
+      optimizeFont: false, // controls `font` property optimizations; defaults to `true`
+      optimizeFontWeight: false, // controls `font-weight` property optimizations; defaults to `true`
+      optimizeOutline: false, // controls `outline` property optimizations; defaults to `true`
       specialComments: false, // remove all comments
+      removeQuotes: false, // controls removing quotes when unnecessary; defaults to `true`
+      semicolonAfterLastProperty: true, // controls removing trailing semicolons in rule; defaults to `false` - means remove
     },
   },
 };
@@ -84,14 +92,14 @@ const minifiedCodeBySourceType = (text, type) => {
 
 // Clear The Out Directory: begin
 const clearTheOutDir = () => {
-  if (existsSync(dirOut)) { // if the directory exist clear all files
-    readdirSync(dirOut).map(file => {
-      unlinkSync(join(dirOut, file), err => {
+  if (existsSync(dirOutput)) { // if the directory exist clear all files
+    readdirSync(dirOutput).map(file => {
+      unlinkSync(join(dirOutput, file), err => {
         if (err) throw err;
       });
     });
   } else {
-    consoleError('The "' + dirOut + '" directory does not exist on the root directory.');
+    consoleError('The "' + dirOutput + '" directory does not exist on the root directory.');
   }
 };
 // Clear The Out Directory: end
@@ -106,14 +114,14 @@ const createFileFromInputDir = (filePath, fileName, filePrefix, fileType) => {
     // create a file by minified content
     addFileToTheOutDir(minifiedContent, filePrefix, fileName);
   } else {
-    consoleError('The "' + fileName + '" file does not exist on the "' + dirIn + '" directory.');
+    consoleError('The "' + fileName + '" file does not exist on the "' + dirInput + '" directory.');
   }
 }
 // Create The File from by The Input Directory: end
 
 // Add The File Into The Out Directory: begin
 const addFileToTheOutDir = (minContent, fileName, filePath) => {
-  if (existsSync(dirOut)) {
+  if (existsSync(dirOutput)) {
     // create "notiflix.min.*" file by minified content
     if (typeof minContent === 'object' && (typeof minContent.type === 'string' && (typeof minContent.code === 'string' && minContent.code.length > 0))) {
       // file extention
@@ -127,44 +135,44 @@ const addFileToTheOutDir = (minContent, fileName, filePath) => {
       // if ext exist create a file
       if (typeof ext === 'string') {
         // comment line
-        const comment = `/* ${notiflix} ${notiflixUrl} - Version: ${version} - Author: ${author} - Copyright ${year} ${notiflix}, ${mitLicense} */\n\n`;
+        const comment = `/* ${notiflix} ${notiflixUrl} - Version: ${version} - Author: ${author} - Copyright ${year} ${notiflix}, ${license} */\n\n`;
         // minified code with comment line
         const code = comment + minContent.code;
         // minified file name
         const minFileName = `${fileName}-${version}.min.${ext}`;
         // create a minified file into the out directory
-        writeFileSync(join(dirOut, minFileName), code);
+        writeFileSync(join(dirOutput, minFileName), code);
       }
 
     } else {
       consoleError('The "' + filePath + '" file is empty and/or something went wrong.');
     }
   } else {
-    consoleError('The "' + dirOut + '" directory does not exist on the root directory.');
+    consoleError('The "' + dirOutput + '" directory does not exist on the root directory.');
   }
 };
 // Add The File Into The Out Directory: end
 
 // Minify Notiflix: begin
-if (existsSync(dirIn)) { // if the input directory exist
+if (existsSync(dirInput)) { // if the input directory exist
   // empty the out directory
   clearTheOutDir();
 
   // Notiflix Script: begin
-  const nxScript = join(dirIn, fileScript);
+  const nxScript = join(dirInput, fileScript);
   createFileFromInputDir(nxScript, fileScript, 'notiflix', 'script');
   // Notiflix Script: end
 
   // Notiflix Style: begin
-  const nxStyle = join(dirIn, fileStyle);
+  const nxStyle = join(dirInput, fileStyle);
   createFileFromInputDir(nxStyle, fileStyle, 'notiflix', 'style');
   // Notiflix Style: end
 
   // Notiflix Script (All In One): begin
-  const nxScriptAIO = join(dirIn, fileScriptAIO);
+  const nxScriptAIO = join(dirInput, fileScriptAIO);
   createFileFromInputDir(nxScriptAIO, fileScriptAIO, 'notiflix-aio', 'script');
   // Notiflix Script (All In One): end
 } else {
-  consoleError('The "' + dirIn + '" directory does not exist on the root directory.');
+  consoleError('The "' + dirInput + '" directory does not exist on the root directory.');
 }
 // Minify Notiflix: end

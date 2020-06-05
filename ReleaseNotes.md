@@ -1,3 +1,48 @@
+@2.2.0
+
+* **Added:**
+  - `Notiflix.Notify.*` module; `center-top`, `center-bottom`, and `center-center` options have been added to the `position` setting. (Recommended by [Sebastian Stavar](https://github.com/SebastianStavar))
+
+  - `Notiflix.Notify.*` module; `backOverlayColor` option has been added to each type of notification. Can be set different background overlay colors for each type of notification now.
+  (Recommended by [Sebastian Stavar](https://github.com/SebastianStavar))
+    ```js
+    // e.g.
+
+    Notiflix.Notify.Init({
+      // ...
+      backOverlay: true, // default is false
+      backOverlayColor: 'rgba(0,0,0,0.5)', // default back overlay color
+      // ...
+      success: {
+        backOverlayColor: 'rgba(50,198,130,0.2)', // NEW: override the back overlay color
+      },
+      failure: {
+        backOverlayColor: 'rgba(255,85,73,0.2)', // NEW: override the back overlay color
+      },
+      // ...
+    });
+    ```
+
+  - `Notiflix.Report.*` module; `backOverlayColor` option has been added to each type of dialog box. Can be set different background overlay colors for each type of notification now.
+    e.g.
+    ```js
+    Notiflix.Report.Init({
+      success: {
+        backOverlayColor: 'rgba(50,198,130,0.2)', // NEW: override the back overlay color
+      },
+      failure: {
+        backOverlayColor: 'rgba(255,85,73,0.2)', // NEW: override the back overlay color
+      },
+      // ...
+    });
+    ```
+
+* **Changed:** All modules (`Notify`, `Report`, `Confirm`, `Loading`, and `Block`); `useGoogleFont` setting has been changed as `false` to default.
+
+* **Changed:** Code Review.
+
+-----
+
 @2.1.4
 * **Changed:** Code Review.
 * **Changed:** Notiflix Confirm module; HTML tag of the message element has been changed from "`p`" to "`div`".
