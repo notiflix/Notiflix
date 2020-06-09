@@ -9,17 +9,26 @@
 
 [npm-version-badge]: https://img.shields.io/npm/v/notiflix.svg
 [npm-version-url]: https://www.npmjs.com/package/notiflix
+[dep-badge]: https://david-dm.org/notiflix/Notiflix.svg
+[dep-url]: https://david-dm.org/notiflix/Notiflix.svg
 [synk-badge]: https://snyk.io/test/github/notiflix/Notiflix/badge.svg?targetFile=package.json
 [synk-url]: https://snyk.io/test/github/notiflix/Notiflix?targetFile=package.json
 [downloads-image]: https://img.shields.io/npm/dm/notiflix.svg
 [downloads-url]: https://npmjs.org/package/notiflix
 [jsdelivr-badge]: https://data.jsdelivr.com/v1/package/npm/notiflix/badge?style=rounded
 [jsdelivr-url]: https://www.jsdelivr.com/package/npm/notiflix
+[size-badge]: https://img.badgesize.io/https://unpkg.com/browse/notiflix/dist/notiflix-aio-2.2.1.min.js?compression=gzip
+[size-url]: https://unpkg.com/browse/notiflix/dist/notiflix-aio-2.2.1.min.js
+[lic-badge]: https://img.shields.io/github/license/notiflix/Notiflix.svg
+[lic-url]: https://github.com/notiflix/Notiflix/blob/master/LICENSE
 
 [![npm version][npm-version-badge]][npm-version-url]
+[![Dependencies][dep-badge]][dep-url]
 [![Known Vulnerabilities][synk-badge]][synk-url]
-[![downloads][downloads-image]][downloads-url]
-[![jsdelivr][jsdelivr-badge]][jsdelivr-url]
+[![Downloads][downloads-image]][downloads-url]
+[![jsDelivr][jsdelivr-badge]][jsdelivr-url]
+[![Size][size-badge]][size-url]
+[![License][lic-badge]][lic-url]
 
 ## Notiflix | a JavaScript library for client-side non-blocking notifications.
 Notiflix is a JavaScript library for client-side non-blocking notifications, popup boxes, loading indicators, and more to that makes your web projects much better.
