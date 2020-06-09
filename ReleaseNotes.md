@@ -1,3 +1,8 @@
+@2.2.1
+* **Changed:** `Notiflix.Notify.*` module, CSS animation improvements.
+
+-----
+
 @2.2.0
 
 * **Added:**

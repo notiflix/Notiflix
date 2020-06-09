@@ -1,6 +1,6 @@
 /*!
 * Notiflix ('https://www.notiflix.com')
-* Version: 2.2.0
+* Version: 2.2.1
 * Author: Furkan MT ('https://github.com/furcan')
 * Copyright 2020 Notiflix, MIT Licence ('https://opensource.org/licenses/MIT')
 */
@@ -471,7 +471,10 @@
 
       // if plainText false but the message length more than messageMaxLength = HTML tags error on
       if (!newNotifySettings.plainText && message.length > newNotifySettings.messageMaxLength) {
-        Notiflix.Notify.Merge({ closeButton: true, plainText: false, });
+        Notiflix.Notify.Merge({
+          closeButton: true,
+          plainText: false,
+        });
         message = '<b>HTML Tags Error:</b> Your content length is more than "messageMaxLength" option.'; // message html error
       }
       // if plainText false but the message length more than messageMaxLength = HTML tags error off
@@ -500,7 +503,6 @@
       ntflxNotifyWrap.style.width = newNotifySettings.width;
       ntflxNotifyWrap.style.zIndex = newNotifySettings.zindex;
       ntflxNotifyWrap.style.opacity = newNotifySettings.opacity;
-      ntflxNotifyWrap.style.maxHeight = 'calc((100vh - ' + newNotifySettings.distance + ') - ' + newNotifySettings.distance + ')';
 
       // wrap position on
       if (newNotifySettings.position === 'center-center') {
@@ -510,6 +512,7 @@
         ntflxNotifyWrap.style.bottom = newNotifySettings.distance;
         ntflxNotifyWrap.style.margin = 'auto';
         ntflxNotifyWrap.classList.add('nx-flex-center-center');
+        ntflxNotifyWrap.style.maxHeight = 'calc((100vh - ' + newNotifySettings.distance + ') - ' + newNotifySettings.distance + ')';
         ntflxNotifyWrap.style.display = 'flex';
         ntflxNotifyWrap.style.flexWrap = 'wrap';
         ntflxNotifyWrap.style.flexDirection = 'column';
@@ -1505,7 +1508,7 @@
           // clear timeout
           clearTimeout(timeout);
         }, newBlockSettings.cssAnimationDuration);
-      }
+      };
       // Step 3 => Remove each block element off
 
       // Step 2A => Remove each block element on
@@ -1526,7 +1529,7 @@
         else {
           notiflixConsoleLog('Notiflix Info', '"Notiflix.Block.Remove();" function called with "' + selector + '" selector, but this selector does not have a "Notiflix.Block..." element to remove.');
         }
-      }
+      };
       // Step 2A => Remove each block element on
 
       // Step 2B => Remove each selector class name on
@@ -1539,7 +1542,7 @@
           // clear timeout
           clearTimeout(timeout);
         }, newBlockSettings.cssAnimationDuration + 300);
-      }
+      };
       // Step 2B => Remove each selector class name off
 
       // Step 1 => Remove selector class name on

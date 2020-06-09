@@ -1,7 +1,7 @@
 // Dev Dependencies
 const { existsSync, readdirSync, unlinkSync, readFileSync, writeFileSync } = require('fs');
 const { join } = require('path');
-const Minify = require("babel-minify");
+const Minify = require('babel-minify');
 const CleanCSS = require('clean-css');
 const chalk = require('chalk');
 const package = require('../package.json');
@@ -116,7 +116,7 @@ const createFileFromInputDir = (filePath, fileName, filePrefix, fileType) => {
   } else {
     consoleError('The "' + fileName + '" file does not exist on the "' + dirInput + '" directory.');
   }
-}
+};
 // Create The File from by The Input Directory: end
 
 // Add The File Into The Out Directory: begin

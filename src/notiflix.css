@@ -1,12 +1,13 @@
 /*!
 * Notiflix ('https://www.notiflix.com')
-* Version: 2.2.0
+* Version: 2.2.1
 * Author: Furkan MT ('https://github.com/furcan')
 * Copyright 2020 Notiflix, MIT Licence ('https://opensource.org/licenses/MIT')
 */
 
 /* Notiflix: Notify wrap on */
 [id^="NotiflixNotifyWrap"] {
+  pointer-events: none;
   position: fixed;
   z-index: 4001;
   opacity: 1;
@@ -14,15 +15,14 @@
   top: 10px;
   width: 280px;
   max-width: 96%;
-  max-height: calc(100vh - 20px);
-  overflow-x: hidden;
-  overflow-y: auto;
   box-sizing: border-box;
   background: transparent;
 }
 
 [id^="NotiflixNotifyWrap"].nx-flex-center-center {
-  pointer-events: none;
+  max-height: calc(100vh - 20px);
+  overflow-x: hidden;
+  overflow-y: auto;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
