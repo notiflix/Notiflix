@@ -167,9 +167,9 @@
 
   </style>
 
-  <!-- <link href="../dist/notiflix-2.3.0.min.css" rel="stylesheet" />
-  <script src="../dist/notiflix-2.3.0.min.js"></script> -->
-  <script src="../dist/notiflix-aio-2.3.0.min.js"></script>
+  <!-- <link href="../dist/notiflix-2.3.1.min.css" rel="stylesheet" />
+  <script src="../dist/notiflix-2.3.1.min.js"></script> -->
+  <script src="../dist/notiflix-aio-2.3.1.min.js"></script>
 
   <!-- <link href="../src/notiflix.css" rel="stylesheet" />
   <script src="../src/notiflix.js"></script> -->
@@ -177,6 +177,7 @@
 
   <script>
     // Notiflix.Notify.Init({
+    //   closeButton: true,
     //   cssAnimationStyle: 'zoom',
     //   cssAnimationDuration: 500,
     // });
@@ -198,8 +199,8 @@
       <button class="nx-notify" onclick="Notiflix.Notify.Failure();">Notify Failure</button>
       <button class="nx-notify" onclick="Notiflix.Notify.Warning();">Notify Warning</button>
       <button class="nx-notify" onclick="Notiflix.Notify.Info('Click me!', function(){alert('Thanks!')});">Notify Info (With Callback)</button>
-      <button class="nx-notify" onclick="Notiflix.Notify.Success('Click me!', {cssAnimationStyle:'zoom', cssAnimationDuration:500,});">Notify Success (With Options)</button>
-      <button class="nx-notify" onclick="Notiflix.Notify.Success('Click me!', {cssAnimationStyle:'zoom', cssAnimationDuration:500,}, function(){alert('Thanks!')});">Notify Success (With Options + Callback)</button>
+      <button class="nx-notify" onclick="Notiflix.Notify.Success(false, {cssAnimationStyle:'zoom', cssAnimationDuration:500,});">Notify Success (With Options)</button>
+      <button class="nx-notify" onclick="Notiflix.Notify.Success('Click me!', function(){alert('Thanks!')}, {cssAnimationStyle:'zoom', cssAnimationDuration:500,});">Notify Success (With Options + Callback)</button>
     </div>
   </div>
 
@@ -211,7 +212,7 @@
       <button class="nx-report" onclick="Notiflix.Report.Warning();">Report Warning</button>
       <button class="nx-report" onclick="Notiflix.Report.Info(false, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', false, function(){alert('Thanks!')});">Report Info (With Callback)</button>
       <button class="nx-report" onclick="Notiflix.Report.Success(false, false, false, {width:'360px', borderRadius:'8px', success:{backOverlayColor:'rgba(50, 198, 130, 0.4)'}});">Report Success (With Options)</button>
-      <button class="nx-report" onclick="Notiflix.Report.Success(false, false, false, {width:'360px', borderRadius:'8px', success:{backOverlayColor:'rgba(50, 198, 130, 0.4)'}}, function(){alert('Thanks!')});">Report Success (With Options + Callback)</button>
+      <button class="nx-report" onclick="Notiflix.Report.Success(false, false, false, function(){alert('Thanks!')}, {width:'360px', borderRadius:'8px', success:{backOverlayColor:'rgba(50, 198, 130, 0.4)'}});">Report Success (With Options + Callback)</button>
     </div>
   </div>
 

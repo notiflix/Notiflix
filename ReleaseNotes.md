@@ -1,9 +1,8 @@
-@2.3.0
-* **Added:** `Notiflix.Notify.*` module, `optionsOrCallback` parameter has been added. (Recommended by [VirgilioGM](https://github.com/VirgilioGM))
+@2.3.1
+* **Changed:** `Notiflix.Notify.*` module, `callback` and `options` parameters have been changed.
 
   - Custom options can be used for each Notify element to extend the initialize settings.
     ```js
-    // Current:
     // e.g. Message with a callback
     Notiflix.Notify.Success(
       'Click Me',
@@ -12,7 +11,7 @@
       },
     );
 
-    // NEW: v2.3.0 and the next versions
+    // NEW: v2.3.1 and the next versions
     // e.g. Message with the new options
     Notiflix.Notify.Success(
       'Click Me',
@@ -21,20 +20,28 @@
       },
     );
 
-    // e.g. Message with the new options, and callback
+    // NEW: v2.3.1 and the next versions
+    // e.g. Message with callback, and the new options
     Notiflix.Notify.Success(
       'Click Me',
-      {
-        timeout: 4000,
-      },
       function(){
         // callback
+      },
+      {
+        timeout: 4000,
       },
     );
     ```
 
-* **Added:** `Notiflix.Report.*` module, `optionsOrCallback` parameter has been added.
+* **Changed:** `Notiflix.Report.*` module, `callback` and `options` parameters have been changed.
 
+* **Changed:** Code Review.
+
+-----
+
+@2.3.0
+* **Added:** `Notiflix.Notify.*` module, `optionsOrCallback` parameter has been added. (Recommended by [VirgilioGM](https://github.com/VirgilioGM))
+* **Added:** `Notiflix.Report.*` module, `optionsOrCallback` parameter has been added.
 * **Changed:** Code Review.
 
 -----

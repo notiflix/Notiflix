@@ -1,6 +1,6 @@
 /*!
 * Notiflix ('https://www.notiflix.com')
-* Version: 2.3.0
+* Version: 2.3.1
 * Author: Furkan MT ('https://github.com/furcan')
 * Copyright 2020 Notiflix, MIT Licence ('https://opensource.org/licenses/MIT')
 */
@@ -447,7 +447,7 @@
   // Notiflix: Notify Single on
   var notifyElmCount = 0;
   var notifyElmCountOnlyCallback = 0;
-  var NotiflixNotify = function (message, optionsOrCallback, callback, staticType) {
+  var NotiflixNotify = function (message, callbackOrOptions, options, staticType) {
     // if not initialized pretend like init
     if (!newNotifySettings) {
       Notiflix.Notify.Init({});
@@ -456,26 +456,30 @@
     // create a backup for settings
     var newNotifySettingsBackup = {};
 
-    // detect optionsOrCallback and callback on
-    if (typeof optionsOrCallback === 'function') {
-      callback = optionsOrCallback;
-    }
+    // check callbackOrOptions and options on
+    if ((typeof callbackOrOptions === 'object' && !Array.isArray(callbackOrOptions)) || (typeof options === 'object' && !Array.isArray(options))) {
+      // new options
+      var newOptions = {};
+      if (typeof callbackOrOptions === 'object') {
+        newOptions = callbackOrOptions;
+      } else if (typeof options === 'object') {
+        newOptions = options;
+      }
 
-    if (typeof optionsOrCallback === 'object' && !Array.isArray(optionsOrCallback)) {
       // extend the backup settings with new settings
       newNotifySettingsBackup = extendNotiflix(true, newNotifySettings, {});
 
       // extend new settings with the options
-      newNotifySettings = extendNotiflix(true, newNotifySettings, optionsOrCallback);
+      newNotifySettings = extendNotiflix(true, newNotifySettings, newOptions);
     }
-    // detect optionsOrCallback and callback off
+    // check callbackOrOptions and options off
 
     // notify type
     var theType = newNotifySettings[staticType.toLocaleLowerCase('en')];
 
     // notify counter on
     notifyElmCount++;
-    if (typeof callback === 'function') {
+    if (typeof callbackOrOptions === 'function') {
       notifyElmCountOnlyCallback++;
     }
     // notify counter off
@@ -612,7 +616,7 @@
     // notify content on
     var ntflxNotify = window.document.createElement('div');
     ntflxNotify.id = newNotifySettings.ID + '-' + notifyElmCount;
-    ntflxNotify.className = newNotifySettings.className + ' ' + theType.childClassName + ' ' + (newNotifySettings.cssAnimation ? 'with-animation' : '') + ' ' + (newNotifySettings.useIcon ? 'with-icon' : '') + ' nx-' + newNotifySettings.cssAnimationStyle + ' ' + (newNotifySettings.closeButton && typeof callback !== 'function' ? 'with-close-button' : '') + ' ' + (typeof callback === 'function' ? 'with-callback' : '') + ' ' + (newNotifySettings.clickToClose ? 'click-to-close' : '');
+    ntflxNotify.className = newNotifySettings.className + ' ' + theType.childClassName + ' ' + (newNotifySettings.cssAnimation ? 'with-animation' : '') + ' ' + (newNotifySettings.useIcon ? 'with-icon' : '') + ' nx-' + newNotifySettings.cssAnimationStyle + ' ' + (newNotifySettings.closeButton && typeof callbackOrOptions !== 'function' ? 'with-close-button' : '') + ' ' + (typeof callbackOrOptions === 'function' ? 'with-callback' : '') + ' ' + (newNotifySettings.clickToClose ? 'click-to-close' : '');
     ntflxNotify.style.fontSize = newNotifySettings.fontSize;
     ntflxNotify.style.color = theType.textColor;
     ntflxNotify.style.background = theType.background;
@@ -638,7 +642,7 @@
 
     // close button element on
     var closeButtonHTML = '';
-    if (newNotifySettings.closeButton && typeof callback !== 'function') {
+    if (newNotifySettings.closeButton && typeof callbackOrOptions !== 'function') {
       closeButtonHTML = '<span class="notify-close-button"><svg class="clck2cls" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="20px" height="20px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"viewBox="0 0 20 20"xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css">.click2close{fill:' + theType.notiflixIconColor + '}</style></defs><g><path class="click2close" d="M0.38 2.19l7.8 7.81 -7.8 7.81c-0.51,0.5 -0.51,1.31 -0.01,1.81 0.25,0.25 0.57,0.38 0.91,0.38 0.34,0 0.67,-0.14 0.91,-0.38l7.81 -7.81 7.81 7.81c0.24,0.24 0.57,0.38 0.91,0.38 0.34,0 0.66,-0.14 0.9,-0.38 0.51,-0.5 0.51,-1.31 0,-1.81l-7.81 -7.81 7.81 -7.81c0.51,-0.5 0.51,-1.31 0,-1.82 -0.5,-0.5 -1.31,-0.5 -1.81,0l-7.81 7.81 -7.81 -7.81c-0.5,-0.5 -1.31,-0.5 -1.81,0 -0.51,0.51 -0.51,1.32 0,1.82z"/></g></svg></span>';
     }
     // close buttpon element off
@@ -744,8 +748,8 @@
       };
       // remove notify elm and wrapper off
 
-      // if close button and callback is not a function on
-      if (newNotifySettings.closeButton && typeof callback !== 'function') {
+      // if close button and callbackOrOptions is not a function on
+      if (newNotifySettings.closeButton && typeof callbackOrOptions !== 'function') {
         var closeButtonElm = window.document.getElementById(ntflxNotify.id).querySelectorAll('span.notify-close-button')[0];
         closeButtonElm.addEventListener('click', function () {
           hideNotifyElementsAndOverlay();
@@ -755,14 +759,14 @@
           }, newNotifySettings.cssAnimationDuration);
         });
       }
-      // if close button and callback is not a function off
+      // if close button and callbackOrOptions is not a function off
 
-      // if callback or click to close on
-      if ((typeof callback === 'function') || newNotifySettings.clickToClose) {
+      // if callbackOrOptions or click to close on
+      if (typeof callbackOrOptions === 'function' || newNotifySettings.clickToClose) {
         removeDiv.addEventListener('click', function () {
-          if (typeof callback === 'function') {
+          if (typeof callbackOrOptions === 'function') {
             notifyElmCountOnlyCallback--;
-            callback();
+            callbackOrOptions();
           }
           hideNotifyElementsAndOverlay();
           var callbackTimeout = setTimeout(function () {
@@ -771,10 +775,10 @@
           }, newNotifySettings.cssAnimationDuration);
         });
       }
-      // if callback or click to close off
+      // if callbackOrOptions or click to close off
 
       // else auto remove on
-      if (!newNotifySettings.closeButton && typeof callback !== 'function') {
+      if (!newNotifySettings.closeButton && typeof callbackOrOptions !== 'function') {
         timeoutHide = setTimeout(function () {
           hideNotifyElementsAndOverlay();
         }, newNotifySettings.timeout);
@@ -805,7 +809,7 @@
   // Notiflix: Notify Single off
 
   // Notiflix: Report Single on
-  var NotiflixReport = function (title, message, buttonText, optionsOrCallback, buttonCallback, staticType) {
+  var NotiflixReport = function (title, message, buttonText, callbackOrOptions, options, staticType) {
     // if not initialized pretend like init
     if (!newReportSettings) {
       Notiflix.Report.Init({});
@@ -814,19 +818,23 @@
     // create a backup for settings
     var newReportSettingsBackup = {};
 
-    // detect optionsOrCallback and buttonCallback on
-    if (typeof optionsOrCallback === 'function') {
-      buttonCallback = optionsOrCallback;
-    }
+    // check callbackOrOptions and options on
+    if ((typeof callbackOrOptions === 'object' && !Array.isArray(callbackOrOptions)) || (typeof options === 'object' && !Array.isArray(options))) {
+      // new options
+      var newOptions = {};
+      if (typeof callbackOrOptions === 'object') {
+        newOptions = callbackOrOptions;
+      } else if (typeof options === 'object') {
+        newOptions = options;
+      }
 
-    if (typeof optionsOrCallback === 'object' && !Array.isArray(optionsOrCallback)) {
       // extend the backup settings with new settings
       newReportSettingsBackup = extendNotiflix(true, newReportSettings, {});
 
       // extend new settings with the options
-      newReportSettings = extendNotiflix(true, newReportSettings, optionsOrCallback);
+      newReportSettings = extendNotiflix(true, newReportSettings, newOptions);
     }
-    // detect optionsOrCallback and callback off
+    // check callbackOrOptions and callback off
 
     // report type
     var theType = newReportSettings[staticType.toLocaleLowerCase('en')];
@@ -955,8 +963,8 @@
       var reportButton = window.document.getElementById('NXReportButton');
       reportButton.addEventListener('click', function () {
         // if callback on
-        if (typeof buttonCallback === 'function') {
-          buttonCallback();
+        if (typeof callbackOrOptions === 'function') {
+          callbackOrOptions();
         }
         // if callback off
 
@@ -1641,20 +1649,20 @@
         }
       },
       // Display Notification: Success
-      Success: function (message, optionsOrCallback, callback) {
-        NotiflixNotify(message, optionsOrCallback, callback, 'Success');
+      Success: function (message, callbackOrOptions, options) {
+        NotiflixNotify(message, callbackOrOptions, options, 'Success');
       },
       // Display Notification: Failure
-      Failure: function (message, optionsOrCallback, callback) {
-        NotiflixNotify(message, optionsOrCallback, callback, 'Failure');
+      Failure: function (message, callbackOrOptions, options) {
+        NotiflixNotify(message, callbackOrOptions, options, 'Failure');
       },
       // Display Notification: Warning
-      Warning: function (message, optionsOrCallback, callback) {
-        NotiflixNotify(message, optionsOrCallback, callback, 'Warning');
+      Warning: function (message, callbackOrOptions, options) {
+        NotiflixNotify(message, callbackOrOptions, options, 'Warning');
       },
       // Display Notification: Info
-      Info: function (message, optionsOrCallback, callback) {
-        NotiflixNotify(message, optionsOrCallback, callback, 'Info');
+      Info: function (message, callbackOrOptions, options) {
+        NotiflixNotify(message, callbackOrOptions, options, 'Info');
       },
     },
     // Notify off
@@ -1683,20 +1691,20 @@
         }
       },
       // Display Report: Success
-      Success: function (title, message, buttonText, optionsOrCallback, callback) {
-        NotiflixReport(title, message, buttonText, optionsOrCallback, callback, 'Success');
+      Success: function (title, message, buttonText, callbackOrOptions, options) {
+        NotiflixReport(title, message, buttonText, callbackOrOptions, options, 'Success');
       },
       // Display Report: Failure
-      Failure: function (title, message, buttonText, optionsOrCallback, callback) {
-        NotiflixReport(title, message, buttonText, optionsOrCallback, callback, 'Failure');
+      Failure: function (title, message, buttonText, callbackOrOptions, options) {
+        NotiflixReport(title, message, buttonText, callbackOrOptions, options, 'Failure');
       },
       // Display Report: Warning
-      Warning: function (title, message, buttonText, optionsOrCallback, callback) {
-        NotiflixReport(title, message, buttonText, optionsOrCallback, callback, 'Warning');
+      Warning: function (title, message, buttonText, callbackOrOptions, options) {
+        NotiflixReport(title, message, buttonText, callbackOrOptions, options, 'Warning');
       },
       // Display Report: Info
-      Info: function (title, message, buttonText, optionsOrCallback, callback) {
-        NotiflixReport(title, message, buttonText, optionsOrCallback, callback, 'Info');
+      Info: function (title, message, buttonText, callbackOrOptions, options) {
+        NotiflixReport(title, message, buttonText, callbackOrOptions, options, 'Info');
       },
     },
     // Report off

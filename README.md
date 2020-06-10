@@ -17,8 +17,8 @@
 [downloads-url]: https://npmjs.org/package/notiflix
 [jsdelivr-badge]: https://data.jsdelivr.com/v1/package/npm/notiflix/badge?style=rounded
 [jsdelivr-url]: https://www.jsdelivr.com/package/npm/notiflix
-[size-badge]: https://img.badgesize.io/https://unpkg.com/browse/notiflix@2.3.0/dist/notiflix-aio-2.3.0.min.js?compression=gzip
-[size-url]: https://unpkg.com/browse/notiflix@2.3.0/dist/notiflix-aio-2.3.0.min.js
+[size-badge]: https://img.badgesize.io/https://unpkg.com/browse/notiflix@2.3.1/dist/notiflix-aio-2.3.1.min.js?compression=gzip
+[size-url]: https://unpkg.com/browse/notiflix@2.3.1/dist/notiflix-aio-2.3.1.min.js
 [lic-badge]: https://img.shields.io/github/license/notiflix/Notiflix.svg
 [lic-url]: https://github.com/notiflix/Notiflix/blob/master/LICENSE
 
@@ -34,7 +34,7 @@
 Notiflix is a JavaScript library for client-side non-blocking notifications, popup boxes, loading indicators, and more to that makes your web projects much better.
 
 #### Current Version
-2.3.0 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md "Release Notes")
+2.3.1 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md "Release Notes")
 
 #### Website
 https://www.notiflix.com
@@ -84,14 +84,14 @@ import { Notify, Report, Confirm, Loading, Block } from "notiflix";
 
 ##### CSS and JS
 ```html
-<link rel="stylesheet" href="dist/notiflix-2.3.0.min.css" />
+<link rel="stylesheet" href="dist/notiflix-2.3.1.min.css" />
 
-<script src="dist/notiflix-2.3.0.min.js"></script>
+<script src="dist/notiflix-2.3.1.min.js"></script>
 ```
 
 ##### or only JS (All in One - Internal CSS)
 ```html
-<script src="dist/notiflix-aio-2.3.0.min.js"></script>
+<script src="dist/notiflix-aio-2.3.1.min.js"></script>
 ```
 
 ---------
@@ -104,9 +104,9 @@ import { Notify, Report, Confirm, Loading, Block } from "notiflix";
 /*
 * @param1 {string}: Required, message text in String format.
 *
-* @param2 {Object | function}: Optional, extend the initialize options with new options for each notification element. Or, a callback function when the notification element has been clicked.
+* @param2 {function | Object}: Optional, a callback function when the notification element has been clicked. Or, extend the initialize options with new options for each notification element.
 *
-* @param3 {function}: Optional, a callback function when the notification element has been clicked (if the second parameter is an Object).
+* @param3 {Object}: Optional, extend the initialize options with new options for each notification element (if the second parameter is a callback function).
 */
 
 // e.g. Only message
@@ -126,7 +126,7 @@ Notiflix.Notify.Success(
   },
 );
 
-// e.g. Message with the new options (v2.3.0 and the next versions)
+// e.g. Message with the new options (v2.3.1 and the next versions)
 Notiflix.Notify.Success(
   'Click Me',
   {
@@ -134,14 +134,14 @@ Notiflix.Notify.Success(
   },
 );
 
-// e.g. Message with the new options, and callback (v2.3.0 and the next versions)
+// e.g. Message with callback, and the new options  (v2.3.1 and the next versions)
 Notiflix.Notify.Success(
   'Click Me',
-  {
-    timeout: 4000,
-  },
   function(){
     // callback
+  },
+  {
+    timeout: 4000,
   },
 );
 ```
@@ -159,9 +159,9 @@ Notiflix.Notify.Success(
 *
 * @param3 {string}: Required, button text in String format.
 *
-* @param4 {Object | function}: Optional, extend the initialize options with new options for each element. Or, a callback function when the button element has been clicked.
+* @param4 {function | Object}: Optional, a callback function when the button element has been clicked. Or, extend the initialize options with new options for each element.
 *
-* @param5 {function}: Optional, a callback function when the button element has been clicked (if the second parameter is an Object).
+* @param5 {Object}: Optional, extend the initialize options with new options for each element. (if the second parameter is a callback function).
 */
 
 // e.g. Only title, message, and button text
@@ -183,7 +183,7 @@ Notiflix.Report.Success(
   },
 );
 
-// e.g. With the new options (v2.3.0 and the next versions)
+// e.g. With the new options (v2.3.1 and the next versions)
 Notiflix.Report.Success(
   'Title',
   'Message',
@@ -194,17 +194,17 @@ Notiflix.Report.Success(
   },
 );
 
-// e.g. With the new options, and callback (v2.3.0 and the next versions)
+// e.g. With the new options, and callback (v2.3.1 and the next versions)
 Notiflix.Report.Success(
   'Title',
   'Message',
   'Button Text',
+  function(){
+    // callback
+  },
   {
     width: '360px',
     svgSize: '120px',
-  },
-  function(){
-    // callback
   },
 );
 ```
