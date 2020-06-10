@@ -1,6 +1,6 @@
 /*!
 * Notiflix ('https://www.notiflix.com')
-* Version: 2.2.1
+* Version: 2.3.0
 * Author: Furkan MT ('https://github.com/furcan')
 * Copyright 2020 Notiflix, MIT Licence ('https://opensource.org/licenses/MIT')
 */
@@ -312,7 +312,7 @@
 
   // Notiflix: GoogleFont on
   var notiflixGoogleFont = function (use, family) {
-    if (!window.document.getElementById('NotiflixQuicksand') && use && (family && typeof family === 'string' && family.toLowerCase() === 'quicksand')) {
+    if (!window.document.getElementById('NotiflixQuicksand') && use && (typeof family === 'string' && family.toLowerCase() === 'quicksand')) {
       // google fonts dns prefetch on
       var dns = '<link id="NotiflixGoogleDNS" rel="dns-prefetch" href="//fonts.googleapis.com" />';
       var dnsRange = window.document.createRange();
@@ -447,342 +447,389 @@
   // Notiflix: Notify Single on
   var notifyElmCount = 0;
   var notifyElmCountOnlyCallback = 0;
-  var NotiflixNotify = function (message, callback, theType, staticType) {
-    if (arguments && arguments.length === 4) {
-
-      // notify counter on
-      notifyElmCount++;
-      if (typeof callback === 'function') {
-        notifyElmCountOnlyCallback++;
-      }
-      // notify counter off
-
-      // if no message on
-      if (typeof message !== 'string') {
-        message = 'Notiflix ' + staticType;
-      }
-      // if no message off
-
-      // if plainText true = HTML tags not allowed on
-      if (newNotifySettings.plainText) {
-        message = notiflixPlaintext(message); // message plain text
-      }
-      // if plainText true = HTML tags not allowed off
-
-      // if plainText false but the message length more than messageMaxLength = HTML tags error on
-      if (!newNotifySettings.plainText && message.length > newNotifySettings.messageMaxLength) {
-        Notiflix.Notify.Merge({
-          closeButton: true,
-          plainText: false,
-        });
-        message = '<b>HTML Tags Error:</b> Your content length is more than "messageMaxLength" option.'; // message html error
-      }
-      // if plainText false but the message length more than messageMaxLength = HTML tags error off
-
-      // message max length substring on
-      if (message.length > newNotifySettings.messageMaxLength) {
-        message = message.substring(0, newNotifySettings.messageMaxLength) + '...';
-      }
-      // message max length substring off
-
-      // font awesome icon style on
-      if (newNotifySettings.fontAwesomeIconStyle === 'shadow') {
-        theType.fontAwesomeIconColor = theType.background;
-      }
-      // font awesome icon style off
-
-      // if cssAnimaion false -> duration on
-      if (!newNotifySettings.cssAnimation) {
-        newNotifySettings.cssAnimationDuration = 0;
-      }
-      // if cssAnimaion false -> duration off
-
-      // notify wrap on
-      var ntflxNotifyWrap = window.document.createElement('div');
-      ntflxNotifyWrap.id = notifySettings.wrapID;
-      ntflxNotifyWrap.style.width = newNotifySettings.width;
-      ntflxNotifyWrap.style.zIndex = newNotifySettings.zindex;
-      ntflxNotifyWrap.style.opacity = newNotifySettings.opacity;
-
-      // wrap position on
-      if (newNotifySettings.position === 'center-center') {
-        ntflxNotifyWrap.style.left = newNotifySettings.distance;
-        ntflxNotifyWrap.style.top = newNotifySettings.distance;
-        ntflxNotifyWrap.style.right = newNotifySettings.distance;
-        ntflxNotifyWrap.style.bottom = newNotifySettings.distance;
-        ntflxNotifyWrap.style.margin = 'auto';
-        ntflxNotifyWrap.classList.add('nx-flex-center-center');
-        ntflxNotifyWrap.style.maxHeight = 'calc((100vh - ' + newNotifySettings.distance + ') - ' + newNotifySettings.distance + ')';
-        ntflxNotifyWrap.style.display = 'flex';
-        ntflxNotifyWrap.style.flexWrap = 'wrap';
-        ntflxNotifyWrap.style.flexDirection = 'column';
-        ntflxNotifyWrap.style.justifyContent = 'center';
-        ntflxNotifyWrap.style.alignItems = 'center';
-        ntflxNotifyWrap.style.pointerEvents = 'none';
-      } else if (newNotifySettings.position === 'center-top') {
-        ntflxNotifyWrap.style.left = newNotifySettings.distance;
-        ntflxNotifyWrap.style.right = newNotifySettings.distance;
-        ntflxNotifyWrap.style.top = newNotifySettings.distance;
-        ntflxNotifyWrap.style.bottom = 'auto';
-        ntflxNotifyWrap.style.margin = 'auto';
-      } else if (newNotifySettings.position === 'center-bottom') {
-        ntflxNotifyWrap.style.left = newNotifySettings.distance;
-        ntflxNotifyWrap.style.right = newNotifySettings.distance;
-        ntflxNotifyWrap.style.bottom = newNotifySettings.distance;
-        ntflxNotifyWrap.style.top = 'auto';
-        ntflxNotifyWrap.style.margin = 'auto';
-      } else if (newNotifySettings.position === 'right-bottom') {
-        ntflxNotifyWrap.style.right = newNotifySettings.distance;
-        ntflxNotifyWrap.style.bottom = newNotifySettings.distance;
-        ntflxNotifyWrap.style.top = 'auto';
-        ntflxNotifyWrap.style.left = 'auto';
-      } else if (newNotifySettings.position === 'left-top') {
-        ntflxNotifyWrap.style.left = newNotifySettings.distance;
-        ntflxNotifyWrap.style.top = newNotifySettings.distance;
-        ntflxNotifyWrap.style.right = 'auto';
-        ntflxNotifyWrap.style.bottom = 'auto';
-      } else if (newNotifySettings.position === 'left-bottom') {
-        ntflxNotifyWrap.style.left = newNotifySettings.distance;
-        ntflxNotifyWrap.style.bottom = newNotifySettings.distance;
-        ntflxNotifyWrap.style.top = 'auto';
-        ntflxNotifyWrap.style.right = 'auto';
-      } else { // 'right-top' or else
-        ntflxNotifyWrap.style.right = newNotifySettings.distance;
-        ntflxNotifyWrap.style.top = newNotifySettings.distance;
-        ntflxNotifyWrap.style.left = 'auto';
-        ntflxNotifyWrap.style.bottom = 'auto';
-      }
-      // wrap position off
-
-      // if background overlay true on
-      var notifyOverlay;
-      if (newNotifySettings.backOverlay) {
-        notifyOverlay = window.document.createElement('div');
-        notifyOverlay.id = newNotifySettings.ID + 'Overlay';
-        notifyOverlay.style.width = '100%';
-        notifyOverlay.style.height = '100%';
-        notifyOverlay.style.position = 'fixed';
-        notifyOverlay.style.zIndex = newNotifySettings.zindex;
-        notifyOverlay.style.left = 0;
-        notifyOverlay.style.top = 0;
-        notifyOverlay.style.right = 0;
-        notifyOverlay.style.bottom = 0;
-        notifyOverlay.style.background = theType.backOverlayColor || newNotifySettings.backOverlayColor;
-        notifyOverlay.className = (newNotifySettings.cssAnimation ? 'with-animation' : '');
-        notifyOverlay.style.animationDuration = (newNotifySettings.cssAnimation) ? newNotifySettings.cssAnimationDuration + 'ms' : '';
-        // if there is not an backoverlay element create a new one
-        if (!window.document.getElementById(notifyOverlay.id)) {
-          window.document.body.appendChild(notifyOverlay);
-        }
-        // if there is a backoverlay element and also if there is not a notify element with a callback, change backoverlay color by each type
-        else if (notifyElmCountOnlyCallback === 0) {
-          window.document.getElementById(notifyOverlay.id).style.background = theType.backOverlayColor || newNotifySettings.backOverlayColor;
-        }
-      }
-      // if background overlay true off
-
-      if (!window.document.getElementById(ntflxNotifyWrap.id)) {
-        window.document.body.appendChild(ntflxNotifyWrap);
-      }
-      // notify wrap off
-
-      // notify content on
-      var ntflxNotify = window.document.createElement('div');
-      ntflxNotify.id = newNotifySettings.ID + '-' + notifyElmCount;
-      ntflxNotify.className = newNotifySettings.className + ' ' + theType.childClassName + ' ' + (newNotifySettings.cssAnimation ? 'with-animation' : '') + ' ' + (newNotifySettings.useIcon ? 'with-icon' : '') + ' nx-' + newNotifySettings.cssAnimationStyle + ' ' + (newNotifySettings.closeButton && typeof callback !== 'function' ? 'with-close-button' : '') + ' ' + (typeof callback === 'function' ? 'with-callback' : '') + ' ' + (newNotifySettings.clickToClose ? 'click-to-close' : '');
-      ntflxNotify.style.fontSize = newNotifySettings.fontSize;
-      ntflxNotify.style.color = theType.textColor;
-      ntflxNotify.style.background = theType.background;
-      ntflxNotify.style.borderRadius = newNotifySettings.borderRadius;
-      ntflxNotify.style.pointerEvents = 'all';
-
-      // rtl on
-      if (newNotifySettings.rtl) {
-        ntflxNotify.setAttribute('dir', 'rtl');
-        ntflxNotify.classList.add('rtl-on');
-      }
-      // rtl off
-
-      // font-family on
-      ntflxNotify.style.fontFamily = '"' + newNotifySettings.fontFamily + '", ' + defaultFontFamily;
-      // font-family off
-
-      // use css animation on
-      if (newNotifySettings.cssAnimation) {
-        ntflxNotify.style.animationDuration = newNotifySettings.cssAnimationDuration + 'ms';
-      }
-      // use css animation off
-
-      // close button element on
-      var closeButtonHTML = '';
-      if (newNotifySettings.closeButton && typeof callback !== 'function') {
-        closeButtonHTML = '<span class="notify-close-button"><svg class="clck2cls" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="20px" height="20px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"viewBox="0 0 20 20"xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css">.click2close{fill:' + theType.notiflixIconColor + '}</style></defs><g><path class="click2close" d="M0.38 2.19l7.8 7.81 -7.8 7.81c-0.51,0.5 -0.51,1.31 -0.01,1.81 0.25,0.25 0.57,0.38 0.91,0.38 0.34,0 0.67,-0.14 0.91,-0.38l7.81 -7.81 7.81 7.81c0.24,0.24 0.57,0.38 0.91,0.38 0.34,0 0.66,-0.14 0.9,-0.38 0.51,-0.5 0.51,-1.31 0,-1.81l-7.81 -7.81 7.81 -7.81c0.51,-0.5 0.51,-1.31 0,-1.82 -0.5,-0.5 -1.31,-0.5 -1.81,0l-7.81 7.81 -7.81 -7.81c-0.5,-0.5 -1.31,-0.5 -1.81,0 -0.51,0.51 -0.51,1.32 0,1.82z"/></g></svg></span>';
-      }
-      // close buttpon element off
-
-      // use icon on
-      if (newNotifySettings.useIcon) {
-        // use font awesome
-        if (newNotifySettings.useFontAwesome) {
-          ntflxNotify.innerHTML = '<i style="color:' + theType.fontAwesomeIconColor + '; font-size:' + newNotifySettings.fontAwesomeIconSize + ';" class="nmi wfa ' + theType.fontAwesomeClassName + ' ' + (newNotifySettings.fontAwesomeIconStyle === 'shadow' ? 'shadow' : 'basic') + '"></i><span class="the-message with-icon">' + message + '</span>' + (newNotifySettings.closeButton ? closeButtonHTML : '');
-        }
-        // use notiflix icon
-        else {
-          var svgIcon;
-          if (staticType === 'Success') {  // success
-            svgIcon = '<svg class="nmi" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="40px" height="40px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"viewBox="0 0 40 40"xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css">#Notiflix-Icon-Success{fill:' + theType.notiflixIconColor + '}</style></defs><g><path id="Notiflix-Icon-Success" class="fil0" d="M20 0c11.03,0 20,8.97 20,20 0,11.03 -8.97,20 -20,20 -11.03,0 -20,-8.97 -20,-20 0,-11.03 8.97,-20 20,-20zm0 37.98c9.92,0 17.98,-8.06 17.98,-17.98 0,-9.92 -8.06,-17.98 -17.98,-17.98 -9.92,0 -17.98,8.06 -17.98,17.98 0,9.92 8.06,17.98 17.98,17.98zm-2.4 -13.29l11.52 -12.96c0.37,-0.41 1.01,-0.45 1.42,-0.08 0.42,0.37 0.46,1 0.09,1.42l-12.16 13.67c-0.19,0.22 -0.46,0.34 -0.75,0.34 -0.23,0 -0.45,-0.07 -0.63,-0.22l-7.6 -6.07c-0.43,-0.35 -0.5,-0.99 -0.16,-1.42 0.35,-0.43 0.99,-0.5 1.42,-0.16l6.85 5.48z"/></g></svg>';
-          } else if (staticType === 'Failure') { // failure
-            svgIcon = '<svg class="nmi" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="40px" height="40px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"viewBox="0 0 40 40"xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css">#Notiflix-Icon-Failure{fill:' + theType.notiflixIconColor + '}</style></defs><g><path id="Notiflix-Icon-Failure" class="fil0" d="M20 0c11.03,0 20,8.97 20,20 0,11.03 -8.97,20 -20,20 -11.03,0 -20,-8.97 -20,-20 0,-11.03 8.97,-20 20,-20zm0 37.98c9.92,0 17.98,-8.06 17.98,-17.98 0,-9.92 -8.06,-17.98 -17.98,-17.98 -9.92,0 -17.98,8.06 -17.98,17.98 0,9.92 8.06,17.98 17.98,17.98zm1.42 -17.98l6.13 6.12c0.39,0.4 0.39,1.04 0,1.43 -0.19,0.19 -0.45,0.29 -0.71,0.29 -0.27,0 -0.53,-0.1 -0.72,-0.29l-6.12 -6.13 -6.13 6.13c-0.19,0.19 -0.44,0.29 -0.71,0.29 -0.27,0 -0.52,-0.1 -0.71,-0.29 -0.39,-0.39 -0.39,-1.03 0,-1.43l6.13 -6.12 -6.13 -6.13c-0.39,-0.39 -0.39,-1.03 0,-1.42 0.39,-0.39 1.03,-0.39 1.42,0l6.13 6.12 6.12 -6.12c0.4,-0.39 1.04,-0.39 1.43,0 0.39,0.39 0.39,1.03 0,1.42l-6.13 6.13z"/></g></svg>';
-          } else if (staticType === 'Warning') { // warning
-            svgIcon = '<svg class="nmi" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="40px" height="40px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"viewBox="0 0 40 40"xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css">#Notiflix-Icon-Warning{fill:' + theType.notiflixIconColor + '}</style></defs><g><path id="Notiflix-Icon-Warning" class="fil0" d="M21.91 3.48l17.8 30.89c0.84,1.46 -0.23,3.25 -1.91,3.25l-35.6 0c-1.68,0 -2.75,-1.79 -1.91,-3.25l17.8 -30.89c0.85,-1.47 2.97,-1.47 3.82,0zm16.15 31.84l-17.8 -30.89c-0.11,-0.2 -0.41,-0.2 -0.52,0l-17.8 30.89c-0.12,0.2 0.05,0.4 0.26,0.4l35.6 0c0.21,0 0.38,-0.2 0.26,-0.4zm-19.01 -4.12l0 -1.05c0,-0.53 0.42,-0.95 0.95,-0.95 0.53,0 0.95,0.42 0.95,0.95l0 1.05c0,0.53 -0.42,0.95 -0.95,0.95 -0.53,0 -0.95,-0.42 -0.95,-0.95zm0 -4.66l0 -13.39c0,-0.52 0.42,-0.95 0.95,-0.95 0.53,0 0.95,0.43 0.95,0.95l0 13.39c0,0.53 -0.42,0.96 -0.95,0.96 -0.53,0 -0.95,-0.43 -0.95,-0.96z"/></g></svg>';
-          } else if (staticType === 'Info') { // info
-            svgIcon = '<svg class="nmi" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="40px" height="40px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"viewBox="0 0 40 40"xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css">#Notiflix-Icon-Info{fill:' + theType.notiflixIconColor + '}</style></defs><g><path id="Notiflix-Icon-Info" class="fil0" d="M20 0c11.03,0 20,8.97 20,20 0,11.03 -8.97,20 -20,20 -11.03,0 -20,-8.97 -20,-20 0,-11.03 8.97,-20 20,-20zm0 37.98c9.92,0 17.98,-8.06 17.98,-17.98 0,-9.92 -8.06,-17.98 -17.98,-17.98 -9.92,0 -17.98,8.06 -17.98,17.98 0,9.92 8.06,17.98 17.98,17.98zm-0.99 -23.3c0,-0.54 0.44,-0.98 0.99,-0.98 0.55,0 0.99,0.44 0.99,0.98l0 15.86c0,0.55 -0.44,0.99 -0.99,0.99 -0.55,0 -0.99,-0.44 -0.99,-0.99l0 -15.86zm0 -5.22c0,-0.55 0.44,-0.99 0.99,-0.99 0.55,0 0.99,0.44 0.99,0.99l0 1.09c0,0.54 -0.44,0.99 -0.99,0.99 -0.55,0 -0.99,-0.45 -0.99,-0.99l0 -1.09z"/></g></svg>';
-          } else {
-            svgIcon = '';
-          }
-          ntflxNotify.innerHTML = svgIcon + '<span class="the-message with-icon">' + message + '</span>' + (newNotifySettings.closeButton ? closeButtonHTML : '');
-        }
-      }
-      // without icon
-      else {
-        ntflxNotify.innerHTML = '<span class="the-message">' + message + '</span>' + (newNotifySettings.closeButton ? closeButtonHTML : '');
-      }
-      // use icon off
-      // notify content off
-
-      // notify append or prepend on
-      if (newNotifySettings.position === 'left-bottom' || newNotifySettings.position === 'right-bottom') { // the new one will be first
-        var notifyWrap = window.document.getElementById(ntflxNotifyWrap.id);
-        notifyWrap.insertBefore(ntflxNotify, notifyWrap.firstChild);
-      } else {
-        window.document.getElementById(ntflxNotifyWrap.id).appendChild(ntflxNotify);
-      }
-
-      if (newNotifySettings.useIcon) { // if useIcon, dynamically vertical align the contents
-        var messageIcon = window.document.getElementById(ntflxNotify.id).querySelectorAll('.nmi')[0];
-        var messageIconH = 40;
-        // if font awesome
-        if (newNotifySettings.useFontAwesome) {
-          messageIconH = Math.round(parseInt(messageIcon.offsetHeight));
-        }
-        // if notiflix SVG
-        else {
-          var SvgBBox = messageIcon.getBBox();
-          messageIconH = Math.round(parseInt(SvgBBox.width));
-        }
-        var messageText = window.document.getElementById(ntflxNotify.id).querySelectorAll('span')[0];
-        var messageTextH = Math.round(messageText.offsetHeight);
-        if (messageTextH <= messageIconH) {
-          messageText.style.paddingTop = (messageIconH - messageTextH) / 2 + 'px';
-          messageText.style.paddingBottom = (messageIconH - messageTextH) / 2 + 'px';
-        }
-      }
-      // notify append or prepend off
-
-      // remove by timeout or click on
-      if (window.document.getElementById(ntflxNotify.id)) {
-        // set elements on
-        var removeDiv = window.document.getElementById(ntflxNotify.id);
-        var removeWrap = window.document.getElementById(ntflxNotifyWrap.id);
-        var removeOverlay;
-        if (newNotifySettings.backOverlay) {
-          removeOverlay = window.document.getElementById(notifyOverlay.id);
-        }
-        // set elements on
-
-        // timeout vars on
-        var timeoutHide;
-        var timeoutRemove;
-        // timeout vars off
-
-        // hide notify elm and hide overlay on
-        var hideNotifyElementsAndOverlay = function () {
-          removeDiv.classList.add('remove');
-          if (newNotifySettings.backOverlay && removeWrap.childElementCount <= 0) {
-            removeOverlay.classList.add('remove');
-          }
-          clearTimeout(timeoutHide);
-        };
-        // hide notify elm and hide overlay off
-
-        // remove notify elm and wrapper on
-        var removeNotifyElmentsAndWrapper = function () {
-          var notifyExist = window.document.getElementById(ntflxNotify.id);
-          if (notifyExist && removeDiv.parentNode !== null) {
-            removeDiv.parentNode.removeChild(removeDiv);
-          }
-          if (removeWrap.childElementCount <= 0 && removeWrap.parentNode !== null) { // if childs count === 0 remove wrap
-            removeWrap.parentNode.removeChild(removeWrap);
-            if (newNotifySettings.backOverlay && removeOverlay.parentNode !== null) {
-              removeOverlay.parentNode.removeChild(removeOverlay);
-            }
-          }
-          clearTimeout(timeoutRemove);
-        };
-        // remove notify elm and wrapper off
-
-        // if close button and callback is not a function on
-        if (newNotifySettings.closeButton && typeof callback !== 'function') {
-          var closeButtonElm = window.document.getElementById(ntflxNotify.id).querySelectorAll('span.notify-close-button')[0];
-          closeButtonElm.addEventListener('click', function () {
-            hideNotifyElementsAndOverlay();
-            var clickToCloseTimeout = setTimeout(function () {
-              removeNotifyElmentsAndWrapper();
-              clearTimeout(clickToCloseTimeout);
-            }, newNotifySettings.cssAnimationDuration);
-          });
-        }
-        // if close button and callback is not a function off
-
-        // if callback or click to close on
-        if ((typeof callback === 'function') || newNotifySettings.clickToClose) {
-          removeDiv.addEventListener('click', function () {
-            if (typeof callback === 'function') {
-              notifyElmCountOnlyCallback--;
-              callback();
-            }
-            hideNotifyElementsAndOverlay();
-            var callbackTimeout = setTimeout(function () {
-              removeNotifyElmentsAndWrapper();
-              clearTimeout(callbackTimeout);
-            }, newNotifySettings.cssAnimationDuration);
-          });
-        }
-        // if callback or click to close off
-
-        // else auto remove on
-        if (!newNotifySettings.closeButton && typeof callback !== 'function') {
-          timeoutHide = setTimeout(function () {
-            hideNotifyElementsAndOverlay();
-          }, newNotifySettings.timeout);
-          timeoutRemove = setTimeout(function () {
-            removeNotifyElmentsAndWrapper();
-          }, newNotifySettings.timeout + newNotifySettings.cssAnimationDuration);
-        }
-        // else auto remove off
-      }
-      // remove by timeout or click off
-
-      // notify - show only the last one on
-      if (newNotifySettings.showOnlyTheLastOne && notifyElmCount > 0) {
-        var allNotifyElmNotTheLastOne = window.document.querySelectorAll('[id^=' + newNotifySettings.ID + '-]:not([id=' + newNotifySettings.ID + '-' + notifyElmCount + '])');
-        for (var i = 0; i < allNotifyElmNotTheLastOne.length; i++) {
-          var eachNotifyElmNotLastOne = allNotifyElmNotTheLastOne[i];
-          if (eachNotifyElmNotLastOne.parentNode !== null) {
-            eachNotifyElmNotLastOne.parentNode.removeChild(eachNotifyElmNotLastOne);
-          }
-        }
-      }
-      // notify - show only the last one off
-
-    } else {
-      notiflixConsoleError('Notiflix Error', 'Where is the arguments?');
+  var NotiflixNotify = function (message, optionsOrCallback, callback, staticType) {
+    // if not initialized pretend like init
+    if (!newNotifySettings) {
+      Notiflix.Notify.Init({});
     }
+
+    // create a backup for settings
+    var newNotifySettingsBackup = {};
+
+    // detect optionsOrCallback and callback on
+    if (typeof optionsOrCallback === 'function') {
+      callback = optionsOrCallback;
+    }
+
+    if (typeof optionsOrCallback === 'object' && !Array.isArray(optionsOrCallback)) {
+      // extend the backup settings with new settings
+      newNotifySettingsBackup = extendNotiflix(true, newNotifySettings, {});
+
+      // extend new settings with the options
+      newNotifySettings = extendNotiflix(true, newNotifySettings, optionsOrCallback);
+    }
+    // detect optionsOrCallback and callback off
+
+    // notify type
+    var theType = newNotifySettings[staticType.toLocaleLowerCase('en')];
+
+    // notify counter on
+    notifyElmCount++;
+    if (typeof callback === 'function') {
+      notifyElmCountOnlyCallback++;
+    }
+    // notify counter off
+
+    // if no message on
+    if (typeof message !== 'string') {
+      message = 'Notiflix ' + staticType;
+    }
+    // if no message off
+
+    // if plainText true = HTML tags not allowed on
+    if (newNotifySettings.plainText) {
+      message = notiflixPlaintext(message); // message plain text
+    }
+    // if plainText true = HTML tags not allowed off
+
+    // if plainText false but the message length more than messageMaxLength = HTML tags error on
+    if (!newNotifySettings.plainText && message.length > newNotifySettings.messageMaxLength) {
+      Notiflix.Notify.Merge({
+        closeButton: true,
+        plainText: false,
+      });
+      message = '<b>HTML Tags Error:</b> Your content length is more than "messageMaxLength" option.'; // message html error
+    }
+    // if plainText false but the message length more than messageMaxLength = HTML tags error off
+
+    // message max length substring on
+    if (message.length > newNotifySettings.messageMaxLength) {
+      message = message.substring(0, newNotifySettings.messageMaxLength) + '...';
+    }
+    // message max length substring off
+
+    // font awesome icon style on
+    if (newNotifySettings.fontAwesomeIconStyle === 'shadow') {
+      theType.fontAwesomeIconColor = theType.background;
+    }
+    // font awesome icon style off
+
+    // if cssAnimaion false -> duration on
+    if (!newNotifySettings.cssAnimation) {
+      newNotifySettings.cssAnimationDuration = 0;
+    }
+    // if cssAnimaion false -> duration off
+
+    // notify wrap on
+    var ntflxNotifyWrap = window.document.createElement('div');
+    ntflxNotifyWrap.id = notifySettings.wrapID;
+    ntflxNotifyWrap.style.width = newNotifySettings.width;
+    ntflxNotifyWrap.style.zIndex = newNotifySettings.zindex;
+    ntflxNotifyWrap.style.opacity = newNotifySettings.opacity;
+
+    // wrap position on
+    if (newNotifySettings.position === 'center-center') {
+      ntflxNotifyWrap.style.left = newNotifySettings.distance;
+      ntflxNotifyWrap.style.top = newNotifySettings.distance;
+      ntflxNotifyWrap.style.right = newNotifySettings.distance;
+      ntflxNotifyWrap.style.bottom = newNotifySettings.distance;
+      ntflxNotifyWrap.style.margin = 'auto';
+      ntflxNotifyWrap.classList.add('nx-flex-center-center');
+      ntflxNotifyWrap.style.maxHeight = 'calc((100vh - ' + newNotifySettings.distance + ') - ' + newNotifySettings.distance + ')';
+      ntflxNotifyWrap.style.display = 'flex';
+      ntflxNotifyWrap.style.flexWrap = 'wrap';
+      ntflxNotifyWrap.style.flexDirection = 'column';
+      ntflxNotifyWrap.style.justifyContent = 'center';
+      ntflxNotifyWrap.style.alignItems = 'center';
+      ntflxNotifyWrap.style.pointerEvents = 'none';
+    } else if (newNotifySettings.position === 'center-top') {
+      ntflxNotifyWrap.style.left = newNotifySettings.distance;
+      ntflxNotifyWrap.style.right = newNotifySettings.distance;
+      ntflxNotifyWrap.style.top = newNotifySettings.distance;
+      ntflxNotifyWrap.style.bottom = 'auto';
+      ntflxNotifyWrap.style.margin = 'auto';
+    } else if (newNotifySettings.position === 'center-bottom') {
+      ntflxNotifyWrap.style.left = newNotifySettings.distance;
+      ntflxNotifyWrap.style.right = newNotifySettings.distance;
+      ntflxNotifyWrap.style.bottom = newNotifySettings.distance;
+      ntflxNotifyWrap.style.top = 'auto';
+      ntflxNotifyWrap.style.margin = 'auto';
+    } else if (newNotifySettings.position === 'right-bottom') {
+      ntflxNotifyWrap.style.right = newNotifySettings.distance;
+      ntflxNotifyWrap.style.bottom = newNotifySettings.distance;
+      ntflxNotifyWrap.style.top = 'auto';
+      ntflxNotifyWrap.style.left = 'auto';
+    } else if (newNotifySettings.position === 'left-top') {
+      ntflxNotifyWrap.style.left = newNotifySettings.distance;
+      ntflxNotifyWrap.style.top = newNotifySettings.distance;
+      ntflxNotifyWrap.style.right = 'auto';
+      ntflxNotifyWrap.style.bottom = 'auto';
+    } else if (newNotifySettings.position === 'left-bottom') {
+      ntflxNotifyWrap.style.left = newNotifySettings.distance;
+      ntflxNotifyWrap.style.bottom = newNotifySettings.distance;
+      ntflxNotifyWrap.style.top = 'auto';
+      ntflxNotifyWrap.style.right = 'auto';
+    } else { // 'right-top' or else
+      ntflxNotifyWrap.style.right = newNotifySettings.distance;
+      ntflxNotifyWrap.style.top = newNotifySettings.distance;
+      ntflxNotifyWrap.style.left = 'auto';
+      ntflxNotifyWrap.style.bottom = 'auto';
+    }
+    // wrap position off
+
+    // if background overlay true on
+    var notifyOverlay;
+    if (newNotifySettings.backOverlay) {
+      notifyOverlay = window.document.createElement('div');
+      notifyOverlay.id = newNotifySettings.ID + 'Overlay';
+      notifyOverlay.style.width = '100%';
+      notifyOverlay.style.height = '100%';
+      notifyOverlay.style.position = 'fixed';
+      notifyOverlay.style.zIndex = newNotifySettings.zindex;
+      notifyOverlay.style.left = 0;
+      notifyOverlay.style.top = 0;
+      notifyOverlay.style.right = 0;
+      notifyOverlay.style.bottom = 0;
+      notifyOverlay.style.background = theType.backOverlayColor || newNotifySettings.backOverlayColor;
+      notifyOverlay.className = (newNotifySettings.cssAnimation ? 'with-animation' : '');
+      notifyOverlay.style.animationDuration = (newNotifySettings.cssAnimation) ? newNotifySettings.cssAnimationDuration + 'ms' : '';
+      // if there is not an backoverlay element create a new one
+      if (!window.document.getElementById(notifyOverlay.id)) {
+        window.document.body.appendChild(notifyOverlay);
+      }
+      // if there is a backoverlay element and also if there is not a notify element with a callback, change backoverlay color by each type
+      else if (notifyElmCountOnlyCallback === 0) {
+        window.document.getElementById(notifyOverlay.id).style.background = theType.backOverlayColor || newNotifySettings.backOverlayColor;
+      }
+    }
+    // if background overlay true off
+
+    if (!window.document.getElementById(ntflxNotifyWrap.id)) {
+      window.document.body.appendChild(ntflxNotifyWrap);
+    }
+    // notify wrap off
+
+    // notify content on
+    var ntflxNotify = window.document.createElement('div');
+    ntflxNotify.id = newNotifySettings.ID + '-' + notifyElmCount;
+    ntflxNotify.className = newNotifySettings.className + ' ' + theType.childClassName + ' ' + (newNotifySettings.cssAnimation ? 'with-animation' : '') + ' ' + (newNotifySettings.useIcon ? 'with-icon' : '') + ' nx-' + newNotifySettings.cssAnimationStyle + ' ' + (newNotifySettings.closeButton && typeof callback !== 'function' ? 'with-close-button' : '') + ' ' + (typeof callback === 'function' ? 'with-callback' : '') + ' ' + (newNotifySettings.clickToClose ? 'click-to-close' : '');
+    ntflxNotify.style.fontSize = newNotifySettings.fontSize;
+    ntflxNotify.style.color = theType.textColor;
+    ntflxNotify.style.background = theType.background;
+    ntflxNotify.style.borderRadius = newNotifySettings.borderRadius;
+    ntflxNotify.style.pointerEvents = 'all';
+
+    // rtl on
+    if (newNotifySettings.rtl) {
+      ntflxNotify.setAttribute('dir', 'rtl');
+      ntflxNotify.classList.add('rtl-on');
+    }
+    // rtl off
+
+    // font-family on
+    ntflxNotify.style.fontFamily = '"' + newNotifySettings.fontFamily + '", ' + defaultFontFamily;
+    // font-family off
+
+    // use css animation on
+    if (newNotifySettings.cssAnimation) {
+      ntflxNotify.style.animationDuration = newNotifySettings.cssAnimationDuration + 'ms';
+    }
+    // use css animation off
+
+    // close button element on
+    var closeButtonHTML = '';
+    if (newNotifySettings.closeButton && typeof callback !== 'function') {
+      closeButtonHTML = '<span class="notify-close-button"><svg class="clck2cls" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="20px" height="20px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"viewBox="0 0 20 20"xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css">.click2close{fill:' + theType.notiflixIconColor + '}</style></defs><g><path class="click2close" d="M0.38 2.19l7.8 7.81 -7.8 7.81c-0.51,0.5 -0.51,1.31 -0.01,1.81 0.25,0.25 0.57,0.38 0.91,0.38 0.34,0 0.67,-0.14 0.91,-0.38l7.81 -7.81 7.81 7.81c0.24,0.24 0.57,0.38 0.91,0.38 0.34,0 0.66,-0.14 0.9,-0.38 0.51,-0.5 0.51,-1.31 0,-1.81l-7.81 -7.81 7.81 -7.81c0.51,-0.5 0.51,-1.31 0,-1.82 -0.5,-0.5 -1.31,-0.5 -1.81,0l-7.81 7.81 -7.81 -7.81c-0.5,-0.5 -1.31,-0.5 -1.81,0 -0.51,0.51 -0.51,1.32 0,1.82z"/></g></svg></span>';
+    }
+    // close buttpon element off
+
+    // use icon on
+    if (newNotifySettings.useIcon) {
+      // use font awesome
+      if (newNotifySettings.useFontAwesome) {
+        ntflxNotify.innerHTML = '<i style="color:' + theType.fontAwesomeIconColor + '; font-size:' + newNotifySettings.fontAwesomeIconSize + ';" class="nmi wfa ' + theType.fontAwesomeClassName + ' ' + (newNotifySettings.fontAwesomeIconStyle === 'shadow' ? 'shadow' : 'basic') + '"></i><span class="the-message with-icon">' + message + '</span>' + (newNotifySettings.closeButton ? closeButtonHTML : '');
+      }
+      // use notiflix icon
+      else {
+        var svgIcon;
+        if (staticType === 'Success') {  // success
+          svgIcon = '<svg class="nmi" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="40px" height="40px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"viewBox="0 0 40 40"xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css">#Notiflix-Icon-Success{fill:' + theType.notiflixIconColor + '}</style></defs><g><path id="Notiflix-Icon-Success" class="fil0" d="M20 0c11.03,0 20,8.97 20,20 0,11.03 -8.97,20 -20,20 -11.03,0 -20,-8.97 -20,-20 0,-11.03 8.97,-20 20,-20zm0 37.98c9.92,0 17.98,-8.06 17.98,-17.98 0,-9.92 -8.06,-17.98 -17.98,-17.98 -9.92,0 -17.98,8.06 -17.98,17.98 0,9.92 8.06,17.98 17.98,17.98zm-2.4 -13.29l11.52 -12.96c0.37,-0.41 1.01,-0.45 1.42,-0.08 0.42,0.37 0.46,1 0.09,1.42l-12.16 13.67c-0.19,0.22 -0.46,0.34 -0.75,0.34 -0.23,0 -0.45,-0.07 -0.63,-0.22l-7.6 -6.07c-0.43,-0.35 -0.5,-0.99 -0.16,-1.42 0.35,-0.43 0.99,-0.5 1.42,-0.16l6.85 5.48z"/></g></svg>';
+        } else if (staticType === 'Failure') { // failure
+          svgIcon = '<svg class="nmi" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="40px" height="40px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"viewBox="0 0 40 40"xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css">#Notiflix-Icon-Failure{fill:' + theType.notiflixIconColor + '}</style></defs><g><path id="Notiflix-Icon-Failure" class="fil0" d="M20 0c11.03,0 20,8.97 20,20 0,11.03 -8.97,20 -20,20 -11.03,0 -20,-8.97 -20,-20 0,-11.03 8.97,-20 20,-20zm0 37.98c9.92,0 17.98,-8.06 17.98,-17.98 0,-9.92 -8.06,-17.98 -17.98,-17.98 -9.92,0 -17.98,8.06 -17.98,17.98 0,9.92 8.06,17.98 17.98,17.98zm1.42 -17.98l6.13 6.12c0.39,0.4 0.39,1.04 0,1.43 -0.19,0.19 -0.45,0.29 -0.71,0.29 -0.27,0 -0.53,-0.1 -0.72,-0.29l-6.12 -6.13 -6.13 6.13c-0.19,0.19 -0.44,0.29 -0.71,0.29 -0.27,0 -0.52,-0.1 -0.71,-0.29 -0.39,-0.39 -0.39,-1.03 0,-1.43l6.13 -6.12 -6.13 -6.13c-0.39,-0.39 -0.39,-1.03 0,-1.42 0.39,-0.39 1.03,-0.39 1.42,0l6.13 6.12 6.12 -6.12c0.4,-0.39 1.04,-0.39 1.43,0 0.39,0.39 0.39,1.03 0,1.42l-6.13 6.13z"/></g></svg>';
+        } else if (staticType === 'Warning') { // warning
+          svgIcon = '<svg class="nmi" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="40px" height="40px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"viewBox="0 0 40 40"xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css">#Notiflix-Icon-Warning{fill:' + theType.notiflixIconColor + '}</style></defs><g><path id="Notiflix-Icon-Warning" class="fil0" d="M21.91 3.48l17.8 30.89c0.84,1.46 -0.23,3.25 -1.91,3.25l-35.6 0c-1.68,0 -2.75,-1.79 -1.91,-3.25l17.8 -30.89c0.85,-1.47 2.97,-1.47 3.82,0zm16.15 31.84l-17.8 -30.89c-0.11,-0.2 -0.41,-0.2 -0.52,0l-17.8 30.89c-0.12,0.2 0.05,0.4 0.26,0.4l35.6 0c0.21,0 0.38,-0.2 0.26,-0.4zm-19.01 -4.12l0 -1.05c0,-0.53 0.42,-0.95 0.95,-0.95 0.53,0 0.95,0.42 0.95,0.95l0 1.05c0,0.53 -0.42,0.95 -0.95,0.95 -0.53,0 -0.95,-0.42 -0.95,-0.95zm0 -4.66l0 -13.39c0,-0.52 0.42,-0.95 0.95,-0.95 0.53,0 0.95,0.43 0.95,0.95l0 13.39c0,0.53 -0.42,0.96 -0.95,0.96 -0.53,0 -0.95,-0.43 -0.95,-0.96z"/></g></svg>';
+        } else if (staticType === 'Info') { // info
+          svgIcon = '<svg class="nmi" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="40px" height="40px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"viewBox="0 0 40 40"xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css">#Notiflix-Icon-Info{fill:' + theType.notiflixIconColor + '}</style></defs><g><path id="Notiflix-Icon-Info" class="fil0" d="M20 0c11.03,0 20,8.97 20,20 0,11.03 -8.97,20 -20,20 -11.03,0 -20,-8.97 -20,-20 0,-11.03 8.97,-20 20,-20zm0 37.98c9.92,0 17.98,-8.06 17.98,-17.98 0,-9.92 -8.06,-17.98 -17.98,-17.98 -9.92,0 -17.98,8.06 -17.98,17.98 0,9.92 8.06,17.98 17.98,17.98zm-0.99 -23.3c0,-0.54 0.44,-0.98 0.99,-0.98 0.55,0 0.99,0.44 0.99,0.98l0 15.86c0,0.55 -0.44,0.99 -0.99,0.99 -0.55,0 -0.99,-0.44 -0.99,-0.99l0 -15.86zm0 -5.22c0,-0.55 0.44,-0.99 0.99,-0.99 0.55,0 0.99,0.44 0.99,0.99l0 1.09c0,0.54 -0.44,0.99 -0.99,0.99 -0.55,0 -0.99,-0.45 -0.99,-0.99l0 -1.09z"/></g></svg>';
+        } else {
+          svgIcon = '';
+        }
+        ntflxNotify.innerHTML = svgIcon + '<span class="the-message with-icon">' + message + '</span>' + (newNotifySettings.closeButton ? closeButtonHTML : '');
+      }
+    }
+    // without icon
+    else {
+      ntflxNotify.innerHTML = '<span class="the-message">' + message + '</span>' + (newNotifySettings.closeButton ? closeButtonHTML : '');
+    }
+    // use icon off
+    // notify content off
+
+    // notify append or prepend on
+    if (newNotifySettings.position === 'left-bottom' || newNotifySettings.position === 'right-bottom') { // the new one will be first
+      var notifyWrap = window.document.getElementById(ntflxNotifyWrap.id);
+      notifyWrap.insertBefore(ntflxNotify, notifyWrap.firstChild);
+    } else {
+      window.document.getElementById(ntflxNotifyWrap.id).appendChild(ntflxNotify);
+    }
+
+    if (newNotifySettings.useIcon) { // if useIcon, dynamically vertical align the contents
+      var messageIcon = window.document.getElementById(ntflxNotify.id).querySelectorAll('.nmi')[0];
+      var messageIconH = 40;
+      // if font awesome
+      if (newNotifySettings.useFontAwesome) {
+        messageIconH = Math.round(parseInt(messageIcon.offsetHeight));
+      }
+      // if notiflix SVG
+      else {
+        var SvgBBox = messageIcon.getBBox();
+        messageIconH = Math.round(parseInt(SvgBBox.width));
+      }
+      var messageText = window.document.getElementById(ntflxNotify.id).querySelectorAll('span')[0];
+      var messageTextH = Math.round(messageText.offsetHeight);
+      if (messageTextH <= messageIconH) {
+        messageText.style.paddingTop = (messageIconH - messageTextH) / 2 + 'px';
+        messageText.style.paddingBottom = (messageIconH - messageTextH) / 2 + 'px';
+      }
+    }
+    // notify append or prepend off
+
+    // remove by timeout or click on
+    if (window.document.getElementById(ntflxNotify.id)) {
+      // set elements on
+      var removeDiv = window.document.getElementById(ntflxNotify.id);
+      var removeWrap = window.document.getElementById(ntflxNotifyWrap.id);
+      var removeOverlay;
+      if (newNotifySettings.backOverlay) {
+        removeOverlay = window.document.getElementById(notifyOverlay.id);
+      }
+      // set elements on
+
+      // timeout vars on
+      var timeoutHide;
+      var timeoutRemove;
+      // timeout vars off
+
+      // hide notify elm and hide overlay on
+      var hideNotifyElementsAndOverlay = function () {
+        removeDiv.classList.add('remove');
+        if (newNotifySettings.backOverlay && removeWrap.childElementCount <= 0) {
+          removeOverlay.classList.add('remove');
+        }
+        clearTimeout(timeoutHide);
+      };
+      // hide notify elm and hide overlay off
+
+      // remove notify elm and wrapper on
+      var removeNotifyElmentsAndWrapper = function () {
+        var notifyExist = window.document.getElementById(ntflxNotify.id);
+        if (notifyExist && removeDiv.parentNode !== null) {
+          removeDiv.parentNode.removeChild(removeDiv);
+        }
+        if (removeWrap.childElementCount <= 0 && removeWrap.parentNode !== null) { // if childs count === 0 remove wrap
+          removeWrap.parentNode.removeChild(removeWrap);
+          if (newNotifySettings.backOverlay && removeOverlay.parentNode !== null) {
+            removeOverlay.parentNode.removeChild(removeOverlay);
+          }
+        }
+        clearTimeout(timeoutRemove);
+      };
+      // remove notify elm and wrapper off
+
+      // if close button and callback is not a function on
+      if (newNotifySettings.closeButton && typeof callback !== 'function') {
+        var closeButtonElm = window.document.getElementById(ntflxNotify.id).querySelectorAll('span.notify-close-button')[0];
+        closeButtonElm.addEventListener('click', function () {
+          hideNotifyElementsAndOverlay();
+          var clickToCloseTimeout = setTimeout(function () {
+            removeNotifyElmentsAndWrapper();
+            clearTimeout(clickToCloseTimeout);
+          }, newNotifySettings.cssAnimationDuration);
+        });
+      }
+      // if close button and callback is not a function off
+
+      // if callback or click to close on
+      if ((typeof callback === 'function') || newNotifySettings.clickToClose) {
+        removeDiv.addEventListener('click', function () {
+          if (typeof callback === 'function') {
+            notifyElmCountOnlyCallback--;
+            callback();
+          }
+          hideNotifyElementsAndOverlay();
+          var callbackTimeout = setTimeout(function () {
+            removeNotifyElmentsAndWrapper();
+            clearTimeout(callbackTimeout);
+          }, newNotifySettings.cssAnimationDuration);
+        });
+      }
+      // if callback or click to close off
+
+      // else auto remove on
+      if (!newNotifySettings.closeButton && typeof callback !== 'function') {
+        timeoutHide = setTimeout(function () {
+          hideNotifyElementsAndOverlay();
+        }, newNotifySettings.timeout);
+        timeoutRemove = setTimeout(function () {
+          removeNotifyElmentsAndWrapper();
+        }, newNotifySettings.timeout + newNotifySettings.cssAnimationDuration);
+      }
+      // else auto remove off
+    }
+    // remove by timeout or click off
+
+    // notify - show only the last one on
+    if (newNotifySettings.showOnlyTheLastOne && notifyElmCount > 0) {
+      var allNotifyElmNotTheLastOne = window.document.querySelectorAll('[id^=' + newNotifySettings.ID + '-]:not([id=' + newNotifySettings.ID + '-' + notifyElmCount + '])');
+      for (var i = 0; i < allNotifyElmNotTheLastOne.length; i++) {
+        var eachNotifyElmNotLastOne = allNotifyElmNotTheLastOne[i];
+        if (eachNotifyElmNotLastOne.parentNode !== null) {
+          eachNotifyElmNotLastOne.parentNode.removeChild(eachNotifyElmNotLastOne);
+        }
+      }
+    }
+    // notify - show only the last one off
+
+    // extend new settings with the backup settings
+    newNotifySettings = extendNotiflix(true, newNotifySettings, newNotifySettingsBackup);
+
   };
   // Notiflix: Notify Single off
 
   // Notiflix: Report Single on
-  var NotiflixReport = function (title, message, buttonText, buttonCallback, theType, staticType) {
+  var NotiflixReport = function (title, message, buttonText, optionsOrCallback, buttonCallback, staticType) {
+    // if not initialized pretend like init
+    if (!newReportSettings) {
+      Notiflix.Report.Init({});
+    }
+
+    // create a backup for settings
+    var newReportSettingsBackup = {};
+
+    // detect optionsOrCallback and buttonCallback on
+    if (typeof optionsOrCallback === 'function') {
+      buttonCallback = optionsOrCallback;
+    }
+
+    if (typeof optionsOrCallback === 'object' && !Array.isArray(optionsOrCallback)) {
+      // extend the backup settings with new settings
+      newReportSettingsBackup = extendNotiflix(true, newReportSettings, {});
+
+      // extend new settings with the options
+      newReportSettings = extendNotiflix(true, newReportSettings, optionsOrCallback);
+    }
+    // detect optionsOrCallback and callback off
+
+    // report type
+    var theType = newReportSettings[staticType.toLocaleLowerCase('en')];
 
     // check the arguments on
     if (typeof title !== 'string') { title = 'Notiflix ' + staticType; }
@@ -927,6 +974,9 @@
 
     }
     // report wrap off
+
+    // extend new settings with the backup settings
+    newReportSettings = extendNotiflix(true, newReportSettings, newReportSettingsBackup);
 
   };
   // Notiflix: Report Single off
@@ -1591,40 +1641,20 @@
         }
       },
       // Display Notification: Success
-      Success: function (message, callback) {
-        // if not initialized pretend like init
-        if (!newNotifySettings) {
-          Notiflix.Notify.Init({});
-        }
-        var theType = newNotifySettings.success;
-        NotiflixNotify(message, callback, theType, 'Success');
+      Success: function (message, optionsOrCallback, callback) {
+        NotiflixNotify(message, optionsOrCallback, callback, 'Success');
       },
       // Display Notification: Failure
-      Failure: function (message, callback) {
-        // if not initialized pretend like init
-        if (!newNotifySettings) {
-          Notiflix.Notify.Init({});
-        }
-        var theType = newNotifySettings.failure;
-        NotiflixNotify(message, callback, theType, 'Failure');
+      Failure: function (message, optionsOrCallback, callback) {
+        NotiflixNotify(message, optionsOrCallback, callback, 'Failure');
       },
       // Display Notification: Warning
-      Warning: function (message, callback) {
-        // if not initialized pretend like init
-        if (!newNotifySettings) {
-          Notiflix.Notify.Init({});
-        }
-        var theType = newNotifySettings.warning;
-        NotiflixNotify(message, callback, theType, 'Warning');
+      Warning: function (message, optionsOrCallback, callback) {
+        NotiflixNotify(message, optionsOrCallback, callback, 'Warning');
       },
       // Display Notification: Info
-      Info: function (message, callback) {
-        // if not initialized pretend like init
-        if (!newNotifySettings) {
-          Notiflix.Notify.Init({});
-        }
-        var theType = newNotifySettings.info;
-        NotiflixNotify(message, callback, theType, 'Info');
+      Info: function (message, optionsOrCallback, callback) {
+        NotiflixNotify(message, optionsOrCallback, callback, 'Info');
       },
     },
     // Notify off
@@ -1653,40 +1683,20 @@
         }
       },
       // Display Report: Success
-      Success: function (title, message, buttonText, buttonCallback) {
-        // if not initialized pretend like init
-        if (!newReportSettings) {
-          Notiflix.Report.Init({});
-        }
-        var theType = newReportSettings.success;
-        NotiflixReport(title, message, buttonText, buttonCallback, theType, 'Success');
+      Success: function (title, message, buttonText, optionsOrCallback, callback) {
+        NotiflixReport(title, message, buttonText, optionsOrCallback, callback, 'Success');
       },
       // Display Report: Failure
-      Failure: function (title, message, buttonText, buttonCallback) {
-        // if not initialized pretend like init
-        if (!newReportSettings) {
-          Notiflix.Report.Init({});
-        }
-        var theType = newReportSettings.failure;
-        NotiflixReport(title, message, buttonText, buttonCallback, theType, 'Failure');
+      Failure: function (title, message, buttonText, optionsOrCallback, callback) {
+        NotiflixReport(title, message, buttonText, optionsOrCallback, callback, 'Failure');
       },
       // Display Report: Warning
-      Warning: function (title, message, buttonText, buttonCallback) {
-        // if not initialized pretend like init
-        if (!newReportSettings) {
-          Notiflix.Report.Init({});
-        }
-        var theType = newReportSettings.warning;
-        NotiflixReport(title, message, buttonText, buttonCallback, theType, 'Warning');
+      Warning: function (title, message, buttonText, optionsOrCallback, callback) {
+        NotiflixReport(title, message, buttonText, optionsOrCallback, callback, 'Warning');
       },
       // Display Report: Info
-      Info: function (title, message, buttonText, buttonCallback) {
-        // if not initialized pretend like init
-        if (!newReportSettings) {
-          Notiflix.Report.Init({});
-        }
-        var theType = newReportSettings.info;
-        NotiflixReport(title, message, buttonText, buttonCallback, theType, 'Info');
+      Info: function (title, message, buttonText, optionsOrCallback, callback) {
+        NotiflixReport(title, message, buttonText, optionsOrCallback, callback, 'Info');
       },
     },
     // Report off

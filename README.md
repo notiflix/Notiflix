@@ -17,8 +17,8 @@
 [downloads-url]: https://npmjs.org/package/notiflix
 [jsdelivr-badge]: https://data.jsdelivr.com/v1/package/npm/notiflix/badge?style=rounded
 [jsdelivr-url]: https://www.jsdelivr.com/package/npm/notiflix
-[size-badge]: https://img.badgesize.io/https://unpkg.com/browse/notiflix/dist/notiflix-aio-2.2.1.min.js?compression=gzip
-[size-url]: https://unpkg.com/browse/notiflix/dist/notiflix-aio-2.2.1.min.js
+[size-badge]: https://img.badgesize.io/https://unpkg.com/browse/notiflix/dist/notiflix-aio-2.3.0.min.js?compression=gzip
+[size-url]: https://unpkg.com/browse/notiflix/dist/notiflix-aio-2.3.0.min.js
 [lic-badge]: https://img.shields.io/github/license/notiflix/Notiflix.svg
 [lic-url]: https://github.com/notiflix/Notiflix/blob/master/LICENSE
 
@@ -34,7 +34,7 @@
 Notiflix is a JavaScript library for client-side non-blocking notifications, popup boxes, loading indicators, and more to that makes your web projects much better.
 
 #### Current Version
-2.2.1 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md "Release Notes")
+2.3.0 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md "Release Notes")
 
 #### Website
 https://www.notiflix.com
@@ -42,7 +42,7 @@ https://www.notiflix.com
 #### Documentation
 https://www.notiflix.com/documentation
 
-#### Demo
+#### Modules (Demo)
 - **Notiflix Notify** => https://www.notiflix.com/#Notify
 - **Notiflix Report** => https://www.notiflix.com/#Report
 - **Notiflix Confirm** => https://www.notiflix.com/#Confirm
@@ -84,29 +84,32 @@ import { Notify, Report, Confirm, Loading, Block } from "notiflix";
 
 ##### CSS and JS
 ```html
-<link rel="stylesheet" href="dist/notiflix-2.2.1.min.css" />
+<link rel="stylesheet" href="dist/notiflix-2.3.0.min.css" />
 
-<script src="dist/notiflix-2.2.1.min.js"></script>
+<script src="dist/notiflix-2.3.0.min.js"></script>
 ```
 
 ##### or only JS (All in One - Internal CSS)
 ```html
-<script src="dist/notiflix-aio-2.2.1.min.js"></script>
+<script src="dist/notiflix-aio-2.3.0.min.js"></script>
 ```
-
 
 ---------
 
 ### Usage
 
-1- Notify Module
+#### 1- Notify Module
 
 ```js
 /*
 * @param1 {string}: Required, message text in String format.
-* @param2 {function}: Optional, callback function when the notification element clicked.
+*
+* @param2 {Object | function}: Optional, extend the initialize options with new options for each notification element. Or, a callback function when the notification element has been clicked.
+*
+* @param3 {function}: Optional, a callback function when the notification element has been clicked (if the second parameter is an Object).
 */
 
+// e.g. Only message
 Notiflix.Notify.Success('Success message text');
 
 Notiflix.Notify.Failure('Failure message text');
@@ -115,9 +118,28 @@ Notiflix.Notify.Warning('Warning message text');
 
 Notiflix.Notify.Info('Info message text');
 
-// e.g. with a callback
+// e.g. Message with a callback
 Notiflix.Notify.Success(
   'Click Me',
+  function(){
+    // callback
+  },
+);
+
+// e.g. Message with the new options (v2.3.0 and the next versions)
+Notiflix.Notify.Success(
+  'Click Me',
+  {
+    timeout: 6000,
+  },
+);
+
+// e.g. Message with the new options, and callback (v2.3.0 and the next versions)
+Notiflix.Notify.Success(
+  'Click Me',
+  {
+    timeout: 4000,
+  },
   function(){
     // callback
   },
@@ -127,16 +149,22 @@ Notiflix.Notify.Success(
 --_--_----_--_----_--_----_--_----_--_----_--_--
 
 
-2- Report Module
+#### 2- Report Module
 
 ```js
 /*
 * @param1 {string}: Required, title text in String format.
+*
 * @param2 {string}: Required, message text in String format.
+*
 * @param3 {string}: Required, button text in String format.
-* @param4 {function}: Optional, callback function when the button element clicked.
+*
+* @param4 {Object | function}: Optional, extend the initialize options with new options for each element. Or, a callback function when the button element has been clicked.
+*
+* @param5 {function}: Optional, a callback function when the button element has been clicked (if the second parameter is an Object).
 */
 
+// e.g. Only title, message, and button text
 Notiflix.Report.Success('Title', 'Message', 'Button Text');
 
 Notiflix.Report.Failure('Title', 'Message', 'Button Text');
@@ -145,11 +173,36 @@ Notiflix.Report.Warning('Title', 'Message', 'Button Text');
 
 Notiflix.Report.Info('Title', 'Message', 'Button Text');
 
-// e.g. with a callback
+// e.g. With a callback
 Notiflix.Report.Success(
   'Title',
   'Message',
   'Button Text',
+  function(){
+    // callback
+  },
+);
+
+// e.g. With the new options (v2.3.0 and the next versions)
+Notiflix.Report.Success(
+  'Title',
+  'Message',
+  'Button Text',
+  {
+    width: '360px',
+    svgSize: '120px',
+  },
+);
+
+// e.g. With the new options, and callback (v2.3.0 and the next versions)
+Notiflix.Report.Success(
+  'Title',
+  'Message',
+  'Button Text',
+  {
+    width: '360px',
+    svgSize: '120px',
+  },
   function(){
     // callback
   },
@@ -159,7 +212,7 @@ Notiflix.Report.Success(
 --_--_----_--_----_--_----_--_----_--_----_--_--
 
 
-3- Confirm Module
+#### 3- Confirm Module
 
 ```js
 /*
@@ -195,7 +248,7 @@ Notiflix.Confirm.Show(
 --_--_----_--_----_--_----_--_----_--_----_--_--
 
 
-4- Loading Module
+#### 4- Loading Module
 
 ```js
 /*
@@ -249,7 +302,7 @@ Notiflix.Loading.Custom('Loading...');
 --_--_----_--_----_--_----_--_----_--_----_--_--
 
 
-5- Block Module
+#### 5- Block Module
 
 Notiflix Block module can be used to block or unblock elements to prevents users actions during the process (AJAX etc.) without locking the browser or the other elements.
 
