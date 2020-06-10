@@ -17,8 +17,8 @@
 [downloads-url]: https://npmjs.org/package/notiflix
 [jsdelivr-badge]: https://data.jsdelivr.com/v1/package/npm/notiflix/badge?style=rounded
 [jsdelivr-url]: https://www.jsdelivr.com/package/npm/notiflix
-[size-badge]: https://img.badgesize.io/https://unpkg.com/browse/notiflix/dist/notiflix-aio-2.3.0.min.js?compression=gzip
-[size-url]: https://unpkg.com/browse/notiflix/dist/notiflix-aio-2.3.0.min.js
+[size-badge]: https://img.badgesize.io/https://unpkg.com/browse/notiflix@2.3.0/dist/notiflix-aio-2.3.0.min.js?compression=gzip
+[size-url]: https://unpkg.com/browse/notiflix@2.3.0/dist/notiflix-aio-2.3.0.min.js
 [lic-badge]: https://img.shields.io/github/license/notiflix/Notiflix.svg
 [lic-url]: https://github.com/notiflix/Notiflix/blob/master/LICENSE
 
