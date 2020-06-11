@@ -632,7 +632,7 @@ Notiflix.Block.Init({
 ---------
 
 #### Copyright
-Copyright © 2020 Notiflix
+Copyright &copy; 2020 Notiflix
 
 #### License
 MIT license - https://opensource.org/licenses/MIT
