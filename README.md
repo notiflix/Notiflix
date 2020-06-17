@@ -134,7 +134,7 @@ Notiflix.Notify.Success(
   },
 );
 
-// e.g. Message with callback, and the new options  (v2.3.1 and the next versions)
+// e.g. Message with callback, and the new options (v2.3.1 and the next versions)
 Notiflix.Notify.Success(
   'Click Me',
   function(){

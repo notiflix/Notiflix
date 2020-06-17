@@ -49,11 +49,16 @@
     "stylelint-config-standard": "^20.0.0"
   },
   "scripts": {
-    "stylelint": "stylelint src/notiflix.css",
-    "eslint": "eslint src/notiflix.js && eslint src/notiflix-aio.js",
-    "notiflix-lint": "npm run stylelint && npm run eslint",
-    "notiflix-minifier-lint": "eslint helpers/notiflix-minifier.js",
-    "notiflix-minifier": "node helpers/notiflix-minifier.js",
-    "notiflix-build": "npm run notiflix-minifier-lint && npm run notiflix-lint && npm run notiflix-minifier"
+    "notiflix-helpers-constants-eslint": "eslint helpers/notiflix-dev-constants.js",
+    "notiflix-helpers-allinone-eslint": "eslint helpers/notiflix-dev-allinone.js",
+    "notiflix-helpers-minifier-eslint": "eslint helpers/notiflix-dev-minifier.js",
+    "notiflix-helpers-lint": "npm run notiflix-helpers-constants-eslint && npm run notiflix-helpers-allinone-eslint && npm run notiflix-helpers-minifier-eslint",
+    "notiflix-src-stylelint": "stylelint src/notiflix.css",
+    "notiflix-src-eslint": "eslint src/notiflix.js",
+    "notiflix-src-lint": "npm run notiflix-src-stylelint && npm run notiflix-src-eslint",
+    "notiflix-helpers-allinone": "npm run notiflix-helpers-lint && npm run notiflix-src-lint && node helpers/notiflix-dev-allinone.js",
+    "notiflix-src-allinone-eslint": "eslint src/all-in-one/notiflix-aio.js",
+    "notiflix-helpers-minifier": "npm run notiflix-helpers-allinone && npm run notiflix-src-allinone-eslint && node helpers/notiflix-dev-minifier.js",
+    "notiflix-build": "npm run notiflix-helpers-minifier"
   }
 }
