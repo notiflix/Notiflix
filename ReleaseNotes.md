@@ -1,3 +1,10 @@
+@2.3.2
+* **Fixed:** `Notiflix.Block.*` module, `Remove()` function fixes and improvements for Internet Explorer(10+) compatibility.
+
+* **Changed:** `"notiflix-aio.js"` file has been moved from `"src"` to `"src/all-in-one"` folder.
+
+-----
+
 @2.3.1
 * **Changed:** `Notiflix.Notify.*` module, `callback` and `options` parameters have been changed.
 

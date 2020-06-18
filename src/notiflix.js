@@ -1,8 +1,8 @@
 /*!
-* Notiflix ('https://www.notiflix.com')
-* Version: 2.3.1
-* Author: Furkan MT ('https://github.com/furcan')
-* Copyright 2020 Notiflix, MIT Licence ('https://opensource.org/licenses/MIT')
+* Notiflix ("https://www.notiflix.com")
+* Version: 2.3.2
+* Author: Furkan MT ("https://github.com/furcan")
+* Copyright 2020 Notiflix, MIT Licence ("https://opensource.org/licenses/MIT")
 */
 
 /* global define */
@@ -1411,7 +1411,7 @@
       // check the message off
 
     } else {
-      notiflixConsoleError('Notiflix Error', 'You called the "Notiflix.Block..." function with "' + selector + '" selector, but there is no such element(s) on the document.');
+      notiflixConsoleError('Notiflix Error', 'You called the "Notiflix.Block..." function with "' + selector + '" selector, but there is no such element(s) in the document.');
       return false;
     }
     // check the selector off
@@ -1554,13 +1554,15 @@
       var removeBlockElements = function (eachOne) {
         var timeout = setTimeout(function () {
           // remove element
-          eachOne.remove();
+          if (eachOne.parentNode !== null) {
+            eachOne.parentNode.removeChild(eachOne);
+          }
 
           // remove this selector internal style
           var eachOneId = eachOne.getAttribute('id');
           var eachOneStyle = window.document.getElementById('Style-' + eachOneId);
-          if (eachOneStyle) {
-            eachOneStyle.remove();
+          if (eachOneStyle && eachOneStyle.parentNode !== null) {
+            eachOneStyle.parentNode.removeChild(eachOneStyle);
           }
 
           // clear timeout

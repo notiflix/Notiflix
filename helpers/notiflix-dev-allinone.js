@@ -1,7 +1,7 @@
 /*!
 * Notiflix - All In One
 *
-* Description: Create "notiflix-aio.js" file from "notiflix.js" and "notiflix.css" files for the development.
+* Description: Creates "notiflix-aio.js" file automatically from "notiflix.js" and "notiflix.css" files.
 * Version: 1.0.0
 * Author: Furkan MT ('https://github.com/furcan')
 * Copyright 2020 Notiflix - All In One, MIT Licence ('https://opensource.org/licenses/MIT')
@@ -57,25 +57,29 @@ const createNotiflixAIOfileFromJsAndCss = () => {
   if (nxStyleAsMinified && nxScript) {
     // if output directory is exist
     if (existsSync(Constants.dirOutputDev)) {
-      var internalCSS = `var css = '';`;
-      // replace internal css codes if exist
-      if (nxScript.indexOf(internalCSS) > -1) {
-        // replace
-        const nxScriptAIO = nxScript.replace(internalCSS, `var css = '${nxStyleAsMinified}';`);
+      const commentVersion = `* Version:`;
+      const commentDescAndVersion = `* Description: Notiflix All In One contains the Notiflix CSS codes as internal to use the Notiflix as one file. This file has been created automatically from using the "notiflix.js", and "notiflix.css" files.\n${commentVersion}`;
+      const internalCSS = `var css = '';`;
+      // add a description comment before the version && replace internal css codes => if they exist
+      if (nxScript.indexOf(commentVersion) > -1 && nxScript.indexOf(internalCSS) > -1) {
+        // add the description above the version as comment
+        let nxScriptAIO = nxScript.replace(commentVersion, commentDescAndVersion);
+        // replace internal css
+        nxScriptAIO = nxScriptAIO.replace(internalCSS, `var css = '${nxStyleAsMinified}';`);
         // create "notiflix-aio.js" file
         writeFileSync(join(Constants.dirOutputDev, Constants.fileScriptAIO), nxScriptAIO);
       } else {
-        Constants.terminalError(`"${internalCSS}" does not exist in the "${Constants.fileScript}" file.`, `${thisFilePath} => Line: 68`);
+        Constants.terminalError(`"${nxScript.indexOf(commentVersion) === -1 ? commentVersion : internalCSS}" does not exist in the "${Constants.fileScript}" file.`, `${thisFilePath} => Line: 68`);
         return false;
       }
     }
     // else throw error
     else {
-      Constants.terminalError(`"${Constants.dirOutputDev}" directory does not exist in the root directory.`, `${thisFilePath} => Line: 74`);
+      Constants.terminalError(`"${Constants.dirOutputDev}" directory does not exist in the root directory.`, `${thisFilePath} => Line: 78`);
       return false;
     }
   } else {
-    Constants.terminalError(`Something went wrong on ${!nxStyleAsMinified ? '"getNxStyleAsMinifiedFromInputDir();"' : '"getNxScriptFromInputDir();"'}.`, `${thisFilePath} => Line: 78`);
+    Constants.terminalError(`Something went wrong on ${!nxStyleAsMinified ? '"getNxStyleAsMinifiedFromInputDir();"' : '"getNxScriptFromInputDir();"'}.`, `${thisFilePath} => Line: 82`);
     return false;
   }
 };
