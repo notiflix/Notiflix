@@ -90,11 +90,11 @@ const writeFileToTheOutDir = (minContent, fileName, filePath) => {
       }
 
     } else {
-      Constants.terminalError(`The "${filePath}" file is empty and/or something went wrong.`, `${thisFilePath} => Line: 92`);
+      Constants.terminalError(`The "${filePath}" file is empty and/or something went wrong.`, `${thisFilePath} => Line: 93`);
       return false;
     }
   } else {
-    Constants.terminalError(`The "${Constants.dirOutputDist}" directory does not exist in the root directory.`, `${thisFilePath} => Line: 95`);
+    Constants.terminalError(`The "${Constants.dirOutputDist}" directory does not exist in the root directory.`, `${thisFilePath} => Line: 97`);
     return false;
   }
 };

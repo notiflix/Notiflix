@@ -1,5 +1,5 @@
 /*!
-* Notiflix - All In One
+* Notiflix - All In One Generator
 *
 * Description: Creates "notiflix-aio.js" file automatically from "notiflix.js" and "notiflix.css" files.
 * Version: 1.0.0
@@ -69,7 +69,7 @@ const createNotiflixAIOfileFromJsAndCss = () => {
         // create "notiflix-aio.js" file
         writeFileSync(join(Constants.dirOutputDev, Constants.fileScriptAIO), nxScriptAIO);
       } else {
-        Constants.terminalError(`"${nxScript.indexOf(commentVersion) === -1 ? commentVersion : internalCSS}" does not exist in the "${Constants.fileScript}" file.`, `${thisFilePath} => Line: 68`);
+        Constants.terminalError(`"${nxScript.indexOf(commentVersion) === -1 ? commentVersion : internalCSS}" does not exist in the "${Constants.fileScript}" file.`, `${thisFilePath} => Line: 72`);
         return false;
       }
     }

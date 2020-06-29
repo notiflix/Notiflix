@@ -1,3 +1,9 @@
+@2.3.3
+* **Changed:** Code Review.
+* **Changed:** Prefixes for CSS.
+
+-----
+
 @2.3.2
 * **Fixed:** `Notiflix.Block.*` module, `Remove()` function fixes and improvements for Internet Explorer(10+) compatibility.
 
