@@ -52,7 +52,6 @@ https://www.notiflix.com/documentation
 ---------
 
 ### (A) Install and Import
-(React, Angular, Next.js etc.)
 
 Install
 
