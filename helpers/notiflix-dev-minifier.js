@@ -53,12 +53,18 @@ const clearTheOutDir = path => {
   if (!path) { path = Constants.dirOutputDist; }
   if (existsSync(path)) { // if the directory exist clear all files
     readdirSync(path).map(file => {
+      // check the version
+      if (file.indexOf(Constants.version) > -1) {
+        Constants.terminalError(`The version number is the same. It should be increased. Go to the "package.json" file to change it.`, `${thisFilePath} => Line: 58`);
+        return false;
+      }
+      // remove the old files
       unlinkSync(join(path, file), err => {
         if (err) throw err;
       });
     });
   } else {
-    Constants.terminalError(`The "${path}" directory does not exist in the root directory.`, `${thisFilePath} => Line: 61`);
+    Constants.terminalError(`The "${path}" directory does not exist in the root directory.`, `${thisFilePath} => Line: 67`);
     return false;
   }
 };
@@ -90,11 +96,11 @@ const writeFileToTheOutDir = (minContent, fileName, filePath) => {
       }
 
     } else {
-      Constants.terminalError(`The "${filePath}" file is empty and/or something went wrong.`, `${thisFilePath} => Line: 93`);
+      Constants.terminalError(`The "${filePath}" file is empty and/or something went wrong.`, `${thisFilePath} => Line: 99`);
       return false;
     }
   } else {
-    Constants.terminalError(`The "${Constants.dirOutputDist}" directory does not exist in the root directory.`, `${thisFilePath} => Line: 97`);
+    Constants.terminalError(`The "${Constants.dirOutputDist}" directory does not exist in the root directory.`, `${thisFilePath} => Line: 103`);
     return false;
   }
 };
@@ -114,11 +120,11 @@ const createFileFromInputDir = (filePath, fileName, filePrefix, fileType) => {
     }
     // else throw error
     else {
-      Constants.terminalError(`The "${filePath}" file is empty and/or something went wrong.`, `${thisFilePath} => Line: 117`);
+      Constants.terminalError(`The "${filePath}" file is empty and/or something went wrong.`, `${thisFilePath} => Line: 123`);
       return false;
     }
   } else {
-    Constants.terminalError(`The "${fileName}" file does not exist in the "${Constants.dirInputDev}" directory.`, `${thisFilePath} => Line: 121`);
+    Constants.terminalError(`The "${fileName}" file does not exist in the "${Constants.dirInputDev}" directory.`, `${thisFilePath} => Line: 127`);
     return false;
   }
 };
@@ -144,7 +150,7 @@ if (existsSync(Constants.dirInputDev) && existsSync(Constants.dirOutputDev)) { /
   createFileFromInputDir(nxScriptAIOPath, Constants.fileScriptAIO, 'notiflix-aio', 'script');
   // Notiflix Script (All In One): end
 } else {
-  Constants.terminalError(`The "${!existsSync(Constants.dirInputDev) ? Constants.dirInputDev : Constants.dirOutputDev}" directory does not exist in the root directory.`, `${thisFilePath} => Line: 147`);
+  Constants.terminalError(`The "${!existsSync(Constants.dirInputDev) ? Constants.dirInputDev : Constants.dirOutputDev}" directory does not exist in the root directory.`, `${thisFilePath} => Line: 153`);
   return false;
 }
 // Minify Notiflix: end

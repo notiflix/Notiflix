@@ -5,6 +5,8 @@ node_modules/
 # Misc
 .DS_Store
 *.DS_Store
+.code-workspace
+*.code-workspace
 
 # IDE/Editor
 .vscode/
