@@ -34,7 +34,7 @@
 Notiflix is a JavaScript library for client-side non-blocking notifications, popup boxes, loading indicators, and more to that makes your web projects much better.
 
 #### Current Version
-2.3.3 [*](https://github.com/notiflix/Notiflix/blob/master/ReleaseNotes.md "Release Notes")
+2.3.3 [*](https://github.com/notiflix/Notiflix/blob/master/CHANGELOG.md "CHANGELOG")
 
 #### Website
 https://www.notiflix.com
