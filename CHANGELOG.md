@@ -1,3 +1,40 @@
+@2.4.0
+* **Added:** `Notiflix.Loading.*` module: The `message` parameter has been extended, and the `options` parameter has been added.
+
+  - Custom options can be used for each Loading element to extend the initialize settings.
+    ```js
+    // Only indicator
+    Notiflix.Loading.Standard();
+
+    // Loading indicator with a message
+    Notiflix.Loading.Standard('Loading...');
+
+
+    // NEW: v2.4.0 and the next versions
+    // Loading indicator with the new options
+    Notiflix.Loading.Standard(
+      {
+        svgSize: '19px',
+      },
+    );
+
+    // NEW: v2.4.0 and the next versions
+    // Loading indicator with a message, and the new options
+    Notiflix.Loading.Standard(
+      'Loading...',
+      {
+        svgSize: '23px',
+      },
+    );
+    ```
+
+* **Added:** `Notiflix.Block.*` module: The `message` parameter has been extended, and the `options` parameter has been added.
+  - Custom options can be used for each Block element to extend the initialize settings.
+
+* **Changed:** Code Review.
+
+-----
+
 @2.3.3
 * **Changed:** Code Review.
 * **Changed:** Prefixes for CSS.

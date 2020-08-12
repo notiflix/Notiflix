@@ -1,6 +1,6 @@
 /*!
 * Notiflix ("https://www.notiflix.com")
-* Version: 2.3.3
+* Version: 2.4.0
 * Author: Furkan MT ("https://github.com/furcan")
 * Copyright 2020 Notiflix, MIT Licence ("https://opensource.org/licenses/MIT")
 */
@@ -340,7 +340,7 @@
 
   // Notiflix: GoogleFont: begin
   var notiflixGoogleFont = function (use, family) {
-    if (!window.document.getElementById('NotiflixQuicksand') && use && (typeof family === 'string' && family.toLowerCase() === 'quicksand')) {
+    if (!window.document.getElementById('NotiflixQuicksand') && use && (typeof family === 'string' && family.toLocaleLowerCase('en') === 'quicksand')) {
       // check doc head
       if (!notiflixHeadOrBodyCheck('head')) { return false; }
 
@@ -1221,7 +1221,7 @@
   // Notiflix: Confirm Single: end
 
   // Notiflix: Loading Single: begin
-  var NotiflixLoading = function (message, iconType, display, theDelay) {
+  var NotiflixLoading = function (messageOrOptions, options, iconType, display, delay) {
     // check doc body
     if (!notiflixHeadOrBodyCheck('body')) { return false; }
 
@@ -1229,10 +1229,31 @@
     if (!newLoadingSettings) {
       Notiflix.Loading.Init({});
     }
-    // check the message
-    if (typeof message !== 'string') {
-      message = '';
+
+    // create a backup for new settings
+    var newLoadingSettingsBackup = extendNotiflix(true, newLoadingSettings, {});
+
+    // check "messageOrOptions" and "options": begin
+    if ((typeof messageOrOptions === 'object' && !Array.isArray(messageOrOptions)) || (typeof options === 'object' && !Array.isArray(options))) {
+      // new options
+      var newOptions = {};
+      if (typeof messageOrOptions === 'object') {
+        newOptions = messageOrOptions;
+      } else if (typeof options === 'object') {
+        newOptions = options;
+      }
+
+      // extend new settings with the new options
+      newLoadingSettings = extendNotiflix(true, newLoadingSettings, newOptions);
     }
+    // check "messageOrOptions" and "options": end
+
+    // check the message
+    var message = '';
+    if (typeof messageOrOptions === 'string' && messageOrOptions.length > 0) {
+      message = messageOrOptions;
+    }
+
     // show loading
     if (display) {
 
@@ -1242,12 +1263,9 @@
       } else {
         message = notiflixPlaintext(message).toString();
       }
-      var intSvgSize = parseInt(newLoadingSettings.svgSize);
       var messageHTML = '';
       if (message.length > 0) {
-        var messagePosTop = Math.round(intSvgSize - (intSvgSize / 4)).toString() + 'px';
-        var messageHeight = (parseInt(newLoadingSettings.messageFontSize) * 1.4).toString() + 'px';
-        messageHTML = '<p id="' + newLoadingSettings.messageID + '" class="loading-message" style="color:' + newLoadingSettings.messageColor + ';font-size:' + newLoadingSettings.messageFontSize + ';height:' + messageHeight + '; top:' + messagePosTop + ';">' + message + '</p>';
+        messageHTML = '<p id="' + newLoadingSettings.messageID + '" class="loading-message" style="color:' + newLoadingSettings.messageColor + ';font-size:' + newLoadingSettings.messageFontSize + ';">' + message + '</p>';
       }
       // if message settings: end
 
@@ -1279,11 +1297,10 @@
       } else if (iconType === 'notiflix') {
         svgIcon = notiflixIndicatorSvgNotiflix(newLoadingSettings.svgSize, '#f8f8f8', '#32c682');
       }
-      var svgPosTop = 0;
-      if (message.length > 0) {
-        svgPosTop = '-' + Math.round(intSvgSize - (intSvgSize / 4)).toString() + 'px';
-      }
-      var svgIconHTML = '<div style="top:' + svgPosTop + '; width:' + newLoadingSettings.svgSize + '; height:' + newLoadingSettings.svgSize + ';" class="' + newLoadingSettings.className + '-icon' + (message.length > 0 ? ' with-message' : '') + '">' + svgIcon + '</div>';
+      var svgSizeAsDigit = parseInt((newLoadingSettings.svgSize || '').replace(/[^0-9]/g, ''));
+      var winWidth = window.innerWidth;
+      var maxSvgWidthPx = svgSizeAsDigit >= winWidth ? (winWidth - 40) + 'px' : svgSizeAsDigit + 'px';
+      var svgIconHTML = '<div style="width:' + maxSvgWidthPx + '; height:' + maxSvgWidthPx + ';" class="' + newLoadingSettings.className + '-icon' + (message.length > 0 ? ' with-message' : '') + '">' + svgIcon + '</div>';
       // svgIcon: end
 
       // loading wrap: begin
@@ -1294,6 +1311,11 @@
       ntflxLoadingWrap.style.background = newLoadingSettings.backgroundColor;
       ntflxLoadingWrap.style.animationDuration = newLoadingSettings.cssAnimationDuration + 'ms';
       ntflxLoadingWrap.style.fontFamily = '"' + newLoadingSettings.fontFamily + '", ' + defaultFontFamily;
+      ntflxLoadingWrap.style.display = 'flex';
+      ntflxLoadingWrap.style.flexWrap = 'wrap';
+      ntflxLoadingWrap.style.flexDirection = 'column';
+      ntflxLoadingWrap.style.alignItems = 'center';
+      ntflxLoadingWrap.style.justifyContent = 'center';
 
       // rtl: begin
       if (newLoadingSettings.rtl) {
@@ -1325,7 +1347,6 @@
         }
       }
       // append: end
-
     }
     // remove loading
     else {
@@ -1341,9 +1362,12 @@
             }
           }, newLoadingSettings.cssAnimationDuration);
           clearTimeout(timeout);
-        }, theDelay);
+        }, delay);
       }
     }
+
+    // extend new settings with the backup settings
+    newLoadingSettings = extendNotiflix(true, newLoadingSettings, newLoadingSettingsBackup);
   };
   // Notiflix: Loading Single: end
 
@@ -1354,19 +1378,20 @@
       newMessage = '';
     }
     // if has any loading
-    if (window.document.getElementById(loadingSettings.ID)) {
+    var messageWrap = window.document.getElementById(loadingSettings.ID);
+    if (messageWrap) {
       // if there is a new message
       if (newMessage.length > 0) {
         // max length: begin
         if (newMessage.length > newLoadingSettings.messageMaxLength) {
-          newMessage = notiflixPlaintext(newMessage).toString().substring(0, newLoadingSettings.messageMaxLength) + '...';
+          newMessage = notiflixPlaintext(newMessage).substring(0, newLoadingSettings.messageMaxLength) + '...';
         } else {
-          newMessage = notiflixPlaintext(newMessage).toString();
+          newMessage = notiflixPlaintext(newMessage);
         }
         // max length: end
 
         // there is a message element
-        var oldMessageElm = window.document.getElementById(loadingSettings.ID).getElementsByTagName('p')[0];
+        var oldMessageElm = messageWrap.getElementsByTagName('p')[0];
         if (oldMessageElm) {
           oldMessageElm.innerHTML = newMessage; // change the message
         }
@@ -1375,24 +1400,12 @@
           // create a new message element: begin
           var newMessageHTML = window.document.createElement('p');
           newMessageHTML.id = newLoadingSettings.messageID;
-          newMessageHTML.className = 'loading-message new';
+          newMessageHTML.className = 'loading-message new-loading-message';
           newMessageHTML.style.color = newLoadingSettings.messageColor;
           newMessageHTML.style.fontSize = newLoadingSettings.messageFontSize;
-          var intSvgSize = parseInt(newLoadingSettings.svgSize);
-          var messagePosTop = Math.round(intSvgSize - (intSvgSize / 4)).toString() + 'px';
-          newMessageHTML.style.top = messagePosTop;
-          var messageHeight = (parseInt(newLoadingSettings.messageFontSize) * 1.4).toString() + 'px';
-          newMessageHTML.style.height = messageHeight;
           newMessageHTML.innerHTML = newMessage;
-          var messageWrap = window.document.getElementById(loadingSettings.ID);
           messageWrap.appendChild(newMessageHTML);
           // create a new message element: end
-
-          // vertical align svg: begin
-          var svgDivElm = window.document.getElementById(loadingSettings.ID).getElementsByTagName('div')[0];
-          var svgNewPosTop = '-' + Math.round(intSvgSize - (intSvgSize / 4)).toString() + 'px';
-          svgDivElm.style.top = svgNewPosTop;
-          // vertical align svg: end
         }
       }
       // if no message
@@ -1405,41 +1418,52 @@
 
   // Notiflix: Block or Unblock Element: begin
   var blockElmCount = 0;
-  var NotiflixBlockUnblockElement = function (block, selector, iconType, message, theDelay) {
+  var NotiflixBlockUnblockElement = function (block, selector, iconType, messageOrOptions, options, delay) {
     // check typeof selector: begin
     if (typeof selector !== 'string') {
-      notiflixConsoleError('Notiflix Error', 'The selector must be a String.');
+      notiflixConsoleError('Notiflix Error', 'The selector parameter must be a String and matches a specified CSS selector(s).');
       return false;
     }
     // check typeof selector: end
 
-    // check the delay: begin
-    if (typeof theDelay !== 'number') {
-      theDelay = 0;
-    }
-    // check the delay: end
-
     // check the selector: begin
     var getSelector = window.document.querySelectorAll(selector);
-    if (getSelector.length > 0) {
-
-      // if not initialized pretend like init: begin
-      if (!newBlockSettings) {
-        Notiflix.Block.Init({});
-      }
-      // if not initialized pretend like init: end
-
-      // check the message: begin
-      if (typeof message !== 'string') {
-        message = undefined;
-      }
-      // check the message: end
-
-    } else {
+    if (getSelector.length < 1) {
       notiflixConsoleError('Notiflix Error', 'You called the "Notiflix.Block..." function with "' + selector + '" selector, but there is no such element(s) in the document.');
       return false;
     }
     // check the selector: end
+
+    // if not initialized pretend like init: begin
+    if (!newBlockSettings) {
+      Notiflix.Block.Init({});
+    }
+    // if not initialized pretend like init: end
+
+    // create a backup for new settings
+    var newBlockSettingsBackup = extendNotiflix(true, newBlockSettings, {});
+
+    // check "messageOrOptions" and "options": begin
+    if ((typeof messageOrOptions === 'object' && !Array.isArray(messageOrOptions)) || (typeof options === 'object' && !Array.isArray(options))) {
+      // new options
+      var newOptions = {};
+      if (typeof messageOrOptions === 'object') {
+        newOptions = messageOrOptions;
+      } else if (typeof options === 'object') {
+        newOptions = options;
+      }
+
+      // extend new settings with the new options
+      newBlockSettings = extendNotiflix(true, newBlockSettings, newOptions);
+    }
+    // check "messageOrOptions" and "options": end
+
+    // check the message: begin
+    var message = '';
+    if (typeof messageOrOptions === 'string' && messageOrOptions.length > 0) {
+      message = messageOrOptions;
+    }
+    // check the message: end
 
     // if cssAnimaion false => duration: begin
     if (!newBlockSettings.cssAnimation) {
@@ -1449,7 +1473,7 @@
 
     // check the class name: begin
     var blockClassName = 'notiflix-block';
-    if (newBlockSettings.className && typeof newBlockSettings.className === 'string') {
+    if (typeof newBlockSettings.className === 'string') {
       blockClassName = newBlockSettings.className.trim();
     }
     // check the class name: end
@@ -1486,23 +1510,18 @@
               icon = notiflixIndicatorSvgStandard(newBlockSettings.svgSize, newBlockSettings.svgColor);
             }
           }
-          var intSvgSize = parseInt(newBlockSettings.svgSize);
-          var posRatio = Math.round(intSvgSize - (intSvgSize / 5)).toString() + 'px';
-          var svgPosTop = message && message.length > 0 ? '-' + posRatio : 0;
-          var iconElement = '<span class="' + blockClassName + '-icon" style="width:' + newBlockSettings.svgSize + ';height:' + newBlockSettings.svgSize + ';top:' + svgPosTop + ';">' + icon + '</span>';
+          var iconElement = '<span class="' + blockClassName + '-icon" style="width:' + newBlockSettings.svgSize + ';height:' + newBlockSettings.svgSize + ';">' + icon + '</span>';
           // check the icon: end
 
           // check the message: begin
           var messageElement = '';
-          var messageHeight = 0;
-          if (typeof message === 'string' && message.length > 0) {
+          if (message.length > 0) {
             if (message.length > newBlockSettings.messageMaxLength) {
-              message = notiflixPlaintext(message).toString().substring(0, newBlockSettings.messageMaxLength) + '...';
+              message = notiflixPlaintext(message).substring(0, newBlockSettings.messageMaxLength) + '...';
             } else {
-              message = notiflixPlaintext(message).toString();
+              message = notiflixPlaintext(message);
             }
-            messageHeight = Math.round(parseInt(newBlockSettings.messageFontSize) * 1.4).toString() + 'px';
-            messageElement = '<span style="top:' + posRatio + ';height:' + messageHeight + ';font-size:' + newBlockSettings.messageFontSize + ';color:' + newBlockSettings.messageColor + ';" class="' + blockClassName + '-message">' + message + '</span>';
+            messageElement = '<span style="font-size:' + newBlockSettings.messageFontSize + ';color:' + newBlockSettings.messageColor + ';" class="' + blockClassName + '-message">' + message + '</span>';
           }
           // check the message: end
 
@@ -1516,6 +1535,11 @@
           notiflixBlockWrap.style.background = newBlockSettings.backgroundColor;
           notiflixBlockWrap.style.animationDuration = newBlockSettings.cssAnimationDuration + 'ms';
           notiflixBlockWrap.style.fontFamily = '"' + newBlockSettings.fontFamily + '", ' + defaultFontFamily;
+          notiflixBlockWrap.style.display = 'flex';
+          notiflixBlockWrap.style.flexWrap = 'wrap';
+          notiflixBlockWrap.style.flexDirection = 'column';
+          notiflixBlockWrap.style.alignItems = 'center';
+          notiflixBlockWrap.style.justifyContent = 'center';
           // block element: end
 
           // block element rtl: begin
@@ -1531,15 +1555,13 @@
 
           // append block element: begin
           var eachSelectorPos = window.getComputedStyle(eachSelector).getPropertyValue('position');
-          eachSelectorPos = eachSelectorPos && typeof eachSelectorPos === 'string' ? eachSelectorPos.toLowerCase() : 'relative';
+          var selectorPos = typeof eachSelectorPos === 'string' ? eachSelectorPos.toLocaleLowerCase('en') : 'relative';
 
-          var eachSelectorMinHeight = window.getComputedStyle(eachSelector).getPropertyValue('min-height');
-          var eachSelectorMinHeightNum = eachSelectorMinHeight.replace(/[^\d]/g, '');
-          var currentMinHeight = Math.round(eachSelectorMinHeightNum);
-          var expectedMinHeight = Math.round((parseInt(messageHeight) + intSvgSize) * 1.5);
+          var averageMinHeight = Math.round(parseInt(newBlockSettings.svgSize) * 1.25) + 40;
+          var eachSelectorHeight = eachSelector.offsetHeight || 0;
           var minHeightStyle = '';
-          if (currentMinHeight < expectedMinHeight) {
-            minHeightStyle = 'min-height:' + expectedMinHeight + 'px';
+          if (averageMinHeight > eachSelectorHeight) {
+            minHeightStyle = 'min-height:' + averageMinHeight + 'px;';
           }
 
           // selector internal style: begin
@@ -1548,20 +1570,32 @@
             eachSelectorIdOrClass = '#' + eachSelector.getAttribute('id');
           } else if (eachSelector.classList[0]) {
             eachSelectorIdOrClass = '.' + eachSelector.classList[0];
+          } else {
+            eachSelectorIdOrClass = (eachSelector.tagName || '').toLocaleLowerCase('en');
           }
 
+          var positionStyle = '';
           var positions = ['absolute', 'relative', 'fixed', 'sticky'];
-          if (positions.indexOf(eachSelectorPos) <= -1) {
+          var addPosition = positions.indexOf(selectorPos) <= -1;
+          if (addPosition || minHeightStyle.length > 0) {
             // check doc head
             if (!notiflixHeadOrBodyCheck('head')) { return false; }
 
+            // check position style
+            if (addPosition) {
+              positionStyle = 'position:relative!important;';
+            }
+
+            // create and add internal style to the head
             var style = '<style id="Style-' + blockSettings.ID + '-' + blockElmCount + '">' +
-              eachSelectorIdOrClass + '.' + blockClassName + '-position{position:relative!important;pointer-events:none;' + minHeightStyle + ';}' +
+              eachSelectorIdOrClass + '.' + blockClassName + '-position{' + positionStyle + minHeightStyle + '}' +
               '</style>';
             var styleRange = window.document.createRange();
             styleRange.selectNode(window.document.head);
             var styleFragment = styleRange.createContextualFragment(style);
             window.document.head.appendChild(styleFragment);
+
+            // add the "blockClassName" to each selector
             eachSelector.classList.add(blockClassName + '-position');
           }
           // selector internal style: end
@@ -1645,9 +1679,12 @@
         }
         // clear timeout
         clearTimeout(selectorTimeout);
-      }, theDelay);
+      }, delay);
       // Step 1 => Remove selector class name: end
     }
+
+    // extend new settings with the backup settings
+    newBlockSettings = extendNotiflix(true, newBlockSettings, newBlockSettingsBackup);
   };
   // Notiflix: Block or Unblock Element: end
 
@@ -1791,41 +1828,41 @@
         }
       },
       // Display Loading: Standard
-      Standard: function (message) {
-        NotiflixLoading(message, 'standard', true, 0); // true => display || 0 => delay
+      Standard: function (messageOrOptions, options) {
+        NotiflixLoading(messageOrOptions, options, 'standard', true, 0); // true => show && 0 => delay
       },
       // Display Loading: Hourglass
-      Hourglass: function (message) {
-        NotiflixLoading(message, 'hourglass', true, 0); // true => display || 0 => delay
+      Hourglass: function (messageOrOptions, options) {
+        NotiflixLoading(messageOrOptions, options, 'hourglass', true, 0); // true => show && 0 => delay
       },
       // Display Loading: Circle
-      Circle: function (message) {
-        NotiflixLoading(message, 'circle', true, 0); // true => display || 0 => delay
+      Circle: function (messageOrOptions, options) {
+        NotiflixLoading(messageOrOptions, options, 'circle', true, 0); // true => show && 0 => delay
       },
       // Display Loading: Arrows
-      Arrows: function (message) {
-        NotiflixLoading(message, 'arrows', true, 0); // true => display || 0 => delay
+      Arrows: function (messageOrOptions, options) {
+        NotiflixLoading(messageOrOptions, options, 'arrows', true, 0); // true => show && 0 => delay
       },
       // Display Loading: Dots
-      Dots: function (message) {
-        NotiflixLoading(message, 'dots', true, 0); // true => display || 0 => delay
+      Dots: function (messageOrOptions, options) {
+        NotiflixLoading(messageOrOptions, options, 'dots', true, 0); // true => show && 0 => delay
       },
       // Display Loading: Pulse
-      Pulse: function (message) {
-        NotiflixLoading(message, 'pulse', true, 0); // true => display || 0 => delay
+      Pulse: function (messageOrOptions, options) {
+        NotiflixLoading(messageOrOptions, options, 'pulse', true, 0); // true => show && 0 => delay
       },
       // Display Loading: Custom
-      Custom: function (message) {
-        NotiflixLoading(message, 'custom', true, 0); // true => display || 0 => delay
+      Custom: function (messageOrOptions, options) {
+        NotiflixLoading(messageOrOptions, options, 'custom', true, 0); // true => show && 0 => delay
       },
       // Display Loading: Notiflix
-      Notiflix: function (message) {
-        NotiflixLoading(message, 'notiflix', true, 0); // true => display || 0 => delay
+      Notiflix: function (messageOrOptions, options) {
+        NotiflixLoading(messageOrOptions, options, 'notiflix', true, 0); // true => show && 0 => delay
       },
       // Remove Loading
-      Remove: function (theDelay) {
-        if (!theDelay) { theDelay = 0; }
-        NotiflixLoading(false, false, false, theDelay); // false = Remove
+      Remove: function (delay) {
+        if (typeof delay !== 'number') { delay = 0; }
+        NotiflixLoading(false, false, false, false, delay); // false => hide/remove
       },
       // Change The Message
       Change: function (newMessage) {
@@ -1858,47 +1895,33 @@
         }
       },
       // Display Block: Standard
-      Standard: function (selector, message) {
-        var block = true;
-        var theIcon = 'standard';
-        NotiflixBlockUnblockElement(block, selector, theIcon, message);
+      Standard: function (selector, messageOrOptions, options) {
+        NotiflixBlockUnblockElement(true, selector, 'standard', messageOrOptions, options); // true => show
       },
       // Display Block: Hourglass
-      Hourglass: function (selector, message) {
-        var block = true;
-        var theIcon = 'hourglass';
-        NotiflixBlockUnblockElement(block, selector, theIcon, message);
+      Hourglass: function (selector, messageOrOptions, options) {
+        NotiflixBlockUnblockElement(true, selector, 'hourglass', messageOrOptions, options); // true => show
       },
       // Display Block: Circle
-      Circle: function (selector, message) {
-        var block = true;
-        var theIcon = 'circle';
-        NotiflixBlockUnblockElement(block, selector, theIcon, message);
+      Circle: function (selector, messageOrOptions, options) {
+        NotiflixBlockUnblockElement(true, selector, 'circle', messageOrOptions, options); // true => show
       },
       // Display Block: Arrows
-      Arrows: function (selector, message) {
-        var block = true;
-        var theIcon = 'arrows';
-        NotiflixBlockUnblockElement(block, selector, theIcon, message);
+      Arrows: function (selector, messageOrOptions, options) {
+        NotiflixBlockUnblockElement(true, selector, 'arrows', messageOrOptions, options); // true => show
       },
       // Display Block: Dots
-      Dots: function (selector, message) {
-        var block = true;
-        var theIcon = 'dots';
-        NotiflixBlockUnblockElement(block, selector, theIcon, message);
+      Dots: function (selector, messageOrOptions, options) {
+        NotiflixBlockUnblockElement(true, selector, 'dots', messageOrOptions, options); // true => show
       },
       // Display Block: Pulse
-      Pulse: function (selector, message) {
-        var block = true;
-        var theIcon = 'pulse';
-        NotiflixBlockUnblockElement(block, selector, theIcon, message);
+      Pulse: function (selector, messageOrOptions, options) {
+        NotiflixBlockUnblockElement(true, selector, 'pulse', messageOrOptions, options); // true => show
       },
       // Remove Block
       Remove: function (selector, delay) {
-        var block = false;
-        var theIcon = null;
-        var message = null;
-        NotiflixBlockUnblockElement(block, selector, theIcon, message, delay);
+        if (typeof delay !== 'number') { delay = 0; }
+        NotiflixBlockUnblockElement(false, selector, false, false, false, delay); // false => hide/remove
       },
     },
     // Block: end

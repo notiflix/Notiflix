@@ -95,7 +95,7 @@
       color: #fff;
       box-shadow: 0 0 1.5rem -0.75rem rgba(0, 0, 0, 0.4);
       font-size: 0.9375rem;
-      line-height: 1rem;
+      line-height: 1.5;
       font-weight: 500;
     }
 
@@ -165,11 +165,17 @@
       border-radius: 0.5rem;
     }
 
+    .break {
+      display: flex;
+      width: 100%;
+      height: 40px;
+    }
+
   </style>
 
-  <!-- <link href="../dist/notiflix-2.3.3.min.css" rel="stylesheet" />
-  <script src="../dist/notiflix-2.3.3.min.js"></script> -->
-  <script src="../dist/notiflix-aio-2.3.3.min.js"></script>
+  <!-- <link href="../dist/notiflix-2.4.0.min.css" rel="stylesheet" />
+  <script src="../dist/notiflix-2.4.0.min.js"></script> -->
+  <script src="../dist/notiflix-aio-2.4.0.min.js"></script>
 
   <!-- <link href="../src/notiflix.css" rel="stylesheet" />
   <script src="../src/notiflix.js"></script> -->
@@ -184,16 +190,17 @@
     //   plainText: false,
     // });
 
-    Notiflix.Report.Init({
-      messageMaxLength: 600,
-    });
+    // Notiflix.Report.Init({
+    //   messageMaxLength: 600,
+    // });
 
-    Notiflix.Confirm.Init({
-      messageMaxLength: 1000,
-    });
+    // Notiflix.Confirm.Init({
+    //   messageMaxLength: 1000,
+    // });
 
     Notiflix.Loading.Init({
       clickToClose: true,
+      customSvgUrl: 'https://www.notiflix.com/content/media/icon/notiflix-loading-notiflix.svg',
     });
 
     console.log(Notiflix);
@@ -238,6 +245,11 @@
     <div class="buttons">
       <button class="nx-loading" onclick="Notiflix.Loading.Standard();">Loading Standard</button>
       <button class="nx-loading" onclick="Notiflix.Loading.Standard('Standard Loading...');">Loading Standard (With Message)</button>
+      <button class="nx-loading" onclick="Notiflix.Loading.Standard({svgSize:'180px'});">Loading Standard (With Options)</button>
+      <button class="nx-loading" onclick="Notiflix.Loading.Standard('Standard Loading with New Options', {svgSize:'60px'});">Loading Standard (With Message + With Options)</button>
+
+      <div class="break"></div>
+
       <button class="nx-loading" onclick="Notiflix.Loading.Hourglass();">Loading Hourglass</button>
       <button class="nx-loading" onclick="Notiflix.Loading.Hourglass('Hourglass Loading...');">Loading Hourglass (With Message)</button>
       <button class="nx-loading" onclick="Notiflix.Loading.Circle();">Loading Circle</button>
@@ -265,6 +277,11 @@
     <div class="buttons">
       <button class="nx-block" onclick="Notiflix.Block.Standard(document.getElementById('BlockSelector').value);">Block Standard</button>
       <button class="nx-block" onclick="Notiflix.Block.Standard(document.getElementById('BlockSelector').value, 'Message');">Block Standard (With Message)</button>
+      <button class="nx-block" onclick="Notiflix.Block.Standard(document.getElementById('BlockSelector').value, {svgSize:'120px'});">Block Standard (With Options)</button>
+      <button class="nx-block" onclick="Notiflix.Block.Standard(document.getElementById('BlockSelector').value, 'Message', {svgSize:'220px'});">Block Standard (With Message + With Options)</button>
+
+      <div class="break"></div>
+
       <button class="nx-block" onclick="Notiflix.Block.Hourglass(document.getElementById('BlockSelector').value);">Block Hourglass</button>
       <button class="nx-block" onclick="Notiflix.Block.Hourglass(document.getElementById('BlockSelector').value, 'Message');">Block Hourglass (With Message)</button>
       <button class="nx-block" onclick="Notiflix.Block.Circle(document.getElementById('BlockSelector').value);">Block Circle</button>

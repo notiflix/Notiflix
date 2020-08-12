@@ -17,8 +17,8 @@
 [downloads-url]: https://npmjs.org/package/notiflix
 [jsdelivr-badge]: https://data.jsdelivr.com/v1/package/npm/notiflix/badge?style=rounded
 [jsdelivr-url]: https://www.jsdelivr.com/package/npm/notiflix
-[size-badge]: https://img.badgesize.io/https://cdn.jsdelivr.net/npm/notiflix@2.3.3/dist/notiflix-aio-2.3.3.min.js?compression=gzip
-[size-url]: https://cdn.jsdelivr.net/npm/notiflix@2.3.3/dist/notiflix-aio-2.3.3.min.js
+[size-badge]: https://img.badgesize.io/https://cdn.jsdelivr.net/npm/notiflix@2.4.0/dist/notiflix-aio-2.4.0.min.js?compression=gzip
+[size-url]: https://cdn.jsdelivr.net/npm/notiflix@2.4.0/dist/notiflix-aio-2.4.0.min.js
 [lic-badge]: https://img.shields.io/github/license/notiflix/Notiflix.svg
 [lic-url]: https://github.com/notiflix/Notiflix/blob/master/LICENSE
 
@@ -34,7 +34,7 @@
 Notiflix is a JavaScript library for client-side non-blocking notifications, popup boxes, loading indicators, and more to that makes your web projects much better.
 
 #### Current Version
-2.3.3 [*](https://github.com/notiflix/Notiflix/blob/master/CHANGELOG.md "CHANGELOG")
+2.4.0 [*](https://github.com/notiflix/Notiflix/blob/master/CHANGELOG.md "CHANGELOG")
 
 #### Website
 https://www.notiflix.com
@@ -83,14 +83,14 @@ import { Notify, Report, Confirm, Loading, Block } from "notiflix";
 
 ##### CSS and JS
 ```html
-<link rel="stylesheet" href="dist/notiflix-2.3.3.min.css" />
+<link rel="stylesheet" href="dist/notiflix-2.4.0.min.css" />
 
-<script src="dist/notiflix-2.3.3.min.js"></script>
+<script src="dist/notiflix-2.4.0.min.js"></script>
 ```
 
 ##### or only JS (All in One - Internal CSS)
 ```html
-<script src="dist/notiflix-aio-2.3.3.min.js"></script>
+<script src="dist/notiflix-aio-2.4.0.min.js"></script>
 ```
 
 ---------
@@ -249,10 +249,15 @@ Notiflix.Confirm.Show(
 
 #### 4- Loading Module
 
+Show:
+
 ```js
 /*
-* Only Loading Indicator
+* @param1 {string | Object}: Optional, message text in String format. Or, extend the initialize options with new options for each loading indicator.
+* @param2 {Object}: Optional, extend the initialize options with new options for each loading indicator (if the first parameter is a string message text).
 */
+
+// Only Loading indicator
 Notiflix.Loading.Standard();
 Notiflix.Loading.Hourglass();
 Notiflix.Loading.Circle();
@@ -260,42 +265,66 @@ Notiflix.Loading.Arrows();
 Notiflix.Loading.Dots();
 Notiflix.Loading.Pulse();
 
-/*
-* Loading Indicator with a message
-* @param1 {string}: Optional, message text in String format.
-*/
+// Loading indicator with a message
 Notiflix.Loading.Standard('Loading...');
 
+
+// Only Loading indicator with the new options (v2.4.0 and the next versions)
+Notiflix.Loading.Standard(
+  {
+    svgSize: '19px',
+  },
+);
+
+// Loading indicator with a message, and the new options (v2.4.0 and the next versions)
+Notiflix.Loading.Standard(
+  'Loading...',
+  {
+    svgSize: '23px',
+  },
+);
+```
+
+Change:
+
+```js
 /*
-* Change the message text anytime
 * @param1 {string}: Required, message text in String format.
 */
-Notiflix.Loading.Change('Loading %20');
 
+// Change the message text (if an indicator exists)
+Notiflix.Loading.Change('Loading %20');
+```
+
+Remove:
+
+```js
 /*
-* Remove immediately
+* @param1 {number}: Optional, number as millisecond.
 */
+
+// Remove immediately
 Notiflix.Loading.Remove();
 
-/*
-* Remove after delay - e.g. 600ms
-* @param1 {number}: Required, number as millisecond.
-*/
+// Remove after delay - e.g. 600ms
 Notiflix.Loading.Remove(600);
+```
 
+Custom:
 
-// Custom Loading Indicator: Init a custom SVG Icon
+```js
+// Initialize with a custom SVG Icon (default value is null)
 Notiflix.Loading.Init({
   customSvgUrl: 'https://www.notiflix.com/dir/icon.svg',
-  svgSize: '80px',
-  // etc...
 });
 
-// Custom Loading Indicator: Use with custom SVG Icon
+// Only Customized Loading indicator
 Notiflix.Loading.Custom();
 
-// Custom Loading Indicator: Use with custom SVG Icon and a message
+// Customized Loading indicator with a message
 Notiflix.Loading.Custom('Loading...');
+
+// And the other functionalities (Change, Remove...)
 ```
 
 --_--_----_--_----_--_----_--_----_--_----_--_--
@@ -306,10 +335,12 @@ Notiflix.Loading.Custom('Loading...');
 Notiflix Block module can be used to block or unblock elements to prevents users actions during the process (AJAX etc.) without locking the browser or the other elements.
 
 Block:
+
 ```js
 /*
 * @param1 {string}: Required, Select the element(s) to block. (ID or Class)
-* @param2 {string}: Optional, Can also be added a message.
+* @param2 {string | Object}: Optional, message text in String format. Or, extend the initialize options with new options for each block element.
+* @param3 {Object}: Optional, extend the initialize options with new options for each block element (if the second parameter is a string message text).
 */
 
 // Only indicator
@@ -320,12 +351,31 @@ Notiflix.Block.Arrows('.element');
 Notiflix.Block.Dots('.element');
 Notiflix.Block.Pulse('.element');
 
-// With a message
+// Indicator with a message
 Notiflix.Block.Standard('.selector', 'Loading...');
+
+
+// Only indicator with the new options (v2.4.0 and the next versions)
+Notiflix.Block.Standard(
+  '.selector',
+  {
+    svgSize: '18px',
+  },
+);
+
+// Indicator with a message, and the new options (v2.4.0 and the next versions)
+Notiflix.Block.Standard(
+  '.selector',
+  'Loading...',
+  {
+    svgSize: '81px',
+  },
+);
 ```
 
 
 Unblock:
+
 ```js
 /*
 * @param1 {string}: Required, Select the element(s) to unblock. (ID or Class)
