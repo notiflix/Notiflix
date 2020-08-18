@@ -1924,6 +1924,10 @@
         if (typeof delay !== 'number') { delay = 0; }
         NotiflixBlockUnblockElement(false, selector, false, false, false, delay); // false => hide/remove
       },
+      // Check if the specified element is being blocked
+      isBlocked: function (selector) {
+        return document.querySelector(`${selectors} [id^="${blockSettings.ID}"]`)? true:false;
+      },
     },
     // Block: end
   };
