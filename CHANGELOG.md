@@ -1,7 +1,19 @@
+@2.5.0
+* **Added:** `Notiflix.Confirm.*` module: The `options` parameter has been added to extend the initialize settings with new options for each Confirm Box.
+
+* **Added:** `Notiflix.Confirm.*` module: The `.Ask()` function has been added.
+
+  - `Notiflix.Confirm.Ask()` function can be used to prevent the accidental click to the Ok button by the user before answering a simple question that has been created by you. (Please click [here](https://github.com/notiflix/Notiflix#3--confirm-module) to see an example of usage.)
+
+* **Changed:** All the SVG icons have been compressed to reduce the file size as much as it can be.
+
+-----
+
 @2.4.0
 * **Added:** `Notiflix.Loading.*` module: The `message` parameter has been extended, and the `options` parameter has been added.
 
   - Custom options can be used for each Loading element to extend the initialize settings.
+
     ```js
     // Only indicator
     Notiflix.Loading.Standard();
@@ -52,6 +64,7 @@
 * **Changed:** `Notiflix.Notify.*` module, `callback` and `options` parameters have been changed.
 
   - Custom options can be used for each Notify element to extend the initialize settings.
+
     ```js
     // e.g. Message with a callback
     Notiflix.Notify.Success(
@@ -108,6 +121,7 @@
 
   - `Notiflix.Notify.*` module; `backOverlayColor` option has been added to each type of notification. Can be set different background overlay colors for each type of notification now.
   (Recommended by [Sebastian Stavar](https://github.com/SebastianStavar))
+
     ```js
     // e.g.
 
@@ -127,7 +141,9 @@
     ```
 
   - `Notiflix.Report.*` module; `backOverlayColor` option has been added to each type of dialog box. Can be set different background overlay colors for each type of notification now.
+
     e.g.
+
     ```js
     Notiflix.Report.Init({
       success: {

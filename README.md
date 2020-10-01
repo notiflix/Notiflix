@@ -17,8 +17,8 @@
 [downloads-url]: https://npmjs.org/package/notiflix
 [jsdelivr-badge]: https://data.jsdelivr.com/v1/package/npm/notiflix/badge?style=rounded
 [jsdelivr-url]: https://www.jsdelivr.com/package/npm/notiflix
-[size-badge]: https://img.badgesize.io/https://cdn.jsdelivr.net/npm/notiflix@2.4.0/dist/notiflix-aio-2.4.0.min.js?compression=gzip
-[size-url]: https://cdn.jsdelivr.net/npm/notiflix@2.4.0/dist/notiflix-aio-2.4.0.min.js
+[size-badge]: https://img.badgesize.io/https://cdn.jsdelivr.net/npm/notiflix@2.5.0/dist/notiflix-aio-2.5.0.min.js?compression=gzip
+[size-url]: https://cdn.jsdelivr.net/npm/notiflix@2.5.0/dist/notiflix-aio-2.5.0.min.js
 [lic-badge]: https://img.shields.io/github/license/notiflix/Notiflix.svg
 [lic-url]: https://github.com/notiflix/Notiflix/blob/master/LICENSE
 
@@ -34,7 +34,7 @@
 Notiflix is a JavaScript library for client-side non-blocking notifications, popup boxes, loading indicators, and more to that makes your web projects much better.
 
 #### Current Version
-2.4.0 [*](https://github.com/notiflix/Notiflix/blob/master/CHANGELOG.md "CHANGELOG")
+2.5.0 [*](https://github.com/notiflix/Notiflix/blob/master/CHANGELOG.md "CHANGELOG")
 
 #### Website
 https://www.notiflix.com
@@ -83,14 +83,14 @@ import { Notify, Report, Confirm, Loading, Block } from "notiflix";
 
 ##### CSS and JS
 ```html
-<link rel="stylesheet" href="dist/notiflix-2.4.0.min.css" />
+<link rel="stylesheet" href="dist/notiflix-2.5.0.min.css" />
 
-<script src="dist/notiflix-2.4.0.min.js"></script>
+<script src="dist/notiflix-2.5.0.min.js"></script>
 ```
 
 ##### or only JS (All in One - Internal CSS)
 ```html
-<script src="dist/notiflix-aio-2.4.0.min.js"></script>
+<script src="dist/notiflix-aio-2.5.0.min.js"></script>
 ```
 
 ---------
@@ -213,6 +213,8 @@ Notiflix.Report.Success(
 
 #### 3- Confirm Module
 
+Show:
+
 ```js
 /*
 * @param1 {string}: Required, title text in String format.
@@ -221,16 +223,17 @@ Notiflix.Report.Success(
 * @param4 {string}: Optional, cancel button text in String format.
 * @param5 {function}: Optional, callback function when the ok button element clicked.
 * @param6 {function}: Optional, callback function when the cancel button element clicked.
+* @param7 {Object}: Optional, extend the initialize options with new options for each confirm box.
 */
 
-Notiflix.Confirm.Show('Title', 'Message', 'Ok Button Text', 'Cancel Button Text');
+Notiflix.Confirm.Show('Title', 'Message', 'Ok Button Text');
 
 // e.g. with callback
 Notiflix.Confirm.Show(
   'Title',
   'Message',
-  'Ok Button Text',
-  'Cancel Button Text',
+  'Ok Button',
+  'Cancel Button',
 
   // ok button callback
   function(){
@@ -240,6 +243,47 @@ Notiflix.Confirm.Show(
   // cancel button callback
   function(){
     // codes...
+  },
+
+  // extend the init options for this confirm box (v2.5.0 and the next versions)
+  {
+    width: '320px',
+    borderRadius: '8px',
+    // etc...
+  },
+);
+```
+
+
+Ask: (v2.5.0 and the next versions)
+
+```js
+/*
+* @param1 {string}: Required, the title text in String format.
+* @param2 {string}: Required, the question text in String format.
+* @param3 {string}: Required, the answer text in String format.
+* @param4 {string}: Required, the ok button text in String format.
+* @param5 {string}: Optional, the cancel button text in String format.
+* @param6 {function}: Optional, a callback function when the ok button element clicked after the correct answer.
+* @param7 {function}: Optional, a callback function when the cancel button element clicked.
+* @param8 {Object}: Optional, extend the initialize options with new options for each confirm box.
+*/
+
+Notiflix.Confirm.Ask(
+  'Where is Padmé?',
+  'Is she safe? Is she all right?',
+  'It seems, in your anger, you killed her.',
+  'Answer',
+  'Cancel',
+  function(){
+    alert('NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!');
+    // codes...
+  },
+  function(){
+    // codes...
+  },
+  {
+    // extend the init options for this confirm box
   },
 );
 ```
