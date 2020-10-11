@@ -1,6 +1,6 @@
 /*!
 * Notiflix ("https://www.notiflix.com")
-* Version: 2.5.0
+* Version: 2.6.0
 * Author: Furkan MT ("https://github.com/furcan")
 * Copyright 2020 Notiflix, MIT Licence ("https://opensource.org/licenses/MIT")
 */
@@ -179,7 +179,7 @@
     className: 'notiflix-confirm',
     width: '300px',
     zindex: 4003,
-    position: 'center', // 'center' - 'center-top' -  'right-top' - 'right-bottom' - 'left-top' - 'left-bottom'
+    position: 'center', // 'center' - 'center-top' - 'center-bottom' - 'right-top' - 'right-center' - 'right-bottom' - 'left-top' - 'left-center' - 'left-bottom'
     distance: '10px',
     backgroundColor: '#f8f8f8',
     borderRadius: '25px',
@@ -928,7 +928,6 @@
     var ntflxReportWrap = window.document.createElement('div');
     ntflxReportWrap.id = reportSettings.ID;
     ntflxReportWrap.className = newReportSettings.className;
-    ntflxReportWrap.style.width = newReportSettings.width;
     ntflxReportWrap.style.zIndex = newReportSettings.zindex;
     ntflxReportWrap.style.borderRadius = newReportSettings.borderRadius;
     ntflxReportWrap.style.fontFamily = '"' + newReportSettings.fontFamily + '", ' + defaultFontFamily;
@@ -939,6 +938,14 @@
       ntflxReportWrap.classList.add('rtl-on');
     }
     // rtl: end
+
+    // position: begin
+    ntflxReportWrap.style.display = 'flex';
+    ntflxReportWrap.style.flexWrap = 'wrap';
+    ntflxReportWrap.style.flexDirection = 'column';
+    ntflxReportWrap.style.alignItems = 'center';
+    ntflxReportWrap.style.justifyContent = 'center';
+    // position: end
 
     // overlay: begin
     var reportOverlay = '';
@@ -960,7 +967,7 @@
     }
     // svg icon: end
 
-    ntflxReportWrap.innerHTML = reportOverlay + '<div class="' + newReportSettings.className + '-content' + (newReportSettings.cssAnimation ? ' with-animation ' : '') + ' nx-' + newReportSettings.cssAnimationStyle + '" style="background:' + newReportSettings.backgroundColor + '; animation-duration:' + newReportSettings.cssAnimationDuration + 'ms;">' +
+    ntflxReportWrap.innerHTML = reportOverlay + '<div class="' + newReportSettings.className + '-content' + (newReportSettings.cssAnimation ? ' with-animation ' : '') + ' nx-' + newReportSettings.cssAnimationStyle + '" style="width:' + newReportSettings.width + '; background:' + newReportSettings.backgroundColor + '; animation-duration:' + newReportSettings.cssAnimationDuration + 'ms;">' +
       '<div style="width:' + newReportSettings.svgSize + '; height:' + newReportSettings.svgSize + ';" class="' + newReportSettings.className + '-icon">' + svgIcon + '</div>' +
       '<h5 class="' + newReportSettings.className + '-title" style="font-weight:500; font-size:' + newReportSettings.titleFontSize + '; color:' + theType.titleColor + ';">' + title + '</h5>' +
       '<p class="' + newReportSettings.className + '-message" style="font-size:' + newReportSettings.messageFontSize + '; color:' + theType.messageColor + ';">' + message + '</p>' +
@@ -971,12 +978,6 @@
     if (!window.document.getElementById(ntflxReportWrap.id)) {
       // append
       window.document.body.appendChild(ntflxReportWrap);
-
-      // vertical align: begin
-      var windowH = Math.round(window.innerHeight);
-      var reportH = Math.round(window.document.getElementById(ntflxReportWrap.id).offsetHeight);
-      ntflxReportWrap.style.top = (windowH - reportH) / 2 + 'px';
-      // vertical align: end
 
       // callback: begin
       var getReportWrap = window.document.getElementById(ntflxReportWrap.id);
@@ -1095,8 +1096,8 @@
     var ntflxConfirmWrap = window.document.createElement('div');
     ntflxConfirmWrap.id = confirmSettings.ID;
     ntflxConfirmWrap.className = newConfirmSettings.className + (newConfirmSettings.cssAnimation ? ' with-animation nx-' + newConfirmSettings.cssAnimationStyle : '');
-    ntflxConfirmWrap.style.width = newConfirmSettings.width;
     ntflxConfirmWrap.style.zIndex = newConfirmSettings.zindex;
+    ntflxConfirmWrap.style.padding = newConfirmSettings.distance;
 
     // rtl: begin
     if (newConfirmSettings.rtl) {
@@ -1104,6 +1105,11 @@
       ntflxConfirmWrap.classList.add('rtl-on');
     }
     // rtl: end
+
+    // position: begin
+    var confirmPosition = typeof newConfirmSettings.position === 'string' ? newConfirmSettings.position.trim() : 'center';
+    ntflxConfirmWrap.classList.add('nx-position-' + confirmPosition);
+    // position: end
 
     // font-family: begin
     ntflxConfirmWrap.style.fontFamily = '"' + newConfirmSettings.fontFamily + '", ' + defaultFontFamily;
@@ -1134,7 +1140,7 @@
 
     // confirm wrap content: begin
     ntflxConfirmWrap.innerHTML = confirmOverlay +
-      '<div class="' + newConfirmSettings.className + '-content" style="background:' + newConfirmSettings.backgroundColor + '; animation-duration:' + newConfirmSettings.cssAnimationDuration + 'ms; border-radius: ' + newConfirmSettings.borderRadius + ';">' +
+      '<div class="' + newConfirmSettings.className + '-content" style="width:' + newConfirmSettings.width + '; background:' + newConfirmSettings.backgroundColor + '; animation-duration:' + newConfirmSettings.cssAnimationDuration + 'ms; border-radius: ' + newConfirmSettings.borderRadius + ';">' +
       '<div class="' + newConfirmSettings.className + '-head">' +
       '<h5 style="color:' + newConfirmSettings.titleColor + ';font-size:' + newConfirmSettings.titleFontSize + ';">' + title + '</h5>' +
       '<div style="color:' + newConfirmSettings.messageColor + ';font-size:' + newConfirmSettings.messageFontSize + ';">' + message + setValidationInput + '</div>' +
@@ -1150,48 +1156,6 @@
     // if there is no confirm box: begin
     if (!window.document.getElementById(ntflxConfirmWrap.id)) {
       window.document.body.appendChild(ntflxConfirmWrap);
-
-      // position: begin
-      if (newConfirmSettings.position === 'center') { // if center-center
-        var windowH = Math.round(window.innerHeight);
-        var confirmH = Math.round(window.document.getElementById(ntflxConfirmWrap.id).offsetHeight);
-        ntflxConfirmWrap.style.top = (windowH - confirmH) / 2 + 'px';
-        ntflxConfirmWrap.style.left = newConfirmSettings.distance;
-        ntflxConfirmWrap.style.right = newConfirmSettings.distance;
-        ntflxConfirmWrap.style.bottom = 'auto';
-        ntflxConfirmWrap.style.margin = 'auto';
-      } else if (newConfirmSettings.position === 'right-top') { // if right-top
-        ntflxConfirmWrap.style.right = newConfirmSettings.distance;
-        ntflxConfirmWrap.style.top = newConfirmSettings.distance;
-        ntflxConfirmWrap.style.bottom = 'auto';
-        ntflxConfirmWrap.style.left = 'auto';
-        ntflxConfirmWrap.style.margin = 'auto';
-      } else if (newConfirmSettings.position === 'right-bottom') { // if right-bottom
-        ntflxConfirmWrap.style.right = newConfirmSettings.distance;
-        ntflxConfirmWrap.style.bottom = newConfirmSettings.distance;
-        ntflxConfirmWrap.style.top = 'auto';
-        ntflxConfirmWrap.style.left = 'auto';
-        ntflxConfirmWrap.style.margin = 'auto';
-      } else if (newConfirmSettings.position === 'left-top') { // if left-top
-        ntflxConfirmWrap.style.left = newConfirmSettings.distance;
-        ntflxConfirmWrap.style.top = newConfirmSettings.distance;
-        ntflxConfirmWrap.style.right = 'auto';
-        ntflxConfirmWrap.style.bottom = 'auto';
-        ntflxConfirmWrap.style.margin = 'auto';
-      } else if (newConfirmSettings.position === 'left-bottom') { // if left-bottom
-        ntflxConfirmWrap.style.left = newConfirmSettings.distance;
-        ntflxConfirmWrap.style.bottom = newConfirmSettings.distance;
-        ntflxConfirmWrap.style.top = 'auto';
-        ntflxConfirmWrap.style.right = 'auto';
-        ntflxConfirmWrap.style.margin = 'auto';
-      } else { // if center-top
-        ntflxConfirmWrap.style.top = newConfirmSettings.distance;
-        ntflxConfirmWrap.style.left = 0;
-        ntflxConfirmWrap.style.right = 0;
-        ntflxConfirmWrap.style.bottom = 'auto';
-        ntflxConfirmWrap.style.margin = 'auto';
-      }
-      // position: end
 
       // buttons && input listener: begin
       var confirmCloseWrap = window.document.getElementById(ntflxConfirmWrap.id);
@@ -1480,9 +1444,9 @@
 
   // Notiflix: Block or Unblock Element: begin
   var blockElmCount = 0;
-  var NotiflixBlockUnblockElement = function (block, selector, iconType, messageOrOptions, options, delay) {
+  var NotiflixBlockUnblock = function (block, selector, iconType, messageOrOptions, options, delay) {
     // check typeof selector: begin
-    if (typeof selector !== 'string') {
+    if (typeof selector !== 'string' || (selector || '').length < 1 || (selector || '').length === 1 && ((selector || '')[0] === '#' || (selector || '')[0] === '.')) {
       notiflixConsoleError('Notiflix Error', 'The selector parameter must be a String and matches a specified CSS selector(s).');
       return false;
     }
@@ -1962,32 +1926,32 @@
       },
       // Display Block: Standard
       Standard: function (selector, messageOrOptions, options) {
-        NotiflixBlockUnblockElement(true, selector, 'standard', messageOrOptions, options); // true => show
+        NotiflixBlockUnblock(true, selector, 'standard', messageOrOptions, options); // true => show
       },
       // Display Block: Hourglass
       Hourglass: function (selector, messageOrOptions, options) {
-        NotiflixBlockUnblockElement(true, selector, 'hourglass', messageOrOptions, options); // true => show
+        NotiflixBlockUnblock(true, selector, 'hourglass', messageOrOptions, options); // true => show
       },
       // Display Block: Circle
       Circle: function (selector, messageOrOptions, options) {
-        NotiflixBlockUnblockElement(true, selector, 'circle', messageOrOptions, options); // true => show
+        NotiflixBlockUnblock(true, selector, 'circle', messageOrOptions, options); // true => show
       },
       // Display Block: Arrows
       Arrows: function (selector, messageOrOptions, options) {
-        NotiflixBlockUnblockElement(true, selector, 'arrows', messageOrOptions, options); // true => show
+        NotiflixBlockUnblock(true, selector, 'arrows', messageOrOptions, options); // true => show
       },
       // Display Block: Dots
       Dots: function (selector, messageOrOptions, options) {
-        NotiflixBlockUnblockElement(true, selector, 'dots', messageOrOptions, options); // true => show
+        NotiflixBlockUnblock(true, selector, 'dots', messageOrOptions, options); // true => show
       },
       // Display Block: Pulse
       Pulse: function (selector, messageOrOptions, options) {
-        NotiflixBlockUnblockElement(true, selector, 'pulse', messageOrOptions, options); // true => show
+        NotiflixBlockUnblock(true, selector, 'pulse', messageOrOptions, options); // true => show
       },
       // Remove Block
       Remove: function (selector, delay) {
         if (typeof delay !== 'number') { delay = 0; }
-        NotiflixBlockUnblockElement(false, selector, false, false, false, delay); // false => hide/remove
+        NotiflixBlockUnblock(false, selector, false, false, false, delay); // false => hide/remove
       },
     },
     // Block: end

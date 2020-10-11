@@ -173,9 +173,9 @@
 
   </style>
 
-  <!-- <link href="../dist/notiflix-2.5.0.min.css" rel="stylesheet" />
-  <script src="../dist/notiflix-2.5.0.min.js"></script> -->
-  <script src="../dist/notiflix-aio-2.5.0.min.js"></script>
+  <!-- <link href="../dist/notiflix-2.6.0.min.css" rel="stylesheet" />
+  <script src="../dist/notiflix-2.6.0.min.js"></script> -->
+  <script src="../dist/notiflix-aio-2.6.0.min.js"></script>
 
   <!-- <link href="../src/notiflix.css" rel="stylesheet" />
   <script src="../src/notiflix.js"></script> -->
@@ -191,11 +191,15 @@
     // });
 
     // Notiflix.Report.Init({
-    //   messageMaxLength: 600,
+    //   width: '640px',
     // });
 
     // Notiflix.Confirm.Init({
-    //   messageMaxLength: 1000,
+    //   // messageMaxLength: 1000,
+    //   // rtl: true,
+    //   position: 'center',
+    //   distance: '10px',
+    //   cssAnimationStyle: 'fade',
     // });
 
     Notiflix.Loading.Init({
@@ -243,7 +247,7 @@
 
       <button class="nx-confirm" onclick="Notiflix.Confirm.Ask('Where is Padmé?','Is she safe? Is she all right?','It seems, in your anger, you killed her.','Answer','Cancel',function(){for (var index = 0; index < 9; index++) {setTimeout(function () {Notiflix.Notify.Failure('NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!')}, index * 100)}});">Notiflix Confirm Ask</button>
 
-      <button class="nx-confirm" onclick="Notiflix.Confirm.Ask('Please Answer','1881 + 1923 = ?','3804','Answer','Cancel',function(){Notiflix.Notify.Success('That\'s correct, thanks.')},false,{width:'320px',borderRadius:'8px'});">Notiflix Confirm Ask (With Options)</button>
+      <button class="nx-confirm" onclick="Notiflix.Confirm.Ask('Please Answer','1881 + 1923 = ?','3804','Answer','Cancel',function(){Notiflix.Notify.Success('That\'s correct, thanks.')},false,{width:'320px',borderRadius:'8px',position:'right-top'});">Notiflix Confirm Ask (With Options)</button>
     </div>
   </div>
 

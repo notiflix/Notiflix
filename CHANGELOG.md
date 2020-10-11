@@ -1,3 +1,14 @@
+@2.6.0
+* **Fixed:** `Notiflix.Confirm.*` module: display and position issues have been fixed.
+
+* **Added:** `Notiflix.Confirm.*` module: New position settings have been added. `center-bottom`, `right-center`, and `left-center`.
+
+* **Changed:** `Notiflix.Report.*` module: display and position improvements.
+
+* **Changed:** `Notiflix.Block.*` module: Code Review.
+
+-----
+
 @2.5.0
 * **Added:** `Notiflix.Confirm.*` module: The `options` parameter has been added to extend the initialize settings with new options for each Confirm Box.
 

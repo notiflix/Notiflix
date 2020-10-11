@@ -17,8 +17,8 @@
 [downloads-url]: https://npmjs.org/package/notiflix
 [jsdelivr-badge]: https://data.jsdelivr.com/v1/package/npm/notiflix/badge?style=rounded
 [jsdelivr-url]: https://www.jsdelivr.com/package/npm/notiflix
-[size-badge]: https://img.badgesize.io/https://cdn.jsdelivr.net/npm/notiflix@2.5.0/dist/notiflix-aio-2.5.0.min.js?compression=gzip
-[size-url]: https://cdn.jsdelivr.net/npm/notiflix@2.5.0/dist/notiflix-aio-2.5.0.min.js
+[size-badge]: https://img.badgesize.io/https://cdn.jsdelivr.net/npm/notiflix@2.6.0/dist/notiflix-aio-2.6.0.min.js?compression=gzip
+[size-url]: https://cdn.jsdelivr.net/npm/notiflix@2.6.0/dist/notiflix-aio-2.6.0.min.js
 [lic-badge]: https://img.shields.io/github/license/notiflix/Notiflix.svg
 [lic-url]: https://github.com/notiflix/Notiflix/blob/master/LICENSE
 
@@ -34,7 +34,7 @@
 Notiflix is a JavaScript library for client-side non-blocking notifications, popup boxes, loading indicators, and more to that makes your web projects much better.
 
 #### Current Version
-2.5.0 [*](https://github.com/notiflix/Notiflix/blob/master/CHANGELOG.md "CHANGELOG")
+2.6.0 [*](https://github.com/notiflix/Notiflix/blob/master/CHANGELOG.md "CHANGELOG")
 
 #### Website
 https://www.notiflix.com
@@ -83,14 +83,14 @@ import { Notify, Report, Confirm, Loading, Block } from "notiflix";
 
 ##### CSS and JS
 ```html
-<link rel="stylesheet" href="dist/notiflix-2.5.0.min.css" />
+<link rel="stylesheet" href="dist/notiflix-2.6.0.min.css" />
 
-<script src="dist/notiflix-2.5.0.min.js"></script>
+<script src="dist/notiflix-2.6.0.min.js"></script>
 ```
 
 ##### or only JS (All in One - Internal CSS)
 ```html
-<script src="dist/notiflix-aio-2.5.0.min.js"></script>
+<script src="dist/notiflix-aio-2.6.0.min.js"></script>
 ```
 
 ---------
@@ -638,7 +638,7 @@ Notiflix.Confirm.Init({
   className: 'notiflix-confirm',
   width: '300px',
   zindex: 4003,
-  position: 'center', // 'center' - 'center-top' -  'right-top' - 'right-bottom' - 'left-top' - 'left-bottom'
+  position: 'center', // 'center' - 'center-top' - 'center-bottom' - 'right-top' - 'right-center' - 'right-bottom' - 'left-top' - 'left-center' - 'left-bottom'
   distance: '10px',
   backgroundColor: '#f8f8f8',
   borderRadius: '25px',
