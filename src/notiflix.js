@@ -1,6 +1,6 @@
 /*!
 * Notiflix ("https://www.notiflix.com")
-* Version: 2.6.0
+* Version: 2.7.0
 * Author: Furkan MT ("https://github.com/furcan")
 * Copyright 2020 Notiflix, MIT Licence ("https://opensource.org/licenses/MIT")
 */
@@ -52,6 +52,7 @@
     plainText: true,
     showOnlyTheLastOne: false,
     clickToClose: false,
+    pauseOnHover: true, // v2.7.0 and the next versions
 
     ID: 'NotiflixNotify',
     className: 'notiflix-notify',
@@ -701,32 +702,12 @@
     } else {
       window.document.getElementById(ntflxNotifyWrap.id).appendChild(ntflxNotify);
     }
-
-    if (newNotifySettings.useIcon) { // if useIcon, dynamically vertical align the contents
-      var messageIcon = window.document.getElementById(ntflxNotify.id).querySelectorAll('.nmi')[0];
-      var messageIconH = 40;
-      // if font awesome
-      if (newNotifySettings.useFontAwesome) {
-        messageIconH = Math.round(parseInt(messageIcon.offsetHeight));
-      }
-      // if notiflix SVG
-      else {
-        var SvgBBox = messageIcon.getBBox();
-        messageIconH = Math.round(parseInt(SvgBBox.width));
-      }
-      var messageText = window.document.getElementById(ntflxNotify.id).querySelectorAll('span')[0];
-      var messageTextH = Math.round(messageText.offsetHeight);
-      if (messageTextH <= messageIconH) {
-        messageText.style.paddingTop = (messageIconH - messageTextH) / 2 + 'px';
-        messageText.style.paddingBottom = (messageIconH - messageTextH) / 2 + 'px';
-      }
-    }
     // notify append or prepend: end
 
     // remove by timeout or click: begin
-    if (window.document.getElementById(ntflxNotify.id)) {
+    var eachNotifyElement = window.document.getElementById(ntflxNotify.id);
+    if (eachNotifyElement) {
       // set elements: begin
-      var removeDiv = window.document.getElementById(ntflxNotify.id);
       var removeWrap = window.document.getElementById(ntflxNotifyWrap.id);
       var removeOverlay;
       if (newNotifySettings.backOverlay) {
@@ -741,7 +722,7 @@
 
       // hide notify elm and hide overlay: begin
       var hideNotifyElementsAndOverlay = function () {
-        removeDiv.classList.add('remove');
+        eachNotifyElement.classList.add('remove');
         if (newNotifySettings.backOverlay && removeWrap.childElementCount <= 0) {
           removeOverlay.classList.add('remove');
         }
@@ -751,9 +732,8 @@
 
       // remove notify elm and wrapper: begin
       var removeNotifyElmentsAndWrapper = function () {
-        var notifyExist = window.document.getElementById(ntflxNotify.id);
-        if (notifyExist && removeDiv.parentNode !== null) {
-          removeDiv.parentNode.removeChild(removeDiv);
+        if (eachNotifyElement && eachNotifyElement.parentNode !== null) {
+          eachNotifyElement.parentNode.removeChild(eachNotifyElement);
         }
         if (removeWrap.childElementCount <= 0 && removeWrap.parentNode !== null) { // if childs count === 0 remove wrap
           removeWrap.parentNode.removeChild(removeWrap);
@@ -780,7 +760,7 @@
 
       // if callbackOrOptions or click to close: begin
       if (typeof callbackOrOptions === 'function' || newNotifySettings.clickToClose) {
-        removeDiv.addEventListener('click', function () {
+        eachNotifyElement.addEventListener('click', function () {
           if (typeof callbackOrOptions === 'function') {
             notifyElmCountOnlyCallback--;
             callbackOrOptions();
@@ -796,12 +776,31 @@
 
       // else auto remove: begin
       if (!newNotifySettings.closeButton && typeof callbackOrOptions !== 'function') {
-        timeoutHide = setTimeout(function () {
-          hideNotifyElementsAndOverlay();
-        }, newNotifySettings.timeout);
-        timeoutRemove = setTimeout(function () {
-          removeNotifyElmentsAndWrapper();
-        }, newNotifySettings.timeout + newNotifySettings.cssAnimationDuration);
+        // auto remove: begin
+        var autoRemove = function () {
+          timeoutHide = setTimeout(function () {
+            hideNotifyElementsAndOverlay();
+          }, newNotifySettings.timeout);
+          timeoutRemove = setTimeout(function () {
+            removeNotifyElmentsAndWrapper();
+          }, newNotifySettings.timeout + newNotifySettings.cssAnimationDuration);
+        };
+        autoRemove();
+        // auto remove: end
+
+        // pause auto remove: begin
+        if (newNotifySettings.pauseOnHover) {
+          eachNotifyElement.addEventListener('mouseenter', function () {
+            eachNotifyElement.classList.add('nx-paused');
+            clearTimeout(timeoutHide);
+            clearTimeout(timeoutRemove);
+          });
+          eachNotifyElement.addEventListener('mouseleave', function () {
+            eachNotifyElement.classList.remove('nx-paused');
+            autoRemove();
+          });
+        }
+        // pause auto remove: end
       }
       // else auto remove: end
     }
@@ -1446,7 +1445,8 @@
   var blockElmCount = 0;
   var NotiflixBlockUnblock = function (block, selector, iconType, messageOrOptions, options, delay) {
     // check typeof selector: begin
-    if (typeof selector !== 'string' || (selector || '').length < 1 || (selector || '').length === 1 && ((selector || '')[0] === '#' || (selector || '')[0] === '.')) {
+    var selectorIsNotValid = (typeof selector !== 'string') || ((selector || '').length < 1) || ((selector || '').length === 1 && ((selector || '')[0] === '#' || (selector || '')[0] === '.'));
+    if (selectorIsNotValid) {
       notiflixConsoleError('Notiflix Error', 'The selector parameter must be a String and matches a specified CSS selector(s).');
       return false;
     }

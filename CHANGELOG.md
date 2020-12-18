@@ -1,3 +1,12 @@
+@2.7.0
+* **Added:** `Notiflix.Notify.*` module: The `pauseOnHover` option has been added. The default value is `true`. Auto-remove functionality will be paused for each notification element when the pointer(mouse) enters the notification if this option has been set as `true`.
+
+* **Changed:** `Notiflix.Notify.*` module: Display improvements.
+
+* **Changed:** `Notiflix.Block.*` module: Code Review.
+
+-----
+
 @2.6.0
 * **Fixed:** `Notiflix.Confirm.*` module: display and position issues have been fixed.
 

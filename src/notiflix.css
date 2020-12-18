@@ -1,6 +1,6 @@
 /*!
 * Notiflix ("https://www.notiflix.com")
-* Version: 2.6.0
+* Version: 2.7.0
 * Author: Furkan MT ("https://github.com/furcan")
 * Copyright 2020 Notiflix, MIT Licence ("https://opensource.org/licenses/MIT")
 */
@@ -85,7 +85,17 @@
   user-select: none;
   font-family: "Quicksand", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   width: 100%;
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   position: relative;
   margin: 0 0 10px;
   border-radius: 5px;
@@ -106,6 +116,11 @@
 
 [id^="NotiflixNotifyWrap"] > div.with-icon {
   padding: 8px;
+  min-height: 56px;
+}
+
+[id^="NotiflixNotifyWrap"] > div.nx-paused {
+  cursor: auto;
 }
 
 [id^="NotiflixNotifyWrap"] > div.click-to-close {
@@ -121,6 +136,7 @@
 }
 
 [id^="NotiflixNotifyWrap"] > div > span.the-message {
+  cursor: inherit;
   font-weight: normal;
   font-family: inherit !important;
   word-break: break-all;
