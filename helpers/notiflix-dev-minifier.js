@@ -4,7 +4,7 @@
 * Description: Minify the Notiflix scripts, and clean the Notiflix styles to the distribution. (Used "Babel Minify", and "Clean CSS")
 * Version: 1.0.0
 * Author: Furkan MT ('https://github.com/furcan')
-* Copyright 2020 Notiflix Minifier, MIT Licence ('https://opensource.org/licenses/MIT')
+* Copyright 2019 - 2021 Notiflix Minifier, MIT Licence ('https://opensource.org/licenses/MIT')
 */
 
 // Dev Dependencies

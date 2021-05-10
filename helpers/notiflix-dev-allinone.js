@@ -4,7 +4,7 @@
 * Description: Creates "notiflix-aio.js" file automatically from "notiflix.js" and "notiflix.css" files.
 * Version: 1.0.0
 * Author: Furkan MT ('https://github.com/furcan')
-* Copyright 2020 Notiflix - All In One, MIT Licence ('https://opensource.org/licenses/MIT')
+* Copyright 2019 - 2021 Notiflix - All In One, MIT Licence ('https://opensource.org/licenses/MIT')
 */
 
 // Dev Dependencies

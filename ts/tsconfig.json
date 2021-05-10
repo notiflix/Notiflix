@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "composite": true,
+    "declarationMap": true,
+    "strict": true,
+    "noEmit": true
+  },
+  "include": [
+    "../index.d.ts",
+    "../ts/notiflix.d.test.ts"
+  ],
+  "exclude": [
+    "../dist",
+    "../docs",
+    "../helpers",
+    "../node_modules",
+    "../src"
+  ]
+}

@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/notiflix/Notiflix/master/github-assets/welcome-to-notiflix.gif" width="480" height="auto" alt="Notiflix">
+  <img src="https://raw.githubusercontent.com/notiflix/Notiflix/main/docs/notiflix-banner.gif" width="480" height="auto" alt="Notiflix">
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/notiflix/Notiflix/master/github-assets/notiflix-logo.svg?sanitize=true" width="240" height="80" alt="Notiflix">
+  <img src="https://raw.githubusercontent.com/notiflix/Notiflix/main/docs/notiflix-logo.svg?sanitize=true" width="240" height="80" alt="Notiflix">
 </p>
 <br />
 
@@ -17,10 +17,10 @@
 [downloads-url]: https://npmjs.org/package/notiflix
 [jsdelivr-badge]: https://data.jsdelivr.com/v1/package/npm/notiflix/badge?style=rounded
 [jsdelivr-url]: https://www.jsdelivr.com/package/npm/notiflix
-[size-badge]: https://img.badgesize.io/https://cdn.jsdelivr.net/npm/notiflix@2.7.0/dist/notiflix-aio-2.7.0.min.js?compression=gzip
-[size-url]: https://cdn.jsdelivr.net/npm/notiflix@2.7.0/dist/notiflix-aio-2.7.0.min.js
+[size-badge]: https://img.badgesize.io/https://cdn.jsdelivr.net/npm/notiflix@3.0.0/dist/notiflix-aio-3.0.0.min.js?compression=gzip
+[size-url]: https://cdn.jsdelivr.net/npm/notiflix@3.0.0/dist/notiflix-aio-3.0.0.min.js
 [lic-badge]: https://img.shields.io/github/license/notiflix/Notiflix.svg
-[lic-url]: https://github.com/notiflix/Notiflix/blob/master/LICENSE
+[lic-url]: https://github.com/notiflix/Notiflix/blob/main/LICENSE
 
 [![npm version][npm-version-badge]][npm-version-url]
 [![Dependencies][dep-badge]][dep-url]
@@ -34,7 +34,7 @@
 Notiflix is a JavaScript library for client-side non-blocking notifications, popup boxes, loading indicators, and more that makes your web projects much better.
 
 #### Current Version
-2.7.0 [*](https://github.com/notiflix/Notiflix/blob/master/CHANGELOG.md "CHANGELOG")
+3.0.0 [*](https://github.com/notiflix/Notiflix/blob/main/CHANGELOG.md "CHANGELOG")
 
 #### Website
 https://www.notiflix.com
@@ -55,16 +55,16 @@ https://www.notiflix.com/documentation
 
 Install
 
-[npm](https://www.npmjs.com/package/notiflix)
-
-```js
-npm i notiflix
-```
-
 [yarn](https://yarnpkg.com/en/package/notiflix)
 
 ```js
 yarn add notiflix
+```
+
+[npm](https://www.npmjs.com/package/notiflix)
+
+```js
+npm i notiflix
 ```
 
 Import
@@ -83,14 +83,14 @@ import { Notify, Report, Confirm, Loading, Block } from "notiflix";
 
 ##### CSS and JS
 ```html
-<link rel="stylesheet" href="dist/notiflix-2.7.0.min.css" />
+<link rel="stylesheet" href="dist/notiflix-3.0.0.min.css" />
 
-<script src="dist/notiflix-2.7.0.min.js"></script>
+<script src="dist/notiflix-3.0.0.min.js"></script>
 ```
 
 ##### or only JS (All in One - Internal CSS)
 ```html
-<script src="dist/notiflix-aio-2.7.0.min.js"></script>
+<script src="dist/notiflix-aio-3.0.0.min.js"></script>
 ```
 
 ---------
@@ -109,32 +109,32 @@ import { Notify, Report, Confirm, Loading, Block } from "notiflix";
 */
 
 // e.g. Only message
-Notiflix.Notify.Success('Success message text');
+Notiflix.Notify.success('Success message text');
 
-Notiflix.Notify.Failure('Failure message text');
+Notiflix.Notify.failure('Failure message text');
 
-Notiflix.Notify.Warning('Warning message text');
+Notiflix.Notify.warning('Warning message text');
 
-Notiflix.Notify.Info('Info message text');
+Notiflix.Notify.info('Info message text');
 
 // e.g. Message with a callback
-Notiflix.Notify.Success(
+Notiflix.Notify.success(
   'Click Me',
   function(){
     // callback
   },
 );
 
-// e.g. Message with the new options (v2.3.1 and the next versions)
-Notiflix.Notify.Success(
+// e.g. Message with the new options
+Notiflix.Notify.success(
   'Click Me',
   {
     timeout: 6000,
   },
 );
 
-// e.g. Message with callback, and the new options (v2.3.1 and the next versions)
-Notiflix.Notify.Success(
+// e.g. Message with callback, and the new options
+Notiflix.Notify.success(
   'Click Me',
   function(){
     // callback
@@ -164,16 +164,16 @@ Notiflix.Notify.Success(
 */
 
 // e.g. Only title, message, and button text
-Notiflix.Report.Success('Title', 'Message', 'Button Text');
+Notiflix.Report.success('Title', 'Message', 'Button Text');
 
-Notiflix.Report.Failure('Title', 'Message', 'Button Text');
+Notiflix.Report.failure('Title', 'Message', 'Button Text');
 
-Notiflix.Report.Warning('Title', 'Message', 'Button Text');
+Notiflix.Report.warning('Title', 'Message', 'Button Text');
 
-Notiflix.Report.Info('Title', 'Message', 'Button Text');
+Notiflix.Report.info('Title', 'Message', 'Button Text');
 
 // e.g. With a callback
-Notiflix.Report.Success(
+Notiflix.Report.success(
   'Title',
   'Message',
   'Button Text',
@@ -182,8 +182,8 @@ Notiflix.Report.Success(
   },
 );
 
-// e.g. With the new options (v2.3.1 and the next versions)
-Notiflix.Report.Success(
+// e.g. With the new options
+Notiflix.Report.success(
   'Title',
   'Message',
   'Button Text',
@@ -193,8 +193,8 @@ Notiflix.Report.Success(
   },
 );
 
-// e.g. With the new options, and callback (v2.3.1 and the next versions)
-Notiflix.Report.Success(
+// e.g. With the new options, and callback
+Notiflix.Report.success(
   'Title',
   'Message',
   'Button Text',
@@ -226,10 +226,10 @@ Show:
 * @param7 {Object}: Optional, extend the initialize options with new options for each confirm box.
 */
 
-Notiflix.Confirm.Show('Title', 'Message', 'Ok Button Text');
+Notiflix.Confirm.show('Title', 'Message', 'Ok Button Text');
 
 // e.g. with callback
-Notiflix.Confirm.Show(
+Notiflix.Confirm.show(
   'Title',
   'Message',
   'Ok Button',
@@ -245,7 +245,7 @@ Notiflix.Confirm.Show(
     // codes...
   },
 
-  // extend the init options for this confirm box (v2.5.0 and the next versions)
+  // extend the init options for this confirm box
   {
     width: '320px',
     borderRadius: '8px',
@@ -255,7 +255,7 @@ Notiflix.Confirm.Show(
 ```
 
 
-Ask: (v2.5.0 and the next versions)
+Ask:
 
 ```js
 /*
@@ -269,7 +269,7 @@ Ask: (v2.5.0 and the next versions)
 * @param8 {Object}: Optional, extend the initialize options with new options for each confirm box.
 */
 
-Notiflix.Confirm.Ask(
+Notiflix.Confirm.ask(
   'Where is Padmé?',
   'Is she safe? Is she all right?',
   'It seems, in your anger, you killed her.',
@@ -302,26 +302,26 @@ Show:
 */
 
 // Only Loading indicator
-Notiflix.Loading.Standard();
-Notiflix.Loading.Hourglass();
-Notiflix.Loading.Circle();
-Notiflix.Loading.Arrows();
-Notiflix.Loading.Dots();
-Notiflix.Loading.Pulse();
+Notiflix.Loading.standard();
+Notiflix.Loading.hourglass();
+Notiflix.Loading.circle();
+Notiflix.Loading.arrows();
+Notiflix.Loading.dots();
+Notiflix.Loading.pulse();
 
 // Loading indicator with a message
-Notiflix.Loading.Standard('Loading...');
+Notiflix.Loading.standard('Loading...');
 
 
-// Only Loading indicator with the new options (v2.4.0 and the next versions)
-Notiflix.Loading.Standard(
+// Only Loading indicator with the new options
+Notiflix.Loading.standard(
   {
     svgSize: '19px',
   },
 );
 
-// Loading indicator with a message, and the new options (v2.4.0 and the next versions)
-Notiflix.Loading.Standard(
+// Loading indicator with a message, and the new options
+Notiflix.Loading.standard(
   'Loading...',
   {
     svgSize: '23px',
@@ -337,7 +337,7 @@ Change:
 */
 
 // Change the message text (if an indicator exists)
-Notiflix.Loading.Change('Loading %20');
+Notiflix.Loading.change('Loading %20');
 ```
 
 Remove:
@@ -348,25 +348,25 @@ Remove:
 */
 
 // Remove immediately
-Notiflix.Loading.Remove();
+Notiflix.Loading.remove();
 
 // Remove after delay - e.g. 600ms
-Notiflix.Loading.Remove(600);
+Notiflix.Loading.remove(600);
 ```
 
 Custom:
 
 ```js
 // Initialize with a custom SVG Icon (default value is null)
-Notiflix.Loading.Init({
+Notiflix.Loading.init({
   customSvgUrl: 'https://www.notiflix.com/dir/icon.svg',
 });
 
 // Only Customized Loading indicator
-Notiflix.Loading.Custom();
+Notiflix.Loading.custom();
 
 // Customized Loading indicator with a message
-Notiflix.Loading.Custom('Loading...');
+Notiflix.Loading.custom('Loading...');
 
 // And the other functionalities (Change, Remove...)
 ```
@@ -388,27 +388,27 @@ Block:
 */
 
 // Only indicator
-Notiflix.Block.Standard('.element');
-Notiflix.Block.Hourglass('.element');
-Notiflix.Block.Circle('.element');
-Notiflix.Block.Arrows('.element');
-Notiflix.Block.Dots('.element');
-Notiflix.Block.Pulse('.element');
+Notiflix.Block.standard('.element');
+Notiflix.Block.hourglass('.element');
+Notiflix.Block.circle('.element');
+Notiflix.Block.arrows('.element');
+Notiflix.Block.dots('.element');
+Notiflix.Block.pulse('.element');
 
 // Indicator with a message
-Notiflix.Block.Standard('.selector', 'Loading...');
+Notiflix.Block.standard('.selector', 'Loading...');
 
 
-// Only indicator with the new options (v2.4.0 and the next versions)
-Notiflix.Block.Standard(
+// Only indicator with the new options
+Notiflix.Block.standard(
   '.selector',
   {
     svgSize: '18px',
   },
 );
 
-// Indicator with a message, and the new options (v2.4.0 and the next versions)
-Notiflix.Block.Standard(
+// Indicator with a message, and the new options
+Notiflix.Block.standard(
   '.selector',
   'Loading...',
   {
@@ -427,10 +427,10 @@ Unblock:
 */
 
 // Unblock selected element(s) immediately
-Notiflix.Block.Remove('.selector');
+Notiflix.Block.remove('.selector');
 
 // Unblock selected element(s) after a delay (e.g. 600 milliseconds)
-Notiflix.Block.Remove('.selector', 600);
+Notiflix.Block.remove('.selector', 600);
 ```
 
 --_--_----_--_----_--_----_--_----_--_----_--_--
@@ -438,27 +438,27 @@ Notiflix.Block.Remove('.selector', 600);
 
 ### Initialize (optional)
 
-`Notiflix.*.Init` function can be used if wanted to be used with custom settings.
+`Notiflix.*.init` function can be used if wanted to be used with custom settings.
 
 ```js
 // Notify
-Notiflix.Notify.Init({});
+Notiflix.Notify.init({});
 
 // Report
-Notiflix.Report.Init({});
+Notiflix.Report.init({});
 
 // Confirm
-Notiflix.Confirm.Init({});
+Notiflix.Confirm.init({});
 
 // Loading
-Notiflix.Loading.Init({});
+Notiflix.Loading.init({});
 
 // Block
-Notiflix.Block.Init({});
+Notiflix.Block.init({});
 
 
 // e.g. Initialize the Notify Module with some options
-Notiflix.Notify.Init({
+Notiflix.Notify.init({
   width: '280px',
   position: 'right-top',
   distance: '10px',
@@ -472,11 +472,11 @@ Notiflix.Notify.Init({
 
 ### Merge (optional)
 
-`Notiflix.*.Merge` function can be used to deeply extend the `Init` function for a specific page or event.
+`Notiflix.*.merge` function can be used to deeply extend the `init()` function for a specific page or event.
 
 ```js
 // e.g. Merge the Notify Module initialize function with some new options
-Notiflix.Notify.Merge({
+Notiflix.Notify.merge({
   width: '300px',
   // ...
 });
@@ -491,9 +491,9 @@ Notiflix.Notify.Merge({
 #### Notiflix Notify Module: Default Options
 
 ```js
-Notiflix.Notify.Init({
+Notiflix.Notify.init({
   width: '280px',
-  position: 'right-top', // 'right-top' - 'right-bottom' - 'left-top' - 'left-bottom' && v2.2.0 and the next versions => 'center-top' - 'center-bottom' - 'center-center'
+  position: 'right-top', // 'right-top' - 'right-bottom' - 'left-top' - 'left-bottom' - 'center-top' - 'center-bottom' - 'center-center'
   distance: '10px',
   opacity: 1,
   borderRadius: '5px',
@@ -505,12 +505,11 @@ Notiflix.Notify.Init({
   plainText: true,
   showOnlyTheLastOne: false,
   clickToClose: false,
-  pauseOnHover: true, // v2.7.0 and the next versions
+  pauseOnHover: true,
 
   ID: 'NotiflixNotify',
   className: 'notiflix-notify',
   zindex: 4001,
-  useGoogleFont: false, // v2.2.0 and the next versions => has been changed as "false"
   fontFamily: 'Quicksand',
   fontSize: '13px',
   cssAnimation: true,
@@ -529,7 +528,7 @@ Notiflix.Notify.Init({
     notiflixIconColor: 'rgba(0,0,0,0.2)',
     fontAwesomeClassName: 'fas fa-check-circle',
     fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
-    backOverlayColor: 'rgba(50,198,130,0.2)', // v2.2.0 and the next versions
+    backOverlayColor: 'rgba(50,198,130,0.2)',
   },
 
   failure: {
@@ -539,7 +538,7 @@ Notiflix.Notify.Init({
     notiflixIconColor: 'rgba(0,0,0,0.2)',
     fontAwesomeClassName: 'fas fa-times-circle',
     fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
-    backOverlayColor: 'rgba(255,85,73,0.2)', // v2.2.0 and the next versions
+    backOverlayColor: 'rgba(255,85,73,0.2)',
   },
 
   warning: {
@@ -549,7 +548,7 @@ Notiflix.Notify.Init({
     notiflixIconColor: 'rgba(0,0,0,0.2)',
     fontAwesomeClassName: 'fas fa-exclamation-circle',
     fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
-    backOverlayColor: 'rgba(238,191,49,0.2)', // v2.2.0 and the next versions
+    backOverlayColor: 'rgba(238,191,49,0.2)',
   },
 
   info: {
@@ -559,7 +558,7 @@ Notiflix.Notify.Init({
     notiflixIconColor: 'rgba(0,0,0,0.2)',
     fontAwesomeClassName: 'fas fa-info-circle',
     fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
-    backOverlayColor: 'rgba(38,192,211,0.2)', // v2.2.0 and the next versions
+    backOverlayColor: 'rgba(38,192,211,0.2)',
   },
 });
 ```
@@ -569,7 +568,7 @@ Notiflix.Notify.Init({
 #### Notiflix Report Module: Default Options
 
 ```js
-Notiflix.Report.Init({
+Notiflix.Report.init({
   className: 'notiflix-report',
   width: '320px',
   backgroundColor: '#f8f8f8',
@@ -578,7 +577,6 @@ Notiflix.Report.Init({
   zindex: 4002,
   backOverlay: true,
   backOverlayColor: 'rgba(0,0,0,0.5)',
-  useGoogleFont: false, // v2.2.0 and the next versions => has been changed as "false"
   fontFamily: 'Quicksand',
   svgSize: '110px',
   plainText: true,
@@ -598,7 +596,7 @@ Notiflix.Report.Init({
     messageColor: '#242424',
     buttonBackground: '#32c682',
     buttonColor: '#fff',
-    backOverlayColor: 'rgba(50,198,130,0.2)', // v2.2.0 and the next versions
+    backOverlayColor: 'rgba(50,198,130,0.2)',
   },
 
   failure: {
@@ -607,7 +605,7 @@ Notiflix.Report.Init({
     messageColor: '#242424',
     buttonBackground: '#ff5549',
     buttonColor: '#fff',
-    backOverlayColor: 'rgba(255,85,73,0.2)', // v2.2.0 and the next versions
+    backOverlayColor: 'rgba(255,85,73,0.2)',
   },
 
   warning: {
@@ -616,7 +614,7 @@ Notiflix.Report.Init({
     messageColor: '#242424',
     buttonBackground: '#eebf31',
     buttonColor: '#fff',
-    backOverlayColor: 'rgba(238,191,49,0.2)', // v2.2.0 and the next versions
+    backOverlayColor: 'rgba(238,191,49,0.2)',
   },
 
   info: {
@@ -625,7 +623,7 @@ Notiflix.Report.Init({
     messageColor: '#242424',
     buttonBackground: '#26c0d3',
     buttonColor: '#fff',
-    backOverlayColor: 'rgba(38,192,211,0.2)', // v2.2.0 and the next versions
+    backOverlayColor: 'rgba(38,192,211,0.2)',
   },
 });
 ```
@@ -635,7 +633,7 @@ Notiflix.Report.Init({
 #### Notiflix Confirm Module: Default Options
 
 ```js
-Notiflix.Confirm.Init({
+Notiflix.Confirm.init({
   className: 'notiflix-confirm',
   width: '300px',
   zindex: 4003,
@@ -646,7 +644,6 @@ Notiflix.Confirm.Init({
   backOverlay: true,
   backOverlayColor: 'rgba(0,0,0,0.5)',
   rtl: false,
-  useGoogleFont: false, // v2.2.0 and the next versions => has been changed as "false"
   fontFamily: 'Quicksand',
   cssAnimation: true,
   cssAnimationStyle: 'fade', // 'zoom' - 'fade'
@@ -675,12 +672,11 @@ Notiflix.Confirm.Init({
 #### Notiflix Loading Module: Default Options
 
 ```js
-Notiflix.Loading.Init({
+Notiflix.Loading.init({
   className: 'notiflix-loading',
   zindex: 4000,
   backgroundColor: 'rgba(0,0,0,0.8)',
   rtl: false,
-  useGoogleFont: false, // v2.2.0 and the next versions => has been changed as "false"
   fontFamily: 'Quicksand',
   cssAnimation: true,
   cssAnimationDuration: 400,
@@ -702,14 +698,13 @@ Notiflix.Loading.Init({
 #### Notiflix Block Module: Default Options
 
 ```js
-Notiflix.Block.Init({
+Notiflix.Block.init({
   querySelectorLimit: 200,
   className: 'notiflix-block',
   position: 'absolute',
   zindex: 1000,
   backgroundColor: 'rgba(255,255,255,0.9)',
   rtl: false,
-  useGoogleFont: false, // v2.2.0 and the next versions => has been changed as "false"
   fontFamily: 'Quicksand',
   cssAnimation: true,
   cssAnimationDuration: 300,
@@ -726,7 +721,7 @@ Notiflix.Block.Init({
 ---------
 
 #### Copyright
-Copyright &copy; 2020 Notiflix
+Copyright &copy; 2019 - 2021 Notiflix
 
 #### License
 MIT license - https://opensource.org/licenses/MIT

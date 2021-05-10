@@ -1,3 +1,57 @@
+@3.0.0
+* **Changed:** `Notiflix.Notify`: `Init()` function name changed to `init()`.
+* **Changed:** `Notiflix.Notify`: `Merge()` function name changed to `merge()`.
+* **Changed:** `Notiflix.Notify`: `Success()` function name changed to `success()`.
+* **Changed:** `Notiflix.Notify`: `Failure()` function name changed to `failure()`.
+* **Changed:** `Notiflix.Notify`: `Warning()` function name changed to `warning()`.
+* **Changed:** `Notiflix.Notify`: `Info()` function name changed to `info()`.
+
+* **Changed:** `Notiflix.Report`: `Init()` function name changed to `init()`.
+* **Changed:** `Notiflix.Report`: `Merge()` function name changed to `merge()`.
+* **Changed:** `Notiflix.Report`: `Success()` function name changed to `success()`.
+* **Changed:** `Notiflix.Report`: `Failure()` function name changed to `failure()`.
+* **Changed:** `Notiflix.Report`: `Warning()` function name changed to `warning()`.
+* **Changed:** `Notiflix.Report`: `Info()` function name changed to `info()`.
+
+* **Changed:** `Notiflix.Confirm`: `Init()` function name changed to `init()`.
+* **Changed:** `Notiflix.Confirm`: `Merge()` function name changed to `merge()`.
+* **Changed:** `Notiflix.Confirm`: `Show()` function name changed to `show()`.
+* **Changed:** `Notiflix.Confirm`: `Ask()` function name changed to `ask()`.
+
+* **Changed:** `Notiflix.Loading`: `Init()` function name changed to `init()`.
+* **Changed:** `Notiflix.Loading`: `Merge()` function name changed to `merge()`.
+* **Changed:** `Notiflix.Loading`: `Standard()` function name changed to `standard()`.
+* **Changed:** `Notiflix.Loading`: `Hourglass()` function name changed to `hourglass()`.
+* **Changed:** `Notiflix.Loading`: `Circle()` function name changed to `circle()`.
+* **Changed:** `Notiflix.Loading`: `Arrows()` function name changed to `arrows()`.
+* **Changed:** `Notiflix.Loading`: `Dots()` function name changed to `dots()`.
+* **Changed:** `Notiflix.Loading`: `Pulse()` function name changed to `pulse()`.
+* **Changed:** `Notiflix.Loading`: `Custom()` function name changed to `custom()`.
+* **Changed:** `Notiflix.Loading`: `Notiflix()` function name changed to `notiflix()`.
+* **Changed:** `Notiflix.Loading`: `Remove()` function name changed to `remove()`.
+* **Changed:** `Notiflix.Loading`: `Change()` function name changed to `change()`.
+
+* **Changed:** `Notiflix.Block`: `Init()` function name changed to `init()`.
+* **Changed:** `Notiflix.Block`: `Merge()` function name changed to `merge()`.
+* **Changed:** `Notiflix.Block`: `Standard()` function name changed to `standard()`.
+* **Changed:** `Notiflix.Block`: `Hourglass()` function name changed to `hourglass()`.
+* **Changed:** `Notiflix.Block`: `Circle()` function name changed to `circle()`.
+* **Changed:** `Notiflix.Block`: `Arrows()` function name changed to `arrows()`.
+* **Changed:** `Notiflix.Block`: `Dots()` function name changed to `dots()`.
+* **Changed:** `Notiflix.Block`: `Pulse()` function name changed to `pulse()`.
+* **Changed:** `Notiflix.Block`: `Remove()` function name changed to `remove()`.
+
+* **Changed:** `Notiflix.Notify.*` module: `useGoogleFont` options has been deprecated.
+* **Changed:** `Notiflix.Report.*` module: `useGoogleFont` options has been deprecated.
+* **Changed:** `Notiflix.Confirm.*` module: `useGoogleFont` options has been deprecated.
+* **Changed:** `Notiflix.Loading.*` module: `useGoogleFont` options has been deprecated.
+* **Changed:** `Notiflix.Block.*` module: `useGoogleFont` options has been deprecated.
+
+* **Added:** TypeScript declaration has added.
+* **Changed:** Code Review.
+
+-----
+
 @2.7.0
 * **Added:** `Notiflix.Notify.*` module: The `pauseOnHover` option has been added. The default value is `true`. Auto-remove functionality will be paused for each notification element when the pointer(mouse) enters the notification if this option has been set as `true`.
 
