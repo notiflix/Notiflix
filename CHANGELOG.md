@@ -1,3 +1,6 @@
+@3.0.1
+* **Changed:** `index.d.ts` file has added to the NPM.
+
 @3.0.0
 * **Changed:** `Notiflix.Notify`: `Init()` function name changed to `init()`.
 * **Changed:** `Notiflix.Notify`: `Merge()` function name changed to `merge()`.

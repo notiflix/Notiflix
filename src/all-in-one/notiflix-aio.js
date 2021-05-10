@@ -1,7 +1,7 @@
 /*!
 * Notiflix ("https://www.notiflix.com")
 * Description: Notiflix All In One contains the Notiflix CSS codes as internal to use the Notiflix as one file. This file has been created automatically from using the "notiflix.js", and "notiflix.css" files.
-* Version: 3.0.0
+* Version: 3.0.1
 * Author: Furkan MT ("https://github.com/furcan")
 * Copyright 2019 - 2021 Notiflix, MIT Licence ("https://opensource.org/licenses/MIT")
 */

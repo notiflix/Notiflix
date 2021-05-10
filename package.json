@@ -1,11 +1,12 @@
 {
   "name": "notiflix",
-  "main": "dist/notiflix-aio-3.0.0.min.js",
+  "main": "dist/notiflix-aio-3.0.1.min.js",
   "types": "index.d.ts",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Notiflix is a JavaScript library for client-side non-blocking notifications, popup boxes, loading indicators, and more...",
   "homepage": "https://github.com/notiflix/Notiflix",
   "files": [
+    "index.d.ts",
     "dist",
     "src",
     "ts"
