@@ -40,7 +40,7 @@
   var notifySettings = {
     wrapID: 'NotiflixNotifyWrap', // can not customizable
     width: '280px',
-    position: 'right-top', // 'right-top' - 'right-bottom' - 'left-top' - 'left-bottom' && v2.2.0 and the next versions => 'center-top' - 'center-bottom' - 'center-center'
+    position: 'right-top', // 'right-top' - 'right-bottom' - 'left-top' - 'left-bottom' - 'center-top' - 'center-bottom' - 'center-center'
     distance: '10px',
     opacity: 1,
     borderRadius: '5px',
@@ -52,7 +52,7 @@
     plainText: true,
     showOnlyTheLastOne: false,
     clickToClose: false,
-    pauseOnHover: true, // v2.7.0 and the next versions
+    pauseOnHover: true,
 
     ID: 'NotiflixNotify',
     className: 'notiflix-notify',
@@ -75,7 +75,7 @@
       notiflixIconColor: 'rgba(0,0,0,0.2)',
       fontAwesomeClassName: 'fas fa-check-circle',
       fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
-      backOverlayColor: 'rgba(50,198,130,0.2)', // v2.2.0 and the next versions
+      backOverlayColor: 'rgba(50,198,130,0.2)',
     },
 
     failure: {
@@ -85,7 +85,7 @@
       notiflixIconColor: 'rgba(0,0,0,0.2)',
       fontAwesomeClassName: 'fas fa-times-circle',
       fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
-      backOverlayColor: 'rgba(255,85,73,0.2)', // v2.2.0 and the next versions
+      backOverlayColor: 'rgba(255,85,73,0.2)',
     },
 
     warning: {
@@ -95,7 +95,7 @@
       notiflixIconColor: 'rgba(0,0,0,0.2)',
       fontAwesomeClassName: 'fas fa-exclamation-circle',
       fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
-      backOverlayColor: 'rgba(238,191,49,0.2)', // v2.2.0 and the next versions
+      backOverlayColor: 'rgba(238,191,49,0.2)',
     },
 
     info: {
@@ -105,7 +105,7 @@
       notiflixIconColor: 'rgba(0,0,0,0.2)',
       fontAwesomeClassName: 'fas fa-info-circle',
       fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
-      backOverlayColor: 'rgba(38,192,211,0.2)', // v2.2.0 and the next versions
+      backOverlayColor: 'rgba(38,192,211,0.2)',
     },
   };
   // Notiflix: Notify Default Settings: end
@@ -140,7 +140,7 @@
       messageColor: '#242424',
       buttonBackground: '#32c682',
       buttonColor: '#fff',
-      backOverlayColor: 'rgba(50,198,130,0.2)', // v2.2.0 and the next versions
+      backOverlayColor: 'rgba(50,198,130,0.2)',
     },
 
     failure: {
@@ -149,7 +149,7 @@
       messageColor: '#242424',
       buttonBackground: '#ff5549',
       buttonColor: '#fff',
-      backOverlayColor: 'rgba(255,85,73,0.2)', // v2.2.0 and the next versions
+      backOverlayColor: 'rgba(255,85,73,0.2)',
     },
 
     warning: {
@@ -158,7 +158,7 @@
       messageColor: '#242424',
       buttonBackground: '#eebf31',
       buttonColor: '#fff',
-      backOverlayColor: 'rgba(238,191,49,0.2)', // v2.2.0 and the next versions
+      backOverlayColor: 'rgba(238,191,49,0.2)',
     },
 
     info: {
@@ -167,7 +167,7 @@
       messageColor: '#242424',
       buttonBackground: '#26c0d3',
       buttonColor: '#fff',
-      backOverlayColor: 'rgba(38,192,211,0.2)', // v2.2.0 and the next versions
+      backOverlayColor: 'rgba(38,192,211,0.2)',
     },
   };
   // Notiflix: Report Default Settings: end
