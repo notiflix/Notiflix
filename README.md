@@ -13,6 +13,8 @@
 [dep-url]: https://david-dm.org/notiflix/Notiflix.svg
 [synk-badge]: https://snyk.io/test/github/notiflix/Notiflix/badge.svg?targetFile=package.json
 [synk-url]: https://snyk.io/test/github/notiflix/Notiflix?targetFile=package.json
+[typescript-badge]: https://badgen.net/badge/icon/Typed?icon=typescript&label&labelColor=3178c6&color=555
+[typescript-url]: https://github.com/notiflix/Notiflix/blob/main/index.d.ts
 [downloads-image]: https://img.shields.io/npm/dm/notiflix.svg
 [downloads-url]: https://npmjs.org/package/notiflix
 [jsdelivr-badge]: https://data.jsdelivr.com/v1/package/npm/notiflix/badge?style=rounded
@@ -25,6 +27,7 @@
 [![npm version][npm-version-badge]][npm-version-url]
 [![Dependencies][dep-badge]][dep-url]
 [![Known Vulnerabilities][synk-badge]][synk-url]
+[![TypeScript][typescript-badge]][typescript-url]
 [![Downloads][downloads-image]][downloads-url]
 [![jsDelivr][jsdelivr-badge]][jsdelivr-url]
 [![Size][size-badge]][size-url]
