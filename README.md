@@ -196,7 +196,7 @@ Notiflix.Report.success(
   },
 );
 
-// e.g. With the new options, and callback
+// e.g. With a callback, and the new options
 Notiflix.Report.success(
   'Title',
   'Message',
