@@ -7,14 +7,14 @@
     "noEmit": true
   },
   "include": [
-    "../index.d.ts",
-    "../ts/notiflix.d.test.ts"
+    "../../index.d.ts",
+    "./notiflix.d.test.ts"
   ],
   "exclude": [
-    "../dist",
-    "../docs",
-    "../helpers",
-    "../node_modules",
-    "../src"
+    "../../dist",
+    "../../docs",
+    "../../helpers",
+    "../../node_modules",
+    "../../src"
   ]
 }

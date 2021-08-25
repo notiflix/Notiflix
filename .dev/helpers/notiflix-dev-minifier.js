@@ -15,7 +15,7 @@ const CleanCSS = require('clean-css');
 const Constants = require('./notiflix-dev-constants');
 
 // Constants
-const thisFilePath = 'helpers/notiflix-dev-minifier.js';
+const thisFilePath = '.dev/helpers/notiflix-dev-minifier.js';
 
 // Minified Code and Source Type: begin
 const minifiedCodeBySourceType = (text, type) => {
@@ -55,7 +55,7 @@ const clearTheOutDir = path => {
     readdirSync(path).map(file => {
       // check the version
       if (file.indexOf(Constants.version) > -1) {
-        Constants.terminalError(`The version number is the same. It should be increased. Go to the "package.json" file to change it.`, `${thisFilePath} => Line: 58`);
+        Constants.terminalError(`Version number is the same. It should be increased. Go to the "package.json" file to change it.`, `${thisFilePath} => Line: 58`);
         return false;
       }
       // remove the old files

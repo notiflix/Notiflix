@@ -45,27 +45,24 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.22.1",
-    "@typescript-eslint/parser": "^4.22.1",
+    "@typescript-eslint/eslint-plugin": "^4.29.3",
+    "@typescript-eslint/parser": "^4.29.3",
     "babel-minify": "^0.5.1",
-    "clean-css": "^4.2.3",
-    "eslint": "^7.6.0",
+    "clean-css": "^5.1.5",
+    "eslint": "^7.32.0",
     "stylelint": "^13.6.1",
-    "stylelint-config-standard": "^20.0.0",
-    "typescript": "^4.2.4"
+    "stylelint-config-standard": "^22.0.0",
+    "typescript": "^4.3.5"
   },
   "scripts": {
-    "notiflix:helpers-constants-eslint": "eslint helpers/notiflix-dev-constants.js",
-    "notiflix:helpers-allinone-eslint": "eslint helpers/notiflix-dev-allinone.js",
-    "notiflix:helpers-minifier-eslint": "eslint helpers/notiflix-dev-minifier.js",
-    "notiflix-helpers-lint": "npm run notiflix:helpers-constants-eslint && npm run notiflix:helpers-allinone-eslint && npm run notiflix:helpers-minifier-eslint",
-    "notiflix:src-stylelint": "stylelint src/notiflix.css",
-    "notiflix:src-eslint": "eslint src/notiflix.js",
-    "notiflix:src-lint": "npm run notiflix:src-stylelint && npm run notiflix:src-eslint",
-    "notiflix:helpers-allinone": "npm run notiflix-helpers-lint && npm run notiflix:src-lint && node helpers/notiflix-dev-allinone.js",
-    "notiflix:src-allinone-eslint": "eslint src/all-in-one/notiflix-aio.js",
-    "notiflix:helpers-minifier": "npm run notiflix:helpers-allinone && npm run notiflix:src-allinone-eslint && node helpers/notiflix-dev-minifier.js",
-    "notiflix:ts-eslint": "eslint ts/*.ts",
-    "notiflix:build": "npm run notiflix:ts-eslint && npm run notiflix:helpers-minifier"
+    "notiflix:dev:lint:ts": "eslint .dev/ts/*.ts",
+    "notiflix:dev:lint:helpers": "eslint .dev/helpers",
+    "notiflix:dev:lint": "yarn notiflix:dev:lint:ts && yarn notiflix:dev:lint:helpers",
+    "notiflix:src:stylelint": "stylelint src/notiflix.css",
+    "notiflix:src:eslint": "eslint src/notiflix.js",
+    "notiflix:src:lint": "yarn notiflix:src:stylelint && yarn notiflix:src:eslint",
+    "notiflix:build:allinone": "yarn notiflix:dev:lint && yarn notiflix:src:lint && node .dev/helpers/notiflix-dev-allinone.js",
+    "notiflix:build:minifier": "yarn notiflix:build:allinone && node .dev/helpers/notiflix-dev-minifier.js",
+    "notiflix:build": "yarn notiflix:build:minifier"
   }
 }
