@@ -8,8 +8,7 @@
   "files": [
     "index.d.ts",
     "dist",
-    "src",
-    "ts"
+    "src"
   ],
   "keywords": [
     "notification",
