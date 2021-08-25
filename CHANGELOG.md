@@ -1,3 +1,7 @@
+@3.0.2
+* **Changed:** `index.d.ts`: Types and Interfaces have been exported.
+* **Changed:** Code Review.
+
 @3.0.1
 * **Changed:** `index.d.ts` file has added to the NPM.
 

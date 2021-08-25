@@ -58,7 +58,7 @@ const createNotiflixAIOfileFromJsAndCss = () => {
     // if output directory is exist
     if (existsSync(Constants.dirOutputDev)) {
       const commentVersion = `* Version:`;
-      const commentDescAndVersion = `* Description: Notiflix All In One contains the Notiflix CSS codes as internal to use the Notiflix as one file. This file has been created automatically from using the "notiflix.js", and "notiflix.css" files.\n${commentVersion}`;
+      const commentDescAndVersion = `* Description: Notiflix All In One contains the Notiflix CSS codes as internal to use Notiflix as one file. This file has been created automatically from using "notiflix.js", and "notiflix.css" files.\n${commentVersion}`;
       const internalCSS = `var css = '';`;
       // add a description comment before the version && replace internal css codes => if they exist
       if (nxScript.indexOf(commentVersion) > -1 && nxScript.indexOf(internalCSS) > -1) {

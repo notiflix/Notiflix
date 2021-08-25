@@ -1,6 +1,6 @@
 /*!
 * Notiflix ("https://www.notiflix.com")
-* Version: 3.0.1
+* Version: 3.0.2
 * Author: Furkan MT ("https://github.com/furcan")
 * Copyright 2019 - 2021 Notiflix, MIT Licence ("https://opensource.org/licenses/MIT")
 */
@@ -949,7 +949,7 @@
       window.document.body.appendChild(ntflxReportWrap);
 
       // callback: begin
-      var getReportWrap = window.document.getElementById(ntflxReportWrap.id);
+      var reportWrapper = window.document.getElementById(ntflxReportWrap.id);
       var reportButton = window.document.getElementById('NXReportButton');
       reportButton.addEventListener('click', function () {
         // if callback: begin
@@ -959,10 +959,10 @@
         // if callback: end
 
         // remove element: begin
-        getReportWrap.classList.add('nx-remove');
+        reportWrapper.classList.add('nx-remove');
         var timeout = setTimeout(function () {
-          if (getReportWrap.parentNode !== null) {
-            getReportWrap.parentNode.removeChild(getReportWrap);
+          if (reportWrapper.parentNode !== null) {
+            reportWrapper.parentNode.removeChild(reportWrapper);
           }
           clearTimeout(timeout);
         }, newReportSettings.cssAnimationDuration);
@@ -1131,17 +1131,17 @@
       var okButton = window.document.getElementById('NXConfirmButtonOk');
 
       // validation input listener: begin
-      var getValidationInput = window.document.getElementById('NXConfirmValidationInput');
-      if (getValidationInput) {
-        getValidationInput.focus();
-        getValidationInput.addEventListener('keyup', function (event) {
+      var validationInput = window.document.getElementById('NXConfirmValidationInput');
+      if (validationInput) {
+        validationInput.focus();
+        validationInput.addEventListener('keyup', function (event) {
           var thisValue = (event.target.value || '').toString();
           if (thisValue !== theAnswer) {
-            getValidationInput.classList.add('nx-validation-failure');
-            getValidationInput.classList.remove('nx-validation-success');
+            validationInput.classList.add('nx-validation-failure');
+            validationInput.classList.remove('nx-validation-success');
           } else {
-            getValidationInput.classList.remove('nx-validation-failure');
-            getValidationInput.classList.add('nx-validation-success');
+            validationInput.classList.remove('nx-validation-failure');
+            validationInput.classList.add('nx-validation-success');
             var thisEnter = (event.key || '').toLocaleLowerCase('en') === 'enter' || event.keyCode === 13;
             if (thisEnter) {
               okButton.dispatchEvent(new Event('click'));
@@ -1154,18 +1154,18 @@
       // ok button listener: begin
       okButton.addEventListener('click', function (event) {
         // check the validation: begin
-        if (hasValidation && theAnswer && getValidationInput) {
-          var inputValue = (getValidationInput.value || '').toString();
+        if (hasValidation && theAnswer && validationInput) {
+          var inputValue = (validationInput.value || '').toString();
           if (inputValue !== theAnswer) {
-            getValidationInput.focus();
-            getValidationInput.classList.add('nx-validation-failure');
+            validationInput.focus();
+            validationInput.classList.add('nx-validation-failure');
             event.stopPropagation();
             event.preventDefault();
             event.returnValue = false;
             event.cancelBubble = true;
             return false;
           } else {
-            getValidationInput.classList.remove('nx-validation-failure');
+            validationInput.classList.remove('nx-validation-failure');
           }
         }
         // check the validation: end
@@ -1423,8 +1423,8 @@
     // check typeof selector: end
 
     // check the selector: begin
-    var getSelector = window.document.querySelectorAll(selector);
-    if (getSelector.length < 1) {
+    var allSelectors = window.document.querySelectorAll(selector);
+    if (allSelectors.length < 1) {
       notiflixConsoleError('Notiflix Error', 'You called the "Notiflix.Block..." function with "' + selector + '" selector, but there is no such element(s) in the document.');
       return false;
     }
@@ -1476,14 +1476,14 @@
 
     // check query limit: begin
     var getQueryLimit = typeof newBlockSettings.querySelectorLimit === 'number' ? newBlockSettings.querySelectorLimit : 200;
-    var checkQueryLimit = getSelector.length >= getQueryLimit ? getQueryLimit : getSelector.length;
+    var checkQueryLimit = allSelectors.length >= getQueryLimit ? getQueryLimit : allSelectors.length;
     // check query limit: end
 
     // block
     if (block) {
       // add element(s) and style: begin
       for (var i = 0; i < checkQueryLimit; i++) {
-        var eachSelector = getSelector[i];
+        var eachSelector = allSelectors[i];
 
         // check block element exist: begin
         var eachBlockElement = eachSelector.querySelectorAll('[id^=' + blockSettings.ID + ']');
@@ -1664,7 +1664,7 @@
       // Step 1 => Remove selector class name: begin
       var selectorTimeout = setTimeout(function () {
         for (var i = 0; i < checkQueryLimit; i++) {
-          var eachSelector = getSelector[i];
+          var eachSelector = allSelectors[i];
 
           // remove each selector class name
           removeEachSelectorClassName(eachSelector);

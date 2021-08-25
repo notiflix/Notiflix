@@ -19,8 +19,8 @@
 [downloads-url]: https://npmjs.org/package/notiflix
 [jsdelivr-badge]: https://data.jsdelivr.com/v1/package/npm/notiflix/badge?style=rounded
 [jsdelivr-url]: https://www.jsdelivr.com/package/npm/notiflix
-[size-badge]: https://img.badgesize.io/https://cdn.jsdelivr.net/npm/notiflix@3.0.1/dist/notiflix-aio-3.0.1.min.js?compression=gzip
-[size-url]: https://cdn.jsdelivr.net/npm/notiflix@3.0.1/dist/notiflix-aio-3.0.1.min.js
+[size-badge]: https://img.badgesize.io/https://cdn.jsdelivr.net/npm/notiflix@3.0.2/dist/notiflix-aio-3.0.2.min.js?compression=gzip
+[size-url]: https://cdn.jsdelivr.net/npm/notiflix@3.0.2/dist/notiflix-aio-3.0.2.min.js
 [lic-badge]: https://img.shields.io/github/license/notiflix/Notiflix.svg
 [lic-url]: https://github.com/notiflix/Notiflix/blob/main/LICENSE
 
@@ -37,7 +37,7 @@
 Notiflix is a JavaScript library for client-side non-blocking notifications, popup boxes, loading indicators, and more that makes your web projects much better.
 
 #### Current Version
-3.0.1 [*](https://github.com/notiflix/Notiflix/blob/main/CHANGELOG.md "CHANGELOG")
+3.0.2 [*](https://github.com/notiflix/Notiflix/blob/main/CHANGELOG.md "CHANGELOG")
 
 #### Website
 https://www.notiflix.com
@@ -86,14 +86,14 @@ import { Notify, Report, Confirm, Loading, Block } from "notiflix";
 
 ##### CSS and JS
 ```html
-<link rel="stylesheet" href="dist/notiflix-3.0.1.min.css" />
+<link rel="stylesheet" href="dist/notiflix-3.0.2.min.css" />
 
-<script src="dist/notiflix-3.0.1.min.js"></script>
+<script src="dist/notiflix-3.0.2.min.js"></script>
 ```
 
 ##### or only JS (All in One - Internal CSS)
 ```html
-<script src="dist/notiflix-aio-3.0.1.min.js"></script>
+<script src="dist/notiflix-aio-3.0.2.min.js"></script>
 ```
 
 ---------

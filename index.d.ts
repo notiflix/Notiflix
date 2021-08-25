@@ -1,185 +1,185 @@
 /*
 * Notiflix ("https://www.notiflix.com")
-* Version: 3.0.1
+* Version: 3.0.2
 * Description: TypeScript Declaration.
 * Author: Furkan MT ("https://github.com/furcan")
 * Copyright 2019 - 2021 Notiflix, MIT Licence ("https://opensource.org/licenses/MIT")
 */
 
-// Notiflix Common
-type TNotiflixCallback = () => void;
-
-
-// Notiflix Notify Module: begin
-interface INotifyOptionsSecondary {
-  background?: string;
-  textColor?: string;
-  childClassName?: string;
-  notiflixIconColor?: string;
-  fontAwesomeClassName?: string;
-  fontAwesomeIconColor?: string;
-  backOverlayColor?: string;
-}
-
-interface INotifyOptions {
-  width?: string;
-  position?: 'right-top' | 'right-bottom' | 'left-top' | 'left-bottom' | 'center-top' | 'center-bottom' | 'center-center';
-  distance?: string;
-  opacity?: number;
-  borderRadius?: string;
-  rtl?: boolean;
-  timeout?: number;
-  messageMaxLength?: number;
-  backOverlay?: boolean;
-  backOverlayColor?: string;
-  plainText?: boolean;
-  showOnlyTheLastOne?: boolean;
-  clickToClose?: boolean;
-  pauseOnHover?: boolean;
-  ID?: string;
-  className?: string;
-  zindex?: number;
-  fontFamily?: string;
-  fontSize?: string;
-  cssAnimation?: boolean;
-  cssAnimationDuration?: number;
-  cssAnimationStyle?: 'fade' | 'zoom' | 'from-right' | 'from-top' | 'from-bottom' | 'from-left';
-  closeButton?: boolean;
-  useIcon?: boolean;
-  useFontAwesome?: boolean;
-  fontAwesomeIconStyle?: 'basic' | 'shadow';
-  fontAwesomeIconSize?: string;
-  success?: INotifyOptionsSecondary;
-  failure?: INotifyOptionsSecondary;
-  warning?: INotifyOptionsSecondary;
-  info?: INotifyOptionsSecondary;
-}
-
-type TNotifyCallbackOrOptions = TNotiflixCallback | INotifyOptions;
-// Notiflix Notify Module: end
-
-
-// Notiflix Report Module: begin
-interface IReportOptionsSecondary {
-  svgColor?: string;
-  titleColor?: string;
-  messageColor?: string;
-  buttonBackground?: string;
-  buttonColor?: string;
-  backOverlayColor?: string;
-}
-
-interface IReportOptions {
-  className?: string;
-  width?: string;
-  backgroundColor?: string;
-  borderRadius?: string;
-  rtl?: boolean;
-  zindex?: number;
-  backOverlay?: boolean;
-  backOverlayColor?: string;
-  fontFamily?: string;
-  svgSize?: string;
-  plainText?: boolean;
-  titleFontSize?: string;
-  titleMaxLength?: number;
-  messageFontSize?: string;
-  messageMaxLength?: number;
-  buttonFontSize?: string;
-  buttonMaxLength?: number;
-  cssAnimation?: boolean;
-  cssAnimationDuration?: number;
-  cssAnimationStyle?: 'fade' | 'zoom';
-  success?: IReportOptionsSecondary;
-  failure?: IReportOptionsSecondary;
-  warning?: IReportOptionsSecondary;
-  info?: IReportOptionsSecondary;
-}
-
-type TReportCallbackOrOptions = TNotiflixCallback | IReportOptions;
-// Notiflix Report Module: end
-
-
-// Notiflix Confirm Module: begin
-interface IConfirmOptions {
-  className?: string;
-  width?: string;
-  zindex?: boolean;
-  position?: 'center' | 'center-top' | 'center-bottom' | 'right-top' | 'right-center' | 'right-bottom' | 'left-top' | 'left-center' | 'left-bottom';
-  distance?: string;
-  backgroundColor?: string;
-  borderRadius?: string;
-  backOverlay?: boolean;
-  backOverlayColor?: string;
-  rtl?: boolean;
-  fontFamily?: string;
-  cssAnimation?: boolean;
-  cssAnimationStyle?: 'zoom' | 'fade';
-  cssAnimationDuration?: number;
-  plainText?: boolean;
-  titleColor?: string;
-  titleFontSize?: string;
-  titleMaxLength?: number;
-  messageColor?: string;
-  messageFontSize?: string;
-  messageMaxLength?: number;
-  buttonsFontSize?: string;
-  buttonsMaxLength?: number;
-  okButtonColor?: string;
-  okButtonBackground?: string;
-  cancelButtonColor?: string;
-  cancelButtonBackground?: string;
-}
-// Notiflix Confirm Module: end
-
-
-// Notiflix Loading Module: begin
-interface ILoadingOptions {
-  className?: string;
-  zindex?: number;
-  backgroundColor?: string;
-  rtl?: boolean;
-  fontFamily?: string;
-  cssAnimation?: boolean;
-  cssAnimationDuration?: number;
-  clickToClose?: boolean;
-  customSvgUrl?: string;
-  svgSize?: string;
-  svgColor?: string;
-  messageID?: string;
-  messageFontSize?: string;
-  messageMaxLength?: number;
-  messageColor?: string;
-}
-
-type TLoadingMessageOrOptions = string | ILoadingOptions;
-// Notiflix Loading Module: end
-
-
-// Notiflix Block Module: begin
-interface IBlockOptions {
-  querySelectorLimit?: number;
-  className?: string;
-  position?: string;
-  zindex?: number;
-  backgroundColor?: string;
-  rtl?: boolean;
-  fontFamily?: string;
-  cssAnimation?: boolean;
-  cssAnimationDuration?: number;
-  svgSize?: string;
-  svgColor?: string;
-  messageFontSize?: string;
-  messageMaxLength?: number;
-  messageColor?: string;
-}
-
-type TBlockMessageOrOptions = string | IBlockOptions;
-// Notiflix Block Module: end
-
-
 // Declaration: begin
 declare namespace Notiflix {
+  // Types: Common
+  export type TNotiflixCallback = () => void;
+
+
+  // Types and Interfaces: Notify Module: begin
+  export interface INotifyOptionsSecondary {
+    background?: string;
+    textColor?: string;
+    childClassName?: string;
+    notiflixIconColor?: string;
+    fontAwesomeClassName?: string;
+    fontAwesomeIconColor?: string;
+    backOverlayColor?: string;
+  }
+
+  export interface INotifyOptions {
+    width?: string;
+    position?: 'right-top' | 'right-bottom' | 'left-top' | 'left-bottom' | 'center-top' | 'center-bottom' | 'center-center';
+    distance?: string;
+    opacity?: number;
+    borderRadius?: string;
+    rtl?: boolean;
+    timeout?: number;
+    messageMaxLength?: number;
+    backOverlay?: boolean;
+    backOverlayColor?: string;
+    plainText?: boolean;
+    showOnlyTheLastOne?: boolean;
+    clickToClose?: boolean;
+    pauseOnHover?: boolean;
+    ID?: string;
+    className?: string;
+    zindex?: number;
+    fontFamily?: string;
+    fontSize?: string;
+    cssAnimation?: boolean;
+    cssAnimationDuration?: number;
+    cssAnimationStyle?: 'fade' | 'zoom' | 'from-right' | 'from-top' | 'from-bottom' | 'from-left';
+    closeButton?: boolean;
+    useIcon?: boolean;
+    useFontAwesome?: boolean;
+    fontAwesomeIconStyle?: 'basic' | 'shadow';
+    fontAwesomeIconSize?: string;
+    success?: INotifyOptionsSecondary;
+    failure?: INotifyOptionsSecondary;
+    warning?: INotifyOptionsSecondary;
+    info?: INotifyOptionsSecondary;
+  }
+
+  export type TNotifyCallbackOrOptions = TNotiflixCallback | INotifyOptions;
+  // Types and Interfaces: Notify Module: end
+
+
+  // Types and Interfaces: Report Module: begin
+  export interface IReportOptionsSecondary {
+    svgColor?: string;
+    titleColor?: string;
+    messageColor?: string;
+    buttonBackground?: string;
+    buttonColor?: string;
+    backOverlayColor?: string;
+  }
+
+  export interface IReportOptions {
+    className?: string;
+    width?: string;
+    backgroundColor?: string;
+    borderRadius?: string;
+    rtl?: boolean;
+    zindex?: number;
+    backOverlay?: boolean;
+    backOverlayColor?: string;
+    fontFamily?: string;
+    svgSize?: string;
+    plainText?: boolean;
+    titleFontSize?: string;
+    titleMaxLength?: number;
+    messageFontSize?: string;
+    messageMaxLength?: number;
+    buttonFontSize?: string;
+    buttonMaxLength?: number;
+    cssAnimation?: boolean;
+    cssAnimationDuration?: number;
+    cssAnimationStyle?: 'fade' | 'zoom';
+    success?: IReportOptionsSecondary;
+    failure?: IReportOptionsSecondary;
+    warning?: IReportOptionsSecondary;
+    info?: IReportOptionsSecondary;
+  }
+
+  export type TReportCallbackOrOptions = TNotiflixCallback | IReportOptions;
+  // Types and Interfaces: Report Module: end
+
+
+  // Interfaces: Confirm Module: begin
+  export interface IConfirmOptions {
+    className?: string;
+    width?: string;
+    zindex?: boolean;
+    position?: 'center' | 'center-top' | 'center-bottom' | 'right-top' | 'right-center' | 'right-bottom' | 'left-top' | 'left-center' | 'left-bottom';
+    distance?: string;
+    backgroundColor?: string;
+    borderRadius?: string;
+    backOverlay?: boolean;
+    backOverlayColor?: string;
+    rtl?: boolean;
+    fontFamily?: string;
+    cssAnimation?: boolean;
+    cssAnimationStyle?: 'zoom' | 'fade';
+    cssAnimationDuration?: number;
+    plainText?: boolean;
+    titleColor?: string;
+    titleFontSize?: string;
+    titleMaxLength?: number;
+    messageColor?: string;
+    messageFontSize?: string;
+    messageMaxLength?: number;
+    buttonsFontSize?: string;
+    buttonsMaxLength?: number;
+    okButtonColor?: string;
+    okButtonBackground?: string;
+    cancelButtonColor?: string;
+    cancelButtonBackground?: string;
+  }
+  // Interfaces: Confirm Module: end
+
+
+  // Types and Interfaces: Loading Module: begin
+  export interface ILoadingOptions {
+    className?: string;
+    zindex?: number;
+    backgroundColor?: string;
+    rtl?: boolean;
+    fontFamily?: string;
+    cssAnimation?: boolean;
+    cssAnimationDuration?: number;
+    clickToClose?: boolean;
+    customSvgUrl?: string;
+    svgSize?: string;
+    svgColor?: string;
+    messageID?: string;
+    messageFontSize?: string;
+    messageMaxLength?: number;
+    messageColor?: string;
+  }
+
+  export type TLoadingMessageOrOptions = string | ILoadingOptions;
+  // Types and Interfaces: Loading Module: end
+
+
+  // Types and Interfaces: Block Module: begin
+  export interface IBlockOptions {
+    querySelectorLimit?: number;
+    className?: string;
+    position?: string;
+    zindex?: number;
+    backgroundColor?: string;
+    rtl?: boolean;
+    fontFamily?: string;
+    cssAnimation?: boolean;
+    cssAnimationDuration?: number;
+    svgSize?: string;
+    svgColor?: string;
+    messageFontSize?: string;
+    messageMaxLength?: number;
+    messageColor?: string;
+  }
+
+  export type TBlockMessageOrOptions = string | IBlockOptions;
+  // Types and Interfaces: Block Module: end
+
+
   // Notify Module: begin
   export namespace Notify {
     function init(options: INotifyOptions): void;
