@@ -24,8 +24,8 @@
 [lic-badge]: https://img.shields.io/github/license/notiflix/Notiflix.svg
 [lic-url]: https://github.com/notiflix/Notiflix/blob/main/LICENSE
 
+<!-- [![Dependencies][dep-badge]][dep-url] -->
 [![npm version][npm-version-badge]][npm-version-url]
-[![Dependencies][dep-badge]][dep-url]
 [![Known Vulnerabilities][synk-badge]][synk-url]
 [![TypeScript][typescript-badge]][typescript-url]
 [![Downloads][downloads-image]][downloads-url]
