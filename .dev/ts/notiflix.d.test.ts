@@ -1,5 +1,4 @@
-import Notiflix = require('../../index.d');
-
+import Notiflix = require('../../index');
 
 // Notify
 Notiflix.Notify.init({
@@ -99,7 +98,7 @@ Notiflix.Loading.dots('Loading Dots');
 Notiflix.Loading.pulse('Loading Pulse');
 
 Notiflix.Loading.custom('Loading Custom', {
-  customSvgUrl: 'https://www.notiflix.com/content/media/icon/notiflix-loading-notiflix.svg',
+  customSvgUrl: 'https://notiflix.github.io/content/media/loading/notiflix-loading-nx-light.svg',
 });
 
 Notiflix.Loading.notiflix('Loading Notilix');
@@ -137,3 +136,12 @@ Notiflix.Block.pulse('.js-selector');
 Notiflix.Block.remove('.js-selector');
 
 Notiflix.Block.remove('.js-selector', 1923);
+
+const boxes: NodeListOf<HTMLDivElement> = window.document.querySelectorAll('.js-boxes');
+Notiflix.Block.standard(boxes, 'Please wait...');
+
+const createABox = window.document.createElement('div');
+createABox.innerHTML = 'Out of the box';
+Notiflix.Block.standard([createABox], {
+  backgroundColor: '#1e1e1e',
+});

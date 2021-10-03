@@ -19,8 +19,8 @@
 [downloads-url]: https://npmjs.org/package/notiflix
 [jsdelivr-badge]: https://data.jsdelivr.com/v1/package/npm/notiflix/badge?style=rounded
 [jsdelivr-url]: https://www.jsdelivr.com/package/npm/notiflix
-[size-badge]: https://img.badgesize.io/https://cdn.jsdelivr.net/npm/notiflix@3.0.2/dist/notiflix-aio-3.0.2.min.js?compression=gzip
-[size-url]: https://cdn.jsdelivr.net/npm/notiflix@3.0.2/dist/notiflix-aio-3.0.2.min.js
+[size-badge]: https://img.badgesize.io/https://cdn.jsdelivr.net/npm/notiflix@3.1.0/dist/notiflix-aio-3.1.0.min.js?compression=gzip
+[size-url]: https://cdn.jsdelivr.net/npm/notiflix@3.1.0/dist/notiflix-aio-3.1.0.min.js
 [lic-badge]: https://img.shields.io/github/license/notiflix/Notiflix.svg
 [lic-url]: https://github.com/notiflix/Notiflix/blob/main/LICENSE
 
@@ -33,24 +33,33 @@
 [![Size][size-badge]][size-url]
 [![License][lic-badge]][lic-url]
 
-## Notiflix | a JavaScript library for client-side non-blocking notifications.
+# Notiflix
+
 Notiflix is a JavaScript library for client-side non-blocking notifications, popup boxes, loading indicators, and more that makes your web projects much better.
 
-#### Current Version
-3.0.2 [*](https://github.com/notiflix/Notiflix/blob/main/CHANGELOG.md "CHANGELOG")
+### Current Version
 
-#### Website
-https://www.notiflix.com
+3.1.0 [*](https://github.com/notiflix/Notiflix/blob/main/CHANGELOG.md "CHANGELOG")
 
-#### Documentation
-https://www.notiflix.com/documentation
+### Browser Compatibility
 
-#### Modules (Demo)
-- **Notiflix Notify** => https://www.notiflix.com/#Notify
-- **Notiflix Report** => https://www.notiflix.com/#Report
-- **Notiflix Confirm** => https://www.notiflix.com/#Confirm
-- **Notiflix Loading** => https://www.notiflix.com/#Loading
-- **Notiflix Block** => https://www.notiflix.com/#Block
+`Chrome` || `Firefox` || `Safari` || `Edge` || `Opera` || `* Edge Legacy` || `* IE 10+`
+
+<sub>* SVG animations are not supported.</sub>
+
+---------
+
+### Documentation
+
+https://notiflix.github.io/documentation
+
+### Modules (Demo/Playground)
+
+- **Notiflix Notify** => https://notiflix.github.io/notify
+- **Notiflix Report** => https://notiflix.github.io/report
+- **Notiflix Confirm** => https://notiflix.github.io/confirm
+- **Notiflix Loading** => https://notiflix.github.io/loading
+- **Notiflix Block** => https://notiflix.github.io/block
 
 ---------
 
@@ -58,7 +67,7 @@ https://www.notiflix.com/documentation
 
 Install
 
-[yarn](https://yarnpkg.com/en/package/notiflix)
+[yarn](https://yarnpkg.com/package/notiflix)
 
 ```js
 yarn add notiflix
@@ -74,26 +83,44 @@ Import
 
 ```jsx
 // all modules
-import Notiflix from "notiflix";
+import Notiflix from 'notiflix';
 
 // one by one
-import { Notify, Report, Confirm, Loading, Block } from "notiflix";
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Report } from 'notiflix/build/notiflix-report-aio';
+import { Confirm } from 'notiflix/build/notiflix-confirm-aio';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import { Block } from 'notiflix/build/notiflix-block-aio';
+
 ```
 
 ---------
 
-### (B) Add an HTML
+### (B) Add to an HTML page (Global)
 
-##### CSS and JS
+#### CSS and JS
 ```html
-<link rel="stylesheet" href="dist/notiflix-3.0.2.min.css" />
+<link rel="stylesheet" href="dist/notiflix-3.1.0.min.css" />
 
-<script src="dist/notiflix-3.0.2.min.js"></script>
+<script src="dist/notiflix-3.1.0.min.js"></script>
 ```
 
-##### or only JS (All in One - Internal CSS)
+#### or only JS (All in One - Internal CSS)
 ```html
-<script src="dist/notiflix-aio-3.0.2.min.js"></script>
+<script src="dist/notiflix-aio-3.1.0.min.js"></script>
+```
+
+#### or only Modules JS (All in One - Internal CSS)
+```html
+<script src="dist/notiflix-notify-aio-3.1.0.min.js"></script>
+
+<script src="dist/notiflix-report-aio-3.1.0.min.js"></script>
+
+<script src="dist/notiflix-confirm-aio-3.1.0.min.js"></script>
+
+<script src="dist/notiflix-loading-aio-3.1.0.min.js"></script>
+
+<script src="dist/notiflix-block-aio-3.1.0.min.js"></script>
 ```
 
 ---------
@@ -102,28 +129,28 @@ import { Notify, Report, Confirm, Loading, Block } from "notiflix";
 
 #### 1- Notify Module
 
+Notiflix Notify module can be used to send non-blocking alerts/notifications. This module includes 4 types of notifications: "Success", "Failure", "Warning", and "Info".
+
 ```js
 /*
-* @param1 {string}: Required, message text in String format.
-*
-* @param2 {function | Object}: Optional, a callback function when the notification element has been clicked. Or, extend the initialize options with new options for each notification element.
-*
-* @param3 {Object}: Optional, extend the initialize options with new options for each notification element (if the second parameter is a callback function).
+* @param1 {string}: Required, a text in string format.
+* @param2 {function | Object}: Optional, a callback function that will be called when the notification element has been clicked. Or, extending the initialize options with the new options for each notification element.
+* @param3 {Object}: Optional, extending the initialize options with new the options for each notification element. (If the second parameter has been already used for a callback function.)
 */
 
 // e.g. Only message
-Notiflix.Notify.success('Success message text');
+Notiflix.Notify.success('Sol lucet omnibus');
 
-Notiflix.Notify.failure('Failure message text');
+Notiflix.Notify.failure('Qui timide rogat docet negare');
 
-Notiflix.Notify.warning('Warning message text');
+Notiflix.Notify.warning('Memento te hominem esse');
 
-Notiflix.Notify.info('Info message text');
+Notiflix.Notify.info('Cogito ergo sum');
 
 // e.g. Message with a callback
 Notiflix.Notify.success(
   'Click Me',
-  function(){
+  function cb() {
     // callback
   },
 );
@@ -139,7 +166,7 @@ Notiflix.Notify.success(
 // e.g. Message with callback, and the new options
 Notiflix.Notify.success(
   'Click Me',
-  function(){
+  function cb() {
     // callback
   },
   {
@@ -153,17 +180,15 @@ Notiflix.Notify.success(
 
 #### 2- Report Module
 
+Notiflix Report module can be used to show extended notifications that contain a title, description, and button(with a callback function). This module includes 4 types of notifications: "Success", "Failure", "Warning", and "Info".
+
 ```js
 /*
-* @param1 {string}: Required, title text in String format.
-*
-* @param2 {string}: Required, message text in String format.
-*
-* @param3 {string}: Required, button text in String format.
-*
-* @param4 {function | Object}: Optional, a callback function when the button element has been clicked. Or, extend the initialize options with new options for each element.
-*
-* @param5 {Object}: Optional, extend the initialize options with new options for each element. (if the second parameter is a callback function).
+* @param1 {string}: Required, title text in string format.
+* @param2 {string}: Required, message text in string format.
+* @param3 {string}: Required, button text in string format.
+* @param4 {function | Object}: Optional, a callback function that will be called when the button element has been clicked. Or, extending the initialize options with the new options for each notification element.
+* @param5 {Object}: Optional, extending the initialize options with new the options for each notification element. (If the fourth parameter has been already used for a callback function.)
 */
 
 // e.g. Only title, message, and button text
@@ -180,7 +205,7 @@ Notiflix.Report.success(
   'Title',
   'Message',
   'Button Text',
-  function(){
+  function cb() {
     // callback
   },
 );
@@ -201,7 +226,7 @@ Notiflix.Report.success(
   'Title',
   'Message',
   'Button Text',
-  function(){
+  function cb() {
     // callback
   },
   {
@@ -216,39 +241,32 @@ Notiflix.Report.success(
 
 #### 3- Confirm Module
 
+Notiflix Confirm module can be used to show non-blocking prompt boxes. This module includes 2 types of prompts: "Show" and "Ask". An additional question can be asked as well within the prompt box if using the "Ask" one.
+
 Show:
 
 ```js
 /*
-* @param1 {string}: Required, title text in String format.
-* @param2 {string}: Required, message text in String format.
-* @param3 {string}: Required, ok button text in String format.
-* @param4 {string}: Optional, cancel button text in String format.
-* @param5 {function}: Optional, callback function when the ok button element clicked.
-* @param6 {function}: Optional, callback function when the cancel button element clicked.
-* @param7 {Object}: Optional, extend the initialize options with new options for each confirm box.
+* @param1 {string}: Required, title text in string format.
+* @param2 {string}: Required, message/question in string format.
+* @param3 {string}: Required, OK button text in string format.
+* @param4 {string}: Optional, Cancel button text in string format.
+* @param5 {function}: Optional, a callback function that will be called when the OK button element has been clicked.
+* @param6 {function}: Optional, a callback function that will be called when the Cancel button element has been clicked.
+* @param7 {Object}: Optional, extending the initialize options with new the options for each confirm box.
 */
 
-Notiflix.Confirm.show('Title', 'Message', 'Ok Button Text');
-
-// e.g. with callback
 Notiflix.Confirm.show(
-  'Title',
-  'Message',
-  'Ok Button',
-  'Cancel Button',
-
-  // ok button callback
-  function(){
-    // codes...
+  'Notiflix Confirm',
+  'Do you agree with me?',
+  'Yes',
+  'No',
+  function okCb() {
+    alert('Thank you.');
   },
-
-  // cancel button callback
-  function(){
-    // codes...
+  function cancelCb() {
+    alert('If you say so...');
   },
-
-  // extend the init options for this confirm box
   {
     width: '320px',
     borderRadius: '8px',
@@ -262,14 +280,14 @@ Ask:
 
 ```js
 /*
-* @param1 {string}: Required, the title text in String format.
-* @param2 {string}: Required, the question text in String format.
-* @param3 {string}: Required, the answer text in String format.
-* @param4 {string}: Required, the ok button text in String format.
-* @param5 {string}: Optional, the cancel button text in String format.
-* @param6 {function}: Optional, a callback function when the ok button element clicked after the correct answer.
-* @param7 {function}: Optional, a callback function when the cancel button element clicked.
-* @param8 {Object}: Optional, extend the initialize options with new options for each confirm box.
+* @param1 {string}: Required, title text in string format.
+* @param2 {string}: Required, question text in string format.
+* @param3 {string}: Required, answer text in string format.
+* @param4 {string}: Required, OK button text in string format.
+* @param5 {string}: Optional, Cancel button text in string format.
+* @param6 {function}: Optional, a callback function that will be called when the OK button element has been clicked.
+* @param7 {function}: Optional, a callback function that will be called when the Cancel button element has been clicked.
+* @param8 {Object}: Optional, extending the initialize options with new the options for each confirm box.
 */
 
 Notiflix.Confirm.ask(
@@ -278,15 +296,14 @@ Notiflix.Confirm.ask(
   'It seems, in your anger, you killed her.',
   'Answer',
   'Cancel',
-  function(){
-    alert('NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!');
-    // codes...
+  function okCb() {
+    alert('😡 NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!');
   },
-  function(){
-    // codes...
+  function cancelCb() {
+    alert('😪 ...');
   },
   {
-    // extend the init options for this confirm box
+    // Custom options
   },
 );
 ```
@@ -295,16 +312,17 @@ Notiflix.Confirm.ask(
 
 
 #### 4- Loading Module
+Notiflix Loading module can be used to show a loading indicator during a process (Fetch/XHR). Includes 6 types of animated SVG icons: "Standard", "Hourglass", "Circle", "Arrows", "Dots", and "Pulse". An additional type is "Custom", and it can be used with a custom SVG icon.
 
 Show:
 
 ```js
 /*
-* @param1 {string | Object}: Optional, message text in String format. Or, extend the initialize options with new options for each loading indicator.
-* @param2 {Object}: Optional, extend the initialize options with new options for each loading indicator (if the first parameter is a string message text).
+* @param1 {string | Object}: Optional, a message in string format. Or, extending the initialize options with the new options for each loading indicator.
+* @param2 {Object}: Optional, extending the initialize options with new the options for each loading indicator. (If the first parameter has been already used for a message.)
 */
 
-// Only Loading indicator
+// Only loading indicators
 Notiflix.Loading.standard();
 Notiflix.Loading.hourglass();
 Notiflix.Loading.circle();
@@ -315,31 +333,25 @@ Notiflix.Loading.pulse();
 // Loading indicator with a message
 Notiflix.Loading.standard('Loading...');
 
-
-// Only Loading indicator with the new options
-Notiflix.Loading.standard(
-  {
-    svgSize: '19px',
-  },
-);
+// Only loading indicator with the new options
+Notiflix.Loading.standard({
+  clickToClose: true,
+  svgSize: '19px',
+});
 
 // Loading indicator with a message, and the new options
-Notiflix.Loading.standard(
-  'Loading...',
-  {
-    svgSize: '23px',
-  },
-);
+Notiflix.Loading.standard('Loading...', {
+  backgroundColor: 'rgba(0,0,0,0.8)',
+});
 ```
 
 Change:
 
 ```js
 /*
-* @param1 {string}: Required, message text in String format.
+* @param1 {string}: Required, new message in string format.
 */
 
-// Change the message text (if an indicator exists)
 Notiflix.Loading.change('Loading %20');
 ```
 
@@ -347,31 +359,28 @@ Remove:
 
 ```js
 /*
-* @param1 {number}: Optional, number as millisecond.
+* @param1 {number}: Optional, milliseconds for delaying in number format.
 */
 
 // Remove immediately
 Notiflix.Loading.remove();
 
-// Remove after delay - e.g. 600ms
-Notiflix.Loading.remove(600);
+// Remove after delay => e.g. 1923ms
+Notiflix.Loading.remove(1923);
 ```
 
 Custom:
 
 ```js
-// Initialize with a custom SVG Icon (default value is null)
-Notiflix.Loading.init({
-  customSvgUrl: 'https://www.notiflix.com/dir/icon.svg',
+// Only custom loading indicator
+Notiflix.Loading.custom({
+  customSvgUrl: 'https://notiflix.github.io/content/media/loading/notiflix-loading-nx-light.svg',
 });
 
-// Only Customized Loading indicator
-Notiflix.Loading.custom();
-
-// Customized Loading indicator with a message
-Notiflix.Loading.custom('Loading...');
-
-// And the other functionalities (Change, Remove...)
+// Custom loading indicator with a message
+Notiflix.Loading.custom('Loading...', {
+  customSvgUrl: 'https://notiflix.github.io/content/media/loading/notiflix-loading-nx-light.svg',
+});
 ```
 
 --_--_----_--_----_--_----_--_----_--_----_--_--
@@ -379,45 +388,38 @@ Notiflix.Loading.custom('Loading...');
 
 #### 5- Block Module
 
-Notiflix Block module can be used to block or unblock elements to prevents users actions during the process (AJAX etc.) without locking the browser or the other elements.
+Notiflix Block module can be used to block/unblock the elements during a process (Fetch/XHR), without locking the browser or the other elements/components to prevent the user’s interactions on the blocked elements.
 
 Block:
 
 ```js
 /*
-* @param1 {string}: Required, Select the element(s) to block. (ID or Class)
-* @param2 {string | Object}: Optional, message text in String format. Or, extend the initialize options with new options for each block element.
-* @param3 {Object}: Optional, extend the initialize options with new options for each block element (if the second parameter is a string message text).
+* @param1 {string | Array<HTMLElement> | NodeListOf<HTMLElement>}: Required, CSS selector(s) that matches the element(s) | Array of HTMLElments | NodeListOf HTMLElments to block.
+* @param2 {string | Object}: Optional, a blocking message in string format. Or, extending the initialize options with the new options for each block element.
+* @param3 {Object}: Optional, extending the initialize options with new the options for each block element. (If the second parameter has been already used for a blocking message.)
 */
 
-// Only indicator
-Notiflix.Block.standard('.element');
-Notiflix.Block.hourglass('.element');
-Notiflix.Block.circle('.element');
-Notiflix.Block.arrows('.element');
-Notiflix.Block.dots('.element');
-Notiflix.Block.pulse('.element');
+// Only indicators
+Notiflix.Block.standard('.js-element');
+Notiflix.Block.hourglass('.js-element');
+Notiflix.Block.circle('.js-element');
+Notiflix.Block.arrows('.js-element');
+Notiflix.Block.dots('.js-element');
+Notiflix.Block.pulse('.js-element');
 
-// Indicator with a message
-Notiflix.Block.standard('.selector', 'Loading...');
-
+// Indicator with a blocking message
+Notiflix.Block.standard('.js-element', 'Please wait...');
 
 // Only indicator with the new options
-Notiflix.Block.standard(
-  '.selector',
-  {
-    svgSize: '18px',
-  },
-);
+Notiflix.Block.standard('.js-element', {
+  cssAnimationDuration: 1881,
+  svgSize: '19px',
+});
 
-// Indicator with a message, and the new options
-Notiflix.Block.standard(
-  '.selector',
-  'Loading...',
-  {
-    svgSize: '81px',
-  },
-);
+// Indicator with a blocking message, and the new options
+Notiflix.Block.standard('.js-element', 'Please wait...', {
+  backgroundColor: 'rgba(0,0,0,0.8)',
+});
 ```
 
 
@@ -425,15 +427,15 @@ Unblock:
 
 ```js
 /*
-* @param1 {string}: Required, Select the element(s) to unblock. (ID or Class)
-* @param2 {number}: Optional, Unblock after a delay.
+* @param1 {string | Array<HTMLElement> | NodeListOf<HTMLElement>}: Required, CSS selector(s) that matches the element(s) | Array of HTMLElments | NodeListOf HTMLElments to unblock.
+* @param2 {number}: Optional, milliseconds for delaying in number format.
 */
 
-// Unblock selected element(s) immediately
-Notiflix.Block.remove('.selector');
+// Unblock immediately
+Notiflix.Block.remove('.js-element');
 
-// Unblock selected element(s) after a delay (e.g. 600 milliseconds)
-Notiflix.Block.remove('.selector', 600);
+// Unblock after delay => e.g. 1923ms
+Notiflix.Block.remove('.js-element', 1923);
 ```
 
 --_--_----_--_----_--_----_--_----_--_----_--_--
@@ -441,7 +443,7 @@ Notiflix.Block.remove('.selector', 600);
 
 ### Initialize (optional)
 
-`Notiflix.*.init` function can be used if wanted to be used with custom settings.
+`Notiflix.*.init` function can be used to set custom options as globally.
 
 ```js
 // Notify
@@ -475,10 +477,10 @@ Notiflix.Notify.init({
 
 ### Merge (optional)
 
-`Notiflix.*.merge` function can be used to deeply extend the `init()` function for a specific page or event.
+`Notiflix.*.merge` function can be used to deeply extend the `init()` options for a specific page or event globally.
 
 ```js
-// e.g. Merge the Notify Module initialize function with some new options
+// e.g. Merge the Notify Module's initialize options with some new options.
 Notiflix.Notify.merge({
   width: '300px',
   // ...
@@ -490,6 +492,9 @@ Notiflix.Notify.merge({
 ---------
 ---------
 
+### Options
+
+The default options of all modules.
 
 #### Notiflix Notify Module: Default Options
 
@@ -527,7 +532,7 @@ Notiflix.Notify.init({
   success: {
     background: '#32c682',
     textColor: '#fff',
-    childClassName: 'success',
+    childClassName: 'notiflix-notify-success',
     notiflixIconColor: 'rgba(0,0,0,0.2)',
     fontAwesomeClassName: 'fas fa-check-circle',
     fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
@@ -537,7 +542,7 @@ Notiflix.Notify.init({
   failure: {
     background: '#ff5549',
     textColor: '#fff',
-    childClassName: 'failure',
+    childClassName: 'notiflix-notify-failure',
     notiflixIconColor: 'rgba(0,0,0,0.2)',
     fontAwesomeClassName: 'fas fa-times-circle',
     fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
@@ -547,7 +552,7 @@ Notiflix.Notify.init({
   warning: {
     background: '#eebf31',
     textColor: '#fff',
-    childClassName: 'warning',
+    childClassName: 'notiflix-notify-warning',
     notiflixIconColor: 'rgba(0,0,0,0.2)',
     fontAwesomeClassName: 'fas fa-exclamation-circle',
     fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
@@ -557,7 +562,7 @@ Notiflix.Notify.init({
   info: {
     background: '#26c0d3',
     textColor: '#fff',
-    childClassName: 'info',
+    childClassName: 'notiflix-notify-info',
     notiflixIconColor: 'rgba(0,0,0,0.2)',
     fontAwesomeClassName: 'fas fa-info-circle',
     fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
@@ -649,8 +654,8 @@ Notiflix.Confirm.init({
   rtl: false,
   fontFamily: 'Quicksand',
   cssAnimation: true,
-  cssAnimationStyle: 'fade', // 'zoom' - 'fade'
   cssAnimationDuration: 300,
+  cssAnimationStyle: 'fade', // 'zoom' - 'fade'
   plainText: true,
 
   titleColor: '#32c682',
@@ -723,8 +728,8 @@ Notiflix.Block.init({
 ---------
 ---------
 
-#### Copyright
+### Copyright
 Copyright &copy; 2019 - 2021 Notiflix
 
-#### License
+### License
 MIT license - https://opensource.org/licenses/MIT

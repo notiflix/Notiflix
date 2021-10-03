@@ -1,9 +1,9 @@
 /*
-* Notiflix ("https://www.notiflix.com")
-* Version: 3.0.2
+* Notiflix (https://notiflix.github.io)
+* Version: 3.1.0
 * Description: TypeScript Declaration.
-* Author: Furkan MT ("https://github.com/furcan")
-* Copyright 2019 - 2021 Notiflix, MIT Licence ("https://opensource.org/licenses/MIT")
+* Author: Furkan MT (https://github.com/furcan)
+* Copyright 2019 - 2021 Notiflix, MIT Licence (https://opensource.org/licenses/MIT)
 */
 
 // Declaration: begin
@@ -116,8 +116,8 @@ declare namespace Notiflix {
     rtl?: boolean;
     fontFamily?: string;
     cssAnimation?: boolean;
-    cssAnimationStyle?: 'zoom' | 'fade';
     cssAnimationDuration?: number;
+    cssAnimationStyle?: 'zoom' | 'fade';
     plainText?: boolean;
     titleColor?: string;
     titleFontSize?: string;
@@ -176,6 +176,7 @@ declare namespace Notiflix {
     messageColor?: string;
   }
 
+  export type TBlockSelectorOrHTMLElements = string | HTMLElement[] | NodeListOf<HTMLElement>;
   export type TBlockMessageOrOptions = string | IBlockOptions;
   // Types and Interfaces: Block Module: end
 
@@ -249,13 +250,13 @@ declare namespace Notiflix {
   export namespace Block {
     function init(options: IBlockOptions): void;
     function merge(extendOptions: IBlockOptions): void;
-    function standard(selector: string, messageOrOptions?: TBlockMessageOrOptions, options?: IBlockOptions): void;
-    function hourglass(selector: string, messageOrOptions?: TBlockMessageOrOptions, options?: IBlockOptions): void;
-    function circle(selector: string, messageOrOptions?: TBlockMessageOrOptions, options?: IBlockOptions): void;
-    function arrows(selector: string, messageOrOptions?: TBlockMessageOrOptions, options?: IBlockOptions): void;
-    function dots(selector: string, messageOrOptions?: TBlockMessageOrOptions, options?: IBlockOptions): void;
-    function pulse(selector: string, messageOrOptions?: TBlockMessageOrOptions, options?: IBlockOptions): void;
-    function remove(selector: string, delay?: number): void;
+    function standard(selectorOrHTMLElements: TBlockSelectorOrHTMLElements, messageOrOptions?: TBlockMessageOrOptions, options?: IBlockOptions): void;
+    function hourglass(selectorOrHTMLElements: TBlockSelectorOrHTMLElements, messageOrOptions?: TBlockMessageOrOptions, options?: IBlockOptions): void;
+    function circle(selectorOrHTMLElements: TBlockSelectorOrHTMLElements, messageOrOptions?: TBlockMessageOrOptions, options?: IBlockOptions): void;
+    function arrows(selectorOrHTMLElements: TBlockSelectorOrHTMLElements, messageOrOptions?: TBlockMessageOrOptions, options?: IBlockOptions): void;
+    function dots(selectorOrHTMLElements: TBlockSelectorOrHTMLElements, messageOrOptions?: TBlockMessageOrOptions, options?: IBlockOptions): void;
+    function pulse(selectorOrHTMLElements: TBlockSelectorOrHTMLElements, messageOrOptions?: TBlockMessageOrOptions, options?: IBlockOptions): void;
+    function remove(selectorOrHTMLElements: TBlockSelectorOrHTMLElements, delay?: number): void;
   }
   // Block Module: end
 }

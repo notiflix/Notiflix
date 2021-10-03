@@ -3,8 +3,8 @@
 *
 * Description: Notiflix constants for the development.
 * Version: 1.0.0
-* Author: Furkan MT ('https://github.com/furcan')
-* Copyright 2019 - 2021 Notiflix - Constants, MIT Licence ('https://opensource.org/licenses/MIT')
+* Author: Furkan MT (https://github.com/furcan)
+* Copyright 2019 - 2021 Notiflix - Constants, MIT Licence (https://opensource.org/licenses/MIT)
 */
 
 // Dev Dependencies
@@ -54,24 +54,48 @@ const terminalError = (message, fileOrPath) => {
 };
 // - Terminal Error Message: end
 
+// - Terminal Success Message: begin
+const terminalSuccess = (message) => {
+  const colorGreen = '#32c682';
+  return console.log(chalk.hex(colorGreen).bold('Notiflix Development Success: ') + chalk.hex(colorGreen)(message));
+};
+// - Terminal Success Message: end
+
 // - Exports: begin
 module.exports = {
-  dirInputDev: 'src',
-  dirOutputDev: 'src/all-in-one',
-  dirOutputDist: 'dist',
-  fileScript: 'notiflix.js',
-  fileStyle: 'notiflix.css',
-  fileScriptAIO: 'notiflix-aio.js',
+  notiflix: 'Notiflix',
+  notiflixUrl: '(https://notiflix.github.io)',
   version: (JSON.stringify((package || {}).version) || '').replace(/"/gm, ''),
   author: (JSON.stringify((package || {}).author) || '').replace(/"/gm, ''),
-  notiflix: 'Notiflix',
-  notiflixUrl: '(https://www.notiflix.com)',
   license: 'MIT Licence (https://opensource.org/licenses/MIT)',
   year: '2019 - ' + (new Date().getFullYear() || '2021'),
+  directories: {
+    dist: 'dist',
+    build: 'build',
+    src: 'src',
+  },
+  files: {
+    notiflix_JS: 'notiflix.js',
+    notiflix_CSS: 'notiflix.css',
+    notiflix_AIO_JS: 'notiflix-aio.js',
+    notiflix_Notify_AIO_JS: 'notiflix-notify-aio.js',
+    notiflix_Report_AIO_JS: 'notiflix-report-aio.js',
+    notiflix_Confirm_AIO_JS: 'notiflix-confirm-aio.js',
+    notiflix_Loading_AIO_JS: 'notiflix-loading-aio.js',
+    notiflix_Block_AIO_JS: 'notiflix-block-aio.js',
+  },
+  modules: {
+    notify: 'Notify',
+    report: 'Report',
+    confirm: 'Confirm',
+    loading: 'Loading',
+    block: 'Block',
+  },
   cleanCSSOptions,
   minifyOptions,
   minifyOverrides,
   terminalError,
+  terminalSuccess,
 };
 // - Exports: end
 // Notiflix Constants: end

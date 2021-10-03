@@ -173,45 +173,67 @@
 
   </style>
 
-  <!-- <link href="../dist/notiflix-3.0.2.min.css" rel="stylesheet" />
-  <script src="../dist/notiflix-3.0.2.min.js"></script> -->
-  <script src="../dist/notiflix-aio-3.0.2.min.js"></script>
+  <!-- <link href="../src/notiflix.css" rel="stylesheet" /> -->
+  <!-- <script src="../src/notiflix.js"></script> -->
 
-  <!-- <link href="../src/notiflix.css" rel="stylesheet" />
-  <script src="../src/notiflix.js"></script> -->
-  <!-- <script src="../src/all-in-one/notiflix-aio.js"></script> -->
+  <!-- <script src="../build/notiflix-aio.js"></script> -->
+  <!-- <script src="../build/notiflix-notify-aio.js"></script> -->
+  <!-- <script src="../build/notiflix-report-aio.js"></script> -->
+  <!-- <script src="../build/notiflix-confirm-aio.js"></script> -->
+  <!-- <script src="../build/notiflix-loading-aio.js"></script> -->
+  <!-- <script src="../build/notiflix-block-aio.js"></script> -->
+
+  <!-- <link href="../dist/notiflix-3.1.0.min.css" rel="stylesheet" /> -->
+  <!-- <script src="../dist/notiflix-3.1.0.min.js"></script> -->
+  <!-- <script src="../dist/notiflix-aio-3.1.0.min.js"></script> -->
+  <script src="../dist/notiflix-notify-aio-3.1.0.min.js"></script>
+  <script src="../dist/notiflix-report-aio-3.1.0.min.js"></script>
+  <script src="../dist/notiflix-confirm-aio-3.1.0.min.js"></script>
+  <script src="../dist/notiflix-loading-aio-3.1.0.min.js"></script>
+  <script src="../dist/notiflix-block-aio-3.1.0.min.js"></script>
+
 
   <script>
-    // Notiflix.Notify.init({
-    //   // closeButton: true,
-    //   // cssAnimationStyle: 'zoom',
-    //   // cssAnimationDuration: 500,
-    //   // messageMaxLength: 20,
-    //   // plainText: false,
-    //   pauseOnHover: true,
-    //   clickToClose: true,
-    // });
+    // if ('Notify' in window.Notiflix) {
+    //   Notiflix.Notify.init({
+    //     // closeButton: true,
+    //     // cssAnimationStyle: 'zoom',
+    //     // cssAnimationDuration: 500,
+    //     // messageMaxLength: 20,
+    //     // plainText: false,
+    //     pauseOnHover: true,
+    //     clickToClose: true,
+    //   });
+    // }
 
-    // Notiflix.Notify.init({
-    //   useFontAwesome: true,
-    // });
+    // if ('Notify' in window.Notiflix) {
+    //   Notiflix.Notify.init({
+    //     useFontAwesome: false,
+    //   });
+    // }
 
-    // Notiflix.Report.init({
-    //   width: '640px',
-    // });
+    // if ('Report' in window.Notiflix) {
+    //   Notiflix.Report.init({
+    //     width: '640px',
+    //   });
+    // }
 
-    // Notiflix.Confirm.init({
-    //   // messageMaxLength: 1000,
-    //   // rtl: true,
-    //   position: 'center',
-    //   distance: '10px',
-    //   cssAnimationStyle: 'fade',
-    // });
+    // if ('Confirm' in window.Notiflix) {
+    //   Notiflix.Confirm.init({
+    //     // messageMaxLength: 1000,
+    //     // rtl: true,
+    //     position: 'center',
+    //     distance: '10px',
+    //     cssAnimationStyle: 'fade',
+    //   });
+    // }
 
-    Notiflix.Loading.init({
-      clickToClose: true,
-      customSvgUrl: 'https://www.notiflix.com/content/media/icon/notiflix-loading-notiflix.svg',
-    });
+    if ('Loading' in window.Notiflix) {
+      Notiflix.Loading.init({
+        clickToClose: true,
+        customSvgUrl: 'https://notiflix.github.io/content/media/loading/notiflix-loading-nx-light.svg',
+      });
+    }
 
     console.log(Notiflix);
   </script>
@@ -225,7 +247,7 @@
       <button class="nx-notify" onclick="Notiflix.Notify.failure();">Notify Failure</button>
       <button class="nx-notify" onclick="Notiflix.Notify.warning();">Notify Warning</button>
       <button class="nx-notify" onclick="Notiflix.Notify.info('Click me!', function(){alert('Thanks!')});">Notify Info (With Callback)</button>
-      <button class="nx-notify" onclick="Notiflix.Notify.success(false, {cssAnimationStyle:'zoom', cssAnimationDuration:500,});">Notify Success (With Options)</button>
+      <button class="nx-notify" onclick="Notiflix.Notify.success(false, {backOverlay:true, closeButton:true, cssAnimationStyle:'zoom', cssAnimationDuration:500,});">Notify Success (With Options)</button>
       <button class="nx-notify" onclick="Notiflix.Notify.success('Click me!', function(){alert('Thanks!')}, {cssAnimationStyle:'zoom', cssAnimationDuration:500,});">Notify Success (With Options + Callback)</button>
     </div>
   </div>

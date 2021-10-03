@@ -1,9 +1,11 @@
 /*!
-* Notiflix ("https://www.notiflix.com")
-* Version: 3.0.2
-* Author: Furkan MT ("https://github.com/furcan")
-* Copyright 2019 - 2021 Notiflix, MIT Licence ("https://opensource.org/licenses/MIT")
+* Notiflix (https://notiflix.github.io)
+* Version: 3.1.0
+* Author: Furkan MT (https://github.com/furcan)
+* Copyright 2019 - 2021 Notiflix, MIT Licence (https://opensource.org/licenses/MIT)
 */
+
+/* NOTIFLIX.NOTIFY: begin */
 
 /* Notiflix: Notify wrap: begin */
 [id^="NotiflixNotifyWrap"] {
@@ -128,11 +130,11 @@
 }
 
 [id^="NotiflixNotifyWrap"] > div.nx-with-close-button {
-  padding: 10px 30px 10px 12px;
+  padding: 10px 36px 10px 12px;
 }
 
 [id^="NotiflixNotifyWrap"] > div.nx-with-icon.nx-with-close-button {
-  padding: 6px 30px 6px 6px;
+  padding: 6px 36px 6px 6px;
 }
 
 [id^="NotiflixNotifyWrap"] > div > span.nx-message {
@@ -154,8 +156,8 @@
   bottom: 0;
   margin: auto;
   color: inherit;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
 }
 
 [id^="NotiflixNotifyWrap"] > div > span.nx-close-button:hover {
@@ -167,8 +169,8 @@
   position: absolute;
   width: 16px;
   height: 16px;
-  right: 0;
-  top: 0;
+  right: 2px;
+  top: 2px;
 }
 
 /* Notiflix: Notify content: end */
@@ -225,11 +227,11 @@
 }
 
 [id^="NotiflixNotifyWrap"] > div.nx-with-icon.nx-with-close-button.nx-rtl-on {
-  padding: 6px 6px 6px 30px;
+  padding: 6px 6px 6px 36px;
 }
 
 [id^="NotiflixNotifyWrap"] > div.nx-with-close-button.nx-rtl-on {
-  padding: 10px 12px 10px 30px;
+  padding: 10px 12px 10px 36px;
 }
 
 /* Notiflix: Notify rtl: end */
@@ -719,6 +721,10 @@
 
 /* Notiflix: Notify animation remove => from left: end */
 
+/* NOTIFLIX.NOTIFY: end */
+
+/* NOTIFLIX.REPORT: begin */
+
 /* Notiflix: Report wrap: begin */
 [id^="NotiflixReportWrap"] {
   position: fixed;
@@ -1091,6 +1097,10 @@
 }
 
 /* Notiflix: Report content animation remove => zoom: end */
+
+/* NOTIFLIX.REPORT: end */
+
+/* NOTIFLIX.CONFIRM: begin */
 
 /* Notiflix: Confirm wrap: begin */
 [id^="NotiflixConfirmWrap"] {
@@ -1607,6 +1617,10 @@
 
 /* Notiflix: Confirm content animation remove => zoom: end */
 
+/* NOTIFLIX.CONFIRM: end */
+
+/* NOTIFLIX.LOADING: begin */
+
 /* Notiflix: Loading wrap: begin */
 [id^="NotiflixLoadingWrap"] {
   -webkit-user-select: none;
@@ -1783,6 +1797,10 @@
 
 /* Notiflix: Loading animation new message => fade: end */
 
+/* NOTIFLIX.LOADING: end */
+
+/* NOTIFLIX.BLOCK: begin */
+
 /* Notiflix: Block wrap: begin */
 [id^="NotiflixBlockWrap"] {
   -webkit-user-select: none;
@@ -1917,3 +1935,5 @@
 }
 
 /* Notiflix: Block animation remove => fade: end */
+
+/* NOTIFLIX.BLOCK: end */

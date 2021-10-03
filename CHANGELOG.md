@@ -1,3 +1,33 @@
+@3.1.0
+* **Changed:** `Notiflix.Block.*` module: The `selector` parameter has been changed to `selectorOrHTMLElements`. An `Array<HTMLElement>` or a `NodeListOf<HTMLElement>` can be also used instead of CSS selector(s).
+
+* **Fixed:** `Notiflix.Notify.*` module: The background overlay element was not being removed at the end of the call if the `backOverlay` option has been set/changed as a parameter option in the next notification instead of the global init function.
+
+* **Changed:** `Notiflix.Notify.success`: The `childClassName` option, default value has been changed from `success` to `notiflix-notify-success`.
+
+* **Changed:** `Notiflix.Notify.failure`: The `childClassName` option, default value has been changed from `failure` to `notiflix-notify-failure`.
+
+* **Changed:** `Notiflix.Notify.warning`: The `childClassName` option, default value has been changed from `warning` to `notiflix-notify-warning`.
+
+* **Changed:** `Notiflix.Notify.info`: The `childClassName` option, default value has been changed from `info` to `notiflix-notify-info`.
+
+* **Changed:** Auto-generated `src/all-in-one/notiflix-aio.js` file has been moved to the `build` directory. (with `*.d.ts`)
+
+* **Added:** Auto-generated `build/notiflix-notify-aio.js` (with `*.d.ts`), and `dist/notiflix-notify-aio-3.1.0.min.js` files have been added. These files are only for using the Notify module instead of using all the modules.
+
+* **Added:** Auto-generated `build/notiflix-report-aio.js` (with `*.d.ts`), and `dist/notiflix-report-aio-3.1.0.min.js` files have been added. These files are only for using the Report module instead of using all the modules.
+
+* **Added:** Auto-generated `build/notiflix-confirm-aio.js` (with `*.d.ts`), and `dist/notiflix-confirm-aio-3.1.0.min.js` files have been added. These files are only for using the Confirm module instead of using all the modules.
+
+* **Added:** Auto-generated `build/notiflix-loading-aio.js` (with `*.d.ts`), and `dist/notiflix-loading-aio-3.1.0.min.js` files have been added. These files are only for using the Loading module instead of using all the modules.
+
+* **Added:** Auto-generated `build/notiflix-block-aio.js` (with `*.d.ts`), and `dist/notiflix-block-aio-3.1.0.min.js` files have been added. These files are only for using the Block module instead of using all the modules.
+
+* **Changed:** The documentation website URL has been changed.
+
+* **Changed:** Code Review/Refactor.
+
+
 @3.0.2
 * **Changed:** `index.d.ts`: Types and Interfaces have been exported.
 * **Changed:** Code Review.
