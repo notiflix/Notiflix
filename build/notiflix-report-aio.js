@@ -1,7 +1,7 @@
 /*
 * Notiflix Report AIO (https://notiflix.github.io)
 * Description: This file has been created automatically that using "notiflix.js", and "notiflix.css" files.
-* Version: 3.1.0
+* Version: 3.2.0
 * Author: Furkan MT (https://github.com/furcan)
 * Copyright 2019 - 2021 Notiflix, MIT Licence (https://opensource.org/licenses/MIT)
 */
@@ -34,6 +34,12 @@
   // COMMON: Variables: end
 
   // REPORT: Default Settings: begin
+  var typesReport = {
+    Success: 'Success',
+    Failure: 'Failure',
+    Warning: 'Warning',
+    Info: 'Info',
+  };
   var newReportSettings;
   var reportSettings = {
     ID: 'NotiflixReportWrap', // can not customizable
@@ -212,7 +218,7 @@
   // REPORT: Get Internal CSS Codes: end
 
   // REPORT: Create: begin
-  var reportCreate = function (title, message, buttonText, callbackOrOptions, options, staticType) {
+  var reportCreate = function (reportType, title, message, buttonText, callbackOrOptions, options) {
     // check doc body
     if (!commonCheckHeadOrBody('body')) { return false; }
 
@@ -243,21 +249,21 @@
     // check callbackOrOptions and callback: end
 
     // report type
-    var theType = newReportSettings[staticType.toLocaleLowerCase('en')];
+    var theType = newReportSettings[reportType.toLocaleLowerCase('en')];
 
     // check the arguments: begin
-    if (typeof title !== 'string') { title = 'Notiflix ' + staticType; }
+    if (typeof title !== 'string') { title = 'Notiflix ' + reportType; }
     if (typeof message !== 'string') {
-      if (staticType === 'Success') {
+      if (reportType === typesReport.Success) {
         message = '"Do not try to become a person of success but try to become a person of value." <br><br>- Albert Einstein';
       }
-      else if (staticType === 'Failure') {
+      else if (reportType === typesReport.Failure) {
         message = '"Failure is simply the opportunity to begin again, this time more intelligently." <br><br>- Henry Ford';
       }
-      else if (staticType === 'Warning') {
+      else if (reportType === typesReport.Warning) {
         message = '"The peoples who want to live comfortably without producing and fatigue; they are doomed to lose their dignity, then liberty, and then independence and destiny." <br><br>- Mustafa Kemal Ataturk';
       }
-      else if (staticType === 'Info') {
+      else if (reportType === typesReport.Info) {
         message = '"Knowledge rests not upon truth alone, but upon error also." <br><br>- Carl Gustav Jung';
       }
     }
@@ -342,13 +348,13 @@
 
     // svg icon: begin
     var svgIcon = '';
-    if (staticType === 'Success') {
+    if (reportType === typesReport.Success) {
       svgIcon = reportSvgIconSuccess(newReportSettings.svgSize, theType.svgColor);
-    } else if (staticType === 'Failure') {
+    } else if (reportType === typesReport.Failure) {
       svgIcon = reportSvgIconFailure(newReportSettings.svgSize, theType.svgColor);
-    } else if (staticType === 'Warning') {
+    } else if (reportType === typesReport.Warning) {
       svgIcon = reportSvgIconWarning(newReportSettings.svgSize, theType.svgColor);
-    } else if (staticType === 'Info') {
+    } else if (reportType === typesReport.Info) {
       svgIcon = reportSvgIconInfo(newReportSettings.svgSize, theType.svgColor);
     }
     // svg icon: end
@@ -419,19 +425,19 @@
       },
       // Success
       success: function (title, message, buttonText, callbackOrOptions, options) {
-        reportCreate(title, message, buttonText, callbackOrOptions, options, 'Success');
+        reportCreate(typesReport.Success, title, message, buttonText, callbackOrOptions, options);
       },
       // Failure
       failure: function (title, message, buttonText, callbackOrOptions, options) {
-        reportCreate(title, message, buttonText, callbackOrOptions, options, 'Failure');
+        reportCreate(typesReport.Failure, title, message, buttonText, callbackOrOptions, options);
       },
       // Warning
       warning: function (title, message, buttonText, callbackOrOptions, options) {
-        reportCreate(title, message, buttonText, callbackOrOptions, options, 'Warning');
+        reportCreate(typesReport.Warning, title, message, buttonText, callbackOrOptions, options);
       },
       // Info
       info: function (title, message, buttonText, callbackOrOptions, options) {
-        reportCreate(title, message, buttonText, callbackOrOptions, options, 'Info');
+        reportCreate(typesReport.Info, title, message, buttonText, callbackOrOptions, options);
       },
     },
   };

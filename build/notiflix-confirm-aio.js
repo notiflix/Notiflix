@@ -1,7 +1,7 @@
 /*
 * Notiflix Confirm AIO (https://notiflix.github.io)
 * Description: This file has been created automatically that using "notiflix.js", and "notiflix.css" files.
-* Version: 3.1.0
+* Version: 3.2.0
 * Author: Furkan MT (https://github.com/furcan)
 * Copyright 2019 - 2021 Notiflix, MIT Licence (https://opensource.org/licenses/MIT)
 */
@@ -34,6 +34,11 @@
   // COMMON: Variables: end
 
   // CONFIRM: Default Settings: begin
+  var typesConfirm = {
+    Show: 'Show',
+    Ask: 'Ask',
+    Prompt: 'Prompt',
+  };
   var newConfirmSettings;
   var confirmSettings = {
     ID: 'NotiflixConfirmWrap', // can not customizable
@@ -150,7 +155,7 @@
   // CONFIRM: Get Internal CSS Codes: end
 
   // CONFIRM: Create: begin
-  var confirmCreate = function (title, message, okButtonText, cancelButtonText, okButtonCallback, cancelButtonCallback, options, hasValidation, answer) {
+  var confirmCreate = function (confirmType, title, messageOrQuestion, answer, okButtonText, cancelButtonText, okButtonCallback, cancelButtonCallback, options) {
     // check doc body
     if (!commonCheckHeadOrBody('body')) { return false; }
 
@@ -171,7 +176,7 @@
 
     // check the arguments: begin
     if (typeof title !== 'string') { title = 'Notiflix Confirm'; }
-    if (typeof message !== 'string') { message = 'Do you agree with me?'; }
+    if (typeof messageOrQuestion !== 'string') { messageOrQuestion = 'Do you agree with me?'; }
     if (typeof okButtonText !== 'string') { okButtonText = 'Yes'; }
     if (typeof cancelButtonText !== 'string') { cancelButtonText = 'No'; }
     if (typeof okButtonCallback !== 'function') { okButtonCallback = undefined; }
@@ -181,7 +186,7 @@
     // if plainText is true => HTML tags not allowed: begin
     if (newConfirmSettings.plainText) {
       title = commonGetPlaintext(title);
-      message = commonGetPlaintext(message);
+      messageOrQuestion = commonGetPlaintext(messageOrQuestion);
       okButtonText = commonGetPlaintext(okButtonText);
       cancelButtonText = commonGetPlaintext(cancelButtonText);
     }
@@ -191,19 +196,19 @@
     if (!newConfirmSettings.plainText) {
       if (title.length > newConfirmSettings.titleMaxLength) {
         title = 'Possible HTML Tags Error';
-        message = 'The "plainText" option is "false" and the title content length is more than "titleMaxLength" option.';
+        messageOrQuestion = 'The "plainText" option is "false" and the title content length is more than "titleMaxLength" option.';
         okButtonText = 'Okay';
         cancelButtonText = '...';
       }
-      if (message.length > newConfirmSettings.messageMaxLength) {
+      if (messageOrQuestion.length > newConfirmSettings.messageMaxLength) {
         title = 'Possible HTML Tags Error';
-        message = 'The "plainText" option is "false" and the message content length is more than "messageMaxLength" option.';
+        messageOrQuestion = 'The "plainText" option is "false" and the message content length is more than "messageMaxLength" option.';
         okButtonText = 'Okay';
         cancelButtonText = '...';
       }
       if ((okButtonText.length || cancelButtonText.length) > newConfirmSettings.buttonsMaxLength) {
         title = 'Possible HTML Tags Error';
-        message = 'The "plainText" option is "false" and the buttons content length is more than "buttonsMaxLength" option.';
+        messageOrQuestion = 'The "plainText" option is "false" and the buttons content length is more than "buttonsMaxLength" option.';
         okButtonText = 'Okay';
         cancelButtonText = '...';
       }
@@ -214,8 +219,8 @@
     if (title.length > newConfirmSettings.titleMaxLength) {
       title = title.substring(0, newConfirmSettings.titleMaxLength) + '...';
     }
-    if (message.length > newConfirmSettings.messageMaxLength) {
-      message = message.substring(0, newConfirmSettings.messageMaxLength) + '...';
+    if (messageOrQuestion.length > newConfirmSettings.messageMaxLength) {
+      messageOrQuestion = messageOrQuestion.substring(0, newConfirmSettings.messageMaxLength) + '...';
     }
     if (okButtonText.length > newConfirmSettings.buttonsMaxLength) {
       okButtonText = okButtonText.substring(0, newConfirmSettings.buttonsMaxLength) + '...';
@@ -269,10 +274,13 @@
 
     // check the validation module: begin
     var setValidationInput = '';
-    var theAnswer = null;
-    if (hasValidation && (typeof answer === 'string' && answer.length > 0)) {
-      theAnswer = answer;
-      setValidationInput = '<div><input id="NXConfirmValidationInput" type="text" style="font-size:' + newConfirmSettings.messageFontSize + ';border-radius: ' + newConfirmSettings.borderRadius + ';" maxlength="' + theAnswer.length + '" autocomplete="off" spellcheck="false" autocapitalize="none" /></div>';
+    var theExpectedAnswer = null;
+    var theClientAnswer = undefined;
+    if (confirmType === typesConfirm.Ask || confirmType === typesConfirm.Prompt) {
+      theExpectedAnswer = answer || '';
+      var inputMaxLength = Math.ceil(theExpectedAnswer.length * (confirmType === typesConfirm.Ask ? 1 : 1.5));
+      var inputDefaultValueAttr = confirmType === typesConfirm.Prompt ? ('value="' + theExpectedAnswer + '"') : '';
+      setValidationInput = '<div><input id="NXConfirmValidationInput" type="text" ' + inputDefaultValueAttr + ' maxlength="' + inputMaxLength + '" style="font-size:' + newConfirmSettings.messageFontSize + ';border-radius: ' + newConfirmSettings.borderRadius + ';" autocomplete="off" spellcheck="false" autocapitalize="none" /></div>';
     }
     // check the validation module: end
 
@@ -281,7 +289,7 @@
       '<div class="' + newConfirmSettings.className + '-content" style="width:' + newConfirmSettings.width + '; background:' + newConfirmSettings.backgroundColor + '; animation-duration:' + newConfirmSettings.cssAnimationDuration + 'ms; border-radius: ' + newConfirmSettings.borderRadius + ';">' +
       '<div class="' + newConfirmSettings.className + '-head">' +
       '<h5 style="color:' + newConfirmSettings.titleColor + ';font-size:' + newConfirmSettings.titleFontSize + ';">' + title + '</h5>' +
-      '<div style="color:' + newConfirmSettings.messageColor + ';font-size:' + newConfirmSettings.messageFontSize + ';">' + message + setValidationInput + '</div>' +
+      '<div style="color:' + newConfirmSettings.messageColor + ';font-size:' + newConfirmSettings.messageFontSize + ';">' + messageOrQuestion + setValidationInput + '</div>' +
       '</div>' +
       '<div class="' + newConfirmSettings.className + '-buttons">' +
       '<a id="NXConfirmButtonOk" class="nx-confirm-button-ok' + (typeof okButtonCallback === 'function' ? '' : ' nx-full') + '" style="color:' + newConfirmSettings.okButtonColor + ';background:' + newConfirmSettings.okButtonBackground + ';font-size:' + newConfirmSettings.buttonsFontSize + ';">' + okButtonText + '</a>' +
@@ -303,16 +311,23 @@
       var validationInput = window.document.getElementById('NXConfirmValidationInput');
       if (validationInput) {
         validationInput.focus();
+        validationInput.setSelectionRange(0, (validationInput.value || '').length);
         validationInput.addEventListener('keyup', function (event) {
-          var thisValue = (event.target.value || '').toString();
-          if (thisValue !== theAnswer) {
+          var thisValue = event.target.value;
+          if (
+            (confirmType === typesConfirm.Ask) &&
+            (thisValue !== theExpectedAnswer)
+          ) {
+            event.preventDefault();
             validationInput.classList.add('nx-validation-failure');
             validationInput.classList.remove('nx-validation-success');
           } else {
-            validationInput.classList.remove('nx-validation-failure');
-            validationInput.classList.add('nx-validation-success');
-            var thisEnter = (event.key || '').toLocaleLowerCase('en') === 'enter' || event.keyCode === 13;
-            if (thisEnter) {
+            if (confirmType === typesConfirm.Ask) {
+              validationInput.classList.remove('nx-validation-failure');
+              validationInput.classList.add('nx-validation-success');
+            }
+            var isEnter = (event.key || '').toLocaleLowerCase('en') === 'enter' || event.keyCode === 13;
+            if (isEnter) {
               okButton.dispatchEvent(new Event('click'));
             }
           }
@@ -322,10 +337,10 @@
 
       // ok button listener: begin
       okButton.addEventListener('click', function (event) {
-        // check the validation: begin
-        if (hasValidation && theAnswer && validationInput) {
+        // check the answer if the type is "Ask": begin
+        if (confirmType === typesConfirm.Ask && theExpectedAnswer && validationInput) {
           var inputValue = (validationInput.value || '').toString();
-          if (inputValue !== theAnswer) {
+          if (inputValue !== theExpectedAnswer) {
             validationInput.focus();
             validationInput.classList.add('nx-validation-failure');
             event.stopPropagation();
@@ -337,11 +352,14 @@
             validationInput.classList.remove('nx-validation-failure');
           }
         }
-        // check the validation: end
+        // check the answer if the type is "Ask": end
 
         // if ok callback && if ok callback is a function
         if (typeof okButtonCallback === 'function') {
-          okButtonCallback();
+          if (confirmType === typesConfirm.Prompt && validationInput) {
+            theClientAnswer = validationInput.value || '';
+          }
+          okButtonCallback(theClientAnswer);
         }
         confirmCloseWrap.classList.add('nx-remove');
 
@@ -361,7 +379,10 @@
         cancelButton.addEventListener('click', function () {
           // if cancel callback && if cancel callback a function
           if (typeof cancelButtonCallback === 'function') {
-            cancelButtonCallback();
+            if (confirmType === typesConfirm.Prompt && validationInput) {
+              theClientAnswer = validationInput.value || '';
+            }
+            cancelButtonCallback(theClientAnswer);
           }
           confirmCloseWrap.classList.add('nx-remove');
 
@@ -407,11 +428,15 @@
       },
       // Show
       show: function (title, message, okButtonText, cancelButtonText, okButtonCallback, cancelButtonCallback, options) {
-        confirmCreate(title, message, okButtonText, cancelButtonText, okButtonCallback, cancelButtonCallback, options, false, false);
+        confirmCreate(typesConfirm.Show, title, message, null, okButtonText, cancelButtonText, okButtonCallback, cancelButtonCallback, options);
       },
       // Ask
       ask: function (title, question, answer, okButtonText, cancelButtonText, okButtonCallback, cancelButtonCallback, options) {
-        confirmCreate(title, question, okButtonText, cancelButtonText, okButtonCallback, cancelButtonCallback, options, true, answer);
+        confirmCreate(typesConfirm.Ask, title, question, answer, okButtonText, cancelButtonText, okButtonCallback, cancelButtonCallback, options);
+      },
+      // Prompt
+      prompt: function (title, question, defaultAnswer, okButtonText, cancelButtonText, okButtonCallback, cancelButtonCallback, options) {
+        confirmCreate(typesConfirm.Prompt, title, question, defaultAnswer, okButtonText, cancelButtonText, okButtonCallback, cancelButtonCallback, options);
       },
     },
   };

@@ -1,3 +1,25 @@
+@3.2.0
+* **Added:** `Notiflix.Confirm.*` module: The `.prompt()` method has been added. ([#42](https://github.com/notiflix/Notiflix/issues/42))
+  - `Notiflix.Confirm.prompt()` method works similarly as `window.prompt()`. The client doesn't have to type a correct answer to the input element to proceed unlike the `Notiflix.Confirm.ask()` method. The client answer passes to the callback functions as a parameter and this parameter is always a `string`.
+
+* **Added:** `Notiflix.Loading.*` module: The `customSvgCode` option has been added for `Notiflix.Loading.custom();` method. The default is `null`. A text-based (`string`) SVG icon can be set to this option. Single quotation marks should be avoided.
+
+* **Fixed:** `index.d.ts`: `IConfirmOptions` interface: `zindex` property type has been fixed.
+
+* **Removed:** `index.d.ts`: Following types have been removed:
+  - `TNotiflixCallback`
+  - `TNotifyCallbackOrOptions`
+  - `TReportCallbackOrOptions`
+  - `TLoadingMessageOrOptions`
+  - `TBlockMessageOrOptions`
+  - `TBlockSelectorOrHTMLElements`
+
+* **Added:** `index.d.ts`: Namespaces, Functions, and Interfaces: Comments have been added for IntelliSense.
+
+* **Changed:** Code Review/Refactor.
+
+---
+
 @3.1.0
 * **Changed:** `Notiflix.Block.*` module: The `selector` parameter has been changed to `selectorOrHTMLElements`. An `Array<HTMLElement>` or a `NodeListOf<HTMLElement>` can be also used instead of CSS selector(s).
 
@@ -27,13 +49,18 @@
 
 * **Changed:** Code Review/Refactor.
 
+---
 
 @3.0.2
 * **Changed:** `index.d.ts`: Types and Interfaces have been exported.
 * **Changed:** Code Review.
 
+---
+
 @3.0.1
 * **Changed:** `index.d.ts` file has added to the NPM.
+
+---
 
 @3.0.0
 * **Changed:** `Notiflix.Notify`: `Init()` function name changed to `init()`.
@@ -87,7 +114,9 @@
 * **Added:** TypeScript declaration has added.
 * **Changed:** Code Review.
 
------
+---
+---
+---
 
 @2.7.0
 * **Added:** `Notiflix.Notify.*` module: The `pauseOnHover` option has been added. The default value is `true`. Auto-remove functionality will be paused for each notification element when the pointer(mouse) enters the notification if this option has been set as `true`.

@@ -1,7 +1,7 @@
 /*
 * Notiflix Loading AIO (https://notiflix.github.io)
 * Description: This file has been created automatically that using "notiflix.js", and "notiflix.css" files.
-* Version: 3.1.0
+* Version: 3.2.0
 * Author: Furkan MT (https://github.com/furcan)
 * Copyright 2019 - 2021 Notiflix, MIT Licence (https://opensource.org/licenses/MIT)
 */
@@ -34,6 +34,16 @@
   // COMMON: Variables: end
 
   // LOADING: Default Settings: begin
+  var typesLoading = {
+    Standard: 'Standard',
+    Hourglass: 'Hourglass',
+    Circle: 'Circle',
+    Arrows: 'Arrows',
+    Dots: 'Dots',
+    Pulse: 'Pulse',
+    Custom: 'Custom',
+    Notiflix: 'Notiflix',
+  };
   var newLoadingSettings;
   var loadingSettings = {
     ID: 'NotiflixLoadingWrap', // can not customizable
@@ -46,6 +56,7 @@
     cssAnimationDuration: 400,
     clickToClose: false,
     customSvgUrl: null,
+    customSvgCode: null,
     svgSize: '80px',
     svgColor: '#32c682',
     messageID: 'NotiflixLoadingMessage',
@@ -193,13 +204,13 @@
 
   // LOADING: Get Internal CSS Codes: begin
   var loadingGetInternalCSSCodes = function () {
-    var loadingCSS = '[id^=NotiflixLoadingWrap]{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:fixed;z-index:4000;width:100%;height:100%;left:0;top:0;right:0;bottom:0;margin:auto;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;text-align:center;-webkit-box-sizing:border-box;box-sizing:border-box;background:rgba(0,0,0,.8);font-family:"Quicksand",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}[id^=NotiflixLoadingWrap] *{-webkit-box-sizing:border-box;box-sizing:border-box}[id^=NotiflixLoadingWrap].nx-click-to-close{cursor:pointer}[id^=NotiflixLoadingWrap]>div[class*="-icon"]{width:60px;height:60px;position:relative;-webkit-transition:top .2s ease-in-out;-o-transition:top .2s ease-in-out;transition:top .2s ease-in-out;margin:0 auto}[id^=NotiflixLoadingWrap]>div[class*="-icon"] img,[id^=NotiflixLoadingWrap]>div[class*="-icon"] svg{max-width:unset;max-height:unset;width:100%;height:100%;position:absolute;left:0;top:0}[id^=NotiflixLoadingWrap]>p{position:relative;margin:10px auto 0;font-family:inherit!important;font-weight:normal;font-size:15px;line-height:1.4;padding:0 10px;width:100%;text-align:center}[id^=NotiflixLoadingWrap].nx-with-animation{-webkit-animation:loading-animation-fade .3s ease-in-out 0s normal;animation:loading-animation-fade .3s ease-in-out 0s normal}@-webkit-keyframes loading-animation-fade{0%{opacity:0}100%{opacity:1}}@keyframes loading-animation-fade{0%{opacity:0}100%{opacity:1}}[id^=NotiflixLoadingWrap].nx-with-animation.nx-remove{opacity:0;-webkit-animation:loading-animation-fade-remove .3s ease-in-out 0s normal;animation:loading-animation-fade-remove .3s ease-in-out 0s normal}@-webkit-keyframes loading-animation-fade-remove{0%{opacity:1}100%{opacity:0}}@keyframes loading-animation-fade-remove{0%{opacity:1}100%{opacity:0}}[id^=NotiflixLoadingWrap]>p.nx-loading-message-new{-webkit-animation:loading-new-message-fade .3s ease-in-out 0s normal;animation:loading-new-message-fade .3s ease-in-out 0s normal}@-webkit-keyframes loading-new-message-fade{0%{opacity:0}100%{opacity:1}}@keyframes loading-new-message-fade{0%{opacity:0}100%{opacity:1}}';
+    var loadingCSS = '[id^=NotiflixLoadingWrap]{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:fixed;z-index:4000;width:100%;height:100%;left:0;top:0;right:0;bottom:0;margin:auto;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;text-align:center;-webkit-box-sizing:border-box;box-sizing:border-box;background:rgba(0,0,0,.8);font-family:"Quicksand",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}[id^=NotiflixLoadingWrap] *{-webkit-box-sizing:border-box;box-sizing:border-box}[id^=NotiflixLoadingWrap].nx-click-to-close{cursor:pointer}[id^=NotiflixLoadingWrap]>div[class*="-icon"]{width:60px;height:60px;position:relative;-webkit-transition:top .2s ease-in-out;-o-transition:top .2s ease-in-out;transition:top .2s ease-in-out;margin:0 auto}[id^=NotiflixLoadingWrap]>div[class*="-icon"] img,[id^=NotiflixLoadingWrap]>div[class*="-icon"] svg{max-width:unset;max-height:unset;width:100%;height:auto;position:absolute;left:0;top:0}[id^=NotiflixLoadingWrap]>p{position:relative;margin:10px auto 0;font-family:inherit!important;font-weight:normal;font-size:15px;line-height:1.4;padding:0 10px;width:100%;text-align:center}[id^=NotiflixLoadingWrap].nx-with-animation{-webkit-animation:loading-animation-fade .3s ease-in-out 0s normal;animation:loading-animation-fade .3s ease-in-out 0s normal}@-webkit-keyframes loading-animation-fade{0%{opacity:0}100%{opacity:1}}@keyframes loading-animation-fade{0%{opacity:0}100%{opacity:1}}[id^=NotiflixLoadingWrap].nx-with-animation.nx-remove{opacity:0;-webkit-animation:loading-animation-fade-remove .3s ease-in-out 0s normal;animation:loading-animation-fade-remove .3s ease-in-out 0s normal}@-webkit-keyframes loading-animation-fade-remove{0%{opacity:1}100%{opacity:0}}@keyframes loading-animation-fade-remove{0%{opacity:1}100%{opacity:0}}[id^=NotiflixLoadingWrap]>p.nx-loading-message-new{-webkit-animation:loading-new-message-fade .3s ease-in-out 0s normal;animation:loading-new-message-fade .3s ease-in-out 0s normal}@-webkit-keyframes loading-new-message-fade{0%{opacity:0}100%{opacity:1}}@keyframes loading-new-message-fade{0%{opacity:0}100%{opacity:1}}';
     return loadingCSS || null;
   };
   // LOADING: Get Internal CSS Codes: end
 
   // LOADING: Create: begin
-  var loadingCreate = function (messageOrOptions, options, iconType, display, delay) {
+  var loadingCreate = function (loadingType, messageOrOptions, options, display, delay) {
     // check doc body
     if (!commonCheckHeadOrBody('body')) { return false; }
 
@@ -255,21 +266,34 @@
 
       // svgIcon: begin
       var svgIcon = '';
-      if (iconType === 'standard') {
+      if (loadingType === typesLoading.Standard) {
         svgIcon = loadingAndBlockSvgIconStandard(newLoadingSettings.svgSize, newLoadingSettings.svgColor);
-      } else if (iconType === 'hourglass') {
+      } else if (loadingType === typesLoading.Hourglass) {
         svgIcon = loadingAndBlockSvgIconHourglass(newLoadingSettings.svgSize, newLoadingSettings.svgColor);
-      } else if (iconType === 'circle') {
+      } else if (loadingType === typesLoading.Circle) {
         svgIcon = loadingAndBlockSvgIconCircle(newLoadingSettings.svgSize, newLoadingSettings.svgColor);
-      } else if (iconType === 'arrows') {
+      } else if (loadingType === typesLoading.Arrows) {
         svgIcon = loadingAndBlockSvgIconArrows(newLoadingSettings.svgSize, newLoadingSettings.svgColor);
-      } else if (iconType === 'dots') {
+      } else if (loadingType === typesLoading.Dots) {
         svgIcon = loadingAndBlockSvgIconDots(newLoadingSettings.svgSize, newLoadingSettings.svgColor);
-      } else if (iconType === 'pulse') {
+      } else if (loadingType === typesLoading.Pulse) {
         svgIcon = loadingAndBlockSvgIconPulse(newLoadingSettings.svgSize, newLoadingSettings.svgColor);
-      } else if (iconType === 'custom' && newLoadingSettings.customSvgUrl !== null) {
+      } else if (
+        loadingType === typesLoading.Custom &&
+        newLoadingSettings.customSvgCode !== null &&
+        newLoadingSettings.customSvgUrl === null
+      ) {
+        svgIcon = newLoadingSettings.customSvgCode || '';
+      } else if (
+        loadingType === typesLoading.Custom &&
+        newLoadingSettings.customSvgUrl !== null &&
+        newLoadingSettings.customSvgCode === null
+      ) {
         svgIcon = '<img class="nx-custom-loading-icon" width="' + newLoadingSettings.svgSize + '" height="' + newLoadingSettings.svgSize + '" src="' + newLoadingSettings.customSvgUrl + '" alt="Notiflix">';
-      } else if (iconType === 'custom' && newLoadingSettings.customSvgUrl === null) {
+      } else if (
+        loadingType === typesLoading.Custom &&
+        (newLoadingSettings.customSvgUrl === null || newLoadingSettings.customSvgCode === null)
+      ) {
         commonConsoleError('You have to set a static SVG url to "customSvgUrl" option to use Loading Custom.');
         return false;
       } else {
@@ -417,35 +441,35 @@
       },
       // Standard
       standard: function (messageOrOptions, options) {
-        loadingCreate(messageOrOptions, options, 'standard', true, 0); // true => show && 0 => delay
+        loadingCreate(typesLoading.Standard, messageOrOptions, options, true, 0); // true => show && 0 => delay
       },
       // Hourglass
       hourglass: function (messageOrOptions, options) {
-        loadingCreate(messageOrOptions, options, 'hourglass', true, 0); // true => show && 0 => delay
+        loadingCreate(typesLoading.Hourglass, messageOrOptions, options, true, 0); // true => show && 0 => delay
       },
       // Circle
       circle: function (messageOrOptions, options) {
-        loadingCreate(messageOrOptions, options, 'circle', true, 0); // true => show && 0 => delay
+        loadingCreate(typesLoading.Circle, messageOrOptions, options, true, 0); // true => show && 0 => delay
       },
       // Arrows
       arrows: function (messageOrOptions, options) {
-        loadingCreate(messageOrOptions, options, 'arrows', true, 0); // true => show && 0 => delay
+        loadingCreate(typesLoading.Arrows, messageOrOptions, options, true, 0); // true => show && 0 => delay
       },
       // Dots
       dots: function (messageOrOptions, options) {
-        loadingCreate(messageOrOptions, options, 'dots', true, 0); // true => show && 0 => delay
+        loadingCreate(typesLoading.Dots, messageOrOptions, options, true, 0); // true => show && 0 => delay
       },
       // Pulse
       pulse: function (messageOrOptions, options) {
-        loadingCreate(messageOrOptions, options, 'pulse', true, 0); // true => show && 0 => delay
+        loadingCreate(typesLoading.Pulse, messageOrOptions, options, true, 0); // true => show && 0 => delay
       },
       // Custom
       custom: function (messageOrOptions, options) {
-        loadingCreate(messageOrOptions, options, 'custom', true, 0); // true => show && 0 => delay
+        loadingCreate(typesLoading.Custom, messageOrOptions, options, true, 0); // true => show && 0 => delay
       },
       // Notiflix
       notiflix: function (messageOrOptions, options) {
-        loadingCreate(messageOrOptions, options, 'notiflix', true, 0); // true => show && 0 => delay
+        loadingCreate(typesLoading.Notiflix, messageOrOptions, options, true, 0); // true => show && 0 => delay
       },
       // Remove
       remove: function (delay) {

@@ -1,7 +1,7 @@
 /*
 * Notiflix Notify AIO (https://notiflix.github.io)
 * Description: This file has been created automatically that using "notiflix.js", and "notiflix.css" files.
-* Version: 3.1.0
+* Version: 3.2.0
 * Author: Furkan MT (https://github.com/furcan)
 * Copyright 2019 - 2021 Notiflix, MIT Licence (https://opensource.org/licenses/MIT)
 */
@@ -34,6 +34,12 @@
   // COMMON: Variables: end
 
   // NOTIFY: Default Settings: begin
+  var typesNotify = {
+    Success: 'Success',
+    Failure: 'Failure',
+    Warning: 'Warning',
+    Info: 'Info',
+  };
   var newNotifySettings;
   var notifySettings = {
     wrapID: 'NotiflixNotifyWrap', // can not customizable
@@ -190,7 +196,7 @@
 
   // NOTIFY: Create: begin
   var notifyCreateCounter = 0;
-  var notifyCreate = function (message, callbackOrOptions, options, staticType) {
+  var notifyCreate = function (notifyType, message, callbackOrOptions, options) {
     // check doc body
     if (!commonCheckHeadOrBody('body')) { return false; }
 
@@ -218,14 +224,14 @@
     // check callbackOrOptions and options: end
 
     // notify type
-    var theType = newNotifySettings[staticType.toLocaleLowerCase('en')];
+    var theType = newNotifySettings[notifyType.toLocaleLowerCase('en')];
 
     // notify counter
     notifyCreateCounter++;
 
     // check the message: begin
     if (typeof message !== 'string') {
-      message = 'Notiflix ' + staticType;
+      message = 'Notiflix ' + notifyType;
     }
     // check the message: end
 
@@ -389,13 +395,13 @@
       // use notiflix icon
       else {
         var svgIcon = '';
-        if (staticType === 'Success') {  // success
+        if (notifyType === typesNotify.Success) {  // success
           svgIcon = '<svg class="nx-message-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><g><path fill="' + theType.notiflixIconColor + '" d="M20 0c11.03,0 20,8.97 20,20 0,11.03 -8.97,20 -20,20 -11.03,0 -20,-8.97 -20,-20 0,-11.03 8.97,-20 20,-20zm0 37.98c9.92,0 17.98,-8.06 17.98,-17.98 0,-9.92 -8.06,-17.98 -17.98,-17.98 -9.92,0 -17.98,8.06 -17.98,17.98 0,9.92 8.06,17.98 17.98,17.98zm-2.4 -13.29l11.52 -12.96c0.37,-0.41 1.01,-0.45 1.42,-0.08 0.42,0.37 0.46,1 0.09,1.42l-12.16 13.67c-0.19,0.22 -0.46,0.34 -0.75,0.34 -0.23,0 -0.45,-0.07 -0.63,-0.22l-7.6 -6.07c-0.43,-0.35 -0.5,-0.99 -0.16,-1.42 0.35,-0.43 0.99,-0.5 1.42,-0.16l6.85 5.48z"/></g></svg>';
-        } else if (staticType === 'Failure') { // failure
+        } else if (notifyType === typesNotify.Failure) { // failure
           svgIcon = '<svg class="nx-message-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><g><path fill="' + theType.notiflixIconColor + '" d="M20 0c11.03,0 20,8.97 20,20 0,11.03 -8.97,20 -20,20 -11.03,0 -20,-8.97 -20,-20 0,-11.03 8.97,-20 20,-20zm0 37.98c9.92,0 17.98,-8.06 17.98,-17.98 0,-9.92 -8.06,-17.98 -17.98,-17.98 -9.92,0 -17.98,8.06 -17.98,17.98 0,9.92 8.06,17.98 17.98,17.98zm1.42 -17.98l6.13 6.12c0.39,0.4 0.39,1.04 0,1.43 -0.19,0.19 -0.45,0.29 -0.71,0.29 -0.27,0 -0.53,-0.1 -0.72,-0.29l-6.12 -6.13 -6.13 6.13c-0.19,0.19 -0.44,0.29 -0.71,0.29 -0.27,0 -0.52,-0.1 -0.71,-0.29 -0.39,-0.39 -0.39,-1.03 0,-1.43l6.13 -6.12 -6.13 -6.13c-0.39,-0.39 -0.39,-1.03 0,-1.42 0.39,-0.39 1.03,-0.39 1.42,0l6.13 6.12 6.12 -6.12c0.4,-0.39 1.04,-0.39 1.43,0 0.39,0.39 0.39,1.03 0,1.42l-6.13 6.13z"/></g></svg>';
-        } else if (staticType === 'Warning') { // warning
+        } else if (notifyType === typesNotify.Warning) { // warning
           svgIcon = '<svg class="nx-message-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><g><path fill="' + theType.notiflixIconColor + '" d="M21.91 3.48l17.8 30.89c0.84,1.46 -0.23,3.25 -1.91,3.25l-35.6 0c-1.68,0 -2.75,-1.79 -1.91,-3.25l17.8 -30.89c0.85,-1.47 2.97,-1.47 3.82,0zm16.15 31.84l-17.8 -30.89c-0.11,-0.2 -0.41,-0.2 -0.52,0l-17.8 30.89c-0.12,0.2 0.05,0.4 0.26,0.4l35.6 0c0.21,0 0.38,-0.2 0.26,-0.4zm-19.01 -4.12l0 -1.05c0,-0.53 0.42,-0.95 0.95,-0.95 0.53,0 0.95,0.42 0.95,0.95l0 1.05c0,0.53 -0.42,0.95 -0.95,0.95 -0.53,0 -0.95,-0.42 -0.95,-0.95zm0 -4.66l0 -13.39c0,-0.52 0.42,-0.95 0.95,-0.95 0.53,0 0.95,0.43 0.95,0.95l0 13.39c0,0.53 -0.42,0.96 -0.95,0.96 -0.53,0 -0.95,-0.43 -0.95,-0.96z"/></g></svg>';
-        } else if (staticType === 'Info') { // info
+        } else if (notifyType === typesNotify.Info) { // info
           svgIcon = '<svg class="nx-message-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><g><path fill="' + theType.notiflixIconColor + '" d="M20 0c11.03,0 20,8.97 20,20 0,11.03 -8.97,20 -20,20 -11.03,0 -20,-8.97 -20,-20 0,-11.03 8.97,-20 20,-20zm0 37.98c9.92,0 17.98,-8.06 17.98,-17.98 0,-9.92 -8.06,-17.98 -17.98,-17.98 -9.92,0 -17.98,8.06 -17.98,17.98 0,9.92 8.06,17.98 17.98,17.98zm-0.99 -23.3c0,-0.54 0.44,-0.98 0.99,-0.98 0.55,0 0.99,0.44 0.99,0.98l0 15.86c0,0.55 -0.44,0.99 -0.99,0.99 -0.55,0 -0.99,-0.44 -0.99,-0.99l0 -15.86zm0 -5.22c0,-0.55 0.44,-0.99 0.99,-0.99 0.55,0 0.99,0.44 0.99,0.99l0 1.09c0,0.54 -0.44,0.99 -0.99,0.99 -0.55,0 -0.99,-0.45 -0.99,-0.99l0 -1.09z"/></g></svg>';
         }
         ntflxNotify.innerHTML = svgIcon + '<span class="nx-message nx-with-icon">' + message + '</span>' + (newNotifySettings.closeButton ? closeButtonHTML : '');
@@ -552,19 +558,19 @@
       },
       // Success
       success: function (message, callbackOrOptions, options) {
-        notifyCreate(message, callbackOrOptions, options, 'Success');
+        notifyCreate(typesNotify.Success, message, callbackOrOptions, options);
       },
       // Failure
       failure: function (message, callbackOrOptions, options) {
-        notifyCreate(message, callbackOrOptions, options, 'Failure');
+        notifyCreate(typesNotify.Failure, message, callbackOrOptions, options);
       },
       // Warning
       warning: function (message, callbackOrOptions, options) {
-        notifyCreate(message, callbackOrOptions, options, 'Warning');
+        notifyCreate(typesNotify.Warning, message, callbackOrOptions, options);
       },
       // Info
       info: function (message, callbackOrOptions, options) {
-        notifyCreate(message, callbackOrOptions, options, 'Info');
+        notifyCreate(typesNotify.Info, message, callbackOrOptions, options);
       },
     },
   };

@@ -1,7 +1,7 @@
 /*
 * Notiflix AIO (https://notiflix.github.io)
 * Description: This file has been created automatically that using "notiflix.js", and "notiflix.css" files.
-* Version: 3.1.0
+* Version: 3.2.0
 * Author: Furkan MT (https://github.com/furcan)
 * Copyright 2019 - 2021 Notiflix, MIT Licence (https://opensource.org/licenses/MIT)
 */
@@ -34,6 +34,12 @@
   // COMMON: Variables: end
 
   // NOTIFY: Default Settings: begin
+  var typesNotify = {
+    Success: 'Success',
+    Failure: 'Failure',
+    Warning: 'Warning',
+    Info: 'Info',
+  };
   var newNotifySettings;
   var notifySettings = {
     wrapID: 'NotiflixNotifyWrap', // can not customizable
@@ -110,6 +116,12 @@
   // NOTIFY: Default Settings: end
 
   // REPORT: Default Settings: begin
+  var typesReport = {
+    Success: 'Success',
+    Failure: 'Failure',
+    Warning: 'Warning',
+    Info: 'Info',
+  };
   var newReportSettings;
   var reportSettings = {
     ID: 'NotiflixReportWrap', // can not customizable
@@ -173,6 +185,11 @@
   // REPORT: Default Settings: end
 
   // CONFIRM: Default Settings: begin
+  var typesConfirm = {
+    Show: 'Show',
+    Ask: 'Ask',
+    Prompt: 'Prompt',
+  };
   var newConfirmSettings;
   var confirmSettings = {
     ID: 'NotiflixConfirmWrap', // can not customizable
@@ -210,6 +227,16 @@
   // CONFIRM: Default Settings: end
 
   // LOADING: Default Settings: begin
+  var typesLoading = {
+    Standard: 'Standard',
+    Hourglass: 'Hourglass',
+    Circle: 'Circle',
+    Arrows: 'Arrows',
+    Dots: 'Dots',
+    Pulse: 'Pulse',
+    Custom: 'Custom',
+    Notiflix: 'Notiflix',
+  };
   var newLoadingSettings;
   var loadingSettings = {
     ID: 'NotiflixLoadingWrap', // can not customizable
@@ -222,6 +249,7 @@
     cssAnimationDuration: 400,
     clickToClose: false,
     customSvgUrl: null,
+    customSvgCode: null,
     svgSize: '80px',
     svgColor: '#32c682',
     messageID: 'NotiflixLoadingMessage',
@@ -232,6 +260,14 @@
   // LOADING: Default Settings: end
 
   // BLOCK: Default Settings: begin
+  var typesBlock = {
+    Standard: 'Standard',
+    Hourglass: 'Hourglass',
+    Circle: 'Circle',
+    Arrows: 'Arrows',
+    Dots: 'Dots',
+    Pulse: 'Pulse',
+  };
   var newBlockSettings;
   var blockSettings = {
     ID: 'NotiflixBlockWrap', // can not customizable
@@ -439,7 +475,7 @@
 
   // NOTIFY: Create: begin
   var notifyCreateCounter = 0;
-  var notifyCreate = function (message, callbackOrOptions, options, staticType) {
+  var notifyCreate = function (notifyType, message, callbackOrOptions, options) {
     // check doc body
     if (!commonCheckHeadOrBody('body')) { return false; }
 
@@ -467,14 +503,14 @@
     // check callbackOrOptions and options: end
 
     // notify type
-    var theType = newNotifySettings[staticType.toLocaleLowerCase('en')];
+    var theType = newNotifySettings[notifyType.toLocaleLowerCase('en')];
 
     // notify counter
     notifyCreateCounter++;
 
     // check the message: begin
     if (typeof message !== 'string') {
-      message = 'Notiflix ' + staticType;
+      message = 'Notiflix ' + notifyType;
     }
     // check the message: end
 
@@ -638,13 +674,13 @@
       // use notiflix icon
       else {
         var svgIcon = '';
-        if (staticType === 'Success') {  // success
+        if (notifyType === typesNotify.Success) {  // success
           svgIcon = '<svg class="nx-message-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><g><path fill="' + theType.notiflixIconColor + '" d="M20 0c11.03,0 20,8.97 20,20 0,11.03 -8.97,20 -20,20 -11.03,0 -20,-8.97 -20,-20 0,-11.03 8.97,-20 20,-20zm0 37.98c9.92,0 17.98,-8.06 17.98,-17.98 0,-9.92 -8.06,-17.98 -17.98,-17.98 -9.92,0 -17.98,8.06 -17.98,17.98 0,9.92 8.06,17.98 17.98,17.98zm-2.4 -13.29l11.52 -12.96c0.37,-0.41 1.01,-0.45 1.42,-0.08 0.42,0.37 0.46,1 0.09,1.42l-12.16 13.67c-0.19,0.22 -0.46,0.34 -0.75,0.34 -0.23,0 -0.45,-0.07 -0.63,-0.22l-7.6 -6.07c-0.43,-0.35 -0.5,-0.99 -0.16,-1.42 0.35,-0.43 0.99,-0.5 1.42,-0.16l6.85 5.48z"/></g></svg>';
-        } else if (staticType === 'Failure') { // failure
+        } else if (notifyType === typesNotify.Failure) { // failure
           svgIcon = '<svg class="nx-message-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><g><path fill="' + theType.notiflixIconColor + '" d="M20 0c11.03,0 20,8.97 20,20 0,11.03 -8.97,20 -20,20 -11.03,0 -20,-8.97 -20,-20 0,-11.03 8.97,-20 20,-20zm0 37.98c9.92,0 17.98,-8.06 17.98,-17.98 0,-9.92 -8.06,-17.98 -17.98,-17.98 -9.92,0 -17.98,8.06 -17.98,17.98 0,9.92 8.06,17.98 17.98,17.98zm1.42 -17.98l6.13 6.12c0.39,0.4 0.39,1.04 0,1.43 -0.19,0.19 -0.45,0.29 -0.71,0.29 -0.27,0 -0.53,-0.1 -0.72,-0.29l-6.12 -6.13 -6.13 6.13c-0.19,0.19 -0.44,0.29 -0.71,0.29 -0.27,0 -0.52,-0.1 -0.71,-0.29 -0.39,-0.39 -0.39,-1.03 0,-1.43l6.13 -6.12 -6.13 -6.13c-0.39,-0.39 -0.39,-1.03 0,-1.42 0.39,-0.39 1.03,-0.39 1.42,0l6.13 6.12 6.12 -6.12c0.4,-0.39 1.04,-0.39 1.43,0 0.39,0.39 0.39,1.03 0,1.42l-6.13 6.13z"/></g></svg>';
-        } else if (staticType === 'Warning') { // warning
+        } else if (notifyType === typesNotify.Warning) { // warning
           svgIcon = '<svg class="nx-message-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><g><path fill="' + theType.notiflixIconColor + '" d="M21.91 3.48l17.8 30.89c0.84,1.46 -0.23,3.25 -1.91,3.25l-35.6 0c-1.68,0 -2.75,-1.79 -1.91,-3.25l17.8 -30.89c0.85,-1.47 2.97,-1.47 3.82,0zm16.15 31.84l-17.8 -30.89c-0.11,-0.2 -0.41,-0.2 -0.52,0l-17.8 30.89c-0.12,0.2 0.05,0.4 0.26,0.4l35.6 0c0.21,0 0.38,-0.2 0.26,-0.4zm-19.01 -4.12l0 -1.05c0,-0.53 0.42,-0.95 0.95,-0.95 0.53,0 0.95,0.42 0.95,0.95l0 1.05c0,0.53 -0.42,0.95 -0.95,0.95 -0.53,0 -0.95,-0.42 -0.95,-0.95zm0 -4.66l0 -13.39c0,-0.52 0.42,-0.95 0.95,-0.95 0.53,0 0.95,0.43 0.95,0.95l0 13.39c0,0.53 -0.42,0.96 -0.95,0.96 -0.53,0 -0.95,-0.43 -0.95,-0.96z"/></g></svg>';
-        } else if (staticType === 'Info') { // info
+        } else if (notifyType === typesNotify.Info) { // info
           svgIcon = '<svg class="nx-message-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><g><path fill="' + theType.notiflixIconColor + '" d="M20 0c11.03,0 20,8.97 20,20 0,11.03 -8.97,20 -20,20 -11.03,0 -20,-8.97 -20,-20 0,-11.03 8.97,-20 20,-20zm0 37.98c9.92,0 17.98,-8.06 17.98,-17.98 0,-9.92 -8.06,-17.98 -17.98,-17.98 -9.92,0 -17.98,8.06 -17.98,17.98 0,9.92 8.06,17.98 17.98,17.98zm-0.99 -23.3c0,-0.54 0.44,-0.98 0.99,-0.98 0.55,0 0.99,0.44 0.99,0.98l0 15.86c0,0.55 -0.44,0.99 -0.99,0.99 -0.55,0 -0.99,-0.44 -0.99,-0.99l0 -15.86zm0 -5.22c0,-0.55 0.44,-0.99 0.99,-0.99 0.55,0 0.99,0.44 0.99,0.99l0 1.09c0,0.54 -0.44,0.99 -0.99,0.99 -0.55,0 -0.99,-0.45 -0.99,-0.99l0 -1.09z"/></g></svg>';
         }
         ntflxNotify.innerHTML = svgIcon + '<span class="nx-message nx-with-icon">' + message + '</span>' + (newNotifySettings.closeButton ? closeButtonHTML : '');
@@ -786,7 +822,7 @@
   // REPORT: Get Internal CSS Codes: end
 
   // REPORT: Create: begin
-  var reportCreate = function (title, message, buttonText, callbackOrOptions, options, staticType) {
+  var reportCreate = function (reportType, title, message, buttonText, callbackOrOptions, options) {
     // check doc body
     if (!commonCheckHeadOrBody('body')) { return false; }
 
@@ -817,21 +853,21 @@
     // check callbackOrOptions and callback: end
 
     // report type
-    var theType = newReportSettings[staticType.toLocaleLowerCase('en')];
+    var theType = newReportSettings[reportType.toLocaleLowerCase('en')];
 
     // check the arguments: begin
-    if (typeof title !== 'string') { title = 'Notiflix ' + staticType; }
+    if (typeof title !== 'string') { title = 'Notiflix ' + reportType; }
     if (typeof message !== 'string') {
-      if (staticType === 'Success') {
+      if (reportType === typesReport.Success) {
         message = '"Do not try to become a person of success but try to become a person of value." <br><br>- Albert Einstein';
       }
-      else if (staticType === 'Failure') {
+      else if (reportType === typesReport.Failure) {
         message = '"Failure is simply the opportunity to begin again, this time more intelligently." <br><br>- Henry Ford';
       }
-      else if (staticType === 'Warning') {
+      else if (reportType === typesReport.Warning) {
         message = '"The peoples who want to live comfortably without producing and fatigue; they are doomed to lose their dignity, then liberty, and then independence and destiny." <br><br>- Mustafa Kemal Ataturk';
       }
-      else if (staticType === 'Info') {
+      else if (reportType === typesReport.Info) {
         message = '"Knowledge rests not upon truth alone, but upon error also." <br><br>- Carl Gustav Jung';
       }
     }
@@ -916,13 +952,13 @@
 
     // svg icon: begin
     var svgIcon = '';
-    if (staticType === 'Success') {
+    if (reportType === typesReport.Success) {
       svgIcon = reportSvgIconSuccess(newReportSettings.svgSize, theType.svgColor);
-    } else if (staticType === 'Failure') {
+    } else if (reportType === typesReport.Failure) {
       svgIcon = reportSvgIconFailure(newReportSettings.svgSize, theType.svgColor);
-    } else if (staticType === 'Warning') {
+    } else if (reportType === typesReport.Warning) {
       svgIcon = reportSvgIconWarning(newReportSettings.svgSize, theType.svgColor);
-    } else if (staticType === 'Info') {
+    } else if (reportType === typesReport.Info) {
       svgIcon = reportSvgIconInfo(newReportSettings.svgSize, theType.svgColor);
     }
     // svg icon: end
@@ -978,7 +1014,7 @@
   // CONFIRM: Get Internal CSS Codes: end
 
   // CONFIRM: Create: begin
-  var confirmCreate = function (title, message, okButtonText, cancelButtonText, okButtonCallback, cancelButtonCallback, options, hasValidation, answer) {
+  var confirmCreate = function (confirmType, title, messageOrQuestion, answer, okButtonText, cancelButtonText, okButtonCallback, cancelButtonCallback, options) {
     // check doc body
     if (!commonCheckHeadOrBody('body')) { return false; }
 
@@ -999,7 +1035,7 @@
 
     // check the arguments: begin
     if (typeof title !== 'string') { title = 'Notiflix Confirm'; }
-    if (typeof message !== 'string') { message = 'Do you agree with me?'; }
+    if (typeof messageOrQuestion !== 'string') { messageOrQuestion = 'Do you agree with me?'; }
     if (typeof okButtonText !== 'string') { okButtonText = 'Yes'; }
     if (typeof cancelButtonText !== 'string') { cancelButtonText = 'No'; }
     if (typeof okButtonCallback !== 'function') { okButtonCallback = undefined; }
@@ -1009,7 +1045,7 @@
     // if plainText is true => HTML tags not allowed: begin
     if (newConfirmSettings.plainText) {
       title = commonGetPlaintext(title);
-      message = commonGetPlaintext(message);
+      messageOrQuestion = commonGetPlaintext(messageOrQuestion);
       okButtonText = commonGetPlaintext(okButtonText);
       cancelButtonText = commonGetPlaintext(cancelButtonText);
     }
@@ -1019,19 +1055,19 @@
     if (!newConfirmSettings.plainText) {
       if (title.length > newConfirmSettings.titleMaxLength) {
         title = 'Possible HTML Tags Error';
-        message = 'The "plainText" option is "false" and the title content length is more than "titleMaxLength" option.';
+        messageOrQuestion = 'The "plainText" option is "false" and the title content length is more than "titleMaxLength" option.';
         okButtonText = 'Okay';
         cancelButtonText = '...';
       }
-      if (message.length > newConfirmSettings.messageMaxLength) {
+      if (messageOrQuestion.length > newConfirmSettings.messageMaxLength) {
         title = 'Possible HTML Tags Error';
-        message = 'The "plainText" option is "false" and the message content length is more than "messageMaxLength" option.';
+        messageOrQuestion = 'The "plainText" option is "false" and the message content length is more than "messageMaxLength" option.';
         okButtonText = 'Okay';
         cancelButtonText = '...';
       }
       if ((okButtonText.length || cancelButtonText.length) > newConfirmSettings.buttonsMaxLength) {
         title = 'Possible HTML Tags Error';
-        message = 'The "plainText" option is "false" and the buttons content length is more than "buttonsMaxLength" option.';
+        messageOrQuestion = 'The "plainText" option is "false" and the buttons content length is more than "buttonsMaxLength" option.';
         okButtonText = 'Okay';
         cancelButtonText = '...';
       }
@@ -1042,8 +1078,8 @@
     if (title.length > newConfirmSettings.titleMaxLength) {
       title = title.substring(0, newConfirmSettings.titleMaxLength) + '...';
     }
-    if (message.length > newConfirmSettings.messageMaxLength) {
-      message = message.substring(0, newConfirmSettings.messageMaxLength) + '...';
+    if (messageOrQuestion.length > newConfirmSettings.messageMaxLength) {
+      messageOrQuestion = messageOrQuestion.substring(0, newConfirmSettings.messageMaxLength) + '...';
     }
     if (okButtonText.length > newConfirmSettings.buttonsMaxLength) {
       okButtonText = okButtonText.substring(0, newConfirmSettings.buttonsMaxLength) + '...';
@@ -1097,10 +1133,13 @@
 
     // check the validation module: begin
     var setValidationInput = '';
-    var theAnswer = null;
-    if (hasValidation && (typeof answer === 'string' && answer.length > 0)) {
-      theAnswer = answer;
-      setValidationInput = '<div><input id="NXConfirmValidationInput" type="text" style="font-size:' + newConfirmSettings.messageFontSize + ';border-radius: ' + newConfirmSettings.borderRadius + ';" maxlength="' + theAnswer.length + '" autocomplete="off" spellcheck="false" autocapitalize="none" /></div>';
+    var theExpectedAnswer = null;
+    var theClientAnswer = undefined;
+    if (confirmType === typesConfirm.Ask || confirmType === typesConfirm.Prompt) {
+      theExpectedAnswer = answer || '';
+      var inputMaxLength = Math.ceil(theExpectedAnswer.length * (confirmType === typesConfirm.Ask ? 1 : 1.5));
+      var inputDefaultValueAttr = confirmType === typesConfirm.Prompt ? ('value="' + theExpectedAnswer + '"') : '';
+      setValidationInput = '<div><input id="NXConfirmValidationInput" type="text" ' + inputDefaultValueAttr + ' maxlength="' + inputMaxLength + '" style="font-size:' + newConfirmSettings.messageFontSize + ';border-radius: ' + newConfirmSettings.borderRadius + ';" autocomplete="off" spellcheck="false" autocapitalize="none" /></div>';
     }
     // check the validation module: end
 
@@ -1109,7 +1148,7 @@
       '<div class="' + newConfirmSettings.className + '-content" style="width:' + newConfirmSettings.width + '; background:' + newConfirmSettings.backgroundColor + '; animation-duration:' + newConfirmSettings.cssAnimationDuration + 'ms; border-radius: ' + newConfirmSettings.borderRadius + ';">' +
       '<div class="' + newConfirmSettings.className + '-head">' +
       '<h5 style="color:' + newConfirmSettings.titleColor + ';font-size:' + newConfirmSettings.titleFontSize + ';">' + title + '</h5>' +
-      '<div style="color:' + newConfirmSettings.messageColor + ';font-size:' + newConfirmSettings.messageFontSize + ';">' + message + setValidationInput + '</div>' +
+      '<div style="color:' + newConfirmSettings.messageColor + ';font-size:' + newConfirmSettings.messageFontSize + ';">' + messageOrQuestion + setValidationInput + '</div>' +
       '</div>' +
       '<div class="' + newConfirmSettings.className + '-buttons">' +
       '<a id="NXConfirmButtonOk" class="nx-confirm-button-ok' + (typeof okButtonCallback === 'function' ? '' : ' nx-full') + '" style="color:' + newConfirmSettings.okButtonColor + ';background:' + newConfirmSettings.okButtonBackground + ';font-size:' + newConfirmSettings.buttonsFontSize + ';">' + okButtonText + '</a>' +
@@ -1131,16 +1170,23 @@
       var validationInput = window.document.getElementById('NXConfirmValidationInput');
       if (validationInput) {
         validationInput.focus();
+        validationInput.setSelectionRange(0, (validationInput.value || '').length);
         validationInput.addEventListener('keyup', function (event) {
-          var thisValue = (event.target.value || '').toString();
-          if (thisValue !== theAnswer) {
+          var thisValue = event.target.value;
+          if (
+            (confirmType === typesConfirm.Ask) &&
+            (thisValue !== theExpectedAnswer)
+          ) {
+            event.preventDefault();
             validationInput.classList.add('nx-validation-failure');
             validationInput.classList.remove('nx-validation-success');
           } else {
-            validationInput.classList.remove('nx-validation-failure');
-            validationInput.classList.add('nx-validation-success');
-            var thisEnter = (event.key || '').toLocaleLowerCase('en') === 'enter' || event.keyCode === 13;
-            if (thisEnter) {
+            if (confirmType === typesConfirm.Ask) {
+              validationInput.classList.remove('nx-validation-failure');
+              validationInput.classList.add('nx-validation-success');
+            }
+            var isEnter = (event.key || '').toLocaleLowerCase('en') === 'enter' || event.keyCode === 13;
+            if (isEnter) {
               okButton.dispatchEvent(new Event('click'));
             }
           }
@@ -1150,10 +1196,10 @@
 
       // ok button listener: begin
       okButton.addEventListener('click', function (event) {
-        // check the validation: begin
-        if (hasValidation && theAnswer && validationInput) {
+        // check the answer if the type is "Ask": begin
+        if (confirmType === typesConfirm.Ask && theExpectedAnswer && validationInput) {
           var inputValue = (validationInput.value || '').toString();
-          if (inputValue !== theAnswer) {
+          if (inputValue !== theExpectedAnswer) {
             validationInput.focus();
             validationInput.classList.add('nx-validation-failure');
             event.stopPropagation();
@@ -1165,11 +1211,14 @@
             validationInput.classList.remove('nx-validation-failure');
           }
         }
-        // check the validation: end
+        // check the answer if the type is "Ask": end
 
         // if ok callback && if ok callback is a function
         if (typeof okButtonCallback === 'function') {
-          okButtonCallback();
+          if (confirmType === typesConfirm.Prompt && validationInput) {
+            theClientAnswer = validationInput.value || '';
+          }
+          okButtonCallback(theClientAnswer);
         }
         confirmCloseWrap.classList.add('nx-remove');
 
@@ -1189,7 +1238,10 @@
         cancelButton.addEventListener('click', function () {
           // if cancel callback && if cancel callback a function
           if (typeof cancelButtonCallback === 'function') {
-            cancelButtonCallback();
+            if (confirmType === typesConfirm.Prompt && validationInput) {
+              theClientAnswer = validationInput.value || '';
+            }
+            cancelButtonCallback(theClientAnswer);
           }
           confirmCloseWrap.classList.add('nx-remove');
 
@@ -1214,13 +1266,13 @@
 
   // LOADING: Get Internal CSS Codes: begin
   var loadingGetInternalCSSCodes = function () {
-    var loadingCSS = '[id^=NotiflixLoadingWrap]{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:fixed;z-index:4000;width:100%;height:100%;left:0;top:0;right:0;bottom:0;margin:auto;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;text-align:center;-webkit-box-sizing:border-box;box-sizing:border-box;background:rgba(0,0,0,.8);font-family:"Quicksand",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}[id^=NotiflixLoadingWrap] *{-webkit-box-sizing:border-box;box-sizing:border-box}[id^=NotiflixLoadingWrap].nx-click-to-close{cursor:pointer}[id^=NotiflixLoadingWrap]>div[class*="-icon"]{width:60px;height:60px;position:relative;-webkit-transition:top .2s ease-in-out;-o-transition:top .2s ease-in-out;transition:top .2s ease-in-out;margin:0 auto}[id^=NotiflixLoadingWrap]>div[class*="-icon"] img,[id^=NotiflixLoadingWrap]>div[class*="-icon"] svg{max-width:unset;max-height:unset;width:100%;height:100%;position:absolute;left:0;top:0}[id^=NotiflixLoadingWrap]>p{position:relative;margin:10px auto 0;font-family:inherit!important;font-weight:normal;font-size:15px;line-height:1.4;padding:0 10px;width:100%;text-align:center}[id^=NotiflixLoadingWrap].nx-with-animation{-webkit-animation:loading-animation-fade .3s ease-in-out 0s normal;animation:loading-animation-fade .3s ease-in-out 0s normal}@-webkit-keyframes loading-animation-fade{0%{opacity:0}100%{opacity:1}}@keyframes loading-animation-fade{0%{opacity:0}100%{opacity:1}}[id^=NotiflixLoadingWrap].nx-with-animation.nx-remove{opacity:0;-webkit-animation:loading-animation-fade-remove .3s ease-in-out 0s normal;animation:loading-animation-fade-remove .3s ease-in-out 0s normal}@-webkit-keyframes loading-animation-fade-remove{0%{opacity:1}100%{opacity:0}}@keyframes loading-animation-fade-remove{0%{opacity:1}100%{opacity:0}}[id^=NotiflixLoadingWrap]>p.nx-loading-message-new{-webkit-animation:loading-new-message-fade .3s ease-in-out 0s normal;animation:loading-new-message-fade .3s ease-in-out 0s normal}@-webkit-keyframes loading-new-message-fade{0%{opacity:0}100%{opacity:1}}@keyframes loading-new-message-fade{0%{opacity:0}100%{opacity:1}}';
+    var loadingCSS = '[id^=NotiflixLoadingWrap]{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:fixed;z-index:4000;width:100%;height:100%;left:0;top:0;right:0;bottom:0;margin:auto;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;text-align:center;-webkit-box-sizing:border-box;box-sizing:border-box;background:rgba(0,0,0,.8);font-family:"Quicksand",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}[id^=NotiflixLoadingWrap] *{-webkit-box-sizing:border-box;box-sizing:border-box}[id^=NotiflixLoadingWrap].nx-click-to-close{cursor:pointer}[id^=NotiflixLoadingWrap]>div[class*="-icon"]{width:60px;height:60px;position:relative;-webkit-transition:top .2s ease-in-out;-o-transition:top .2s ease-in-out;transition:top .2s ease-in-out;margin:0 auto}[id^=NotiflixLoadingWrap]>div[class*="-icon"] img,[id^=NotiflixLoadingWrap]>div[class*="-icon"] svg{max-width:unset;max-height:unset;width:100%;height:auto;position:absolute;left:0;top:0}[id^=NotiflixLoadingWrap]>p{position:relative;margin:10px auto 0;font-family:inherit!important;font-weight:normal;font-size:15px;line-height:1.4;padding:0 10px;width:100%;text-align:center}[id^=NotiflixLoadingWrap].nx-with-animation{-webkit-animation:loading-animation-fade .3s ease-in-out 0s normal;animation:loading-animation-fade .3s ease-in-out 0s normal}@-webkit-keyframes loading-animation-fade{0%{opacity:0}100%{opacity:1}}@keyframes loading-animation-fade{0%{opacity:0}100%{opacity:1}}[id^=NotiflixLoadingWrap].nx-with-animation.nx-remove{opacity:0;-webkit-animation:loading-animation-fade-remove .3s ease-in-out 0s normal;animation:loading-animation-fade-remove .3s ease-in-out 0s normal}@-webkit-keyframes loading-animation-fade-remove{0%{opacity:1}100%{opacity:0}}@keyframes loading-animation-fade-remove{0%{opacity:1}100%{opacity:0}}[id^=NotiflixLoadingWrap]>p.nx-loading-message-new{-webkit-animation:loading-new-message-fade .3s ease-in-out 0s normal;animation:loading-new-message-fade .3s ease-in-out 0s normal}@-webkit-keyframes loading-new-message-fade{0%{opacity:0}100%{opacity:1}}@keyframes loading-new-message-fade{0%{opacity:0}100%{opacity:1}}';
     return loadingCSS || null;
   };
   // LOADING: Get Internal CSS Codes: end
 
   // LOADING: Create: begin
-  var loadingCreate = function (messageOrOptions, options, iconType, display, delay) {
+  var loadingCreate = function (loadingType, messageOrOptions, options, display, delay) {
     // check doc body
     if (!commonCheckHeadOrBody('body')) { return false; }
 
@@ -1276,21 +1328,34 @@
 
       // svgIcon: begin
       var svgIcon = '';
-      if (iconType === 'standard') {
+      if (loadingType === typesLoading.Standard) {
         svgIcon = loadingAndBlockSvgIconStandard(newLoadingSettings.svgSize, newLoadingSettings.svgColor);
-      } else if (iconType === 'hourglass') {
+      } else if (loadingType === typesLoading.Hourglass) {
         svgIcon = loadingAndBlockSvgIconHourglass(newLoadingSettings.svgSize, newLoadingSettings.svgColor);
-      } else if (iconType === 'circle') {
+      } else if (loadingType === typesLoading.Circle) {
         svgIcon = loadingAndBlockSvgIconCircle(newLoadingSettings.svgSize, newLoadingSettings.svgColor);
-      } else if (iconType === 'arrows') {
+      } else if (loadingType === typesLoading.Arrows) {
         svgIcon = loadingAndBlockSvgIconArrows(newLoadingSettings.svgSize, newLoadingSettings.svgColor);
-      } else if (iconType === 'dots') {
+      } else if (loadingType === typesLoading.Dots) {
         svgIcon = loadingAndBlockSvgIconDots(newLoadingSettings.svgSize, newLoadingSettings.svgColor);
-      } else if (iconType === 'pulse') {
+      } else if (loadingType === typesLoading.Pulse) {
         svgIcon = loadingAndBlockSvgIconPulse(newLoadingSettings.svgSize, newLoadingSettings.svgColor);
-      } else if (iconType === 'custom' && newLoadingSettings.customSvgUrl !== null) {
+      } else if (
+        loadingType === typesLoading.Custom &&
+        newLoadingSettings.customSvgCode !== null &&
+        newLoadingSettings.customSvgUrl === null
+      ) {
+        svgIcon = newLoadingSettings.customSvgCode || '';
+      } else if (
+        loadingType === typesLoading.Custom &&
+        newLoadingSettings.customSvgUrl !== null &&
+        newLoadingSettings.customSvgCode === null
+      ) {
         svgIcon = '<img class="nx-custom-loading-icon" width="' + newLoadingSettings.svgSize + '" height="' + newLoadingSettings.svgSize + '" src="' + newLoadingSettings.customSvgUrl + '" alt="Notiflix">';
-      } else if (iconType === 'custom' && newLoadingSettings.customSvgUrl === null) {
+      } else if (
+        loadingType === typesLoading.Custom &&
+        (newLoadingSettings.customSvgUrl === null || newLoadingSettings.customSvgCode === null)
+      ) {
         commonConsoleError('You have to set a static SVG url to "customSvgUrl" option to use Loading Custom.');
         return false;
       } else {
@@ -1424,7 +1489,7 @@
 
   // BLOCK: Create or Remove: begin
   var blockCreateOrRemoveCounter = 0;
-  var blockCreateOrRemove = function (isCreate, selectorOrHTMLElements, iconType, messageOrOptions, options, delay) {
+  var blockCreateOrRemove = function (isCreate, blockType, selectorOrHTMLElements, messageOrOptions, options, delay) {
     var allHTMLElements;
 
     // if, check and set Array of HTMLElements
@@ -1532,18 +1597,18 @@
 
             // check the icon: begin
             var icon = '';
-            if (iconType) {
-              if (iconType === 'hourglass') {
+            if (blockType) {
+              if (blockType === typesBlock.Hourglass) {
                 icon = loadingAndBlockSvgIconHourglass(newBlockSettings.svgSize, newBlockSettings.svgColor);
-              } else if (iconType === 'circle') {
+              } else if (blockType === typesBlock.Circle) {
                 icon = loadingAndBlockSvgIconCircle(newBlockSettings.svgSize, newBlockSettings.svgColor);
-              } else if (iconType === 'arrows') {
+              } else if (blockType === typesBlock.Arrows) {
                 icon = loadingAndBlockSvgIconArrows(newBlockSettings.svgSize, newBlockSettings.svgColor);
-              } else if (iconType === 'dots') {
+              } else if (blockType === typesBlock.Dots) {
                 icon = loadingAndBlockSvgIconDots(newBlockSettings.svgSize, newBlockSettings.svgColor);
-              } else if (iconType === 'pulse') {
+              } else if (blockType === typesBlock.Pulse) {
                 icon = loadingAndBlockSvgIconPulse(newBlockSettings.svgSize, newBlockSettings.svgColor);
-              } else {
+              } else { // typesBlock.Standard, also fallback
                 icon = loadingAndBlockSvgIconStandard(newBlockSettings.svgSize, newBlockSettings.svgColor);
               }
             }
@@ -1754,19 +1819,19 @@
       },
       // Success
       success: function (message, callbackOrOptions, options) {
-        notifyCreate(message, callbackOrOptions, options, 'Success');
+        notifyCreate(typesNotify.Success, message, callbackOrOptions, options);
       },
       // Failure
       failure: function (message, callbackOrOptions, options) {
-        notifyCreate(message, callbackOrOptions, options, 'Failure');
+        notifyCreate(typesNotify.Failure, message, callbackOrOptions, options);
       },
       // Warning
       warning: function (message, callbackOrOptions, options) {
-        notifyCreate(message, callbackOrOptions, options, 'Warning');
+        notifyCreate(typesNotify.Warning, message, callbackOrOptions, options);
       },
       // Info
       info: function (message, callbackOrOptions, options) {
-        notifyCreate(message, callbackOrOptions, options, 'Info');
+        notifyCreate(typesNotify.Info, message, callbackOrOptions, options);
       },
     },
 
@@ -1792,19 +1857,19 @@
       },
       // Success
       success: function (title, message, buttonText, callbackOrOptions, options) {
-        reportCreate(title, message, buttonText, callbackOrOptions, options, 'Success');
+        reportCreate(typesReport.Success, title, message, buttonText, callbackOrOptions, options);
       },
       // Failure
       failure: function (title, message, buttonText, callbackOrOptions, options) {
-        reportCreate(title, message, buttonText, callbackOrOptions, options, 'Failure');
+        reportCreate(typesReport.Failure, title, message, buttonText, callbackOrOptions, options);
       },
       // Warning
       warning: function (title, message, buttonText, callbackOrOptions, options) {
-        reportCreate(title, message, buttonText, callbackOrOptions, options, 'Warning');
+        reportCreate(typesReport.Warning, title, message, buttonText, callbackOrOptions, options);
       },
       // Info
       info: function (title, message, buttonText, callbackOrOptions, options) {
-        reportCreate(title, message, buttonText, callbackOrOptions, options, 'Info');
+        reportCreate(typesReport.Info, title, message, buttonText, callbackOrOptions, options);
       },
     },
 
@@ -1830,11 +1895,15 @@
       },
       // Show
       show: function (title, message, okButtonText, cancelButtonText, okButtonCallback, cancelButtonCallback, options) {
-        confirmCreate(title, message, okButtonText, cancelButtonText, okButtonCallback, cancelButtonCallback, options, false, false);
+        confirmCreate(typesConfirm.Show, title, message, null, okButtonText, cancelButtonText, okButtonCallback, cancelButtonCallback, options);
       },
       // Ask
       ask: function (title, question, answer, okButtonText, cancelButtonText, okButtonCallback, cancelButtonCallback, options) {
-        confirmCreate(title, question, okButtonText, cancelButtonText, okButtonCallback, cancelButtonCallback, options, true, answer);
+        confirmCreate(typesConfirm.Ask, title, question, answer, okButtonText, cancelButtonText, okButtonCallback, cancelButtonCallback, options);
+      },
+      // Prompt
+      prompt: function (title, question, defaultAnswer, okButtonText, cancelButtonText, okButtonCallback, cancelButtonCallback, options) {
+        confirmCreate(typesConfirm.Prompt, title, question, defaultAnswer, okButtonText, cancelButtonText, okButtonCallback, cancelButtonCallback, options);
       },
     },
 
@@ -1860,35 +1929,35 @@
       },
       // Standard
       standard: function (messageOrOptions, options) {
-        loadingCreate(messageOrOptions, options, 'standard', true, 0); // true => show && 0 => delay
+        loadingCreate(typesLoading.Standard, messageOrOptions, options, true, 0); // true => show && 0 => delay
       },
       // Hourglass
       hourglass: function (messageOrOptions, options) {
-        loadingCreate(messageOrOptions, options, 'hourglass', true, 0); // true => show && 0 => delay
+        loadingCreate(typesLoading.Hourglass, messageOrOptions, options, true, 0); // true => show && 0 => delay
       },
       // Circle
       circle: function (messageOrOptions, options) {
-        loadingCreate(messageOrOptions, options, 'circle', true, 0); // true => show && 0 => delay
+        loadingCreate(typesLoading.Circle, messageOrOptions, options, true, 0); // true => show && 0 => delay
       },
       // Arrows
       arrows: function (messageOrOptions, options) {
-        loadingCreate(messageOrOptions, options, 'arrows', true, 0); // true => show && 0 => delay
+        loadingCreate(typesLoading.Arrows, messageOrOptions, options, true, 0); // true => show && 0 => delay
       },
       // Dots
       dots: function (messageOrOptions, options) {
-        loadingCreate(messageOrOptions, options, 'dots', true, 0); // true => show && 0 => delay
+        loadingCreate(typesLoading.Dots, messageOrOptions, options, true, 0); // true => show && 0 => delay
       },
       // Pulse
       pulse: function (messageOrOptions, options) {
-        loadingCreate(messageOrOptions, options, 'pulse', true, 0); // true => show && 0 => delay
+        loadingCreate(typesLoading.Pulse, messageOrOptions, options, true, 0); // true => show && 0 => delay
       },
       // Custom
       custom: function (messageOrOptions, options) {
-        loadingCreate(messageOrOptions, options, 'custom', true, 0); // true => show && 0 => delay
+        loadingCreate(typesLoading.Custom, messageOrOptions, options, true, 0); // true => show && 0 => delay
       },
       // Notiflix
       notiflix: function (messageOrOptions, options) {
-        loadingCreate(messageOrOptions, options, 'notiflix', true, 0); // true => show && 0 => delay
+        loadingCreate(typesLoading.Notiflix, messageOrOptions, options, true, 0); // true => show && 0 => delay
       },
       // Remove
       remove: function (delay) {
@@ -1923,32 +1992,32 @@
       },
       // Standard
       standard: function (selectorOrHTMLElements, messageOrOptions, options) {
-        blockCreateOrRemove(true, selectorOrHTMLElements, 'standard', messageOrOptions, options); // true => show
+        blockCreateOrRemove(true, typesBlock.Standard, selectorOrHTMLElements, messageOrOptions, options); // true => show
       },
       // Hourglass
       hourglass: function (selectorOrHTMLElements, messageOrOptions, options) {
-        blockCreateOrRemove(true, selectorOrHTMLElements, 'hourglass', messageOrOptions, options); // true => show
+        blockCreateOrRemove(true, typesBlock.Hourglass, selectorOrHTMLElements, messageOrOptions, options); // true => show
       },
       // Circle
       circle: function (selectorOrHTMLElements, messageOrOptions, options) {
-        blockCreateOrRemove(true, selectorOrHTMLElements, 'circle', messageOrOptions, options); // true => show
+        blockCreateOrRemove(true, typesBlock.Circle, selectorOrHTMLElements, messageOrOptions, options); // true => show
       },
       // Arrows
       arrows: function (selectorOrHTMLElements, messageOrOptions, options) {
-        blockCreateOrRemove(true, selectorOrHTMLElements, 'arrows', messageOrOptions, options); // true => show
+        blockCreateOrRemove(true, typesBlock.Arrows, selectorOrHTMLElements, messageOrOptions, options); // true => show
       },
       // Dots
       dots: function (selectorOrHTMLElements, messageOrOptions, options) {
-        blockCreateOrRemove(true, selectorOrHTMLElements, 'dots', messageOrOptions, options); // true => show
+        blockCreateOrRemove(true, typesBlock.Dots, selectorOrHTMLElements, messageOrOptions, options); // true => show
       },
       // Pulse
       pulse: function (selectorOrHTMLElements, messageOrOptions, options) {
-        blockCreateOrRemove(true, selectorOrHTMLElements, 'pulse', messageOrOptions, options); // true => show
+        blockCreateOrRemove(true, typesBlock.Pulse, selectorOrHTMLElements, messageOrOptions, options); // true => show
       },
       // Remove
       remove: function (selectorOrHTMLElements, delay) {
         if (typeof delay !== 'number') { delay = 0; }
-        blockCreateOrRemove(false, selectorOrHTMLElements, null, null, null, delay); // false => hide/remove
+        blockCreateOrRemove(false, null, selectorOrHTMLElements, null, null, delay); // false => hide/remove
       },
     },
   };

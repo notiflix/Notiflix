@@ -1,7 +1,7 @@
 /*
 * Notiflix Block AIO (https://notiflix.github.io)
 * Description: This file has been created automatically that using "notiflix.js", and "notiflix.css" files.
-* Version: 3.1.0
+* Version: 3.2.0
 * Author: Furkan MT (https://github.com/furcan)
 * Copyright 2019 - 2021 Notiflix, MIT Licence (https://opensource.org/licenses/MIT)
 */
@@ -34,6 +34,14 @@
   // COMMON: Variables: end
 
   // BLOCK: Default Settings: begin
+  var typesBlock = {
+    Standard: 'Standard',
+    Hourglass: 'Hourglass',
+    Circle: 'Circle',
+    Arrows: 'Arrows',
+    Dots: 'Dots',
+    Pulse: 'Pulse',
+  };
   var newBlockSettings;
   var blockSettings = {
     ID: 'NotiflixBlockWrap', // can not customizable
@@ -195,7 +203,7 @@
 
   // BLOCK: Create or Remove: begin
   var blockCreateOrRemoveCounter = 0;
-  var blockCreateOrRemove = function (isCreate, selectorOrHTMLElements, iconType, messageOrOptions, options, delay) {
+  var blockCreateOrRemove = function (isCreate, blockType, selectorOrHTMLElements, messageOrOptions, options, delay) {
     var allHTMLElements;
 
     // if, check and set Array of HTMLElements
@@ -303,18 +311,18 @@
 
             // check the icon: begin
             var icon = '';
-            if (iconType) {
-              if (iconType === 'hourglass') {
+            if (blockType) {
+              if (blockType === typesBlock.Hourglass) {
                 icon = loadingAndBlockSvgIconHourglass(newBlockSettings.svgSize, newBlockSettings.svgColor);
-              } else if (iconType === 'circle') {
+              } else if (blockType === typesBlock.Circle) {
                 icon = loadingAndBlockSvgIconCircle(newBlockSettings.svgSize, newBlockSettings.svgColor);
-              } else if (iconType === 'arrows') {
+              } else if (blockType === typesBlock.Arrows) {
                 icon = loadingAndBlockSvgIconArrows(newBlockSettings.svgSize, newBlockSettings.svgColor);
-              } else if (iconType === 'dots') {
+              } else if (blockType === typesBlock.Dots) {
                 icon = loadingAndBlockSvgIconDots(newBlockSettings.svgSize, newBlockSettings.svgColor);
-              } else if (iconType === 'pulse') {
+              } else if (blockType === typesBlock.Pulse) {
                 icon = loadingAndBlockSvgIconPulse(newBlockSettings.svgSize, newBlockSettings.svgColor);
-              } else {
+              } else { // typesBlock.Standard, also fallback
                 icon = loadingAndBlockSvgIconStandard(newBlockSettings.svgSize, newBlockSettings.svgColor);
               }
             }
@@ -525,32 +533,32 @@
       },
       // Standard
       standard: function (selectorOrHTMLElements, messageOrOptions, options) {
-        blockCreateOrRemove(true, selectorOrHTMLElements, 'standard', messageOrOptions, options); // true => show
+        blockCreateOrRemove(true, typesBlock.Standard, selectorOrHTMLElements, messageOrOptions, options); // true => show
       },
       // Hourglass
       hourglass: function (selectorOrHTMLElements, messageOrOptions, options) {
-        blockCreateOrRemove(true, selectorOrHTMLElements, 'hourglass', messageOrOptions, options); // true => show
+        blockCreateOrRemove(true, typesBlock.Hourglass, selectorOrHTMLElements, messageOrOptions, options); // true => show
       },
       // Circle
       circle: function (selectorOrHTMLElements, messageOrOptions, options) {
-        blockCreateOrRemove(true, selectorOrHTMLElements, 'circle', messageOrOptions, options); // true => show
+        blockCreateOrRemove(true, typesBlock.Circle, selectorOrHTMLElements, messageOrOptions, options); // true => show
       },
       // Arrows
       arrows: function (selectorOrHTMLElements, messageOrOptions, options) {
-        blockCreateOrRemove(true, selectorOrHTMLElements, 'arrows', messageOrOptions, options); // true => show
+        blockCreateOrRemove(true, typesBlock.Arrows, selectorOrHTMLElements, messageOrOptions, options); // true => show
       },
       // Dots
       dots: function (selectorOrHTMLElements, messageOrOptions, options) {
-        blockCreateOrRemove(true, selectorOrHTMLElements, 'dots', messageOrOptions, options); // true => show
+        blockCreateOrRemove(true, typesBlock.Dots, selectorOrHTMLElements, messageOrOptions, options); // true => show
       },
       // Pulse
       pulse: function (selectorOrHTMLElements, messageOrOptions, options) {
-        blockCreateOrRemove(true, selectorOrHTMLElements, 'pulse', messageOrOptions, options); // true => show
+        blockCreateOrRemove(true, typesBlock.Pulse, selectorOrHTMLElements, messageOrOptions, options); // true => show
       },
       // Remove
       remove: function (selectorOrHTMLElements, delay) {
         if (typeof delay !== 'number') { delay = 0; }
-        blockCreateOrRemove(false, selectorOrHTMLElements, null, null, null, delay); // false => hide/remove
+        blockCreateOrRemove(false, null, selectorOrHTMLElements, null, null, delay); // false => hide/remove
       },
     },
   };

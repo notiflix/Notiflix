@@ -19,8 +19,8 @@
 [downloads-url]: https://npmjs.org/package/notiflix
 [jsdelivr-badge]: https://data.jsdelivr.com/v1/package/npm/notiflix/badge?style=rounded
 [jsdelivr-url]: https://www.jsdelivr.com/package/npm/notiflix
-[size-badge]: https://img.badgesize.io/https://cdn.jsdelivr.net/npm/notiflix@3.1.0/dist/notiflix-aio-3.1.0.min.js?compression=gzip
-[size-url]: https://cdn.jsdelivr.net/npm/notiflix@3.1.0/dist/notiflix-aio-3.1.0.min.js
+[size-badge]: https://img.badgesize.io/https://cdn.jsdelivr.net/npm/notiflix@3.2.0/dist/notiflix-aio-3.2.0.min.js?compression=gzip
+[size-url]: https://cdn.jsdelivr.net/npm/notiflix@3.2.0/dist/notiflix-aio-3.2.0.min.js
 [lic-badge]: https://img.shields.io/github/license/notiflix/Notiflix.svg
 [lic-url]: https://github.com/notiflix/Notiflix/blob/main/LICENSE
 
@@ -39,7 +39,7 @@ Notiflix is a JavaScript library for client-side non-blocking notifications, pop
 
 ### Current Version
 
-3.1.0 [*](https://github.com/notiflix/Notiflix/blob/main/CHANGELOG.md "CHANGELOG")
+3.2.0 [*](https://github.com/notiflix/Notiflix/blob/main/CHANGELOG.md "CHANGELOG")
 
 ### Browser Compatibility
 
@@ -100,27 +100,27 @@ import { Block } from 'notiflix/build/notiflix-block-aio';
 
 #### CSS and JS
 ```html
-<link rel="stylesheet" href="dist/notiflix-3.1.0.min.css" />
+<link rel="stylesheet" href="dist/notiflix-3.2.0.min.css" />
 
-<script src="dist/notiflix-3.1.0.min.js"></script>
+<script src="dist/notiflix-3.2.0.min.js"></script>
 ```
 
 #### or only JS (All in One - Internal CSS)
 ```html
-<script src="dist/notiflix-aio-3.1.0.min.js"></script>
+<script src="dist/notiflix-aio-3.2.0.min.js"></script>
 ```
 
 #### or only Modules JS (All in One - Internal CSS)
 ```html
-<script src="dist/notiflix-notify-aio-3.1.0.min.js"></script>
+<script src="dist/notiflix-notify-aio-3.2.0.min.js"></script>
 
-<script src="dist/notiflix-report-aio-3.1.0.min.js"></script>
+<script src="dist/notiflix-report-aio-3.2.0.min.js"></script>
 
-<script src="dist/notiflix-confirm-aio-3.1.0.min.js"></script>
+<script src="dist/notiflix-confirm-aio-3.2.0.min.js"></script>
 
-<script src="dist/notiflix-loading-aio-3.1.0.min.js"></script>
+<script src="dist/notiflix-loading-aio-3.2.0.min.js"></script>
 
-<script src="dist/notiflix-block-aio-3.1.0.min.js"></script>
+<script src="dist/notiflix-block-aio-3.2.0.min.js"></script>
 ```
 
 ---------
@@ -241,9 +241,10 @@ Notiflix.Report.success(
 
 #### 3- Confirm Module
 
-Notiflix Confirm module can be used to show non-blocking prompt boxes. This module includes 2 types of prompts: "Show" and "Ask". An additional question can be asked as well within the prompt box if using the "Ask" one.
+Notiflix Confirm module can be used to show non-blocking confirm/prompt boxes. This module includes 3 types of prompts: "Show", "Ask", and "Prompt". An additional question can be asked within the prompt box if using the "Ask" and/or "Prompt" ones unlike the "Show" one.
 
-Show:
+##### Show:
+This method can be used to show a confirm box with info, and take the custom actions via the callback functions.
 
 ```js
 /*
@@ -275,8 +276,8 @@ Notiflix.Confirm.show(
 );
 ```
 
-
-Ask:
+##### Ask:
+This method can be used to ask a question within a confirm box. The confirm box doesn't remove till the client gives the correct answer. Or, the client can click on the cancel button to close/remove the confirm box as well.
 
 ```js
 /*
@@ -301,6 +302,39 @@ Notiflix.Confirm.ask(
   },
   function cancelCb() {
     alert('😪 ...');
+  },
+  {
+    // Custom options
+  },
+);
+```
+
+##### Prompt:
+This method works similarly as `window.prompt()`. The client doesn't have to type a correct answer to the input element to proceed unlike the `Notiflix.Confirm.ask();` method. The client answer passes to the callback functions as a parameter and this parameter is always a `string`.
+
+```js
+/*
+* @param1 {string}: Required, title text in string format.
+* @param2 {string}: Required, question text in string format.
+* @param3 {string}: Required, default answer text in string format. An empty string can be used as well.
+* @param4 {string}: Required, OK button text in string format.
+* @param5 {string}: Optional, Cancel button text in string format.
+* @param6 {function}: Optional, a callback function that will be called when the OK button element has been clicked.
+* @param7 {function}: Optional, a callback function that will be called when the Cancel button element has been clicked.
+* @param8 {Object}: Optional, extending the initialize options with new the options for each confirm box.
+*/
+
+Notiflix.Confirm.prompt(
+  'Hello',
+  'How are you feeling?',
+  'Awesome!',
+  'Answer',
+  'Cancel',
+  function okCb(clientAnswer) {
+    console.log('Client answer is: ' + clientAnswer);
+  },
+  function cancelCb(clientAnswer) {
+    console.log('Client answer was: ' + clientAnswer);
   },
   {
     // Custom options
@@ -380,6 +414,17 @@ Notiflix.Loading.custom({
 // Custom loading indicator with a message
 Notiflix.Loading.custom('Loading...', {
   customSvgUrl: 'https://notiflix.github.io/content/media/loading/notiflix-loading-nx-light.svg',
+});
+
+
+// Only custom loading indicator (A text-based SVG code)
+Notiflix.Loading.custom({
+  customSvgCode: '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">...</svg>',
+});
+
+// Custom loading indicator (A text-based SVG code) with a message
+Notiflix.Loading.custom('Loading...', {
+  customSvgCode: '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">...</svg>',
 });
 ```
 
@@ -486,7 +531,6 @@ Notiflix.Notify.merge({
   // ...
 });
 ```
-
 
 ---------
 ---------
@@ -690,6 +734,7 @@ Notiflix.Loading.init({
   cssAnimationDuration: 400,
   clickToClose: false,
   customSvgUrl: null,
+  customSvgCode: null,
   svgSize: '80px',
   svgColor: '#32c682',
   messageID: 'NotiflixLoadingMessage',
@@ -699,9 +744,7 @@ Notiflix.Loading.init({
 });
 ```
 
-
 ---------
-
 
 #### Notiflix Block Module: Default Options
 

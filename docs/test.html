@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Notiflix | Test the last version</title>
   <meta name="description" content="Notiflix | Test the last version" />
   <meta name="content-language" content="en" />
@@ -104,10 +105,16 @@
     }
 
     .buttons button.nx-report,
+    .buttons button.nx-ask,
     .buttons button.nx-loading,
     .buttons button.nx-unblock {
       background: #faa161;
       background: linear-gradient(to right bottom, #faa161, #fb975f, #fb8c5f, #fb815f, #fa7661);
+    }
+
+    .buttons button.nx-prompt {
+      background: #00bcd4;
+      background: linear-gradient(to right bottom, #01e2ff, #01d8f4, #00cfe9, #00c5df, #00bcd4);
     }
 
     .nx-block-dummy-element {
@@ -119,8 +126,10 @@
       height: 12.5rem;
       padding: 1rem;
       margin: 0 auto 2.5rem;
-      position: relative;
       border-radius: 1rem;
+      position: sticky;
+      z-index: 10;
+      top: 1rem;
     }
 
     .nx-block-dummy-element p {
@@ -176,21 +185,25 @@
   <!-- <link href="../src/notiflix.css" rel="stylesheet" /> -->
   <!-- <script src="../src/notiflix.js"></script> -->
 
+
   <!-- <script src="../build/notiflix-aio.js"></script> -->
+
   <!-- <script src="../build/notiflix-notify-aio.js"></script> -->
   <!-- <script src="../build/notiflix-report-aio.js"></script> -->
   <!-- <script src="../build/notiflix-confirm-aio.js"></script> -->
   <!-- <script src="../build/notiflix-loading-aio.js"></script> -->
   <!-- <script src="../build/notiflix-block-aio.js"></script> -->
 
-  <!-- <link href="../dist/notiflix-3.1.0.min.css" rel="stylesheet" /> -->
-  <!-- <script src="../dist/notiflix-3.1.0.min.js"></script> -->
-  <!-- <script src="../dist/notiflix-aio-3.1.0.min.js"></script> -->
-  <script src="../dist/notiflix-notify-aio-3.1.0.min.js"></script>
-  <script src="../dist/notiflix-report-aio-3.1.0.min.js"></script>
-  <script src="../dist/notiflix-confirm-aio-3.1.0.min.js"></script>
-  <script src="../dist/notiflix-loading-aio-3.1.0.min.js"></script>
-  <script src="../dist/notiflix-block-aio-3.1.0.min.js"></script>
+
+  <!-- <link href="../dist/notiflix-3.2.0.min.css" rel="stylesheet" /> -->
+  <!-- <script src="../dist/notiflix-3.2.0.min.js"></script> -->
+
+  <!-- <script src="../dist/notiflix-aio-3.2.0.min.js"></script> -->
+  <script src="../dist/notiflix-notify-aio-3.2.0.min.js"></script>
+  <script src="../dist/notiflix-report-aio-3.2.0.min.js"></script>
+  <script src="../dist/notiflix-confirm-aio-3.2.0.min.js"></script>
+  <script src="../dist/notiflix-loading-aio-3.2.0.min.js"></script>
+  <script src="../dist/notiflix-block-aio-3.2.0.min.js"></script>
 
 
   <script>
@@ -228,14 +241,18 @@
     //   });
     // }
 
-    if ('Loading' in window.Notiflix) {
+    if (typeof Notiflix === 'object' && typeof Notiflix.Loading === 'object') {
       Notiflix.Loading.init({
         clickToClose: true,
-        customSvgUrl: 'https://notiflix.github.io/content/media/loading/notiflix-loading-nx-light.svg',
+        customSvgUrl: 'https://notiflix.github.io/content/media/loading/notiflix-loading-nx-dark.svg',
+        svgSize: '81px',
+        customSvgCode: '<svg xmlns="http://www.w3.org/2000/svg" id="NXLoadingNotiflixLib" width="60px" height="60px" viewBox="0 0 200 200"><defs><style>@keyframes notiflix-n{0%{stroke-dashoffset:1000}to{stroke-dashoffset:0}}@keyframes notiflix-x{0%{stroke-dashoffset:1000}to{stroke-dashoffset:0}}@keyframes notiflix-dot{0%,to{stroke-width:0}50%{stroke-width:12}}.nx-icon-line{stroke:#f8f8f8;stroke-width:12;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:22;fill:none}</style></defs><path d="M47.97 135.05a6.5 6.5 0 1 1 0 13 6.5 6.5 0 0 1 0-13z" style="animation-name:notiflix-dot;animation-timing-function:ease-in-out;animation-duration:1.25s;animation-iteration-count:infinite;animation-direction:normal" fill="#32c682" stroke="#32c682" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="22" stroke-width="12"/><path class="nx-icon-line" d="M10.14 144.76V87.55c0-5.68-4.54-41.36 37.83-41.36 42.36 0 37.82 35.68 37.82 41.36v57.21" style="animation-name:notiflix-n;animation-timing-function:linear;animation-duration:2.5s;animation-delay:0s;animation-iteration-count:infinite;animation-direction:normal" stroke-dasharray="500"/><path class="nx-icon-line" d="M115.06 144.49c24.98-32.68 49.96-65.35 74.94-98.03M114.89 46.6c25.09 32.58 50.19 65.17 75.29 97.75" style="animation-name:notiflix-x;animation-timing-function:linear;animation-duration:2.5s;animation-delay:.2s;animation-iteration-count:infinite;animation-direction:normal" stroke-dasharray="500"/></svg>',
       });
     }
 
-    console.log(Notiflix);
+    if (typeof Notiflix === 'object') {
+      console.log(Notiflix);
+    }
   </script>
 </head>
 
@@ -273,9 +290,12 @@
 
       <div class="break"></div>
 
-      <button class="nx-confirm" onclick="Notiflix.Confirm.ask('Where is Padmé?','Is she safe? Is she all right?','It seems, in your anger, you killed her.','Answer','Cancel',function(){for (var index = 0; index < 9; index++) {setTimeout(function () {Notiflix.Notify.failure('NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!')}, index * 100)}});">Notiflix Confirm Ask</button>
+      <button class="nx-confirm nx-ask" onclick="Notiflix.Confirm.ask('Where is Padmé?','Is she safe? Is she all right?','It seems, in your anger, you killed her.','Answer','Cancel',function(){for (var index = 0; index < 9; index++) {setTimeout(function () {Notiflix.Notify.failure('NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!')}, index * 100)}});">Notiflix Confirm Ask</button>
+      <button class="nx-confirm nx-ask" onclick="Notiflix.Confirm.ask('Please Answer','1881 + 1923 = ?','3804','Answer','Cancel',function(){Notiflix.Notify.success('That\'s correct, thanks.')},false,{width:'320px',borderRadius:'8px',position:'right-top'});">Notiflix Confirm Ask (With Options)</button>
 
-      <button class="nx-confirm" onclick="Notiflix.Confirm.ask('Please Answer','1881 + 1923 = ?','3804','Answer','Cancel',function(){Notiflix.Notify.success('That\'s correct, thanks.')},false,{width:'320px',borderRadius:'8px',position:'right-top'});">Notiflix Confirm Ask (With Options)</button>
+      <div class="break"></div>
+
+      <button class="nx-confirm nx-prompt" onclick="Notiflix.Confirm.prompt('Please Answer','1881 + 1923 = ?','3804','Answer','Cancel',function(clientAnswer){alert('Client answer is: ' + clientAnswer)},function(clientAnswer){alert('Client answer was: ' + clientAnswer)});">Notiflix Confirm Prompt</button>
     </div>
   </div>
 
@@ -291,16 +311,24 @@
 
       <button class="nx-loading" onclick="Notiflix.Loading.hourglass();">Loading Hourglass</button>
       <button class="nx-loading" onclick="Notiflix.Loading.hourglass('Hourglass Loading...');">Loading Hourglass (With Message)</button>
+      <div class="break"></div>
       <button class="nx-loading" onclick="Notiflix.Loading.circle();">Loading Circle</button>
       <button class="nx-loading" onclick="Notiflix.Loading.circle('Circle Loading...');">Loading Circle (With Message)</button>
+      <div class="break"></div>
       <button class="nx-loading" onclick="Notiflix.Loading.arrows();">Loading Arrows</button>
       <button class="nx-loading" onclick="Notiflix.Loading.arrows('Arrows Loading...');">Loading Arrows (With Message)</button>
+      <div class="break"></div>
       <button class="nx-loading" onclick="Notiflix.Loading.pulse();">Loading Pulse</button>
       <button class="nx-loading" onclick="Notiflix.Loading.pulse('Pulse Loading...');">Loading Pulse (With Message)</button>
+      <div class="break"></div>
       <button class="nx-loading" onclick="Notiflix.Loading.dots();">Loading Dots</button>
       <button class="nx-loading" onclick="Notiflix.Loading.dots('Dots Loading...');">Loading Dots (With Message)</button>
-      <button class="nx-loading" onclick="Notiflix.Loading.custom();">Loading Custom</button>
-      <button class="nx-loading" onclick="Notiflix.Loading.custom('Custom Loading...');">Loading Custom (With Message)</button>
+      <div class="break"></div>
+      <button class="nx-loading" onclick="Notiflix.Loading.custom({customSvgCode:null,messageColor:'black',backgroundColor:'rgba(255,255,255,0.8)'});">Loading Custom (With URL)</button>
+      <button class="nx-loading" onclick="Notiflix.Loading.custom('Custom Loading...',{customSvgCode:null,messageColor:'black',backgroundColor:'rgba(255,255,255,0.8)'});">Loading Custom (With Message + With URL)</button>
+      <div class="break"></div>
+      <button class="nx-loading" onclick="Notiflix.Loading.custom();">Loading Custom (With SVG Code)</button>
+      <button class="nx-loading" onclick="Notiflix.Loading.custom('Custom Loading...');">Loading Custom (With Message + With SVG Code)</button>
     </div>
   </div>
 
@@ -323,14 +351,19 @@
 
       <button class="nx-block" onclick="Notiflix.Block.hourglass(document.getElementById('BlockSelector').value);">Block Hourglass</button>
       <button class="nx-block" onclick="Notiflix.Block.hourglass(document.getElementById('BlockSelector').value, 'Message');">Block Hourglass (With Message)</button>
+      <div class="break"></div>
       <button class="nx-block" onclick="Notiflix.Block.circle(document.getElementById('BlockSelector').value);">Block Circle</button>
       <button class="nx-block" onclick="Notiflix.Block.circle(document.getElementById('BlockSelector').value, 'Message');">Block Circle (With Message)</button>
+      <div class="break"></div>
       <button class="nx-block" onclick="Notiflix.Block.arrows(document.getElementById('BlockSelector').value);">Block Arrows</button>
       <button class="nx-block" onclick="Notiflix.Block.arrows(document.getElementById('BlockSelector').value, 'Message');">Block Arrows (With Message)</button>
+      <div class="break"></div>
       <button class="nx-block" onclick="Notiflix.Block.pulse(document.getElementById('BlockSelector').value);">Block Pulse</button>
       <button class="nx-block" onclick="Notiflix.Block.pulse(document.getElementById('BlockSelector').value, 'Message');">Block Pulse (With Message)</button>
+      <div class="break"></div>
       <button class="nx-block" onclick="Notiflix.Block.dots(document.getElementById('BlockSelector').value);">Block Dots</button>
       <button class="nx-block" onclick="Notiflix.Block.dots(document.getElementById('BlockSelector').value, 'Message');">Block Dots (With Message)</button>
+      <div class="break"></div>
       <button class="nx-block nx-unblock" onclick="Notiflix.Block.remove(document.getElementById('BlockSelector').value);">UnBlock</button>
     </div>
   </div>
