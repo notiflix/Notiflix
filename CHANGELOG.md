@@ -1,3 +1,10 @@
+@3.2.1
+* **Fixed:** `index.d.ts`:
+  - `Notiflix.Notify.*` module: `callbackOrOptions` type definition issue has been fixed.
+  - `Notiflix.Report.*` module: `callbackOrOptions` type definition issue has been fixed.
+
+---
+
 @3.2.0
 * **Added:** `Notiflix.Confirm.*` module: The `.prompt()` method has been added. ([#42](https://github.com/notiflix/Notiflix/issues/42))
   - `Notiflix.Confirm.prompt()` method works similarly as `window.prompt()`. The client doesn't have to type a correct answer to the input element to proceed unlike the `Notiflix.Confirm.ask()` method. The client answer passes to the callback functions as a parameter and this parameter is always a `string`.

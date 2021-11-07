@@ -80,6 +80,12 @@ Notiflix.Notify.success('Notify Sucess',
   },
 );
 
+Notiflix.Notify.success('Notify Sucess',
+  {
+    width: '280px',
+  },
+);
+
 Notiflix.Notify.failure('Notify Failure');
 
 Notiflix.Notify.warning('Notify Warning');
@@ -155,6 +161,12 @@ Notiflix.Report.success('Title', 'Message', 'Okay',
     success: {
       titleColor: '#1e1e1e',
     },
+  },
+);
+
+Notiflix.Report.success('Title', 'Message', 'Okay',
+  {
+    width: '480px',
   },
 );
 

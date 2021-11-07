@@ -1,6 +1,6 @@
 /*
 * Notiflix (https://notiflix.github.io)
-* Version: 3.2.0
+* Version: 3.2.1
 * Description: TypeScript Declaration.
 * Author: Furkan MT (https://github.com/furcan)
 * Copyright 2019 - 2021 Notiflix, MIT Licence (https://opensource.org/licenses/MIT)
@@ -883,7 +883,7 @@ declare namespace Notiflix {
      */
     function success(
       message: string,
-      callbackOrOptions?: () => void | INotifyOptions,
+      callbackOrOptions?: (() => void) | INotifyOptions,
       options?: INotifyOptions,
     ): void;
 
@@ -897,7 +897,7 @@ declare namespace Notiflix {
      */
     function failure(
       message: string,
-      callbackOrOptions?: () => void | INotifyOptions,
+      callbackOrOptions?: (() => void) | INotifyOptions,
       options?: INotifyOptions,
     ): void;
 
@@ -911,7 +911,7 @@ declare namespace Notiflix {
      */
     function warning(
       message: string,
-      callbackOrOptions?: () => void | INotifyOptions,
+      callbackOrOptions?: (() => void) | INotifyOptions,
       options?: INotifyOptions,
     ): void;
 
@@ -925,7 +925,7 @@ declare namespace Notiflix {
      */
     function info(
       message: string,
-      callbackOrOptions?: () => void | INotifyOptions,
+      callbackOrOptions?: (() => void) | INotifyOptions,
       options?: INotifyOptions,
     ): void;
   }
@@ -967,7 +967,7 @@ declare namespace Notiflix {
       title: string,
       message: string,
       buttonText: string,
-      callbackOrOptions?: () => void | IReportOptions,
+      callbackOrOptions?: (() => void) | IReportOptions,
       options?: IReportOptions,
     ): void;
 
@@ -985,7 +985,7 @@ declare namespace Notiflix {
       title: string,
       message: string,
       buttonText: string,
-      callbackOrOptions?: () => void | IReportOptions,
+      callbackOrOptions?: (() => void) | IReportOptions,
       options?: IReportOptions,
     ): void;
 
@@ -1003,7 +1003,7 @@ declare namespace Notiflix {
       title: string,
       message: string,
       buttonText: string,
-      callbackOrOptions?: () => void | IReportOptions,
+      callbackOrOptions?: (() => void) | IReportOptions,
       options?: IReportOptions,
     ): void;
 
@@ -1021,7 +1021,7 @@ declare namespace Notiflix {
       title: string,
       message: string,
       buttonText: string,
-      callbackOrOptions?: () => void | IReportOptions,
+      callbackOrOptions?: (() => void) | IReportOptions,
       options?: IReportOptions,
     ): void;
   }
