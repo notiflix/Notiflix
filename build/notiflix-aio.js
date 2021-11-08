@@ -1,7 +1,7 @@
 /*
 * Notiflix AIO (https://notiflix.github.io)
 * Description: This file has been created automatically that using "notiflix.js", and "notiflix.css" files.
-* Version: 3.2.1
+* Version: 3.2.2
 * Author: Furkan MT (https://github.com/furcan)
 * Copyright 2019 - 2021 Notiflix, MIT Licence (https://opensource.org/licenses/MIT)
 */
@@ -1137,7 +1137,7 @@
     var theClientAnswer = undefined;
     if (confirmType === typesConfirm.Ask || confirmType === typesConfirm.Prompt) {
       theExpectedAnswer = answer || '';
-      var inputMaxLength = Math.ceil(theExpectedAnswer.length * (confirmType === typesConfirm.Ask ? 1 : 1.5));
+      var inputMaxLength = (confirmType === typesConfirm.Ask) ? Math.ceil(theExpectedAnswer.length * 1.5) : (theExpectedAnswer.length > 200 ? Math.ceil(theExpectedAnswer.length * 1.5) : 250);
       var inputDefaultValueAttr = confirmType === typesConfirm.Prompt ? ('value="' + theExpectedAnswer + '"') : '';
       setValidationInput = '<div><input id="NXConfirmValidationInput" type="text" ' + inputDefaultValueAttr + ' maxlength="' + inputMaxLength + '" style="font-size:' + newConfirmSettings.messageFontSize + ';border-radius: ' + newConfirmSettings.borderRadius + ';" autocomplete="off" spellcheck="false" autocapitalize="none" /></div>';
     }

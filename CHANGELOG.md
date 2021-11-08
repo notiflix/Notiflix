@@ -1,3 +1,9 @@
+@3.2.2
+* **Fixed:** `Notiflix.Confirm.prompt()`: Input `maxlength` attribute value should not be directly related to the default answer length.
+  - Fixes => [#43](https://github.com/notiflix/Notiflix/issues/43)
+
+---
+
 @3.2.1
 * **Fixed:** `index.d.ts`:
   - `Notiflix.Notify.*` module: `callbackOrOptions` type definition issue has been fixed.
