@@ -19,7 +19,7 @@ const Constants = require('./notiflix-dev-constants');
 
 
 // Constants
-const thisFilePath = '.dev/helpers/notiflix-dev-minifier.js';
+const thisFilePath = '.dev/notiflix-dev-minifier.js';
 const allInOneSuffix = 'AIO';
 
 

@@ -9,13 +9,15 @@ module.exports = {
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
-      project: ['.dev/ts/tsconfig.json'],
+      project: ['tsconfig.json'],
       ecmaversion: 2021,
       sourceType: 'module',
     },
     rules: {
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/restrict-template-expressions': 'off', // ???
+      '@typescript-eslint/no-unsafe-assignment': 'off', // ???
       'comma-dangle': [
         'error',
         'always-multiline',

@@ -1,4 +1,4 @@
-import Notiflix = require('../../index');
+import Notiflix from 'index.d';
 
 // Notify
 Notiflix.Notify.init({
@@ -83,7 +83,7 @@ Notiflix.Notify.success('Notify Sucess',
 Notiflix.Notify.success('Notify Sucess',
   {
     width: '280px',
-  },
+  }
 );
 
 Notiflix.Notify.failure('Notify Failure');

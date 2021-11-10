@@ -9,7 +9,7 @@
 
 // Dev Dependencies
 const chalk = require('chalk');
-const package = require('../../package.json');
+const package = require('../package.json');
 
 // Notiflix Constants: begin
 // - CleanCSS Options: begin

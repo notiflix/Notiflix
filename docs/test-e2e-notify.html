@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>E2E Test Notify Module | Notiflix</title>
+  <meta name="content-language" content="en" />
+  <meta name="language" content="English" />
+  <meta name="robots" content="noindex, nofollow, noodp, noydir" />
+  <meta name="googlebot" content="noindex, nofollow, noodp, noydir" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="shortcut icon" href="https://raw.githubusercontent.com/notiflix/Notiflix/main/docs/favicon.png" />
+
+  <link href="../src/notiflix.css" rel="stylesheet" />
+  <script src="../src/notiflix.js"></script>
+  <script>
+    if (typeof Notiflix === 'object') {
+      console.log(Notiflix);
+    } else {
+      console.error('ERROR');
+    }
+  </script>
+</head>
+
+<body>
+  <button type="button" data-pptr-selector="pptr-notify-success" onclick="Notiflix.Notify.success('Sol lucet omnibus')">
+    <span>Notify.success()</span>
+  </button>
+  <br />
+  <br />
+  <button type="button" data-pptr-selector="pptr-notify-failure" onclick="Notiflix.Notify.success('Qui timide rogat docet negare')">
+    <span>Notify.failure()</span>
+  </button>
+  <br />
+  <br />
+  <button type="button" data-pptr-selector="pptr-notify-warning" onclick="Notiflix.Notify.warning('Memento te hominem esse')">
+    <span>Notify.warning()</span>
+  </button>
+  <br />
+  <br />
+  <button type="button" data-pptr-selector="pptr-notify-info" onclick="Notiflix.Notify.info('Cogito ergo sum')">
+    <span>Notify.info()</span>
+  </button>
+  <br />
+  <br />
+  <button type="button" data-pptr-selector="pptr-notify-success-callback" onclick="Notiflix.Notify.success('Click me!', function(){
+    var messageEl = window.document.querySelector('[data-pptr-selector=pptr-notify-success-callback-element]');
+    messageEl.innerHTML= 'Sol lucet omnibus';
+  })">
+    <span>Notify.success() + Callback</span>
+  </button>
+  <h1 data-pptr-selector="pptr-notify-success-callback-element">This text will be changed.</h1>
+</body>
+
+</html>

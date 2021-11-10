@@ -18,7 +18,7 @@ const Constants = require('./notiflix-dev-constants');
 
 
 // Constants
-const thisFilePath = '.dev/helpers/notiflix-dev-builder.js';
+const thisFilePath = '.dev/notiflix-dev-builder.js';
 const spaceCharacters = `  `;
 const allInOneSuffix = 'AIO';
 
