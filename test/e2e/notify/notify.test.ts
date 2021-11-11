@@ -1,8 +1,9 @@
 import puppeteer from 'puppeteer-core';
 
 import { config } from '@test/_config/config';
-import { rgbToHex } from '@test/_helpers/utilities';
+import { rgbToHex, getENotifyByIndex } from '@test/_helpers/utilities';
 
+import { ENotify } from '@test/e2e/notify/notify.enumerations';
 import { INotifyTestData } from '@test/e2e/notify/notify.interfaces';
 import { notifyDevOptions, INotifyDevOptions } from '@test/e2e/notify/notify.options';
 
@@ -21,153 +22,164 @@ describe('Notiflix.Notify E2E Tests', () => {
   });
 
   test('Notiflix is exist in the page.', async () => {
-    jest.setTimeout(100000);
     await page.waitForTimeout(500);
-    const notiflix = await page.evaluate(() => {
+    const Notiflix = await page.evaluate(() => {
       return window.Notiflix;
     });
-    expect(notiflix).toBeInstanceOf(Object);
-  });
+    expect(Notiflix).toBeInstanceOf(Object);
+  }, 5000);
 
-  test('"Notify.success();" has been rendered as expected and removed.', async () => {
-    jest.setTimeout(100000);
+  test('"Notify.*();" all methods have been rendered correctly and removed as expected.', async () => {
+    for (let index = 0; index < Object.keys(ENotify).length; index++) {
+      // get notify tyoe
+      const notifyType: ENotify = getENotifyByIndex(index);
 
-    // simulate a click
-    await page.click('[data-pptr-selector=pptr-notify-success]', { clickCount: 1 });
-    await page.click('body', { clickCount: 1 });
+      // simulate clicks
+      await page.click(`[data-pptr-selector=pptr-notify-${notifyType}]`, { clickCount: 1 });
+      await page.click('body', { clickCount: 1 });
 
-    // get element data: begin
-    const notifySuccesData: INotifyTestData = await page.evaluate((opt) => {
-      const options: INotifyDevOptions = JSON.parse(opt);
-      const getWrapper = window.document.getElementById(options.wrapID) as HTMLDivElement;
-      const getElement = window.document.querySelector(`.${options.success?.childClassName}`) as HTMLDivElement;
-      const getElementIcon = getElement.querySelector('.nx-message-icon') as SVGElement;
-      const getElementMessage = getElement.querySelector('.nx-message') as HTMLSpanElement;
+      // get element data: begin
+      const testData: INotifyTestData = await page.evaluate(([opt, type]) => {
+        const options = JSON.parse(opt) as INotifyDevOptions;
+        const notifyType = type as ENotify;
+        const elementSelector = options[notifyType]?.childClassName || 'x';
 
-      const returnData: INotifyTestData = {
-        wrapper: {
-          tagName: getWrapper.tagName,
-          width: window.getComputedStyle(getWrapper).width,
-          zIndex: +(window.getComputedStyle(getWrapper).zIndex),
-          opacity: +(window.getComputedStyle(getWrapper).opacity),
-          left: window.getComputedStyle(getWrapper).left,
-          top: window.getComputedStyle(getWrapper).top,
-          right: window.getComputedStyle(getWrapper).right,
-          bottom: window.getComputedStyle(getWrapper).bottom,
-        },
-        element: {
-          tagName: getElement.tagName,
-          className: [...Array.prototype.slice.call(getElement.classList)].join(' '),
-          width: window.getComputedStyle(getElement).width,
-          fontSize: window.getComputedStyle(getElement).fontSize,
-          fontFamily: window.getComputedStyle(getElement).fontFamily,
-          color: window.getComputedStyle(getElement).color,
-          backgroundColor: window.getComputedStyle(getElement).backgroundColor,
-          animationDuration: parseInt(getElement.style.animationDuration),
-          borderRadius: window.getComputedStyle(getElement).borderRadius,
-        },
-        icon: {
-          tagName: getElementIcon.tagName.toLocaleUpperCase('en'),
-          className: [...Array.prototype.slice.call(getElementIcon.classList)].join(' '),
-        },
-        message: {
-          tagName: getElementMessage.tagName,
-          className: [...Array.prototype.slice.call(getElementMessage.classList)].join(' '),
-          innerHTML: getElementMessage.innerHTML,
-        },
-      };
-      return returnData;
-    }, JSON.stringify(notifyDevOptions));
-    // get element data: end
+        const _wrapper = window.document.getElementById(options.wrapID) as HTMLDivElement;
+        const _element = window.document.querySelector(`.${elementSelector}`) as HTMLDivElement;
+        const _elementIcon = _element.querySelector('.nx-message-icon') as SVGElement;
+        const _elementMessage = _element.querySelector('.nx-message') as HTMLSpanElement;
 
-    // data: wrapper expectations: begin
-    expect(notifySuccesData.wrapper.tagName).toBe('DIV');
-    expect(notifySuccesData.wrapper.width).toBe(notifyDevOptions.width);
-    expect(notifySuccesData.wrapper.zIndex).toBe(notifyDevOptions.zindex);
-    expect(notifySuccesData.wrapper.opacity).toBe(notifyDevOptions.opacity);
-    expect(notifySuccesData.wrapper.top).toBe(notifyDevOptions.distance);
-    expect(notifySuccesData.wrapper.right).toBe(notifyDevOptions.distance);
-    // data: wrapper expectations: end
+        const returnData: INotifyTestData = {
+          wrapper: {
+            tagName: _wrapper.tagName,
+            width: window.getComputedStyle(_wrapper).width,
+            zIndex: +(window.getComputedStyle(_wrapper).zIndex),
+            opacity: +(window.getComputedStyle(_wrapper).opacity),
+            left: window.getComputedStyle(_wrapper).left,
+            top: window.getComputedStyle(_wrapper).top,
+            right: window.getComputedStyle(_wrapper).right,
+            bottom: window.getComputedStyle(_wrapper).bottom,
+          },
+          element: {
+            tagName: _element.tagName,
+            className: _element.getAttribute('class')?.trim() || '',
+            width: window.getComputedStyle(_element).width,
+            fontSize: window.getComputedStyle(_element).fontSize,
+            fontFamily: window.getComputedStyle(_element).fontFamily,
+            color: window.getComputedStyle(_element).color,
+            backgroundColor: window.getComputedStyle(_element).backgroundColor,
+            animationDuration: parseInt(_element.style.animationDuration),
+            borderRadius: window.getComputedStyle(_element).borderRadius,
+            padding: window.getComputedStyle(_element).padding,
+          },
+          icon: {
+            tagName: _elementIcon.tagName.toLocaleUpperCase('en'),
+            className: _elementIcon.getAttribute('class')?.trim() || '',
+          },
+          message: {
+            tagName: _elementMessage.tagName,
+            className: _elementMessage.getAttribute('class')?.trim() || '',
+            innerHTML: _elementMessage.innerHTML,
+          },
+        };
+        return returnData;
+      }, [JSON.stringify(notifyDevOptions), notifyType]);
+      // get element data: end
 
-    // data: element expectations: begin
-    expect(notifySuccesData.element.tagName).toBe('DIV');
-    expect(notifySuccesData.element.className).toContain(notifyDevOptions.success?.childClassName);
-    expect(notifySuccesData.element.width).toBe(notifyDevOptions.width);
-    expect(notifySuccesData.element.fontSize).toBe(notifyDevOptions.fontSize);
-    expect(notifySuccesData.element.fontFamily).toContain(notifyDevOptions.fontFamily);
-    expect(
-      rgbToHex(notifySuccesData.element.color)
-    ).toBe(notifyDevOptions.success?.textColor);
-    expect(
-      rgbToHex(notifySuccesData.element.backgroundColor)
-    ).toBe(notifyDevOptions.success?.background);
-    expect(notifySuccesData.element.animationDuration).toBe(notifyDevOptions.cssAnimationDuration);
-    expect(notifySuccesData.element.borderRadius).toBe(notifyDevOptions.borderRadius);
-    // data: element expectations: end
+      // data: wrapper expectations: begin
+      expect(testData.wrapper.tagName).toBe('DIV');
+      expect(testData.wrapper.width).toBe(notifyDevOptions.width);
+      expect(testData.wrapper.zIndex).toBe(notifyDevOptions.zindex);
+      expect(testData.wrapper.opacity).toBe(notifyDevOptions.opacity);
+      expect(testData.wrapper.top).toBe(notifyDevOptions.distance);
+      expect(testData.wrapper.right).toBe(notifyDevOptions.distance);
+      // data: wrapper expectations: end
 
-    // data: icon expectations: begin
-    expect(notifySuccesData.icon.tagName).toBe('SVG');
-    expect(notifySuccesData.icon.className).toBe('nx-message-icon');
-    // data: icon expectations: end
+      // data: element expectations: begin
+      expect(testData.element.tagName).toBe('DIV');
+      expect(testData.element.className).toContain(notifyDevOptions[notifyType]?.childClassName);
+      expect(testData.element.width).toBe(notifyDevOptions.width);
+      expect(testData.element.fontSize).toBe(notifyDevOptions.fontSize);
+      expect(testData.element.fontFamily).toContain(notifyDevOptions.fontFamily);
+      expect(
+        rgbToHex(testData.element.color)
+      ).toBe(notifyDevOptions[notifyType]?.textColor);
+      expect(
+        rgbToHex(testData.element.backgroundColor)
+      ).toBe(notifyDevOptions[notifyType]?.background);
+      expect(testData.element.animationDuration).toBe(notifyDevOptions.cssAnimationDuration);
+      expect(testData.element.borderRadius).toBe(notifyDevOptions.borderRadius);
+      expect(testData.element.padding).toBe('8px'); // css
+      // data: element expectations: end
 
-    // data: message expectations: begin
-    expect(notifySuccesData.message.tagName).toBe('SPAN');
-    expect(notifySuccesData.message.className).toBe('nx-message nx-with-icon');
-    expect(notifySuccesData.message.innerHTML).toBe(config.text.notify.defaultMessage);
-    // data: message expectations: end
+      // data: icon expectations: begin
+      expect(testData.icon.tagName).toBe('SVG');
+      expect(testData.icon.className).toBe('nx-message-icon');
+      // data: icon expectations: end
 
-    // wait for element removal (by the options)
-    await page.waitForTimeout((notifyDevOptions.timeout as number) + (notifyDevOptions.cssAnimationDuration as number));
+      // data: message expectations: begin
+      expect(testData.message.tagName).toBe('SPAN');
+      expect(testData.message.className).toBe('nx-message nx-with-icon');
+      expect(testData.message.innerHTML).toBe(config.text.notify[notifyType].defaultMessage);
+      // data: message expectations: end
 
-    // try to get element data again
-    const notifySuccesDataAgain: string | undefined = await page.evaluate((opt) => {
-      const options: INotifyDevOptions = JSON.parse(opt);
-      const getElementAgain = window.document.querySelector(`.${options.success?.childClassName}`);
-      return getElementAgain?.tagName;
-    }, JSON.stringify(notifyDevOptions));
+      // wait for element removal (by the options)
+      await page.waitForTimeout((notifyDevOptions.timeout as number) + (notifyDevOptions.cssAnimationDuration as number));
 
-    // expecting to be removed
-    expect(notifySuccesDataAgain).toBeUndefined();
-  });
+      // try to get element data again: begin
+      const testDataAgain: string | undefined = await page.evaluate(([opt, type]) => {
+        const options = JSON.parse(opt) as INotifyDevOptions;
+        const notifyType = type as ENotify;
+        const elementSelector = options[notifyType]?.childClassName || 'x';
 
-  // TODO: "Notify.failure();" has been rendered as expected and removed.
-  // TODO: "Notify.warning();" has been rendered as expected and removed.
-  // TODO: "Notify.info();" has been rendered as expected and removed.
+        const _elementAgain = window.document.querySelector(`.${elementSelector}`);
+        return _elementAgain?.tagName;
+      }, [JSON.stringify(notifyDevOptions), notifyType]);
+      // try to get element data again: end
+
+      // expecting to be removed
+      expect(testDataAgain).toBeUndefined();
+    }
+  }, 20000);
 
   test('"Notify.success();" callback function has been called successfully and Notify element has been removed.', async () => {
-    jest.setTimeout(100000);
-
+    // text element before
     const callbackElementInnerHTMLBefore = await page.$eval('[data-pptr-selector=pptr-notify-success-callback-element]', el => el.innerHTML);
-    expect(callbackElementInnerHTMLBefore).toBe(config.text.notify.initMessage);
+    expect(callbackElementInnerHTMLBefore).toBe(config.text.notify.callbackInitMessage);
 
+    // simulate clicks => on button
     await page.click('[data-pptr-selector=pptr-notify-success-callback]', { clickCount: 1 });
     await page.click('body', { clickCount: 1 });
 
+    // wait for the element
     await page.waitForTimeout(notifyDevOptions.cssAnimationDuration as number);
 
-    await page.click(`.${notifyDevOptions.success?.childClassName}`, { clickCount: 1 });
+    // simuate clicks => on element
+    const elementSelector = notifyDevOptions.success?.childClassName || 'x';
+    await page.click(`.${elementSelector}`, { clickCount: 1 });
     await page.click('body', { clickCount: 1 });
 
+    // text element after
     const callbackElementInnerHTMLAfter = await page.$eval('[data-pptr-selector=pptr-notify-success-callback-element]', el => el.innerHTML);
-    expect(callbackElementInnerHTMLAfter).toBe(config.text.notify.defaultMessage);
+    expect(callbackElementInnerHTMLAfter).toBe(config.text.notify.success.defaultMessage);
 
     // wait for element removal (by the options)
     await page.waitForTimeout((notifyDevOptions.timeout as number) + (notifyDevOptions.cssAnimationDuration as number));
 
-    // try to get element
-    const getElement: string | undefined = await page.evaluate((opt) => {
-      const options: INotifyDevOptions = JSON.parse(opt);
-      const element = window.document.querySelector(`.${options.success?.childClassName}`);
-      return element?.tagName;
+    // try to get element again
+    const elementTagName: string | undefined = await page.evaluate((opt) => {
+      const options = JSON.parse(opt) as INotifyDevOptions;
+      const selector = options.success?.childClassName || 'x';
+
+      const _element = window.document.querySelector(`.${selector}`);
+      return _element?.tagName;
     }, JSON.stringify(notifyDevOptions));
 
     // expecting to be removed
-    expect(getElement).toBeUndefined();
-  });
+    expect(elementTagName).toBeUndefined();
+  }, 5000);
 
   test('"Notify.success();" has been called multiple times.', async () => {
-    jest.setTimeout(100000);
-
     // simulate clicks
     const delay = 100;
     const clickCount = 10;
@@ -177,15 +189,22 @@ describe('Notiflix.Notify E2E Tests', () => {
     }
     await page.click('body', { clickCount: 1 });
 
+    await page.waitForTimeout(500);
+
     // get elements count
     const elementsCount: number = await page.evaluate((opt) => {
-      const options: INotifyDevOptions = JSON.parse(opt);
-      const getElements: NodeListOf<HTMLDivElement> = window.document.querySelectorAll(`.${options.success?.childClassName}`);
-      return getElements.length;
+      const options = JSON.parse(opt) as INotifyDevOptions;
+      const selector = options.success?.childClassName || 'x';
+
+      const _elements = window.document.querySelectorAll(`.${selector}`);
+      return _elements.length;
     }, JSON.stringify(notifyDevOptions));
 
     // expectation
     expect(elementsCount).toBe(clickCount);
-  });
+  }, 100000);
 
+  // TODO: init function
+  // TODO: merge function
+  // TODO: extend the options and check with the extended options
 });

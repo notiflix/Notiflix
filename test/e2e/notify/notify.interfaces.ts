@@ -19,6 +19,7 @@ interface INotifyTestData {
     backgroundColor: string;
     animationDuration: number;
     borderRadius: string;
+    padding: string;
   };
   icon: {
     tagName: string;

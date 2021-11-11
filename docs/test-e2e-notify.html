@@ -29,7 +29,7 @@
   </button>
   <br />
   <br />
-  <button type="button" data-pptr-selector="pptr-notify-failure" onclick="Notiflix.Notify.success('Qui timide rogat docet negare')">
+  <button type="button" data-pptr-selector="pptr-notify-failure" onclick="Notiflix.Notify.failure('Qui timide rogat docet negare')">
     <span>Notify.failure()</span>
   </button>
   <br />
@@ -46,7 +46,7 @@
   <br />
   <button type="button" data-pptr-selector="pptr-notify-success-callback" onclick="Notiflix.Notify.success('Click me!', function(){
     var messageEl = window.document.querySelector('[data-pptr-selector=pptr-notify-success-callback-element]');
-    messageEl.innerHTML= 'Sol lucet omnibus';
+    messageEl.innerHTML = 'Sol lucet omnibus';
   })">
     <span>Notify.success() + Callback</span>
   </button>

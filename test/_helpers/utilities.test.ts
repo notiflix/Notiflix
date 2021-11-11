@@ -1,4 +1,5 @@
-import { rgbToHex, hex3ToHex6LC, addSomeDelayAsync } from '@test/_helpers/utilities';
+import { ENotify } from '@test/e2e/notify/notify.enumerations';
+import { rgbToHex, hex3ToHex6LC, getENotifyByIndex, addSomeDelayAsync } from '@test/_helpers/utilities';
 
 describe('Utilities', () => {
 
@@ -37,6 +38,23 @@ describe('Utilities', () => {
 
     const red = hex3ToHex6LC('#F00');
     expect(red).toBe('#ff0000');
+  });
+
+  test('getENotifyByIndex() function should return an ENotify', () => {
+    const success = getENotifyByIndex(0);
+    expect(success).toBe(ENotify.SUCCESS);
+
+    const failure = getENotifyByIndex(1);
+    expect(failure).toBe(ENotify.FAILURE);
+
+    const warning = getENotifyByIndex(2);
+    expect(warning).toBe(ENotify.WARNING);
+
+    const info = getENotifyByIndex(3);
+    expect(info).toBe(ENotify.INFO);
+
+    const _any = getENotifyByIndex(1923);
+    expect(_any).toBe(ENotify.SUCCESS);
   });
 
   test('addSomeDelayAsync() function should resolve the parameter after delay', async () => {

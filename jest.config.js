@@ -6,7 +6,7 @@ const jestConfig = {
   bail: true,
   clearMocks: true,
   collectCoverage: false,
-  coverageDirectory: 'coverage',
+  coverageDirectory: '<rootDir>/coverage',
   moduleNameMapper: {
     '^@test/(.*)$': '<rootDir>/$1',
   },

@@ -16,8 +16,6 @@ module.exports = {
     rules: {
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-vars': 'warn',
-      '@typescript-eslint/restrict-template-expressions': 'off', // ???
-      '@typescript-eslint/no-unsafe-assignment': 'off', // ???
       'comma-dangle': [
         'error',
         'always-multiline',

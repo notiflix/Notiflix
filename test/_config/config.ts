@@ -12,8 +12,19 @@ interface IConfig {
   };
   text: {
     notify: {
-      defaultMessage: string;
-      initMessage: string;
+      callbackInitMessage: string;
+      success: {
+        defaultMessage: string;
+      };
+      failure: {
+        defaultMessage: string;
+      };
+      warning: {
+        defaultMessage: string;
+      };
+      info: {
+        defaultMessage: string;
+      };
     };
   };
 }
@@ -47,8 +58,19 @@ const config: IConfig = {
   },
   text: {
     notify: {
-      initMessage: 'This text will be changed.',
-      defaultMessage: 'Sol lucet omnibus',
+      callbackInitMessage: 'This text will be changed.',
+      success: {
+        defaultMessage: 'Sol lucet omnibus',
+      },
+      failure: {
+        defaultMessage: 'Qui timide rogat docet negare',
+      },
+      warning: {
+        defaultMessage: 'Memento te hominem esse',
+      },
+      info: {
+        defaultMessage: 'Cogito ergo sum',
+      },
     },
   },
 };
