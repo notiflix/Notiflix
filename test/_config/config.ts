@@ -32,7 +32,7 @@ interface IConfig {
 const config: IConfig = {
   puppeteer: {
     launchOptions: {
-      headless: false,
+      headless: false, // TODO: will be true after dev
       slowMo: 0,
       defaultViewport: null,
       devtools: false,
@@ -40,7 +40,7 @@ const config: IConfig = {
         '--disable-extensions',
         '--disable-canvas-aa',
         '--disable-2d-canvas-clip-aa',
-        // '--disable-gl-drawing-for-tests',
+        // '--disable-gl-drawing-for-tests', // TODO: to be activated after dev
         '--enable-webgl',
         '--hide-scrollbars',
         '--mute-audio',

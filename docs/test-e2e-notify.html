@@ -24,6 +24,15 @@
 </head>
 
 <body>
+  <button type="button" data-pptr-selector="pptr-notify-reset" onclick="Notiflix.Notify.init({})">
+    <span>Notify Reset</span>
+  </button>
+
+  <br />
+  <br />
+  <hr />
+  <br />
+
   <button type="button" data-pptr-selector="pptr-notify-success" onclick="Notiflix.Notify.success('Sol lucet omnibus')">
     <span>Notify.success()</span>
   </button>
@@ -42,8 +51,12 @@
   <button type="button" data-pptr-selector="pptr-notify-info" onclick="Notiflix.Notify.info('Cogito ergo sum')">
     <span>Notify.info()</span>
   </button>
+
   <br />
   <br />
+  <hr />
+  <br />
+
   <button type="button" data-pptr-selector="pptr-notify-success-callback" onclick="Notiflix.Notify.success('Click me!', function(){
     var messageEl = window.document.querySelector('[data-pptr-selector=pptr-notify-success-callback-element]');
     messageEl.innerHTML = 'Sol lucet omnibus';
@@ -51,6 +64,32 @@
     <span>Notify.success() + Callback</span>
   </button>
   <h1 data-pptr-selector="pptr-notify-success-callback-element">This text will be changed.</h1>
+
+  <br />
+  <br />
+  <hr />
+  <br />
+
+  <button type="button" data-pptr-selector="pptr-notify-init-set" onclick="Notiflix.Notify.init({
+    useIcon:false,
+    success:{
+      background:'black',
+    },
+  })">
+    <span>Notify.init() + Set</span>
+  </button>
+  <button type="button" data-pptr-selector="pptr-notify-merge-set" onclick="Notiflix.Notify.merge({
+    plainText:false,
+    success:{
+      background:'gray',
+    },
+  })">
+    <span>Notify.merge() + Set</span>
+  </button>
+  <button type="button" data-pptr-selector="pptr-notify-init-merge-get" onclick="Notiflix.Notify.success('<b>Notiflix</b>')">
+    <span>Notify.success() + Get</span>
+  </button>
+
 </body>
 
 </html>

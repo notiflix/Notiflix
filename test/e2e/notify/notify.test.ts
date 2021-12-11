@@ -4,7 +4,7 @@ import { config } from '@test/_config/config';
 import { rgbToHex, getENotifyByIndex } from '@test/_helpers/utilities';
 
 import { ENotify } from '@test/e2e/notify/notify.enumerations';
-import { INotifyTestData } from '@test/e2e/notify/notify.interfaces';
+import { INotifyTestDataMethods, INotifyTestDataInitMerge } from '@test/e2e/notify/notify.interfaces';
 import { notifyDevOptions, INotifyDevOptions } from '@test/e2e/notify/notify.options';
 
 describe('Notiflix.Notify E2E Tests', () => {
@@ -39,7 +39,7 @@ describe('Notiflix.Notify E2E Tests', () => {
       await page.click('body', { clickCount: 1 });
 
       // get element data: begin
-      const testData: INotifyTestData = await page.evaluate(([opt, type]) => {
+      const testData: INotifyTestDataMethods = await page.evaluate(([opt, type]) => {
         const options = JSON.parse(opt) as INotifyDevOptions;
         const notifyType = type as ENotify;
         const elementSelector = options[notifyType]?.childClassName || 'x';
@@ -49,7 +49,7 @@ describe('Notiflix.Notify E2E Tests', () => {
         const _elementIcon = _element.querySelector('.nx-message-icon') as SVGElement;
         const _elementMessage = _element.querySelector('.nx-message') as HTMLSpanElement;
 
-        const returnData: INotifyTestData = {
+        const returnData: INotifyTestDataMethods = {
           wrapper: {
             tagName: _wrapper.tagName,
             width: window.getComputedStyle(_wrapper).width,
@@ -189,8 +189,6 @@ describe('Notiflix.Notify E2E Tests', () => {
     }
     await page.click('body', { clickCount: 1 });
 
-    await page.waitForTimeout(500);
-
     // get elements count
     const elementsCount: number = await page.evaluate((opt) => {
       const options = JSON.parse(opt) as INotifyDevOptions;
@@ -202,9 +200,122 @@ describe('Notiflix.Notify E2E Tests', () => {
 
     // expectation
     expect(elementsCount).toBe(clickCount);
-  }, 100000);
 
-  // TODO: init function
-  // TODO: merge function
+    // wait for elements removal (by the options)
+    await page.waitForTimeout((notifyDevOptions.timeout as number) + (notifyDevOptions.cssAnimationDuration as number));
+  }, 20000);
+
+  test('"Notify.init();" and "Notify.merge();" sets/extends the options correctly.', async () => {
+    // simulate reset and init-merge-get clicks
+    await page.click('[data-pptr-selector=pptr-notify-reset]', { clickCount: 1 });
+    await page.click('[data-pptr-selector=pptr-notify-init-merge-get]', { clickCount: 1 });
+    await page.click('body', { clickCount: 1 });
+
+    // init: get element data: begin
+    const initTestData: INotifyTestDataInitMerge = await page.evaluate((opt) => {
+      const options = JSON.parse(opt) as INotifyDevOptions;
+      const elementSelector = options.success?.childClassName || 'x';
+
+      const _element = window.document.querySelector(`.${elementSelector}`) as HTMLDivElement;
+      const _elementMessage = _element.querySelector('.nx-message') as HTMLSpanElement;
+      const _elementIcon = _element.querySelector('.nx-message-icon') as SVGElement;
+
+      const returnData: INotifyTestDataInitMerge = {
+        elementTagName: _element.tagName,
+        elementBackgrondColor: window.getComputedStyle(_element).backgroundColor,
+        messageInnerHTML: _elementMessage.innerHTML,
+        iconTagName: _elementIcon.tagName.toLocaleUpperCase('en'),
+      };
+      return returnData;
+    }, JSON.stringify(notifyDevOptions));
+    // init: get element data: end
+
+    // init: expectations: begin
+    expect(initTestData.elementTagName).toBe('DIV');
+    expect(
+      rgbToHex(initTestData.elementBackgrondColor)
+    ).toBe(notifyDevOptions.success?.background);
+    expect(initTestData.messageInnerHTML).toBe('Notiflix');
+    expect(initTestData.iconTagName).toBe('SVG');
+    // init: expectations: end
+
+    // init: wait for element removal (by the options)
+    await page.waitForTimeout((notifyDevOptions.timeout as number) + (notifyDevOptions.cssAnimationDuration as number));
+
+    // init: simulate init-set and init-merge-get clicks
+    await page.click('[data-pptr-selector=pptr-notify-init-set]', { clickCount: 1 });
+    await page.click('[data-pptr-selector=pptr-notify-init-merge-get]', { clickCount: 1 });
+    await page.click('body', { clickCount: 1 });
+
+    // init: get element data again: begin
+    const initTestDataAgain: INotifyTestDataInitMerge = await page.evaluate((opt) => {
+      const options = JSON.parse(opt) as INotifyDevOptions;
+      const elementSelector = options.success?.childClassName || 'x';
+
+      const _element = window.document.querySelector(`.${elementSelector}`) as HTMLDivElement;
+      const _elementMessage = _element.querySelector('.nx-message') as HTMLSpanElement;
+      const _elementIcon = _element.querySelector('.nx-message-icon');
+
+      const returnData: INotifyTestDataInitMerge = {
+        elementTagName: _element.tagName,
+        elementBackgrondColor: window.getComputedStyle(_element).backgroundColor,
+        messageInnerHTML: _elementMessage.innerHTML,
+        iconTagName: _elementIcon?.tagName,
+      };
+      return returnData;
+    }, JSON.stringify(notifyDevOptions));
+    // init: get element again: end
+
+    // init: expectations again: begin
+    expect(initTestDataAgain.elementTagName).toBe('DIV');
+    expect(
+      rgbToHex(initTestDataAgain.elementBackgrondColor)
+    ).toBe('#000000');
+    expect(initTestDataAgain.messageInnerHTML).toBe('Notiflix');
+    expect(initTestDataAgain.iconTagName).toBeUndefined();
+    // init: expectations again: end
+
+    // merge: wait for init element removal (by the options)
+    await page.waitForTimeout((notifyDevOptions.timeout as number) + (notifyDevOptions.cssAnimationDuration as number));
+
+    // merge: simulate merge-set and init-merge-get clicks
+    await page.click('[data-pptr-selector=pptr-notify-merge-set]', { clickCount: 1 });
+    await page.click('[data-pptr-selector=pptr-notify-init-merge-get]', { clickCount: 1 });
+    await page.click('body', { clickCount: 1 });
+
+    // merge: get element data: begin
+    const mergeTestData: INotifyTestDataInitMerge = await page.evaluate((opt) => {
+      const options = JSON.parse(opt) as INotifyDevOptions;
+      const elementSelector = options.success?.childClassName || 'x';
+
+      const _element = window.document.querySelector(`.${elementSelector}`) as HTMLDivElement;
+      const _elementMessage = _element.querySelector('.nx-message') as HTMLSpanElement;
+      const _elementIcon = _element.querySelector('.nx-message-icon');
+
+      const returnData: INotifyTestDataInitMerge = {
+        elementTagName: _element.tagName,
+        elementBackgrondColor: window.getComputedStyle(_element).backgroundColor,
+        messageInnerHTML: _elementMessage.innerHTML,
+        iconTagName: _elementIcon?.tagName,
+      };
+      return returnData;
+    }, JSON.stringify(notifyDevOptions));
+    // merge: get element data: end
+
+    // merge: expectations: begin
+    expect(mergeTestData.elementTagName).toBe('DIV');
+    expect(
+      rgbToHex(mergeTestData.elementBackgrondColor)
+    ).toBe('#808080');
+    expect(mergeTestData.messageInnerHTML).toBe('<b>Notiflix</b>');
+    expect(mergeTestData.iconTagName).toBeUndefined();
+    // merge: expectations: end
+
+    // simulate reset click
+    await page.click('[data-pptr-selector=pptr-notify-reset]', { clickCount: 1 });
+    await page.click('body', { clickCount: 1 });
+
+  }, 15000);
+
   // TODO: extend the options and check with the extended options
 });
