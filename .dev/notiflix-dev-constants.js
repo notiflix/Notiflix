@@ -4,7 +4,7 @@
 * Description: Notiflix constants for the development.
 * Version: 1.0.0
 * Author: Furkan MT (https://github.com/furcan)
-* Copyright 2019 - 2021 Notiflix - Constants, MIT Licence (https://opensource.org/licenses/MIT)
+* Copyright 2019 - 2022 Notiflix - Constants, MIT Licence (https://opensource.org/licenses/MIT)
 */
 
 // Dev Dependencies
@@ -68,7 +68,7 @@ module.exports = {
   version: (JSON.stringify((package || {}).version) || '').replace(/"/gm, ''),
   author: (JSON.stringify((package || {}).author) || '').replace(/"/gm, ''),
   license: 'MIT Licence (https://opensource.org/licenses/MIT)',
-  year: '2019 - ' + (new Date().getFullYear() || '2021'),
+  year: '2019 - ' + (new Date().getFullYear() || '2022'),
   directories: {
     dist: 'dist',
     build: 'build',

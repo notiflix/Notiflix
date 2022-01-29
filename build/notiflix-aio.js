@@ -1,9 +1,9 @@
 /*
 * Notiflix AIO (https://notiflix.github.io)
 * Description: This file has been created automatically that using "notiflix.js", and "notiflix.css" files.
-* Version: 3.2.2
+* Version: 3.2.3
 * Author: Furkan MT (https://github.com/furcan)
-* Copyright 2019 - 2021 Notiflix, MIT Licence (https://opensource.org/licenses/MIT)
+* Copyright 2019 - 2022 Notiflix, MIT Licence (https://opensource.org/licenses/MIT)
 */
 
 /* global define */
@@ -1631,7 +1631,7 @@
             blockCreateOrRemoveCounter++;
             var notiflixBlockWrap = window.document.createElement('div');
             notiflixBlockWrap.id = blockSettings.ID + '-' + blockCreateOrRemoveCounter;
-            notiflixBlockWrap.className = blockClassName + '-wrap' + (newBlockSettings.cssAnimation ? ' nx-with-animation' : '');
+            notiflixBlockWrap.className = blockClassName + (newBlockSettings.cssAnimation ? ' nx-with-animation' : '');
             notiflixBlockWrap.style.position = newBlockSettings.position;
             notiflixBlockWrap.style.zIndex = newBlockSettings.zindex;
             notiflixBlockWrap.style.background = newBlockSettings.backgroundColor;
@@ -1760,10 +1760,10 @@
       // Step 2A => Remove each block element: end
 
       // Step 2B => Remove each element's class name: begin
-      var removeEachElementClassName = function (eachElement) {
+      var removeEachElementClassName = function (eachElement, className) {
+        var positionClass = className + '-position';
         var timeout = setTimeout(function () {
           // remove class name
-          var positionClass = blockClassName + '-position';
           eachElement.classList.remove(positionClass);
 
           // clear timeout
@@ -1778,7 +1778,7 @@
           var eachElement = allHTMLElements[i];
           if (eachElement) {
             // remove each element's class name
-            removeEachElementClassName(eachElement);
+            removeEachElementClassName(eachElement, blockClassName);
 
             // remove each block element
             eachBlockElement = eachElement.querySelectorAll('[id^=' + blockSettings.ID + ']');
@@ -1792,7 +1792,10 @@
     }
 
     // extend new settings with the backup settings
-    newBlockSettings = commonExtendOptions(true, newBlockSettings, newBlockSettingsBackup);
+    var reverseSettingsTimeout = setTimeout(function () {
+      newBlockSettings = commonExtendOptions(true, newBlockSettings, newBlockSettingsBackup);
+      clearTimeout(reverseSettingsTimeout);
+    }, (delay || 0));
   };
   // BLOCK: Create or Remove: end
 

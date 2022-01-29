@@ -9,8 +9,6 @@
 
 [npm-version-badge]: https://img.shields.io/npm/v/notiflix.svg
 [npm-version-url]: https://www.npmjs.com/package/notiflix
-[dep-badge]: https://david-dm.org/notiflix/Notiflix.svg
-[dep-url]: https://david-dm.org/notiflix/Notiflix.svg
 [synk-badge]: https://snyk.io/test/github/notiflix/Notiflix/badge.svg?targetFile=package.json
 [synk-url]: https://snyk.io/test/github/notiflix/Notiflix?targetFile=package.json
 [typescript-badge]: https://badgen.net/badge/icon/Typed?icon=typescript&label&labelColor=3178c6&color=555
@@ -19,12 +17,11 @@
 [downloads-url]: https://npmjs.org/package/notiflix
 [jsdelivr-badge]: https://data.jsdelivr.com/v1/package/npm/notiflix/badge?style=rounded
 [jsdelivr-url]: https://www.jsdelivr.com/package/npm/notiflix
-[size-badge]: https://img.badgesize.io/https://cdn.jsdelivr.net/npm/notiflix@3.2.2/dist/notiflix-aio-3.2.2.min.js?compression=gzip
-[size-url]: https://cdn.jsdelivr.net/npm/notiflix@3.2.2/dist/notiflix-aio-3.2.2.min.js
+[size-badge]: https://img.badgesize.io/https://cdn.jsdelivr.net/npm/notiflix@3.2.3/dist/notiflix-aio-3.2.3.min.js?compression=gzip
+[size-url]: https://cdn.jsdelivr.net/npm/notiflix@3.2.3/dist/notiflix-aio-3.2.3.min.js
 [lic-badge]: https://img.shields.io/github/license/notiflix/Notiflix.svg
 [lic-url]: https://github.com/notiflix/Notiflix/blob/main/LICENSE
 
-<!-- [![Dependencies][dep-badge]][dep-url] -->
 [![npm version][npm-version-badge]][npm-version-url]
 [![Known Vulnerabilities][synk-badge]][synk-url]
 [![TypeScript][typescript-badge]][typescript-url]
@@ -39,7 +36,7 @@ Notiflix is a JavaScript library for client-side non-blocking notifications, pop
 
 ### Current Version
 
-3.2.2 [*](https://github.com/notiflix/Notiflix/blob/main/CHANGELOG.md "CHANGELOG")
+3.2.3 [*](https://github.com/notiflix/Notiflix/blob/main/CHANGELOG.md "CHANGELOG")
 
 ### Browser Compatibility
 
@@ -100,27 +97,27 @@ import { Block } from 'notiflix/build/notiflix-block-aio';
 
 #### CSS and JS
 ```html
-<link rel="stylesheet" href="dist/notiflix-3.2.2.min.css" />
+<link rel="stylesheet" href="dist/notiflix-3.2.3.min.css" />
 
-<script src="dist/notiflix-3.2.2.min.js"></script>
+<script src="dist/notiflix-3.2.3.min.js"></script>
 ```
 
 #### or only JS (All in One - Internal CSS)
 ```html
-<script src="dist/notiflix-aio-3.2.2.min.js"></script>
+<script src="dist/notiflix-aio-3.2.3.min.js"></script>
 ```
 
 #### or only Modules JS (All in One - Internal CSS)
 ```html
-<script src="dist/notiflix-notify-aio-3.2.2.min.js"></script>
+<script src="dist/notiflix-notify-aio-3.2.3.min.js"></script>
 
-<script src="dist/notiflix-report-aio-3.2.2.min.js"></script>
+<script src="dist/notiflix-report-aio-3.2.3.min.js"></script>
 
-<script src="dist/notiflix-confirm-aio-3.2.2.min.js"></script>
+<script src="dist/notiflix-confirm-aio-3.2.3.min.js"></script>
 
-<script src="dist/notiflix-loading-aio-3.2.2.min.js"></script>
+<script src="dist/notiflix-loading-aio-3.2.3.min.js"></script>
 
-<script src="dist/notiflix-block-aio-3.2.2.min.js"></script>
+<script src="dist/notiflix-block-aio-3.2.3.min.js"></script>
 ```
 
 ---------
@@ -772,7 +769,7 @@ Notiflix.Block.init({
 ---------
 
 ### Copyright
-Copyright &copy; 2019 - 2021 Notiflix
+Copyright &copy; 2019 - 2022 Notiflix
 
 ### License
 MIT license - https://opensource.org/licenses/MIT

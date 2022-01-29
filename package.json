@@ -1,8 +1,8 @@
 {
   "name": "notiflix",
-  "main": "dist/notiflix-aio-3.2.2.min.js",
+  "main": "dist/notiflix-aio-3.2.3.min.js",
   "types": "index.d.ts",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "description": "Notiflix is a JavaScript library for client-side non-blocking notifications, popup boxes, loading indicators, and more...",
   "homepage": "https://github.com/notiflix/Notiflix",
   "files": [
@@ -64,14 +64,14 @@
   },
   "scripts": {
     "test": "jest",
-    "notiflix:dev:eslint:typescript": "eslint -c .eslintrc.js index.d.test.ts test",
-    "notiflix:dev:eslint:helpers": "eslint -c .eslintrc.json .dev",
+    "notiflix:dev:eslint:typescript": "eslint -c .dev/.eslintrc.js index.d.test.ts test",
+    "notiflix:dev:eslint:helpers": "eslint -c .dev/.eslintrc.json .dev",
     "notiflix:dev:lint": "yarn notiflix:dev:eslint:typescript && yarn notiflix:dev:eslint:helpers",
     "notiflix:src:stylelint": "stylelint src/notiflix.css",
     "notiflix:src:eslint": "eslint -c .eslintrc.json src/notiflix.js",
     "notiflix:src:lint": "yarn notiflix:src:stylelint && yarn notiflix:src:eslint",
     "notiflix:build": "yarn notiflix:dev:lint && yarn notiflix:src:lint && node .dev/notiflix-dev-builder.js",
-    "notiflix:build:eslint": "eslint -c .eslintrc.json build/**/*.js && eslint -c .eslintrc.js build/**/*.ts",
+    "notiflix:build:eslint": "eslint -c .eslintrc.json build/**/*.js && eslint -c .dev/.eslintrc.js build/**/*.ts",
     "notiflix:minifier": "yarn notiflix:build && yarn notiflix:build:eslint && node .dev/notiflix-dev-minifier.js",
     "notiflix": "yarn notiflix:minifier"
   }

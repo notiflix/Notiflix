@@ -1,3 +1,9 @@
+@3.2.3
+* **Fixed:** `Notiflix.Block.*`: The custom class name option was not being set correctly. The temporary position class name for the reference element was not being removed if it was being used with a custom class name.
+  - Fixes => [#45](https://github.com/notiflix/Notiflix/issues/45)
+
+---
+
 @3.2.2
 * **Fixed:** `Notiflix.Confirm.prompt()`: Input `maxlength` attribute value should not be directly related to the default answer length.
   - Fixes => [#43](https://github.com/notiflix/Notiflix/issues/43)

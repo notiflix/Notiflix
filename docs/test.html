@@ -195,15 +195,16 @@
   <!-- <script src="../build/notiflix-block-aio.js"></script> -->
 
 
-  <!-- <link href="../dist/notiflix-3.2.2.min.css" rel="stylesheet" /> -->
-  <!-- <script src="../dist/notiflix-3.2.2.min.js"></script> -->
+  <!-- <link href="../dist/notiflix-3.2.3.min.css" rel="stylesheet" /> -->
+  <!-- <script src="../dist/notiflix-3.2.3.min.js"></script> -->
 
-  <!-- <script src="../dist/notiflix-aio-3.2.2.min.js"></script> -->
-  <script src="../dist/notiflix-notify-aio-3.2.2.min.js"></script>
-  <script src="../dist/notiflix-report-aio-3.2.2.min.js"></script>
-  <script src="../dist/notiflix-confirm-aio-3.2.2.min.js"></script>
-  <script src="../dist/notiflix-loading-aio-3.2.2.min.js"></script>
-  <script src="../dist/notiflix-block-aio-3.2.2.min.js"></script>
+  <!-- <script src="../dist/notiflix-aio-3.2.3.min.js"></script> -->
+
+  <script src="../dist/notiflix-notify-aio-3.2.3.min.js"></script>
+  <script src="../dist/notiflix-report-aio-3.2.3.min.js"></script>
+  <script src="../dist/notiflix-confirm-aio-3.2.3.min.js"></script>
+  <script src="../dist/notiflix-loading-aio-3.2.3.min.js"></script>
+  <script src="../dist/notiflix-block-aio-3.2.3.min.js"></script>
 
 
   <script>
@@ -247,6 +248,11 @@
         customSvgUrl: 'https://notiflix.github.io/content/media/loading/notiflix-loading-nx-dark.svg',
         svgSize: '81px',
         customSvgCode: '<svg xmlns="http://www.w3.org/2000/svg" id="NXLoadingNotiflixLib" width="60px" height="60px" viewBox="0 0 200 200"><defs><style>@keyframes notiflix-n{0%{stroke-dashoffset:1000}to{stroke-dashoffset:0}}@keyframes notiflix-x{0%{stroke-dashoffset:1000}to{stroke-dashoffset:0}}@keyframes notiflix-dot{0%,to{stroke-width:0}50%{stroke-width:12}}.nx-icon-line{stroke:#f8f8f8;stroke-width:12;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:22;fill:none}</style></defs><path d="M47.97 135.05a6.5 6.5 0 1 1 0 13 6.5 6.5 0 0 1 0-13z" style="animation-name:notiflix-dot;animation-timing-function:ease-in-out;animation-duration:1.25s;animation-iteration-count:infinite;animation-direction:normal" fill="#32c682" stroke="#32c682" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="22" stroke-width="12"/><path class="nx-icon-line" d="M10.14 144.76V87.55c0-5.68-4.54-41.36 37.83-41.36 42.36 0 37.82 35.68 37.82 41.36v57.21" style="animation-name:notiflix-n;animation-timing-function:linear;animation-duration:2.5s;animation-delay:0s;animation-iteration-count:infinite;animation-direction:normal" stroke-dasharray="500"/><path class="nx-icon-line" d="M115.06 144.49c24.98-32.68 49.96-65.35 74.94-98.03M114.89 46.6c25.09 32.58 50.19 65.17 75.29 97.75" style="animation-name:notiflix-x;animation-timing-function:linear;animation-duration:2.5s;animation-delay:.2s;animation-iteration-count:infinite;animation-direction:normal" stroke-dasharray="500"/></svg>',
+      });
+
+      Notiflix.Block.init({
+        className: 'block-custom-class',
+        cssAnimationDuration: 400,
       });
     }
 

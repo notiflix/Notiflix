@@ -11,7 +11,7 @@
     "SharedArrayBuffer": "readonly"
   },
   "parserOptions": {
-    "ecmaVersion": 5
+    "ecmaVersion": 2021
   },
   "rules": {
     "comma-dangle": [
@@ -24,14 +24,19 @@
     ],
     "indent": [
       "error",
-      2
+      2,
+      {
+        "ignoredNodes": [
+          "TemplateLiteral"
+        ]
+      }
     ],
     "quotes": [
       2,
       "single",
       {
         "avoidEscape": true,
-        "allowTemplateLiterals": false
+        "allowTemplateLiterals": true
       }
     ]
   }

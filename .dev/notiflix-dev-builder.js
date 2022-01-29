@@ -5,7 +5,7 @@
 *
 * Version: 1.0.0
 * Author: Furkan MT (https://github.com/furcan)
-* Copyright 2019 - 2021 Notiflix - All In One, MIT Licence (https://opensource.org/licenses/MIT)
+* Copyright 2019 - 2022 Notiflix - All In One, MIT Licence (https://opensource.org/licenses/MIT)
 */
 
 'use-strict';

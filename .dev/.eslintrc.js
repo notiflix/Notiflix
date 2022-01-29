@@ -1,3 +1,5 @@
+// For TypeScript
+
 module.exports = {
   overrides: [{
     files: ['*.d.ts', '*.ts', '*.tsx'],
@@ -38,9 +40,9 @@ module.exports = {
         'single',
         {
           'avoidEscape': true,
-          'allowTemplateLiterals': true
-        }
-      ]
+          'allowTemplateLiterals': true,
+        },
+      ],
     },
   }],
-}
+};

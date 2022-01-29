@@ -1,9 +1,9 @@
 /*
 * Notiflix (https://notiflix.github.io)
-* Version: 3.2.2
+* Version: 3.2.3
 * Description: TypeScript Declaration.
 * Author: Furkan MT (https://github.com/furcan)
-* Copyright 2019 - 2021 Notiflix, MIT Licence (https://opensource.org/licenses/MIT)
+* Copyright 2019 - 2022 Notiflix, MIT Licence (https://opensource.org/licenses/MIT)
 */
 
 /**
