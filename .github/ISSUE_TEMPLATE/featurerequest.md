@@ -4,7 +4,6 @@ about: Suggest an idea to help us improve.
 title: "[FEAT] - "
 labels: enhancement
 assignees: furcan
-projects: https://github.com/users/notiflix/projects/1
 
 ---
 ### Is your feature request related to a problem? Please describe.
