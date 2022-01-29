@@ -1,3 +1,9 @@
+@3.2.4
+* **Fixed:** `Notiflix.Block.*`: The temporary position class name for the reference element has been changed to a constant text.
+  - Fixes => [#47](https://github.com/notiflix/Notiflix/issues/47)
+
+---
+
 @3.2.3
 * **Fixed:** `Notiflix.Block.*`: The custom class name option was not being set correctly. The temporary position class name for the reference element was not being removed if it was being used with a custom class name.
   - Fixes => [#45](https://github.com/notiflix/Notiflix/issues/45)

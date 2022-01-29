@@ -1,7 +1,7 @@
 /*
 * Notiflix Notify AIO (https://notiflix.github.io)
 * Description: This file has been created automatically that using "notiflix.js", and "notiflix.css" files.
-* Version: 3.2.3
+* Version: 3.2.4
 * Author: Furkan MT (https://github.com/furcan)
 * Copyright 2019 - 2022 Notiflix, MIT Licence (https://opensource.org/licenses/MIT)
 */

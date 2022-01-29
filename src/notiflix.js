@@ -1,6 +1,6 @@
 /*!
 * Notiflix (https://notiflix.github.io)
-* Version: 3.2.3
+* Version: 3.2.4
 * Author: Furkan MT (https://github.com/furcan)
 * Copyright 2019 - 2022 Notiflix, MIT Licence (https://opensource.org/licenses/MIT)
 */
@@ -1571,7 +1571,7 @@
     // if cssAnimaion is false => duration: end
 
     // check the class name: begin
-    var blockClassName = 'notiflix-block';
+    var blockClassName = blockSettings.className;
     if (typeof newBlockSettings.className === 'string') {
       blockClassName = newBlockSettings.className.trim();
     }
@@ -1581,6 +1581,9 @@
     var getQueryLimit = typeof newBlockSettings.querySelectorLimit === 'number' ? newBlockSettings.querySelectorLimit : 200;
     var checkQueryLimit = (allHTMLElements || []).length >= getQueryLimit ? getQueryLimit : allHTMLElements.length;
     // check query limit: end
+
+    // position class name for the non-static reference elements
+    var positionClassForNonStaticRef = 'nx-block-temporary-position';
 
     // block
     if (isCreate) {
@@ -1694,15 +1697,15 @@
 
               // create and add internal style to the head
               var style = '<style id="Style-' + blockSettings.ID + '-' + blockCreateOrRemoveCounter + '">' +
-                eachElementIdOrClass + '.' + blockClassName + '-position{' + positionStyle + minHeightStyle + '}' +
+                eachElementIdOrClass + '.' + positionClassForNonStaticRef + '{' + positionStyle + minHeightStyle + '}' +
                 '</style>';
               var styleRange = window.document.createRange();
               styleRange.selectNode(window.document.head);
               var styleFragment = styleRange.createContextualFragment(style);
               window.document.head.appendChild(styleFragment);
 
-              // add the "blockClassName" to each element
-              eachElement.classList.add(blockClassName + '-position');
+              // add the "positionClassForNonStaticRef" to each element
+              eachElement.classList.add(positionClassForNonStaticRef);
             }
             // internal style: end
 
@@ -1764,11 +1767,10 @@
       // Step 2A => Remove each block element: end
 
       // Step 2B => Remove each element's class name: begin
-      var removeEachElementClassName = function (eachElement, className) {
-        var positionClass = className + '-position';
+      var removeEachElementClassName = function (eachElement) {
         var timeout = setTimeout(function () {
           // remove class name
-          eachElement.classList.remove(positionClass);
+          eachElement.classList.remove(positionClassForNonStaticRef);
 
           // clear timeout
           clearTimeout(timeout);
@@ -1782,7 +1784,7 @@
           var eachElement = allHTMLElements[i];
           if (eachElement) {
             // remove each element's class name
-            removeEachElementClassName(eachElement, blockClassName);
+            removeEachElementClassName(eachElement);
 
             // remove each block element
             eachBlockElement = eachElement.querySelectorAll('[id^=' + blockSettings.ID + ']');
@@ -1796,10 +1798,7 @@
     }
 
     // extend new settings with the backup settings
-    var reverseSettingsTimeout = setTimeout(function () {
-      newBlockSettings = commonExtendOptions(true, newBlockSettings, newBlockSettingsBackup);
-      clearTimeout(reverseSettingsTimeout);
-    }, (delay || 0));
+    newBlockSettings = commonExtendOptions(true, newBlockSettings, newBlockSettingsBackup);
   };
   // BLOCK: Create or Remove: end
 
