@@ -656,7 +656,7 @@ declare namespace Notiflix {
 
 
   /**
-   * @interface IConfirmOptions
+   * @interface ILoadingOptions
    * @memberof Notiflix
    */
   export interface ILoadingOptions {
