@@ -1,6 +1,6 @@
 /*!
 * Notiflix (https://notiflix.github.io)
-* Version: 3.2.4
+* Version: 3.2.5
 * Author: Furkan MT (https://github.com/furcan)
 * Copyright 2019 - 2022 Notiflix, MIT Licence (https://opensource.org/licenses/MIT)
 */
@@ -125,7 +125,7 @@
   cursor: auto;
 }
 
-[id^="NotiflixNotifyWrap"] > div.nx-click-to-close {
+[id^="NotiflixNotifyWrap"] > div.nx-notify-click-to-close {
   cursor: pointer;
 }
 
@@ -778,6 +778,10 @@
   background: rgba(255, 255, 255, 0.5);
   position: fixed;
   z-index: 0;
+}
+
+[id^="NotiflixReportWrap"] > div.nx-report-click-to-close {
+  cursor: pointer;
 }
 
 [id^="NotiflixReportWrap"] > div[class*="-content"] {
@@ -1668,7 +1672,7 @@
   box-sizing: border-box;
 }
 
-[id^="NotiflixLoadingWrap"].nx-click-to-close {
+[id^="NotiflixLoadingWrap"].nx-loading-click-to-close {
   cursor: pointer;
 }
 

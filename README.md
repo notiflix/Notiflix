@@ -17,8 +17,8 @@
 [downloads-url]: https://npmjs.org/package/notiflix
 [jsdelivr-badge]: https://data.jsdelivr.com/v1/package/npm/notiflix/badge?style=rounded
 [jsdelivr-url]: https://www.jsdelivr.com/package/npm/notiflix
-[size-badge]: https://img.badgesize.io/https://cdn.jsdelivr.net/npm/notiflix@3.2.4/dist/notiflix-aio-3.2.4.min.js?compression=gzip
-[size-url]: https://cdn.jsdelivr.net/npm/notiflix@3.2.4/dist/notiflix-aio-3.2.4.min.js
+[size-badge]: https://img.badgesize.io/https://cdn.jsdelivr.net/npm/notiflix@3.2.5/dist/notiflix-aio-3.2.5.min.js?compression=gzip
+[size-url]: https://cdn.jsdelivr.net/npm/notiflix@3.2.5/dist/notiflix-aio-3.2.5.min.js
 [lic-badge]: https://img.shields.io/github/license/notiflix/Notiflix.svg
 [lic-url]: https://github.com/notiflix/Notiflix/blob/main/LICENSE
 
@@ -32,11 +32,11 @@
 
 # Notiflix
 
-Notiflix is a JavaScript library for client-side non-blocking notifications, popup boxes, loading indicators, and more that makes your web projects much better.
+Notiflix is a pure JavaScript library for client-side non-blocking notifications, popup boxes, loading indicators, and more that makes your web projects much better.
 
 ### Current Version
 
-3.2.4 [*](https://github.com/notiflix/Notiflix/blob/main/CHANGELOG.md "CHANGELOG")
+3.2.5 [*](https://github.com/notiflix/Notiflix/blob/main/CHANGELOG.md "CHANGELOG")
 
 ### Browser Compatibility
 
@@ -97,27 +97,27 @@ import { Block } from 'notiflix/build/notiflix-block-aio';
 
 #### CSS and JS
 ```html
-<link rel="stylesheet" href="dist/notiflix-3.2.4.min.css" />
+<link rel="stylesheet" href="dist/notiflix-3.2.5.min.css" />
 
-<script src="dist/notiflix-3.2.4.min.js"></script>
+<script src="dist/notiflix-3.2.5.min.js"></script>
 ```
 
 #### or only JS (All in One - Internal CSS)
 ```html
-<script src="dist/notiflix-aio-3.2.4.min.js"></script>
+<script src="dist/notiflix-aio-3.2.5.min.js"></script>
 ```
 
 #### or only Modules JS (All in One - Internal CSS)
 ```html
-<script src="dist/notiflix-notify-aio-3.2.4.min.js"></script>
+<script src="dist/notiflix-notify-aio-3.2.5.min.js"></script>
 
-<script src="dist/notiflix-report-aio-3.2.4.min.js"></script>
+<script src="dist/notiflix-report-aio-3.2.5.min.js"></script>
 
-<script src="dist/notiflix-confirm-aio-3.2.4.min.js"></script>
+<script src="dist/notiflix-confirm-aio-3.2.5.min.js"></script>
 
-<script src="dist/notiflix-loading-aio-3.2.4.min.js"></script>
+<script src="dist/notiflix-loading-aio-3.2.5.min.js"></script>
 
-<script src="dist/notiflix-block-aio-3.2.4.min.js"></script>
+<script src="dist/notiflix-block-aio-3.2.5.min.js"></script>
 ```
 
 ---------
@@ -626,6 +626,7 @@ Notiflix.Report.init({
   zindex: 4002,
   backOverlay: true,
   backOverlayColor: 'rgba(0,0,0,0.5)',
+  backOverlayClickToClose: false,
   fontFamily: 'Quicksand',
   svgSize: '110px',
   plainText: true,

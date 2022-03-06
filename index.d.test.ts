@@ -103,6 +103,7 @@ Notiflix.Report.init({
   zindex: 4002,
   backOverlay: true,
   backOverlayColor: 'rgba(0,0,0,0.5)',
+  backOverlayClickToClose: false,
   fontFamily: 'Quicksand',
   svgSize: '110px',
   plainText: true,

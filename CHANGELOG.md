@@ -1,3 +1,10 @@
+@3.2.5
+* **Added:** `Notiflix.Report.*` module: `backOverlayClickToClose` option has been added. Default value is `false`. It removes the Report Notification when the background overlay element has been clicked. The existing `backOverlay` option has to be `true` as well. [#48](https://github.com/notiflix/Notiflix/issues/48)
+
+* **Changed:** Code Review/Refactor.
+
+---
+
 @3.2.4
 * **Fixed:** `Notiflix.Block.*`: The temporary position class name for the reference element has been changed to a constant text.
   - Fixes => [#47](https://github.com/notiflix/Notiflix/issues/47)

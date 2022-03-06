@@ -1,6 +1,6 @@
 /*!
 * Notiflix (https://notiflix.github.io)
-* Version: 3.2.4
+* Version: 3.2.5
 * Author: Furkan MT (https://github.com/furcan)
 * Copyright 2019 - 2022 Notiflix, MIT Licence (https://opensource.org/licenses/MIT)
 */
@@ -132,6 +132,7 @@
     zindex: 4002,
     backOverlay: true,
     backOverlayColor: 'rgba(0,0,0,0.5)',
+    backOverlayClickToClose: false,
     fontFamily: 'Quicksand',
     svgSize: '110px',
     plainText: true,
@@ -634,7 +635,7 @@
     // notify content: begin
     var ntflxNotify = window.document.createElement('div');
     ntflxNotify.id = newNotifySettings.ID + '-' + notifyCreateCounter;
-    ntflxNotify.className = newNotifySettings.className + ' ' + theType.childClassName + ' ' + (newNotifySettings.cssAnimation ? 'nx-with-animation' : '') + ' ' + (newNotifySettings.useIcon ? 'nx-with-icon' : '') + ' nx-' + newNotifySettings.cssAnimationStyle + ' ' + (newNotifySettings.closeButton && typeof callbackOrOptions !== 'function' ? 'nx-with-close-button' : '') + ' ' + (typeof callbackOrOptions === 'function' ? 'nx-with-callback' : '') + ' ' + (newNotifySettings.clickToClose ? 'nx-click-to-close' : '');
+    ntflxNotify.className = newNotifySettings.className + ' ' + theType.childClassName + ' ' + (newNotifySettings.cssAnimation ? 'nx-with-animation' : '') + ' ' + (newNotifySettings.useIcon ? 'nx-with-icon' : '') + ' nx-' + newNotifySettings.cssAnimationStyle + ' ' + (newNotifySettings.closeButton && typeof callbackOrOptions !== 'function' ? 'nx-with-close-button' : '') + ' ' + (typeof callbackOrOptions === 'function' ? 'nx-with-callback' : '') + ' ' + (newNotifySettings.clickToClose ? 'nx-notify-click-to-close' : '');
     ntflxNotify.style.fontSize = newNotifySettings.fontSize;
     ntflxNotify.style.color = theType.textColor;
     ntflxNotify.style.background = theType.background;
@@ -946,8 +947,9 @@
 
     // overlay: begin
     var reportOverlay = '';
+    var reportOverlayClickToClose = newReportSettings.backOverlayClickToClose === true;
     if (newReportSettings.backOverlay) {
-      reportOverlay = '<div class="' + newReportSettings.className + '-overlay' + (newReportSettings.cssAnimation ? ' nx-with-animation' : '') + '" style="background:' + (theType.backOverlayColor || newReportSettings.backOverlayColor) + ';animation-duration:' + newReportSettings.cssAnimationDuration + 'ms;"></div>';
+      reportOverlay = '<div class="' + newReportSettings.className + '-overlay' + (newReportSettings.cssAnimation ? ' nx-with-animation' : '') + (reportOverlayClickToClose ? ' nx-report-click-to-close' : '') + '" style="background:' + (theType.backOverlayColor || newReportSettings.backOverlayColor) + ';animation-duration:' + newReportSettings.cssAnimationDuration + 'ms;"></div>';
     }
     // overlay: end
 
@@ -976,28 +978,41 @@
       // append
       window.document.body.appendChild(ntflxReportWrap);
 
+      // report remove: begin
+      var reportRemove = function () {
+        var elementWrapper = window.document.getElementById(ntflxReportWrap.id);
+        elementWrapper.classList.add('nx-remove');
+        var timeout = setTimeout(function () {
+          if (elementWrapper.parentNode !== null) {
+            elementWrapper.parentNode.removeChild(elementWrapper);
+          }
+          clearTimeout(timeout);
+        }, newReportSettings.cssAnimationDuration);
+      };
+      // report remove: end
+
       // callback: begin
-      var reportWrapper = window.document.getElementById(ntflxReportWrap.id);
-      var reportButton = window.document.getElementById('NXReportButton');
-      reportButton.addEventListener('click', function () {
+      var elementButton = window.document.getElementById('NXReportButton');
+      elementButton.addEventListener('click', function () {
         // if callback: begin
         if (typeof callbackOrOptions === 'function') {
           callbackOrOptions();
         }
         // if callback: end
 
-        // remove element: begin
-        reportWrapper.classList.add('nx-remove');
-        var timeout = setTimeout(function () {
-          if (reportWrapper.parentNode !== null) {
-            reportWrapper.parentNode.removeChild(reportWrapper);
-          }
-          clearTimeout(timeout);
-        }, newReportSettings.cssAnimationDuration);
-        // remove element: end
+        // remove report
+        reportRemove();
       });
       // callback: end
 
+      // overlay click to close: begin
+      if (reportOverlay && reportOverlayClickToClose) {
+        var elementOverlay = window.document.querySelector('.nx-report-click-to-close');
+        elementOverlay.addEventListener('click', function () {
+          reportRemove();
+        });
+      }
+      // overlay click to close: end
     }
     // report wrap: end
 
@@ -1373,7 +1388,7 @@
       // loading wrap: begin
       var ntflxLoadingWrap = window.document.createElement('div');
       ntflxLoadingWrap.id = loadingSettings.ID;
-      ntflxLoadingWrap.className = newLoadingSettings.className + (newLoadingSettings.cssAnimation ? ' nx-with-animation' : '') + (newLoadingSettings.clickToClose ? ' nx-click-to-close' : '');
+      ntflxLoadingWrap.className = newLoadingSettings.className + (newLoadingSettings.cssAnimation ? ' nx-with-animation' : '') + (newLoadingSettings.clickToClose ? ' nx-loading-click-to-close' : '');
       ntflxLoadingWrap.style.zIndex = newLoadingSettings.zindex;
       ntflxLoadingWrap.style.background = newLoadingSettings.backgroundColor;
       ntflxLoadingWrap.style.animationDuration = newLoadingSettings.cssAnimationDuration + 'ms';

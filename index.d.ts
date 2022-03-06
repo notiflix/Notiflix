@@ -1,13 +1,13 @@
 /*
 * Notiflix (https://notiflix.github.io)
-* Version: 3.2.4
+* Version: 3.2.5
 * Description: TypeScript Declaration.
 * Author: Furkan MT (https://github.com/furcan)
 * Copyright 2019 - 2022 Notiflix, MIT Licence (https://opensource.org/licenses/MIT)
 */
 
 /**
-  * Notiflix is a JavaScript library for client-side non-blocking notifications, popup boxes, loading indicators, and more that makes your web projects much better.
+  * Notiflix is a pure JavaScript library for client-side non-blocking notifications, popup boxes, loading indicators, and more that makes your web projects much better.
   * @namespace Notiflix
   * @memberof Global
   */
@@ -387,6 +387,12 @@ declare namespace Notiflix {
      * @defaultValue `rgba(0,0,0,0.5)`
      */
     backOverlayColor?: string;
+
+    /**
+     * @property {boolean} - Removes the Report Notification when the background overlay element has been clicked. The "backOverlay" option has to be "true" as well.
+     * @defaultValue `false`
+     */
+    backOverlayClickToClose?: boolean;
 
     /**
      * @property {string} - Changes the font-family.
