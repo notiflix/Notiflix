@@ -1866,6 +1866,7 @@
 [id^="NotiflixBlockWrap"] > span[class*="-icon"] svg {
   width: inherit;
   height: inherit;
+  display: block ;
 }
 /* stylelint-enable no-descending-specificity */
 

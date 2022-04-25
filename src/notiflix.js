@@ -1683,10 +1683,6 @@
 
             var averageMinHeight = Math.round(parseInt(newBlockSettings.svgSize) * 1.25) + 40;
             var eachElementHeight = eachElement.offsetHeight || 0;
-            var minHeightStyle = '';
-            if (averageMinHeight > eachElementHeight) {
-              minHeightStyle = 'min-height:' + averageMinHeight + 'px;';
-            }
 
             // internal style: begin
             var eachElementIdOrClass = '';
@@ -1701,7 +1697,7 @@
             var positionStyle = '';
             var positions = ['absolute', 'relative', 'fixed', 'sticky'];
             var addPosition = positions.indexOf(eachElementPosition) <= -1;
-            if (addPosition || minHeightStyle.length > 0) {
+            if (addPosition) {
               // check doc head
               if (!commonCheckHeadOrBody('head')) { return false; }
 
@@ -1712,7 +1708,7 @@
 
               // create and add internal style to the head
               var style = '<style id="Style-' + blockSettings.ID + '-' + blockCreateOrRemoveCounter + '">' +
-                eachElementIdOrClass + '.' + positionClassForNonStaticRef + '{' + positionStyle + minHeightStyle + '}' +
+                eachElementIdOrClass + '.' + positionClassForNonStaticRef + '{' + positionStyle + '}' +
                 '</style>';
               var styleRange = window.document.createRange();
               styleRange.selectNode(window.document.head);
