@@ -1707,7 +1707,7 @@
 
               // check position style
               if (addPosition) {
-                positionStyle = 'position:relative!important;';
+                positionStyle = 'position:static!important;';
               }
 
               // create and add internal style to the head
