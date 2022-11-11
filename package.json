@@ -39,9 +39,9 @@
   "bugs": {
     "url": "https://github.com/notiflix/Notiflix/issues"
   },
-  "author": "Furkan MT (https://github.com/furcan)",
+  "author": "Furkan (https://github.com/furcan)",
   "contributors": [
-    "Furkan MT (https://github.com/furcan)"
+    "Furkan (https://github.com/furcan)"
   ],
   "license": "MIT",
   "devDependencies": {

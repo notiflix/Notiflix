@@ -3,13 +3,13 @@
 *
 * Description: Notiflix constants for the development.
 * Version: 1.0.0
-* Author: Furkan MT (https://github.com/furcan)
+* Author: Furkan (https://github.com/furcan)
 * Copyright 2019 - 2022 Notiflix - Constants, MIT Licence (https://opensource.org/licenses/MIT)
 */
 
 // Dev Dependencies
 const chalk = require('chalk');
-const package = require('../package.json');
+const packageJson = require('../package.json');
 
 // Notiflix Constants: begin
 // - CleanCSS Options: begin
@@ -65,8 +65,8 @@ const terminalSuccess = (message) => {
 module.exports = {
   notiflix: 'Notiflix',
   notiflixUrl: '(https://notiflix.github.io)',
-  version: (JSON.stringify((package || {}).version) || '').replace(/"/gm, ''),
-  author: (JSON.stringify((package || {}).author) || '').replace(/"/gm, ''),
+  version: (JSON.stringify((packageJson || {}).version) || '').replace(/"/gm, ''),
+  author: (JSON.stringify((packageJson || {}).author) || '').replace(/"/gm, ''),
   license: 'MIT Licence (https://opensource.org/licenses/MIT)',
   year: '2019 - ' + (new Date().getFullYear() || '2022'),
   directories: {
