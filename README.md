@@ -7,6 +7,7 @@
 </p>
 <br />
 
+
 [npm-version-badge]: https://img.shields.io/npm/v/notiflix.svg
 [npm-version-url]: https://www.npmjs.com/package/notiflix
 [synk-badge]: https://snyk.io/test/github/notiflix/Notiflix/badge.svg?targetFile=package.json
