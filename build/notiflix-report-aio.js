@@ -1,9 +1,9 @@
 /*
 * Notiflix Report AIO (https://notiflix.github.io)
 * Description: This file has been created automatically that using "notiflix.js", and "notiflix.css" files.
-* Version: 3.2.5
-* Author: Furkan MT (https://github.com/furcan)
-* Copyright 2019 - 2022 Notiflix, MIT Licence (https://opensource.org/licenses/MIT)
+* Version: 3.2.6
+* Author: Furkan (https://github.com/furcan)
+* Copyright 2019 - 2023 Notiflix, MIT Licence (https://opensource.org/licenses/MIT)
 */
 
 /* global define */
