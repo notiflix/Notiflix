@@ -21,8 +21,6 @@
 [size-url]: https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js
 [lic-badge]: https://img.shields.io/github/license/notiflix/Notiflix.svg
 [lic-url]: https://github.com/notiflix/Notiflix/blob/main/LICENSE
-[openbase-badge]: https://badges.openbase.com/js/rating/notiflix.svg?token=etJpTk0XCPP8Fb4hZ0FONgCAqdcH8gpxG7R0hQU4S6w%3D
-[openbase-url]: https://openbase.com/js/notiflix?utm_source=embedded&utm_medium=badge&utm_campaign=rating-badge&utm_term=js/notiflix
 
 [![NPM Version][npm-version-badge]][npm-version-url]
 [![Known Vulnerabilities][synk-badge]][synk-url]
@@ -31,7 +29,6 @@
 [![jsDelivr][jsdelivr-badge]][jsdelivr-url]
 [![Size][size-badge]][size-url]
 [![License][lic-badge]][lic-url]
-[![Rate this package][openbase-badge]][openbase-url]
 
 # Notiflix
 
