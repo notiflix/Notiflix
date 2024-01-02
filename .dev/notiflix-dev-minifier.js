@@ -5,7 +5,7 @@
 *
 * Version: 1.0.0
 * Author: Furkan (https://github.com/furcan)
-* Copyright 2019 - 2023 Notiflix Minifier, MIT Licence (https://opensource.org/licenses/MIT)
+* Copyright 2019 - 2024 Notiflix Minifier, MIT License (https://opensource.org/licenses/MIT)
 */
 
 'use-strict';

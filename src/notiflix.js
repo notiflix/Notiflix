@@ -1,8 +1,8 @@
 /*!
 * Notiflix (https://notiflix.github.io)
-* Version: 3.2.6
+* Version: 3.2.7
 * Author: Furkan (https://github.com/furcan)
-* Copyright 2019 - 2023 Notiflix, MIT Licence (https://opensource.org/licenses/MIT)
+* Copyright 2019 - 2024 Notiflix, MIT License (https://opensource.org/licenses/MIT)
 */
 
 /* global define */

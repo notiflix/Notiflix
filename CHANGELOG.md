@@ -1,3 +1,11 @@
+@3.2.7
+
+No changes.
+
+**Happy new year!**
+
+---
+
 @3.2.6
 
 No changes.
