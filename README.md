@@ -29,11 +29,13 @@
 
 # Notiflix
 
-Notiflix is a pure JavaScript library for client-side non-blocking notifications, popup boxes, loading indicators, and more that makes your web projects much better.
+Notiflix is a dependency-free, secure, and lightweight JavaScript library built with pure JavaScript, offering client-side non-blocking notifications, popup boxes, loading indicators, and more.
+
+It is designed to enhance the user experience without the need for heavy dependencies, making it suitable for a wide variety of projects.
 
 ### Current Version
 
-3.2.7 [*](https://github.com/notiflix/Notiflix/blob/main/CHANGELOG.md "CHANGELOG")
+3.2.8 [*](https://github.com/notiflix/Notiflix/blob/main/CHANGELOG.md "CHANGELOG")
 
 ### Browser Compatibility
 
@@ -94,27 +96,27 @@ import { Block } from 'notiflix/build/notiflix-block-aio';
 
 #### CSS and JS
 ```html
-<link rel="stylesheet" href="dist/notiflix-3.2.7.min.css" />
+<link rel="stylesheet" href="dist/notiflix-3.2.8.min.css" />
 
-<script src="dist/notiflix-3.2.7.min.js"></script>
+<script src="dist/notiflix-3.2.8.min.js"></script>
 ```
 
 #### or only JS (All in One - Internal CSS)
 ```html
-<script src="dist/notiflix-aio-3.2.7.min.js"></script>
+<script src="dist/notiflix-aio-3.2.8.min.js"></script>
 ```
 
 #### or only Modules JS (All in One - Internal CSS)
 ```html
-<script src="dist/notiflix-notify-aio-3.2.7.min.js"></script>
+<script src="dist/notiflix-notify-aio-3.2.8.min.js"></script>
 
-<script src="dist/notiflix-report-aio-3.2.7.min.js"></script>
+<script src="dist/notiflix-report-aio-3.2.8.min.js"></script>
 
-<script src="dist/notiflix-confirm-aio-3.2.7.min.js"></script>
+<script src="dist/notiflix-confirm-aio-3.2.8.min.js"></script>
 
-<script src="dist/notiflix-loading-aio-3.2.7.min.js"></script>
+<script src="dist/notiflix-loading-aio-3.2.8.min.js"></script>
 
-<script src="dist/notiflix-block-aio-3.2.7.min.js"></script>
+<script src="dist/notiflix-block-aio-3.2.8.min.js"></script>
 ```
 
 ---------
@@ -767,7 +769,7 @@ Notiflix.Block.init({
 ---------
 
 ### Copyright
-Copyright &copy; 2019 - 2024 Notiflix
+Copyright &copy; 2019 - 2025 Notiflix
 
 ### License
 MIT license - https://opensource.org/licenses/MIT

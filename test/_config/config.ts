@@ -1,7 +1,5 @@
 import { LaunchOptions, BrowserLaunchArgumentOptions, BrowserConnectOptions } from 'puppeteer-core';
 
-// const executablePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-// const repositoryBase = 'file:///C:/Users/Developer/Desktop/Projects/Repositories/GitHub/+++Notiflix/Notiflix';
 const executablePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const repositoryBase = 'file:///Users/furkan/Desktop/Projects/GitHub/Notiflix';
 

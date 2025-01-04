@@ -1,3 +1,18 @@
+@3.2.8
+
+* **Changed:**
+  - Corrected grammar issues in comment lines.
+  - Fixed(grammar) the name of an internal helper function:
+    - ~~`removeNotifyElmentsAndWrapper`~~ => `removeNotifyElementsAndWrapper`
+
+* **Fixed:**
+  - Fix on `commonCheckHeadOrBody` internal helper function, which was checking for `null` instead of `undefined`.
+    - _This overthought helper is intended to verify that `window.document.head` or `window.document.body` exists._
+
+**Happy new year!**
+
+---
+
 @3.2.7
 
 No changes.

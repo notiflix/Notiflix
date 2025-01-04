@@ -1,9 +1,9 @@
 /*
 * Notiflix AIO (https://notiflix.github.io)
 * Description: This file has been created automatically that using "notiflix.js", and "notiflix.css" files.
-* Version: 3.2.7
+* Version: 3.2.8
 * Author: Furkan (https://github.com/furcan)
-* Copyright 2019 - 2024 Notiflix, MIT License (https://opensource.org/licenses/MIT)
+* Copyright 2019 - 2025 Notiflix, MIT License (https://opensource.org/licenses/MIT)
 */
 
 /* global define */
@@ -304,7 +304,7 @@
   // COMMON: Check Head or Body: begin
   var commonCheckHeadOrBody = function (element) {
     if (!element) { element = 'head'; }
-    if (window.document[element] === null) {
+    if (window.document[element] === undefined) {
       commonConsoleError('\nNotiflix needs to be appended to the "<' + element + '>" element, but you called it before the "<' + element + '>" element has been created.');
       return false;
     }
@@ -523,7 +523,7 @@
 
     // if plainText is false but the message length more than messageMaxLength => Possible HTML tags error: begin
     if (!newNotifySettings.plainText && message.length > newNotifySettings.messageMaxLength) {
-      // extend settings for error massege
+      // extend settings for error massage
       newNotifySettings = commonExtendOptions(true, newNotifySettings, { closeButton: true, messageMaxLength: 150 });
       // error message
       message = 'Possible HTML Tags Error: The "plainText" option is "false" and the notification content length is more than the "messageMaxLength" option.';
@@ -542,11 +542,11 @@
     }
     // font awesome icon style: end
 
-    // if cssAnimaion is false => duration: begin
+    // if cssAnimation is false => duration: begin
     if (!newNotifySettings.cssAnimation) {
       newNotifySettings.cssAnimationDuration = 0;
     }
-    // if cssAnimaion is false => duration: end
+    // if cssAnimation is false => duration: end
 
     // notify wrap: begin
     var ntflxNotifyWrap = window.document.getElementById(notifySettings.wrapID) || window.document.createElement('div');
@@ -664,7 +664,7 @@
     if (newNotifySettings.closeButton && typeof callbackOrOptions !== 'function') {
       closeButtonHTML = '<span class="nx-close-button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><g><path fill="' + theType.notiflixIconColor + '" d="M0.38 2.19l7.8 7.81 -7.8 7.81c-0.51,0.5 -0.51,1.31 -0.01,1.81 0.25,0.25 0.57,0.38 0.91,0.38 0.34,0 0.67,-0.14 0.91,-0.38l7.81 -7.81 7.81 7.81c0.24,0.24 0.57,0.38 0.91,0.38 0.34,0 0.66,-0.14 0.9,-0.38 0.51,-0.5 0.51,-1.31 0,-1.81l-7.81 -7.81 7.81 -7.81c0.51,-0.5 0.51,-1.31 0,-1.82 -0.5,-0.5 -1.31,-0.5 -1.81,0l-7.81 7.81 -7.81 -7.81c-0.5,-0.5 -1.31,-0.5 -1.81,0 -0.51,0.51 -0.51,1.32 0,1.82z"/></g></svg></span>';
     }
-    // close buttpon element: end
+    // close button element: end
 
     // use icon: begin
     if (newNotifySettings.useIcon) {
@@ -722,7 +722,7 @@
       // hide notify elm and hide overlay: end
 
       // remove notify elm and wrapper: begin
-      var removeNotifyElmentsAndWrapper = function () {
+      var removeNotifyElementsAndWrapper = function () {
         if (eachNotifyElement && eachNotifyElement.parentNode !== null) {
           eachNotifyElement.parentNode.removeChild(eachNotifyElement);
         }
@@ -743,7 +743,7 @@
         closeButtonElm.addEventListener('click', function () {
           hideNotifyElementsAndOverlay();
           var clickToCloseTimeout = setTimeout(function () {
-            removeNotifyElmentsAndWrapper();
+            removeNotifyElementsAndWrapper();
             clearTimeout(clickToCloseTimeout);
           }, newNotifySettings.cssAnimationDuration);
         });
@@ -758,7 +758,7 @@
           }
           hideNotifyElementsAndOverlay();
           var callbackTimeout = setTimeout(function () {
-            removeNotifyElmentsAndWrapper();
+            removeNotifyElementsAndWrapper();
             clearTimeout(callbackTimeout);
           }, newNotifySettings.cssAnimationDuration);
         });
@@ -773,7 +773,7 @@
             hideNotifyElementsAndOverlay();
           }, newNotifySettings.timeout);
           timeoutRemove = setTimeout(function () {
-            removeNotifyElmentsAndWrapper();
+            removeNotifyElementsAndWrapper();
           }, newNotifySettings.timeout + newNotifySettings.cssAnimationDuration);
         };
         autoRemove();
@@ -915,11 +915,11 @@
     }
     // max length: end
 
-    // if cssAnimaion is false => duration: begin
+    // if cssAnimation is false => duration: begin
     if (!newReportSettings.cssAnimation) {
       newReportSettings.cssAnimationDuration = 0;
     }
-    // if cssAnimaion is false => duration: end
+    // if cssAnimation is false => duration: end
 
     // report wrap: begin
     var ntflxReportWrap = window.document.createElement('div');
@@ -1104,11 +1104,11 @@
     }
     // max length: end
 
-    // if cssAnimaion is false => duration: begin
+    // if cssAnimation is false => duration: begin
     if (!newConfirmSettings.cssAnimation) {
       newConfirmSettings.cssAnimationDuration = 0;
     }
-    // if cssAnimaion is false => duration: end
+    // if cssAnimation is false => duration: end
 
     // confirm wrap: begin
     var ntflxConfirmWrap = window.document.createElement('div');
@@ -1335,11 +1335,11 @@
       }
       // if message settings: end
 
-      // if cssAnimaion is false => duration: begin
+      // if cssAnimation is false => duration: begin
       if (!newLoadingSettings.cssAnimation) {
         newLoadingSettings.cssAnimationDuration = 0;
       }
-      // if cssAnimaion is false => duration: end
+      // if cssAnimation is false => duration: end
 
       // svgIcon: begin
       var svgIcon = '';
@@ -1575,11 +1575,11 @@
     }
     // check the message: end
 
-    // if cssAnimaion is false => duration: begin
+    // if cssAnimation is false => duration: begin
     if (!newBlockSettings.cssAnimation) {
       newBlockSettings.cssAnimationDuration = 0;
     }
-    // if cssAnimaion is false => duration: end
+    // if cssAnimation is false => duration: end
 
     // check the class name: begin
     var blockClassName = blockSettings.className;

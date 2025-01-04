@@ -1,9 +1,9 @@
 /*
 * Notiflix Confirm AIO (https://notiflix.github.io)
 * Description: This file has been created automatically that using "notiflix.js", and "notiflix.css" files.
-* Version: 3.2.7
+* Version: 3.2.8
 * Author: Furkan (https://github.com/furcan)
-* Copyright 2019 - 2024 Notiflix, MIT License (https://opensource.org/licenses/MIT)
+* Copyright 2019 - 2025 Notiflix, MIT License (https://opensource.org/licenses/MIT)
 */
 
 /* global define */
@@ -84,7 +84,7 @@
   // COMMON: Check Head or Body: begin
   var commonCheckHeadOrBody = function (element) {
     if (!element) { element = 'head'; }
-    if (window.document[element] === null) {
+    if (window.document[element] === undefined) {
       commonConsoleError('\nNotiflix needs to be appended to the "<' + element + '>" element, but you called it before the "<' + element + '>" element has been created.');
       return false;
     }
@@ -230,11 +230,11 @@
     }
     // max length: end
 
-    // if cssAnimaion is false => duration: begin
+    // if cssAnimation is false => duration: begin
     if (!newConfirmSettings.cssAnimation) {
       newConfirmSettings.cssAnimationDuration = 0;
     }
-    // if cssAnimaion is false => duration: end
+    // if cssAnimation is false => duration: end
 
     // confirm wrap: begin
     var ntflxConfirmWrap = window.document.createElement('div');
