@@ -1,3 +1,15 @@
+> [!IMPORTANT]
+>
+> **This project is under maintenance/LTS mode.**
+>
+> Notiflix was built in the era of Internet Explorer, Twitter/Bootstrap, FontAwesome, etc. Just as that era is over, Notiflix has also become legacy and does not meet modern web technology standards or mandatory accessibility regulations.
+>
+> This library will still work as long as web browsers support JavaScript. It can still be useful for backoffice/admin panels, personal/demo projects, or internal tools. For business-critical applications, please consider modern alternatives or building your own implementation.
+>
+> Thank you.
+
+---
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/notiflix/Notiflix/main/docs/notiflix-banner.gif" width="480" height="auto" alt="Notiflix">
 </p>
