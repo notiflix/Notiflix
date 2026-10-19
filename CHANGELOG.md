@@ -1,4 +1,4 @@
-@3.3.3
+@3.3.0
 
 * **Fixed:**
   - Fix on `commonGetPlaintext` internal helper function: Prevent JS execution via the given/expected `text`.
