@@ -1160,10 +1160,9 @@
     var theExpectedAnswer = null;
     var theClientAnswer = undefined;
     if (confirmType === typesConfirm.Ask || confirmType === typesConfirm.Prompt) {
-      theExpectedAnswer = commonGetPlaintext(answer || '');
+      theExpectedAnswer = answer || '';
       var inputMaxLength = (confirmType === typesConfirm.Ask) ? Math.ceil(theExpectedAnswer.length * 1.5) : (theExpectedAnswer.length > 200 ? Math.ceil(theExpectedAnswer.length * 1.5) : 250);
-      var inputDefaultValueAttr = confirmType === typesConfirm.Prompt ? ('value="' + theExpectedAnswer + '"') : '';
-      setValidationInput = '<div><input id="NXConfirmValidationInput" type="text" ' + inputDefaultValueAttr + ' maxlength="' + inputMaxLength + '" style="font-size:' + newConfirmSettings.messageFontSize + ';border-radius: ' + newConfirmSettings.borderRadius + ';" autocomplete="off" spellcheck="false" autocapitalize="none" /></div>';
+      setValidationInput = '<div><input id="NXConfirmValidationInput" type="text" maxlength="' + inputMaxLength + '" style="font-size:' + newConfirmSettings.messageFontSize + ';border-radius: ' + newConfirmSettings.borderRadius + ';" autocomplete="off" spellcheck="false" autocapitalize="none" /></div>';
     }
     // check the validation module: end
 
@@ -1193,6 +1192,10 @@
       // validation input listener: begin
       var validationInput = window.document.getElementById('NXConfirmValidationInput');
       if (validationInput) {
+        if (confirmType === typesConfirm.Prompt) {
+          validationInput.value = theExpectedAnswer;
+        }
+
         validationInput.focus();
         validationInput.setSelectionRange(0, (validationInput.value || '').length);
         validationInput.addEventListener('keyup', function (event) {
