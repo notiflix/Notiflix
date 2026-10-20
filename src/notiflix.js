@@ -1160,7 +1160,7 @@
     var theExpectedAnswer = null;
     var theClientAnswer = undefined;
     if (confirmType === typesConfirm.Ask || confirmType === typesConfirm.Prompt) {
-      theExpectedAnswer = answer || '';
+      theExpectedAnswer = commonGetPlaintext(answer || '');
       var inputMaxLength = (confirmType === typesConfirm.Ask) ? Math.ceil(theExpectedAnswer.length * 1.5) : (theExpectedAnswer.length > 200 ? Math.ceil(theExpectedAnswer.length * 1.5) : 250);
       var inputDefaultValueAttr = confirmType === typesConfirm.Prompt ? ('value="' + theExpectedAnswer + '"') : '';
       setValidationInput = '<div><input id="NXConfirmValidationInput" type="text" ' + inputDefaultValueAttr + ' maxlength="' + inputMaxLength + '" style="font-size:' + newConfirmSettings.messageFontSize + ';border-radius: ' + newConfirmSettings.borderRadius + ';" autocomplete="off" spellcheck="false" autocapitalize="none" /></div>';
