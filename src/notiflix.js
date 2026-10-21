@@ -1,8 +1,8 @@
 /*!
 * Notiflix (https://notiflix.github.io)
-* Version: 3.2.8
+* Version: 3.3.0
 * Author: Furkan (https://github.com/furcan)
-* Copyright 2019 - 2025 Notiflix, MIT License (https://opensource.org/licenses/MIT)
+* Copyright 2019-present Notiflix, MIT License (https://opensource.org/licenses/MIT)
 */
 
 /* global define */
@@ -360,9 +360,16 @@
 
   // COMMON: Get Plaintext: begin
   var commonGetPlaintext = function (html) {
-    var htmlPool = window.document.createElement('div');
+    // Parse inertly and extract plain text
+    var htmlDocument = window.document.implementation.createHTMLDocument('');
+    var htmlPool = htmlDocument.createElement('div');
     htmlPool.innerHTML = html;
-    return htmlPool.textContent || htmlPool.innerText || '';
+    var text = htmlPool.textContent || htmlPool.innerText || '';
+
+    // Safely encode special characters for HTML injection
+    var safetyPool = htmlDocument.createElement('div');
+    safetyPool.textContent = text;
+    return safetyPool.innerHTML;
   };
   // COMMON: Get Plaintext: end
 
@@ -1155,8 +1162,7 @@
     if (confirmType === typesConfirm.Ask || confirmType === typesConfirm.Prompt) {
       theExpectedAnswer = answer || '';
       var inputMaxLength = (confirmType === typesConfirm.Ask) ? Math.ceil(theExpectedAnswer.length * 1.5) : (theExpectedAnswer.length > 200 ? Math.ceil(theExpectedAnswer.length * 1.5) : 250);
-      var inputDefaultValueAttr = confirmType === typesConfirm.Prompt ? ('value="' + theExpectedAnswer + '"') : '';
-      setValidationInput = '<div><input id="NXConfirmValidationInput" type="text" ' + inputDefaultValueAttr + ' maxlength="' + inputMaxLength + '" style="font-size:' + newConfirmSettings.messageFontSize + ';border-radius: ' + newConfirmSettings.borderRadius + ';" autocomplete="off" spellcheck="false" autocapitalize="none" /></div>';
+      setValidationInput = '<div><input id="NXConfirmValidationInput" type="text" maxlength="' + inputMaxLength + '" style="font-size:' + newConfirmSettings.messageFontSize + ';border-radius: ' + newConfirmSettings.borderRadius + ';" autocomplete="off" spellcheck="false" autocapitalize="none" /></div>';
     }
     // check the validation module: end
 
@@ -1186,6 +1192,10 @@
       // validation input listener: begin
       var validationInput = window.document.getElementById('NXConfirmValidationInput');
       if (validationInput) {
+        if (confirmType === typesConfirm.Prompt) {
+          validationInput.value = theExpectedAnswer;
+        }
+
         validationInput.focus();
         validationInput.setSelectionRange(0, (validationInput.value || '').length);
         validationInput.addEventListener('keyup', function (event) {

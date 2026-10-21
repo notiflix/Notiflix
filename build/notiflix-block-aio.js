@@ -1,9 +1,9 @@
 /*
 * Notiflix Block AIO (https://notiflix.github.io)
 * Description: This file has been created automatically that using "notiflix.js", and "notiflix.css" files.
-* Version: 3.2.8
+* Version: 3.3.0
 * Author: Furkan (https://github.com/furcan)
-* Copyright 2019 - 2025 Notiflix, MIT License (https://opensource.org/licenses/MIT)
+* Copyright 2019-present Notiflix, MIT License (https://opensource.org/licenses/MIT)
 */
 
 /* global define */
@@ -134,9 +134,16 @@
 
   // COMMON: Get Plaintext: begin
   var commonGetPlaintext = function (html) {
-    var htmlPool = window.document.createElement('div');
+    // Parse inertly and extract plain text
+    var htmlDocument = window.document.implementation.createHTMLDocument('');
+    var htmlPool = htmlDocument.createElement('div');
     htmlPool.innerHTML = html;
-    return htmlPool.textContent || htmlPool.innerText || '';
+    var text = htmlPool.textContent || htmlPool.innerText || '';
+
+    // Safely encode special characters for HTML injection
+    var safetyPool = htmlDocument.createElement('div');
+    safetyPool.textContent = text;
+    return safetyPool.innerHTML;
   };
   // COMMON: Get Plaintext: end
 
